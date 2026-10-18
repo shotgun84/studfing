@@ -1,0 +1,352 @@
+ACS |Code of Professional Conduct V.2.1 April 2014 
+ 
+Page 1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ACS Code of Professional Conduct 
+Professional Standards Board 
+Australian Computer Society 
+ 
+April 2014
+
+===== PAGE BREAK =====
+
+ACS |Code of Professional Conduct V.2.1 April 2014 
+ 
+Page 2 
+ 
+ACS Code of Professional Conduct 
+ 
+ 
+ 
+Version History 
+ 
+Date 
+Document 
+Version 
+Revision History (reason for change) 
+Author /Reviser 
+06.07.2012 
+V.2 
+Corporate Identity Changes 
+Ruth Graham 
+04.04.2014 
+V2.1 
+Removed reference to Code of 
+Professional Practice 
+Graham Low 
+ 
+Approvals 
+ 
+Date approved 
+Version 
+Approved By 
+Date in force 
+Date of Next 
+Review 
+2005 
+V.1 
+Professional 
+Standards Board 
+2005 
+To be confirmed 
+2014 
+V2.1 
+Michael Johnson 
+4 April 2014 
+To be confirmed 
+ 
+ 
+Custodian title & 
+e-mail address: 
+ andrew.johnson@acs.org.au 
+Responsible 
+Business Group: 
+Professional Standards Board 
+Distribution: 
+ 
+General (no restriction on distribution) 
+ 
+Content Security: 
+ 
+Unclassified
+
+===== PAGE BREAK =====
+
+ACS |Code of Professional Conduct V.2.1 April 2014 
+ 
+Page 3 
+ 
+TABLE OF CONTENTS 
+ACS Code of Professional Conduct ......................................................................................... 
+1.1. 
+PREAMBLE................................................................................................................ 4 
+Relevance To Law ........................................................................................................ 4 
+1.2. 
+THE CODE ................................................................................................................. 5 
+1.2.1. The Primacy of the Public Interest .................................................................... 6 
+1.2.2. The Enhancement of Quality of Life .................................................................. 6 
+1.2.3. Honesty ............................................................................................................. 7 
+1.2.4. Competence ...................................................................................................... 7 
+1.2.5. Professional Development ................................................................................ 8 
+1.2.6. Professionalism ................................................................................................. 8
+
+===== PAGE BREAK =====
+
+ACS |Code of Professional Conduct V.2.1 April 2014 
+ 
+Page 4 
+ 
+1.1. PREAMBLE 
+ 
+An essential characteristic of a profession is the need for its members to abide by a code of 
+ethics. For the ACS, this code is established as the Code of Professional Conduct and is part of 
+the Society's Regulations. These Regulations apply to any ACS member who works in the field 
+of information and communications technology (ICT). 
+ 
+This Code of Professional Conduct (the Code) identifies six core ethical values and the 
+associated requirements for professional conduct. The Society requires its members to abide 
+by these values, and act with responsibility and integrity in all of their professional dealings. 
+ 
+Relevance to Law 
+ 
+This Code of Professional Conduct has relevance to professional standards legislation. Failure 
+to abide by the Code could be used as grounds for a claim of professional negligence. The Code 
+may be quoted by an expert witness giving an assessment of professional conduct. Failure to 
+observe the Code could also lead to disciplinary action by the ACS.
+
+===== PAGE BREAK =====
+
+ACS |Code of Professional Conduct V.2.1 April 2014 
+ 
+Page 5 
+ 
+1.2. THE CODE 
+ 
+As an ACS member you must uphold and advance the honour, dignity and effectiveness of 
+being a professional. This entails, in addition to being a good citizen and acting within the law, 
+your conformance to the following ACS values. 
+ 
+1. The Primacy of the Public Interest 
+You will place the interests of the public above those of personal, business or 
+sectional interests. 
+ 
+2. The Enhancement of Quality of Life 
+You will strive to enhance the quality of life of those affected by your work. 
+ 
+3. Honesty 
+You will be honest in your representation of skills, knowledge, services and products. 
+ 
+4. Competence 
+You will work competently and diligently for your stakeholders. 
+ 
+5. Professional Development 
+You will enhance your own professional development, and that of your staff. 
+ 
+6. Professionalism 
+You will enhance the integrity of the ACS and the respect of its members for each 
+other. 
+ 
+In a situation of conflict between the values, The Primacy of the Public Interest takes 
+precedence over the other values. 
+ 
+This Code of Professional Conduct is aimed specifically at you as an individual practitioner, and 
+is intended as a guideline for your acceptable professional conduct. It is applicable to all ACS 
+members regardless of their role or specific area of expertise in the ICT industry. 
+ 
+The following list of requirements is not exhaustive and should not be read as a complete 
+definition of acceptable professional conduct in all practical situations. The intention of the 
+Code is to illustrate what constitutes professional behaviour. You are expected to take into 
+account the spirit of this Code in order to resolve ambiguous or contentious issues concerning 
+professional conduct. The ACS can help you resolve ethical dilemmas.
+
+===== PAGE BREAK =====
+
+ACS |Code of Professional Conduct V.2.1 April 2014 
+ 
+Page 6 
+ 
+1.2.1. The Primacy of the Public Interest 
+ 
+In the context of this Code, the public interest takes precedence over personal, private and 
+sectional interests, and any conflicts should be resolved in favour of the public interest. In your 
+work, you should safeguard the interests of your immediate stakeholders, provided that these 
+interests do not conflict with the duty and loyalty you owe to the public. The public interest is 
+taken to include matters of public health, safety and the environment. 
+ 
+In accordance with this value you will: 
+a) 
+identify those potentially impacted by your work and explicitly consider their interests; 
+b) 
+raise with stakeholders any potential conflicts between your professional activity and 
+legal or other accepted public requirements; 
+c) 
+advise your stakeholders as soon as possible of any conflicts of interest or conscientious 
+objections that you have; 
+d) 
+take into consideration the fact that your profession traverses many other professions, 
+and has implications for other social systems and organisations; 
+e) 
+endeavour to preserve the integrity, security, continuity and utility of ICT; 
+f) 
+respect the intellectual property of others; and 
+g) 
+endeavour to preserve the confidentiality and privacy of the information of others. 
+ 
+1.2.2. The Enhancement of Quality of Life 
+ 
+The development of ICT has had a significant impact on our society and way of life. Whilst this 
+impact has been beneficial to a very great extent, like all technologies, ICT has also had some 
+negative effects, and will continue to do so. An ethical approach to your work will help to 
+recognise and minimise these adverse effects. You should promote equal access to the 
+benefits of ICT by all members of society. 
+ 
+In accordance with this value you will: 
+a) 
+recognise, in your work, the role that ICT can play to enhance the quality of life of people, 
+particularly the disadvantaged or those with disabilities; 
+b) 
+protect and promote the health and safety of those affected by your work; 
+c) 
+understand, and give due regard to, the perceptions of those affected by your work; and 
+d) 
+attempt to increase the feelings of personal satisfaction, competence, and control of 
+those affected by your work.
+
+===== PAGE BREAK =====
+
+ACS |Code of Professional Conduct V.2.1 April 2014 
+ 
+Page 7 
+ 
+1.2.3. Honesty 
+ 
+Do not breach public trust in the profession or the specific trust of your stakeholders. 
+Observance of utmost honesty and integrity must underlie all your professional decisions and 
+actions. Circumstances will undoubtedly arise during the course of your professional career 
+where it may appear to be beneficial for you to be deceptive in some way. This type of 
+behaviour is not acceptable professional conduct. 
+ 
+In accordance with this value you will: 
+a) 
+reject, and will not make, any offer of bribery or inducement; 
+b) 
+not knowingly mislead a client or potential client as to the suitability of a product or 
+service; 
+c) 
+distinguish between your professional and personal opinions and advice; 
+d) 
+give realistic estimates for projects under your control; 
+e) 
+qualify professional opinions which you know are based on limited knowledge or 
+experience; 
+f) 
+give credit for work done by others where credit is due; and 
+g) 
+not attempt to enhance your own reputation at the expense of another person’s 
+reputation. 
+ 
+1.2.4. Competence 
+ 
+Accept only such work as you believe you are competent to perform, and do not hesitate to 
+obtain additional expertise from appropriately qualified individuals where advisable. You 
+should always be aware of your own limitations and not knowingly imply that you have 
+competence you do not possess. This is distinct from accepting a task of which the successful 
+completion requires expertise additional to your own. You cannot possibly be knowledgeable 
+on all facets of ICT but you should be able to recognise when you need additional expertise 
+and information. 
+ 
+In accordance with this value you will: 
+a) 
+endeavour to provide products and services which match the operational and financial 
+needs of your stakeholders; 
+b) 
+not misrepresent your skills or knowledge; 
+c) 
+make yourself aware of relevant standards and legislation, and act accordingly; 
+d) 
+respect and protect your stakeholders' proprietary interests; 
+e) 
+advise your stakeholders when you believe a proposed project, product or service is not in 
+their best interest; 
+f) 
+accept responsibility for your work; and 
+g) 
+respect, and seek when necessary, the professional expertise of colleagues in their areas 
+of competence.
+
+===== PAGE BREAK =====
+
+ACS |Code of Professional Conduct V.2.1 April 2014 
+ 
+Page 8 
+ 
+1.2.5. Professional Development 
+ 
+Keep yourself informed of such new technologies, practices and standards as are relevant to 
+your work. Others will expect you to provide special skills and advice; and in order to do so, 
+you must keep your knowledge up-to-date. You should encourage your staff and colleagues to 
+do the same. Take action to ensure that your hard-won knowledge and experience are passed 
+on in such a way that the recipients not only improve their own effectiveness in their present 
+work but also become keen to advance their capabilities and take on additional responsibilities. 
+ 
+In accordance with this value you will: 
+a) 
+continue to upgrade your knowledge and skills; 
+b) 
+increase your awareness of issues affecting the profession and its relationship with the 
+public; 
+c) 
+encourage your colleagues, employees and students to continue their own professional 
+development; and 
+d) 
+support education, training and professional development in ICT that reflects the diverse 
+needs of individual professionals and their various career paths. 
+ 
+1.2.6. Professionalism 
+ 
+The ICT industry is relatively new and characterised by rapid change. It has not had the 
+opportunity to evolve over many years and acquire its own standards and legislation. The ACS 
+is endeavouring to improve public confidence in the ICT industry. It is imperative that 
+members of the Society maintain professional standards that improve and enhance the 
+industry's image, especially in the workplace. 
+All people have a right to be treated with dignity and respect. Discrimination is unprofessional 
+behaviour, as is any form of harassment. Members should be aware that the ACS can help 
+them resolve ethical dilemmas. It can also provide support for taking appropriate action, 
+including whistle-blowing, if you discover an ACS member engaging in unethical behaviour; 
+ 
+In accordance with this value you will: 
+a) 
+take a calm, objective, informed and knowledgeable stance on your professional work, 
+complementing your enthusiasm and engagement in it; 
+b) 
+take appropriate action against members who engage in behaviours contrary to this Code; 
+c) 
+confront attempts to limit diversity in the workplace, and ensure that opportunities for 
+employment, advancement, remuneration and other working conditions are based on the 
+actual skills and performance of employees, free of stereotypes and prejudices; 
+d) 
+note that the corporate actions of the Society are subject to this Code, and you should do 
+whatever you can to ensure that the ACS and its officers meet this obligation; 
+e) 
+neither require, nor attempt to influence, any person to take any action which would 
+involve a breach of this Code; 
+f) 
+refrain from any conduct or action in your professional role which may tarnish the image 
+of the profession or detract from the good name of the ACS; 
+g) 
+endeavour to extend public knowledge and understanding of ICT; 
+h) 
+co-operate in advancing ICT by communication with other professionals, students and the 
+public; and 
+i) 
+have pride in your profession, and protect and promote professionalism in ICT

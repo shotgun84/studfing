@@ -1,0 +1,84 @@
+=== PAGE BREAK ========== PAGE BREAK =====Intro to SE (ISAD1000/ISAD5004) 
+Worksheet 1: Project Planning
+Page 1 of 2 
+CRICOS Provide Code: 00301J 
+ 
+ 
+will need to adjust your WBS accordingly, and re-estimate any additional activities. 
+Note 1: If your group estimates 0 (zero), ∞ (infinity) or ? (unknown) for any task, 
+you
+Worksheet 1: Project Planning 
+Updated: 25th February, 2022/ 26 February 2023 
+ 
+You should attempt this worksheet in groups of about three or four. However, make sure 
+everyone in the group keeps a complete record of the group’s work! 
+First, as a group, select one of the following projects: 
+• A new train line between: 
+ 
+Perth’s two largest universities: Curtin (in Bentley) and UWA (in Crawley) OR 
+Malaysia’s two universities: Curtin Miri Campus and University of Malaysia, Sarawak 
+OR, 
+Mauritius’s two universities: Curtin Mauritius and Middlesex University in Mauritius 
+OR 
+Sri Lanka’s two universities: SLIIT (Malabe) and University of Colombo. 
+Consider the following activities: public consultation, demolition work, track laying, 
+electrification (building overhead lines), signal construction, station construction, train 
+construction and delivery, track testing, etc. In particular, what kind of route will the rail line 
+take? 
+• A music festival to be held in an island resort. Consider the following needs: marketing, 
+transport (ferries/planes, buses/taxis), accommodation, catering (meals and drinks), 
+signing up bands to play, hiring staff, stage setup (including seating, light and sound), 
+first-aid, insurance, and anything else that comes to mind! 
+In either case, assume you have unlimited money. (Obviously this isn’t exactly realistic, but 
+that doesn’t stop us learning how to plan.) 
+ 
+1. Work Breakdown 
+Develop a work breakdown structure (WBS) for this project. List the major steps required and 
+break them down as needed into smaller steps where appropriate. (But don’t go too far.) 
+ 
+2. Estimation 
+For each activity in your WBS, have your group play planning poker to estimate its duration 
+(in days, weeks or months). 
+In most of the classes, you will be provided with simple planning poker card sets. If not, you 
+can make do by writing your estimates on slips of paper. You may use apps available for this 
+purpose also. Whatever the method adopted, keep to the spirit of planning poker, making 
+sure everyone reveals their estimates simultaneously. 
+For each activity, sort out any discrepancies in your estimates by briefly dis- cussing what 
+you think the activity will involve.===== PAGE BREAK =====Intro to SE (ISAD1000/ISAD5004) 
+Worksheet 1: Project Planning
+Page 2 of 2 
+CRICOS Provide Code: 00301J 
+ 
+ 
+You can add another column to your task table and indicate dependencies. 
+First, number your activities and then refer them with these activity numbers in the 
+dependencies column. 
+Note 4: You can (if you wish) complete the rest of this worksheet either individually or in 
+a group. 
+3. Prerequisite Activities 
+Determine dependencies between activities in the WBS. 
+4. Drawing Activity Graphs 
+Draw an activity graph – either an AON or AOA (your choice) – to represent the 
+dependencies between activities and activity durations. 
+ 
+ 
+5. Critical Path and Slack Time 
+ 
+(a) Find the earliest start (ES) and earliest finish (EF) times for each activity. Start with 
+the activities that don’t depend on anything, and work forwards until you get to the 
+final activities. This should also give you the estimated project duration (i.e. take the 
+maximum of all the EF times). 
+Find the estimated project duration. Make sure you indicate the unit. 
+(b) Find the latest start (LS) and latest finish (LF) times for each activity. This is similar to 
+part (a), except you work backwards. Start with activities at the end of the project (i.e. 
+that nothing else depends on). These will have an LF equal to the project duration. 
+(c) Identify any activities that appear to be on the critical path and determine how much 
+slack time each of the non-critical activities have.===== PAGE BREAK =====Intro to SE (ISAD1000/ISAD5004) 
+Worksheet 1: Project Planning
+Page 3 of 2 
+CRICOS Provide Code: 00301J 
+ 
+ 
+ 
+ 
+End of Worksheet

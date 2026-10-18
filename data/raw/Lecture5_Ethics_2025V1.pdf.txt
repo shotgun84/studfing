@@ -1,0 +1,878 @@
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Introduction to Software Engineering (ISAD1000)
+Lecture 5: Ethics and Professionalism
+Updated: 07th May, 2022
+Minor revisions : 11th May 2023, 22nd August 2023 , March 2025
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical Sciences (EECMS)
+Copyright © 2020, Curtin University 
+CRICOS Provide Code: 00301J
+.
+.
+.
+.
+.
+.
+.
+.
+1/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Outline
+Overview
+Moral philosophy and Ethics
+Trolly Problem
+Ethics and Software Engineering : Areas of 
+concern
+Professionalism and code of Ethics
+2/32
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+3/49
+Revisiting the previous lecture: What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to do many other things.
+Software 
+Engineering
+Co-ordinate a 
+team, and plan 
+and manage a 
+project.
+Understand 
+user 
+requirements.
+Design the 
+software 
+(component
+s/modules). 
+Implement the 
+components/modules of 
+the software.
+Test the 
+software, 
+piece by 
+piece.
+Verify that 
+the software 
+meets its 
+goals.
+Maintaining 
+the software
+SDLCs and project 
+planning –Week1,2 & 3 
+Non-functional requirements. Week 5
+Functional Requirements 
+Week 4 
+•
+Software exists in society and impacts 
+society in ways that we might have not 
+thought about.
+•
+We will look at how we can do all things 
+related to SE as responsible human 
+beings in this lecture.
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Revisiting the previous lectures : What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to:
+Understand user requirements
+Understand user requirements
+Design the software ( 
+design components/modules of the software)
+Design the software ( 
+design components/modules of the software)
+Implementation ( coding)
+Implementation ( coding)
+Testing / verification
+Testing / verification
+Deployment and Maintenance
+Deployment and Maintenance
+…
+Co-ordinate 
+a team, and 
+plan and 
+manage a 
+project.
+Co-ordinate 
+a team, and 
+plan and 
+manage a 
+project.
+►Software exists in society and impacting society in ways which we 
+might have not think about.
+►We will look at how we can do all things related to SE as responsible 
+human beings in this lecture.
+SDLCs and 
+project 
+planning –
+Week1 and 2
+We have looked at FRs 
+and NFRs in W3 and 
+W4.
+4/50
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Unit Learning outcomes 
+On successful completion of this unit students can: 
+ 
+✓
+Apply conventional and agile software project management 
+tools and techniques 
+Project planning, Agile Methods, Version control
+✓
+Determine appropriate functional and non-functional requirements 
+Functional/ non-functional requirements 
+3.
+Develop test designs and code using black-box and white-box 
+methods Testing , Test fixtures
+4.
+Analyse code for faults and quality issues, and propose solution 
+Modularity 
+5.
+Demonstrate the importance of ethical and professional conduct in 
+software engineering profession with the understanding of social 
+impact of software
+Ethics and Professionalism
+Revisiting Unit Learning outcomes ( From the unit outline)
+5/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Why Ethics?
+►This topic is different; ( we are looking at technological things 
+in other sections of this unit.) ethics is personal, cultural, 
+ideological
+►There is a handout available in Blackboard. It is expected that you go 
+through the handout while following this set of lecture slides.
+ 
+►Why do we need to consider about ethics as Software 
+Engineers? 
+►What we do as software Engineers can affect the whole 
+society.
+►People who you have never met 
+►People who can be in vulnerable situations
+►Lives of all living beings not only human beings
+►Today and in the future
+►…
+6/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Why Ethics?
+►With any profession ( not 
+only SE) comes power.
+►And with power comes 
+responsibility.
+►Some IT Companies are 
+powerful than 
+governments of even big 
+countries….
+Image source: https://freedomhouse.org/sites/default/files/2021-
+09/FOTN_2021_Complete_Booklet_09162021_FINAL_UPDATED.pdf
+The World’s Tech Giants, Compared to the Size of Economies:
+https://www.visualcapitalist.com/the-tech-giants-worth-compared-
+economies-countries/
+7/32
+
+===== PAGE BREAK =====
+
+https://www.visualcapitalist.com/the-tech-giants-worth-
+compared-economies-countries/
+2021 figures
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Why Ethics?
+►Every good act you perform will be amplified by 
+this power, but every mistake can be as well if 
+you’re not careful.
+►It becomes complex. 
+►Any large software system is virtually 
+guaranteed to have mistakes in it.
+►There can be consequences which you might 
+not see at a glance. 
+►What can we do to reduce such consequences?
+ OR do we really need to be concerned? 
+►We have to look at some other areas than 
+technology here.
+9/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Background : Moral philosophy and Ethics
+Image source: 
+https://kenscourses.com/tc1019fall201
+6/syndicated/what-are-ethics-for/
+►Have you ever thought about your 
+value system? Moral principles 
+which guide you as a human 
+being?
+►Moral philosophy attempts to 
+define what morality/Ethics is, and 
+how to tell whether something is 
+ethical or not.
+10/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Background: Moral Philosophy and Ethics
+►Ethics and morality go hand in hand.
+►“morals”: widely-shared communal or societal norms 
+about right and wrong. Based often on cultural, social, 
+religious norms. More personal. 
+►“ethics”: more subjective understanding of right and 
+wrong by individuals; practical and may be based on the 
+context.
+►Sometimes ethics serves as a personal code of conduct 
+for people working in a specific field such as medicine or 
+law. (https://www.britannica.com/story/whats-the-difference-
+between-morality-and-ethics)
+ - https://theconversation.com/you-say-morals-i-say-ethics-
+whats-the- difference-30913
+Ethics: Moral principles that governs a person’s behaviour.
+►Some may think it’s other way around .
+11/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Background : Moral philosophy and Ethics
+►We will very briefly look at few schools of thoughts relate 
+to moral philosophy/ethics.
+►These schools of thoughts emphasize different 
+viewpoints on how humans take decisions when ethics 
+are important.
+►Common goals:
+►Beneficence – what is right and good
+►Least harm 
+►Respect for autonomy
+►Justice - be fair to all that involved
+► ..
+12/32
+
+===== PAGE BREAK =====
+
+Background : Moral philosophy and Ethics
+Reading : Look at Section 1 : “Moral Philosophy” in the handout.
+Deontology
+Adherence to a set of rules; 
+So, to be ethical is to follow 
+the rules. obligations and 
+duties are important 
+Consequentialism
+Virtue Ethics
+Simple guide on Ethics terms : https://ethics.org.au
+Ethics
+ 
+Utilitarianism
+Act 
+Utilitarianism
+judges ethics/morality based 
+on the utility of what 
+actually happens as a result 
+(measure of “how good” the 
+outcome will Be)
+Rule 
+Utilitarianism
+There are rules
+to follow, but the rules 
+must have positive 
+utility. The rules are 
+created so that, if 
+consistently
+obeyed, they do more 
+good than harm
+Right based Ethics
+Protecting individual rights; right to 
+freedom of speech, the right to privacy, 
+and the right to be treated with dignity… 
+…
+…
+13/32
+…
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics in the practical real world 
+►What is moral principles/ ethics is different to how 
+you actually integrate them in real life.
+►Theories/ principles can guide us, but we have to 
+use our own human judgement.
+Reading : Look at Section 1.4 : “The Trolley Problem” in 
+the handout.
+14/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Trolly Problem 
+The “trolley” is an out-of-control tram (running on train tracks), and there 
+are five people tied to the tracks, who cannot escape, and who will die if the 
+trolley hits them. You can only do one thing to stop this: you can pull a lever, 
+which will divert the trolley onto a different track, but there’s also one 
+person tied to that track, who will therefore die if you pull the lever.
+(Judith Jarvis Thomson. The trolley problem. Yale Law Journal, 94(6):1395–1415, 
+1985)
+Do you leave five people to die, or do you save them by 
+killing one other person?
+15/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering
+►As Software engineers, when you develop software, 
+your primary concern should be the health, safety and 
+wellbeing of those who are affected by your work.
+►How can we do that ? 
+We need to develop skills in Ethical decision-making , 
+which involves reflecting your own thought processes 
+and evaluating them. 
+16/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : Areas of concern
+►We need to broaden our understanding of a number of aspects 
+other than technology. Some areas of interests are as follows: 
+Source : https://www.scu.edu/media/ethics-center/technology-
+ethics/Students.pdf , p4
+1.
+What types of harms anyone/ public/ society can suffer as result 
+of your work?
+2.
+How you (software engineers) contribute to the good life for 
+others?
+3.
+Why the software engineer is obligated to protect the public and 
+who is “public”?
+4.
+What general ethical obligations software engineers are under?
+5.
+How software engineers can actually live up to ethical 
+standards?
+6.
+What is the end goal of an ethical life in software engineering?
+7.
+What are the professional codes of software engineering ethics? 
+17/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering: Harms the public can 
+suffer as result of your work as a software Engineer.
+Reading : Look at Section 2 : “Mistakes and Harm in Software 
+Processes” of the handout
+►Harm can be of different nature: 
+►Financial losses
+►Privacy issues 
+►Health hazards / not receiving the correct treatment 
+►Loss of lives
+►Phycological trauma
+►Loss of opportunities
+►….
+Questions : 
+►What sort of harm the public faced due to issues in each of the 
+example given ?
+►Do you think it would be possible to reduce or avoid the harm , 
+if software team concerns more about the ethical obligations ?
+18/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : Harms the public can 
+suffer as result of your work as a software Engineer.
+Example 1
+You are developing an ambulance dispatch system, to receive ambulance requests and 
+notify drivers when and where to go. You don’t write comprehensive unit tests, 
+because the application seems to work fine anyway, and you can’t see anything wrong 
+with the code.
+Unfortunately, there is a missing “index += 1” line in one of the if statements in the 
+code. This isn’t picked up in your informal testing, because that part of the code 
+concerns what happens after hours, and you’re only informally testing the system 
+during work hours. The missing line causes some records to be overwritten in an 
+array/list (records[index]= newRecord). 
+Consequently, a small number of calls to the ambulance service go missing,
+and an ambulance is never dispatched in those cases. One person suffers permanent 
+brain damage after a stroke, due to the resulting delay in getting to a hospital.
+19/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : Harms the public can 
+suffer as result of your work as a software Engineer.
+Example 2
+You are doing the requirements analysis for a government website to help 
+people apply for disaster relief payments. Each applicant enters their name, 
+contact details and evidence of financial/property damage, and a government 
+agency will then make payments to them accordingly.
+In creating a use case for this, you write extensions that reject invalid names; 
+i.e.:
+20/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : Harms the public can 
+suffer as result of your work as a software Engineer.
+Example 2 Continued.
+Continued from the previous page .
+The developers write the website code according to these specifications.
+As a result, your website makes it impossible for people who really do have 
+these names to submit an application. They cannot “correct” their name, as it 
+must match the name they’ve used for tax purposes, which your system 
+considers invalid.
+So, for certain victims of natural disasters, there is no way for them to receive 
+assistance.
+They become homeless and destitute.
+21/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : How you ( software 
+engineers) contribute to the good life for others?
+ 
+►Remember , Ethics is not only all about avoiding big 
+mistakes, it’s about doing good also.
+►Is “doing good” only applicable to philanthropists ? 
+►Your contribution to society matters: Your job contributes 
+much to a positive impact in the world.
+►Question:
+Think about how you can contribute positively to the society as a 
+software Engineer and list down two of your ideas.
+22/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Contribution from software engineers for positive 
+impact: Examples 
+►Weather forecasting
+►Disaster management tools
+►Assistive technology 
+►Advanced driver-assistance systems 
+ (make driving significantly safer).
+►The entire internet is software-based, made most human knowledge 
+accessible to most people
+►Electronic payment systems make paying for goods and services trivial, 
+even across continents.
+►Free and open-source mapping tools allow communities to map features 
+they wish and use them without any restrictions, as long as community 
+guidelines are followed(“Ethics”)
+►….
+Reading : Look at Section 5 : “ Do Good “ of the handout 
+23/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : Why the software 
+engineer is obligated to protect the “public”?
+ 
+►Identifying stakeholders of your work will help you to think about 
+why you have to protect the “public”.
+►We all have an obligation to protect the public interest, whatever 
+the profession we are engaged in.
+►Your stakeholders can be much more broader than you think.
+►Example :
+►Surveillance/ Facial recognition software: raises 
+concerns on misuse, racial bias, privacy and the 
+restriction of personal freedoms. 
+►Gambling software.
+►Algorithms for filtering data to create biased results
+►Use of software in weapons.
+►Professionalism helps to protect the “public”.
+ 
+Reading : Look at Section 4 : “ Are You Involved in the Right Thing? “ 
+of the handout 
+24/32
+
+===== PAGE BREAK =====
+
+Example 3 
+A shop-lifting was occurred in a shopping mall and later a facial recognition system 
+is used by the law enforcement authorities to detect the perpetrator by matching 
+photos of the driver’s licence shown when entering to a restaurant within the 
+shopping mall. A person was identified, charged and jailed subsequently based on 
+the evidence provided through the software system , which indicated “ high level” 
+of accuracy.
+Eventually, it was identified the person was innocent and the algorithm had 
+wrongfully detected a match. Though the system had being used for several years, 
+the algorithm had higher failure rate for people with non-white skin colours .
+This example is based on a true story : 
+https://www.nytimes.com/2020/06/24/technology/facial-recognition-arrest.html
+25/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : What general 
+ethical obligations software engineers are under?
+►Apart from professional obligations, as a general 
+human being also, a software engineer needs to care 
+about the fellow human beings and the society as a 
+whole.
+►Remember moral principles?
+►Question : What qualities of you will be helpful in 
+fulfilling your general ethical obligations as a human 
+being, while working as a Software Engineer? 
+26/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : How software 
+engineers can actually live up to ethical standards?
+ 
+As suggested by Shannon Vallor, Ph.D. Arvind Narayanan, Ph.D.(
+https://www.scu.edu/media/ethics-center/technology-
+ethics/Students.pdf , p29-30)
+►Build good habits towards incorporating ethics in your life.
+►Self-reflection.
+►Looking for Moral Exemplars.
+►Exercising our Moral Imaginations.
+►Acknowledging Your Own Moral Strength.
+►Seeking the Company of Other Moral Persons.
+27/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : Professionalism
+►Professionalism is essentially about doing your job “properly”. 
+The assumption is that doing our jobs properly – acting as 
+professionals – translates into being ethical, at least as far as 
+the workplace is concerned. 
+►All examples we have discussed / given in the handout show 
+lack of professionalism.
+►Some other areas of concern:
+►Avoiding conflicts of interest.
+►Challenging abuse to others.
+►Challenging unethical instructions.
+Look at concerns about Google’s work ethics (with comics): 
+https://mashable.com/article/google-engineer-manu-cornet-comics-
+critique
+28/32
+
+===== PAGE BREAK =====
+
+29/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering: Professionalism
+►Code of conduct developed by professional bodies helps us to 
+remind about our professional practice.
+►Common codes of ethics applicable to software engineering are 
+developed by professional bodies such as IEEE-Computer 
+Society, and ACM. 
+►There are country level code of ethics also by the professional 
+organizations of software engineers / ICT professionals. (e.g. 
+ACS )
+►Codes are not formal checklists or detailed instructions on how 
+to manage any situation.
+►They are some tools to help you develop your ability to think 
+about appropriate actions and various situations.
+30/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Code of Ethics : Example 
+►Short version of code of Ethics from IEEE CS 
+(https://www.computer.org/education/code-of-ethics
+Software engineers shall commit themselves to making the analysis, specification, design, 
+development, testing and maintenance of software a beneficial and respected profession. In 
+accordance with their commitment to the health, safety and welfare of the public, software engineers 
+shall adhere to the following Eight Principles:
+1. PUBLIC – Software engineers shall act consistently with the public interest.
+2. CLIENT AND EMPLOYER – Software engineers shall act in a manner that is in the best interests of 
+their client and employer consistent with the public interest.
+3. PRODUCT – Software engineers shall ensure that their products and related modifications meet the 
+highest professional standards possible.
+4. JUDGMENT – Software engineers shall maintain integrity and independence in their professional 
+judgment.
+5. MANAGEMENT – Software engineering managers and leaders shall subscribe to and promote an 
+ethical approach to the management of software development and maintenance.
+6. PROFESSION – Software engineers shall advance the integrity and reputation of the profession 
+consistent with the public interest.
+7. COLLEAGUES – Software engineers shall be fair to and supportive of their colleagues.
+8. SELF – Software engineers shall participate in lifelong learning regarding the practice of their 
+profession and shall promote an ethical approach to the practice of the profession.
+31/32
+
+===== PAGE BREAK =====
+
+ACS Code Of Ethics
+https://www.acs.org.au › acs › 
+rules-and-regulations
+32/32
+
+===== PAGE BREAK =====
+
+Example 4 ( Project Planning) 
+You and a couple of colleagues are playing planning poker to determine how 
+long you expect various project tasks to take. However, the client is pressuring 
+you to get the project finished very quickly, and your colleagues are annoyed at 
+you in general for previously producing estimates they thought (without good 
+reason) were too high.
+Therefore, since you’re stressed, you pick lower estimates than you would 
+normally, and these become part of the project schedule. Your company signs a 
+contract with the client to deliver the software within a short timeframe.
+During development, it becomes obvious that you underestimated the time 
+required. The developers (not those who were producing the estimates) must 
+now put in significant overtime for several months to try to get the job done. 
+Some have to miss important family events, and others develop clear signs of 
+work-related anxiety and depression. In the end, the project is not completed 
+on time anyway, and the client refuses to pay.
+Questions : 
+►Look at the IEEE –CS code of ethics and see how adhering to 
+the given principles would have helped to avoid the issues in 
+this scenario.
+33/32
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+.
+.
+.
+.
+Ethics and Software Engineering : Professionalism
+►When pace of technological advancement which affect the whole 
+society are very high, there will be less chance to resolve ethical 
+issues around them, before the technology starting affecting 
+society.
+►E.g: AI language models such as chatGTP 
+►What happen if the impact will be more harmful than doing good to 
+the society?
+►Have we think about, assessed risks, and planned for massive 
+changes AI systems with human-competitive intelligence can place 
+our society in?
+►What responsibilities SE profession has towards such situations? 
+Open letter to pause Giant AI Experiments by top AI experts of the world: 
+https://futureoflife.org/open-letter/pause-giant-ai-experiments/
+►Making “ethical software development” integral to technology 
+advancement is one way to reduce harm.
+Look at “Need for ethical AI”: 
+https://ethics.org.au/a-framework-for-ethical-ai/
+34/32
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+That’s all for now!
+Lecture: Version Control 
+Practical: Version Control 
+Assessment: Practical Work Assessment 2 
+(based on Functional and Non-Functional requirements)
+35/32
+Next week: Version Controlling

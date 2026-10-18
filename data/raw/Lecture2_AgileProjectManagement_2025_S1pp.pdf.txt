@@ -1,0 +1,1661 @@
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Introduction to Software Engineering (ISAD1000/5004)
+Lecture 2: Agile Project Management
+Updated: 30th March, 2020
+Minor revisions on 20th March 2022, 23rd March 2023, 
+ 01 August 2023, March 2024/2025
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical Sciences (EECMS)
+Copyright © 2023, Curtin University 
+CRICOS Provide Code: 00301J
+. . . .
+.
+.
+.
+.
+1/49
+
+===== PAGE BREAK =====
+
+ELECTRONIC WARNING NOTICE FOR 
+COPYRIGHT STATUTORY LICENCES
+2/49
+
+===== PAGE BREAK =====
+
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+. . . .
+.
+.
+.
+.
+Outline
+From Planning to Doing
+Scrum
+Burn-up charts 
+Kanban
+Code Reviews
+3/49
+
+===== PAGE BREAK =====
+
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+. . . .
+.
+.
+.
+.
+4/49
+Revisiting the previous lecture: What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to do many other things.
+Software 
+Engineering
+Co-ordinate a 
+team, and plan 
+and manage a 
+project.
+Understand 
+user 
+requirements.
+Design the 
+software 
+(component
+s/modules). 
+Implement the 
+components/modules of 
+the software.
+Test the 
+software, 
+piece by 
+piece.
+Verify that 
+the software 
+meets its 
+goals.
+Maintaining 
+the software
+SDLCs and project 
+planning –Week1 & 2 
+We will look at 
+more on project 
+management in 
+this lecture, 
+emphasising 
+monitoring.
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Project Process Models 
+►In lecture 1 ( week 1 and 2), we discussed SDLCs, basic 
+project management concepts and software project 
+planning.
+►Project Management applies to software and non-
+software projects, but. . .
+►There are a few software-speciﬁc practices.
+►Project process models help to manage projects.
+►“Process” is a loaded word.
+►In science: a transformation that happens over time.
+►In engineering: a procedure, or a broad set of 
+instructions, for how to conduct a task.
+5/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Project Processes
+►If you work for a software company, they will have a 
+“process” (of the engineering form).
+►A large-scale process for undertaking the whole project.
+►Various smaller-scale processes for diﬀerent parts of it.
+►Processes vs lifecycle models (waterfall, spiral, etc.)?
+►Lifecycle models are broad approaches to organizing
+software projects.
+►They let us understand how SE works in general.
+►Processes are speciﬁc and instructive.
+►They tell you what to do.
+6/49
+
+===== PAGE BREAK =====
+
+. . . .
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+.
+.
+.
+.
+Types of Processes
+►There are many well-known processes; e.g.:
+►Scrum, Lean Development, Extreme Programming, the Uniﬁed 
+Process, Team Software Process, etc.
+►Kanban may be considered a process, or at least part of a 
+process.
+►Many (most?) organisations will use a hybrid/customised 
+process.
+►Borrowing ideas from several processes and models.
+►What happens in practice is never exactly what you read about in 
+books.
+►Most organisations will try to be “agile”.
+►“Agility” means that you can deal well with changing 
+situations.
+►Scrum is one of the best-known agile processes.
+►These often look a lot like a case of the spiral model.
+►We focus on Scrum in ISE because we can’t cover everything!
+7/49
+
+===== PAGE BREAK =====
+
+. . . .
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Scrum
+►Scrum is one of the most popular SE process.
+►Think of the spiral model, but with more details nailed 
+down.
+►Lots of very quick cycles/iterations.
+►Scrum revolves around “sprints” (in other contexts called 
+“iterations”).
+1https://www.scrumguides.org/scrum-guide.html
+1https://www.atlassian.com/agile/scrum
+.
+.
+.
+.
+Sprint
+( 1-4 weeks)
+Daily 
+scrum
+►Each sprint is a mini-project
+►Each has a ﬁxed length; say 4 weeks.
+►Sprints do not go over time. You 
+simply deliver what you have at the 
+end.
+►Each sprint creates something 
+concrete/useful for the
+customer, even if it’s only small.
+Burn-up charts
+8/46
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Original Image Source: https://documentation.cochrane.org/wwirpt/scrum-process, 
+Copyright http://cochrane.org, 
+Sprint Retrospective 
+4 
+4
+Scrum process 
+Sprint 
+Backlog
+…
+…
+..
+..
+Product 
+Backlog
+User story 1 
+…
+….
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+9/49
+We will discuss 
+“user stories” in 
+lecture 4.
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+The Two Backlogs
+►A backlog is a list of user stories not yet implemented.
+►User stories represent user needs. Each user story represents 
+a piece of software functionality for a particular kind of user.
+►In Scrum, you keep track of two backlogs.
+►The “Product Backlog” – a todo list for the overall product.
+►Everything the customer wants the software to do that has not 
+yet been implemented.
+►The “Sprint Backlog” – a todo list for the current sprint.
+►Select a few user stores from the product backlog, at the start 
+of the sprint.
+►Each user story takes time to implement, and you only have 4 
+weeks.
+►Go for the “highest priority” user stories.
+►You may not necessarily ﬁnish them all in this sprint.
+►Each user story may need to be broken down into sub-tasks!
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+10/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Sprint Meetings (“Ceremonies”)
+Each sprint has several key meetings between the people 
+involved:
+►Sprint Planning:
+►Typically, a day-long meeting at the start of a sprint.
+►The team ﬁgure what to do for the next 4 weeks.
+►May involve customers and other stakeholders
+►Lead by the product owner. 
+►Sprint Review 
+►Typically, a half a day meeting at the end of a sprint.
+►The team review the work they have completed. 
+►They may show the customer what has been done and gets feedback.
+►Sprint Retrospective 
+►Another one-day meeting right after the sprint review. 
+►The developers discuss how well things went and what might be improved.
+► This is about the team itself, not the product.
+►Daily Scrum (or “stand-up”) 
+►A 15-minute short meeting at the start of each day.
+►The developers discuss their planned work for the day.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+11/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Scrum Roles
+►Scrum assigns special roles to people.
+►The Product Owner helps the team make the right product.
+►They make sure user stories are correct, and decide which 
+have the highest priority.(The PO is not the customer though.)
+►Responsible for delivering the product (as much value as 
+possible) 
+►The Scrum Master helps the team follow Scrum.
+►They must be on top of all the Scrum practices.
+►They must understand what should happen when, and make 
+sure everyone else is aware of this.
+►The Development Team writes the software.
+►3–9 software developers.
+►They take user stories and implement them.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+12/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Other Processes and roles
+►There are other approaches to SE too.
+►Other processes require diﬀerent working arrangements.
+►In “Extreme Programming”, all development work is done in 
+pairs–pair programming.
+►Often, there are other roles, e.g.:
+►A “team lead” – a senior developer with the overall 
+responsibility.
+►A “conﬁguration manager” may have responsibility for the 
+tools and libraries used by the team.
+► This is not an IT support issue. This is part of the software 
+development process.
+►Security specialists.
+►Artists (e.g., for games).
+►Particular “domain” specialists who understand the 
+requirements more clearly than the software engineers.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+13/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Monitoring projects
+►Project monitoring is an important aspect of project 
+management.
+►How do we keep control of a project while we’re doing it?
+►How do we know if we’re on track?
+►Because if we don’t know, we’re heading for disaster!
+►Monitoring is an important aspect of project 
+management
+►Tools for monitoring :
+►Conventionally, Gannt chart is updated while the 
+project is progressing.
+►Now , many other tools are also being adopted.
+14/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Tools for software project monitoring
+►Burn-up charts
+►Kanban boards
+►Code reviews ( to some extent)
+►….
+Code reviews are used in both agile and conventional 
+methods.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+15/49
+
+===== PAGE BREAK =====
+
+. . . .
+Burn-Up (Earned Value) Chart
+►“Burn-up charts” show us the big picture of the project’s progress.
+►They show “planned” vs “actual” progress
+10 months
+(50%)
+20 months 
+(100%)
+4
+8
+12
+Time (months)
+Planned progress
+Actual progress (so far)
+.
+.
+.
+.
+Progress (months)
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+16/49
+
+===== PAGE BREAK =====
+
+. . . .
+Burn-Up (Earned Value) Chart
+► “planned” progress
+.
+.
+.
+.
+Planned progress:
+►How far through the 
+project did you expect 
+to be at time t?
+►Probably a straight 
+line in many cases.
+►May have non-straight 
+bits if you plan for 
+certain interruptions 
+to occur, or for people 
+to join/leave your 
+team.
+50%
+100%
+4
+8
+12
+Time (months)
+Planned progress
+Progress
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+17/49
+
+===== PAGE BREAK =====
+
+. . . .
+Burn-Up (Earned Value) Chart
+► “planned” progress
+.
+.
+.
+.
+Planned progress:
+►How far through the 
+project did you expect to 
+be at time t?
+►Probably a straight line 
+in many cases.
+►May have non-straight 
+bits if you plan for 
+certain interruptions to 
+occur, or for people to 
+join/leave your team.
+50%
+100%
+4
+8
+12
+Time (months)
+Planned progress
+Progress
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+18/49
+
+===== PAGE BREAK =====
+
+. . . .
+Burn-Up (Earned Value) Chart
+►“Actual Progress”
+.
+.
+.
+.
+Actual progress:
+►How far through are you 
+really at time t?
+►What tasks have you 
+completed?
+►How much “value” is each 
+completed task worth?
+►The “value” of a task 
+is the original 
+estimated duration 
+(remember planning 
+poker?).
+►Some tasks are “worth 
+more” than other tasks, 
+because they were 
+expected to take longer.
+50%
+100%
+4
+8
+12
+Time (months)
+Planned progress
+Actual progress (so far)
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+19/49
+
+===== PAGE BREAK =====
+
+Burn-Up Charts: Scope
+►Burn-up charts often have a “scope” line too.
+►In agile project management, we often get extra work to 
+do mid-way through a project.
+Progress
+50%
+100%
+4
+8
+12
+Time (months)
+Planned progress
+Actual progress
+Scope
+. . . .
+.
+.
+.
+.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+20/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Burn-Up Charts for monitoring
+►Compare the planned and actual progress.
+►Is actual progress higher than planned progress?
+►Good times! Your project is ahead of schedule.
+►What if actual is lower than planned?
+►Bad news. You’re behind. Time for some tough choices.
+►Put in more work. Sounds virtuous, but overwork can 
+cause disasters too.
+►And/or. . . negotiate with the client for more time.
+►And/or. . . negotiate with the client for less scope; i.e., will 
+they accept a product with less functionality or lower quality?
+►And/or. . . accept a lower payment.
+►Knowing things are going badly is better than not 
+knowing until it’s too late.
+►If you know, you can make the right decision!
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+21/49
+
+===== PAGE BREAK =====
+
+Activity 
+Estimated
+Duration
+(days)
+Actual 
+Finish
+1. Market research
+20
+17
+2. Prototyping
+13
+15
+3.1. Identify core game concep
+2
+20
+3.2. Develop basic storyline
+5
+30
+3.3. Develop game world and 
+8
+3.4. Specify game characters a
+5
+32
+4.1. Implement artwork
+20
+4.2. Code core game logic
+40
+5.1. Testing Functionality
+20
+5.2. Testing playability
+8
+5.3. Rework
+13
+6. Release
+5
+Sum of Task Durations
+159
+Sum of estimated durations
+Planned Project Duration
+108
+Activity graph's project duration
+Planned Progress per Day
+1.5
+Calculation: 159/108
+Burn-Up Charts: How to find progress? 
+. . . .
+.
+.
+.
+.
+Step 1.Using the WBS/ activity 
+lists and the time estimates from 
+planning poker find the estimated 
+duration for each task. 
+Step 2. Find sum of task duration 
+by adding the duration of all 
+tasks(x), 
+Find planned project duration 
+using the activity graph (y),
+Find the planned progress per 
+day ( x/y)
+Step 3. While the project is 
+progressing, fill the actual finish 
+time. 
+1
+2
+3
+a.
+Filling the activity times in WBS and find the 
+planned progress per day ( step 1 and step 2).
+b.
+Fill the actual finish time when doing the project( 
+step 3).
+We are planning to finish a project worth 159 
+days in 108 days.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+22/49
+
+===== PAGE BREAK =====
+
+Time
+(actual day)
+Planned 
+Progress ( days)
+Actual
+Progress ( days)
+0
+0.0
+5
+7.5
+10
+15.0
+15
+22.5
+20
+30.0
+25
+37.5
+30
+45.0
+35
+52.5
+40
+60.0
+45
+67.5
+50
+75.0
+55
+82.5
+60
+90.0
+65
+97.5
+70
+105.0
+75
+112.5
+80
+120.0
+85
+127.5
+90
+135.0
+95
+142.5
+100
+150.0
+105
+157.5
+110
+165.0
+Burn-Up Charts: How to find progress? 
+. . . .
+.
+.
+.
+.
+Step 4. Fill in the actual time(use a suitable 
+interval) to monitor the progress. In this 
+example, from time 0 to the planned 
+project duration, in a 5-day interval 
+Step 5.Calculate the planned progress for 
+each time interval : 
+time in days X planned progress per day
+= 20X1.5
+=55X1.5
+Table 2: Activity Progress 
+Table 1 : WBS with activity time 
+4
+5
+c. Find the planned progress for required time interval
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+23/49
+
+===== PAGE BREAK =====
+
+Time
+(actual day)
+Planned 
+Progress ( days)
+Actual
+Progress ( days)
+0
+0.0
+0
+5
+7.5
+0
+10
+15.0
+0
+15
+22.5
+0
+20
+30.0
+33
+25
+37.5
+35
+30
+45.0
+35
+35
+52.5
+45
+40
+60.0
+45
+45
+67.5
+50
+75.0
+55
+82.5
+Burn-Up Charts: How to find progress? 
+. . . .
+.
+.
+.
+.
+Activity 
+Estimated
+Duration
+(days)
+Actual 
+Finish
+1. Market research
+20
+17
+2. Prototyping
+13
+15
+3.1. Identify core game concep
+2
+20
+3.2. Develop basic storyline
+5
+30
+3.3. Develop game world and 
+8
+3.4. Specify game characters a
+5
+32
+4.1. Implement artwork
+20
+4.2. Code core game logic
+40
+5.1. Testing Functionality
+20
+5.2. Testing playability
+8
+•
+Step 6: Identify the time at which the actual progress needs to be calculated. 
+(e.g., 20)
+•
+Step 7: Look at the actual finish time column in the WBS and identify the 
+activities which have finished before the selected time in step 6.
+•
+Step 8: Find the estimated duration of the activities identified in the step 7.
+•
+Step 9: Sum up the estimated duration of the activities identified in the step 
+8 and fill the actual progress corresponding to the selected time.
+ (e.g., 20+13=33)
+d. Calculate the actual progress for each 
+time interval : 
+6
+7
+8
+9
+Table 1 : WBS with activity time 
+Table 2: Activity Progress 
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+24/49
+
+===== PAGE BREAK =====
+
+Burn-Up Charts: 
+. . . .
+.
+.
+.
+.
+Time
+(actual day)
+Planned 
+Progress ( days)
+Actual
+Progress ( days)
+0
+0.0
+0
+5
+7.5
+0
+10
+15.0
+0
+15
+22.5
+0
+20
+30.0
+33
+25
+37.5
+35
+30
+45.0
+35
+35
+52.5
+45
+40
+60.0
+45
+45
+67.5
+50
+75.0
+55
+82.5
+60
+90.0
+65
+97.5
+70
+105.0
+75
+112.5
+80
+120.0
+85
+127.5
+90
+135.0
+95
+142.5
+100
+150.0
+105
+157.5
+110
+165.0
+►We can use a spreadsheet to calculate the actual progress and draw the burn-up 
+chart.
+►Useful function for calculate actual progress:
+►SUMIF(range, criteria, [sum_range])
+►Example : SUMIF($C$2:$C$13,"<" &E2, $B$2:$B$13)
+►You will create a burn-up chart in your Practical 2.
+e. Plot both the actual progress and the planned progress against time in a single graph
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+25/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Things to note: Completing Tasks (“done’)
+►How do you actually know if you’ve “completed” a task?
+►Sounds obvious, but it’s not!
+►Tasks are all connected. They build on each other.
+►You can’t just say you’ve ﬁnished one. If you 
+haven’t ﬁnished it properly, it will wreck other tasks 
+that follow on.
+►Part of SE project management is about the 
+“deﬁnition of done”.
+►How does your team verify a task is done?
+►Diﬀerent organisations might do this diﬀerently.
+►But whatever the 
+criteria, apply it 
+consistently. 
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+26/49
+
+===== PAGE BREAK =====
+
+. . . .
+Kanban
+►Kanban boards are another way to visualise your 
+project.
+►Burn-up charts show the big picture.
+►Kanban shows the status of individual tasks, related 
+to the workflow.
+►A visulaization tool.
+►Kanban boards contain columns.
+►One column for each workﬂow step, arranged 
+left-to-right; 
+0https://www.atlassian.com/agile/kanban
+.
+.
+.
+.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+27/49
+
+===== PAGE BREAK =====
+
+Workﬂow steps 
+Coding tasks typically go through several steps, like this:
+Todo
+Selected for development
+. . . .
+.
+.
+.
+.
+Coding and testing 
+Done
+Ready to merge (into the main development codebase)
+Review 
+►It is helpful to know which tasks are at different stages of the workflow to verify is 
+the project is progressing well.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+28/49
+
+===== PAGE BREAK =====
+
+. . . .
+Kanban
+►Kanban boards contain columns.
+►One column for each workﬂow step, arranged left-to-
+right; e.g., “Todo”, “Selected”, “Coding/testing”, 
+“Review”, “Ready to merge” and “Done”.
+►Columns contain “cards”.
+►Each card represents a task.
+►Each card (task) is moved from left-to-right (from 
+column to column) as it progresses through its steps.
+0https://www.atlassian.com/agile/kanban
+.
+.
+.
+.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+29/49
+
+===== PAGE BREAK =====
+
+. . . .
+Example Kanban Board
+All cards start on the left (“todo”), and move rightwards.
+Todo
+Coding/Testing
+Review
+Done
+Shopping 
+Cart
+Checkout 
+Page
+Search Bar
+Category 
+Navigation
+Sorting
+Login Page
+Product 
+List Page
+Product 
+Details Page
+.
+.
+.
+.
+(We’re only showing four columns for simplicity.)
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+30/49
+
+===== PAGE BREAK =====
+
+. . . .
+Moving Kanban Cards
+You move each card right one column at the appropriate time.
+Shopping 
+Cart
+Checkout 
+Page
+Search Bar
+Shopping 
+Cart
+Search Bar
+Category 
+Navigation
+Sorting
+Login Page
+Product 
+List Page
+Product 
+Details Page
+Sorting
+►(Don’t draw the red lines – those are just to illustrate how 
+the chart gets changed.)
+.
+.
+.
+.
+Todo 
+Coding/Testing 
+Review 
+Done
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+31/49
+
+===== PAGE BREAK =====
+
+. . . .
+Work in Progress (WIP)
+►“Work in progress” is everything between “todo” and “done”.
+►We want to limit WIP – only work on a few tasks at a time.
+►Some important principles1:
+1. A “culture of done”.
+►Tasks are either ﬁnished 
+ completely, or still WIP. 
+ There’s no such thing as
+ “almost” done.
+2. Using our brains eﬃciently.
+►“Multitasking” is ineﬃcient. Your brain needs time to switch 
+from doing one thing to doing another.
+3. Identify (and solve) problems ASAP.
+►Some tasks will turn out to be much harder than we thought.
+►Some parts of our process may not work well.
+►Easier to see these problems if you have only a few tasks.
+1https://www.atlassian.com/agile/kanban/wip-limits
+.
+.
+.
+.
+WIP
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+32/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Work In Progress: Enforcing Limits
+►We might put a limit of (say) 3 tasks in the coding/testing, and 3 
+in review.
+►So, if there are already 3 tasks under review. . .
+►We can’t move another task from coding/testing to review.
+►One of the existing reviews has to complete ﬁrst.
+►This may cause a “pile-up” in an earlier column.
+►But, in a sense, this is actually a good 
+thing, because it lets us see an 
+underlying problem.
+►We can identify parts of our process 
+that are “bottlenecks” (slow points), 
+and re-assign team members to deal 
+with them.
+►The review stage is holding everything 
+up? Then we need
+more reviewers and fewer coders.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+33/49
+
+===== PAGE BREAK =====
+
+More functionality and “Bugﬁxes” as Tasks
+►You can add more cards to the “todo” column, mid-project.
+►The client may (all of a sudden) want more functionality.
+►Or you might discover problems (bugs) that need to be ﬁxed.
+►These tasks need to follow the same flow; start from “to-do” and move 
+forward.
+Todo
+Coding/Testing
+Review
+Done
+Shopping 
+Cart
+Bugﬁx: login 
+not working
+Checkout 
+Page
+Search Bar
+Bugﬁx: 
+incorrect 
+pricing
+Bugﬁx: page 
+layout issue
+Category 
+Navigation
+Login Page
+Product 
+List Page
+Product 
+Details Page
+Sorting
+. . . .
+.
+.
+.
+.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+34/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Scrum and Kanban
+►Scrum and Kanban are not the same thing.
+►e.g. Kanban has no ﬁxed-length sprints, and instead 
+delivers each user story by itself incrementally.
+►But they can be joined into a single process –
+“Scrumban”.
+►The sprint backlog could be the left-most column on 
+your Kanban board.
+►What ends up in the “done” column is what you deliver, 
+at the end of the sprint.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+35/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Code Review
+►A collection of techniques for achieving two ends:
+1. for one person (or the rest of the team) to understand 
+another’s work (code), and
+2. to ﬁnd faults in that work
+ Helps to improve code quality.
+►Diﬀerent techniques:
+►Formal Inspection – formal group-based fault-detection process,
+►Walkthrough – informal meeting to understand the code,
+►Pair Programming – programmers write all code in pairs, with 
+one reviewing the other’s work in real-time. (And roles
+swapping as needed.)
+►Over-the-shoulder – show our code to a colleague 
+►…...
+►In all cases, you requires someone other than the author of 
+the work.
+►. . . but someone who is familiar with the project.
+►A peer.
+►Code review is sometimes referring as peer review.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+36/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Pull Requests and Code Reviews
+►Typically, a developer makes a “pull 
+request” when they think they’ve ﬁnished 
+a task. ( more in week 5)
+►Your code will be discussed, and 
+your request accepted or rejected.
+►Pull requests typically trigger a “code review”.
+►Another team member will look through your code in
+detail.
+►They’ll check:
+►Whether your changes do what is needed.
+►Whether they break other things.
+►Whether they’re otherwise up-to-standard.
+►They often ﬁnd defects and will ask you to ﬁx them.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+37/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Review vs. Testing
+►Testing and review are both essential – they are not 
+alternatives.
+►Very diﬀerent fault-detection processes.
+►Testing:
+►Automated (once the test cases are written).
+►Only applicable to executable things (i.e. code).
+►Finds failures – extra eﬀort required to isolate 
+faults.
+►Review:
+►Manual – human eﬀort required all the way through.
+►Applicable to anything – code, documentation, use 
+cases, design diagrams, etc.
+►Finds faults directly, not failures.
+►Testing and reviewing ﬁnd diﬀerent kinds of faults.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+38/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Communication via (Peer) Review
+►Peer review is a two-way communication.
+►The reviewer gains an understanding of your work and 
+your ideas.
+►The reviewer oﬀers advice on:
+►Faults found.
+►Eﬃciency issues – could your code be faster, or use 
+less memory?
+►Maintenance issues – could your code be simpler?
+►Style issues – could your code be more readable?
+►Test case issues – do your test cases cover enough 
+of the system’s behaviour? ( more on test cases will 
+be in later lectures)
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+39/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Fault Reporting
+►The reviewer does not ﬁx faults, but just reports them.
+►Every fault found must be carefully recorded.
+►There are fault-reporting forms (paperwork) for this purpose.
+►Each fault is recorded with a variety of information:
+►The reviewer.
+►The type of fault.
+►Faults can be categorised in various ways:
+►By criticality; e.g. minor, major, critical.
+►By checklist question (see later slides).
+►The location of the fault.
+►Which source code ﬁle? Which method? Which line number?
+►Some faults concern relationships between multiple parts of a 
+system.
+►A description of the fault.
+►Might include its eﬀects, or how to ﬁx it, if these are simple to 
+describe.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+40/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Reading Techniques
+►There are a few techniques for reviewers or inspectors to 
+ﬁnd faults.
+►They try to support or manipulate the way that you take 
+in the information.
+►Checklists are a common technique:
+►Reviewers work through a list of potential faults.
+►Check oﬀ each one as they go.
+►Mainly useful for relatively inexperienced reviewers.
+►For experienced reviewers, checklists just get in the way.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+41/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Guidelines for Checklist Questions
+►Each checklist item should be a yes/no question:
+►A “yes” answer means everything is okay.
+►A “no” answer means there is a problem.
+►Phrase each question so that “yes” and “no” have 
+clear meanings. This helps avoid confusion.
+►Number the questions sequentially (1, 2, 3, . . . ), so 
+reviewers can refer to them easily.
+►Each question should represent a potential type of fault.
+►Reviewers may ﬁnd many such faults, or none at all.
+►Questions should be generic. They should not refer to a 
+single, speciﬁc fault in a single part of the system.
+►Don’t list syntax errors.
+►These will be found anyway by compiling/running the code.
+►Don’t waste human eﬀort checking things that can be 
+checked automatically.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+42/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Checklists – How Long?
+►Checklists should be no more than one page in length.
+►Otherwise, the process is too cumbersome.
+►However, there are an inﬁnite variety of possible faults.
+►Obviously, you cannot list them all.
+►Make a judgement call:
+►Which types of faults are more likely to occur?
+►Which types of faults would cause more damage if 
+they occurred?
+►Put the most important and relevant fault types on 
+the checklist.
+►Any previously-reported fault types are a good 
+candidate for the checklist.
+►Faults can often re-occur, after being ﬁxed.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+43/49
+
+===== PAGE BREAK =====
+
+Checklist Questions – Examples
+Yes? Then everything is good.
+No? Then we may need to convert the datatypes from 
+integers to reals (or the other way around).
+2.
+Are the correct datatypes passed to functions/methods?
+[
+Python-speciﬁc]
+. . . .
+.
+.
+.
+.
+Yes? Then everything is good.
+No? Then we need to re-consider what the function/method’s 
+purpose is, and supply it the kind of data it needs.
+1. Is each “/” operator working with the correct datatype?
+[ 
+Java-speciﬁc]
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+44/49
+
+===== PAGE BREAK =====
+
+Checklist Questions – More Examples
+3. Do all string comparisons use the “equals” method (and not the 
+“==” operator)?
+[
+Java-speciﬁc]
+►If “no”, then we’re really comparing object references, not string 
+values (see PDI/OOPD).
+. . . .
+.
+.
+.
+.
+4. Do calls to a function/method supply parameters in the right 
+order?
+5. For functions/methods that return a value, is the returned 
+value being used (and not just discarded)?
+6. Where real numbers are compared for equality, is a 
+“tolerance” value used (to deal with rounding errors)?
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+45/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Code review methods : Formal Software Inspection
+►Invented by Michael Fagan (1976) 1.
+►Variations were developed with time.
+►Requires a team of about 4 people, headed by a 
+moderator.
+►Several rigidly-deﬁned steps.
+►Often a criterion for transitioning from one phase to 
+another.
+►Large-scale projects are often (and traditionally) separated 
+into separate phases, starting with requirements, then 
+design, and then implementation.
+►Move from design to implementation once the design 
+passes inspection (and not before).
+►This doesn’t really happen with agile methods.
+►However, this is helpful in mission-critical systems.
+1https://researcher.watson.ibm.com/researcher/view_page.php?id=6981
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+46/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Formal Inspection Steps
+Planning: the moderator schedules a time/venue, and ensures 
+the code/design is ready.
+Overview: the team shares existing insights into the system. 
+Preparation: team members individually read the code/design.
+Inspection: the team collectively searches for defects.
+Rework: those responsible ﬁx the defects.
+Follow-up: the team veriﬁes the ﬁxes.
+Re-inspect: if more than 5% of the code/design has been 
+changed.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+47/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Summary 
+►Software processes provide speciﬁc and instructive guidance to actually 
+conduct a project. Scrum, Kanban, extreme programming are some process 
+models.
+►Scrum is a widely used agile process. Scrum is based on “sprints”, small mini-
+projects which are to be completed in few weeks' time. Backlogs and different 
+types of meetings happening frequently are key features of scrum process. 
+►Monitoring project progress is important to keep the project on track. Burn-up 
+charts, Kanban boards and code reviews are some tools useful in monitoring.
+►Burn-up charts are used to show how the planned progress and actual 
+progress vary with time. 
+►Kanban boards show the status of individual activities with respect to time, 
+based on the workflow of the software project.
+►Once the software code is developed and tested, they are reviewed by another 
+person to identify the defects which would be difficult to see by the developer.
+►Checklists are a common techniques useful in code reviews.
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+48/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+Additional resources
+►Lean Development
+https://www.techtarget.com/searchsoftwarequality/definition/lean-programming
+►Extreme Programming
+http://www.extremeprogramming.org/ 
+https://scrum-master.org/en/extreme-programming-xp-a-beginners-guide-to-the-
+agile-method/
+►Rational Unified Process
+https://www.youtube.com/watch?v=uOnpFbQHXnc
+ 
+►Team Software Process
+https://insights.sei.cmu.edu/documents/2446/2010_015_001_72817.pdf
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+Burn-up charts
+49/49
+
+===== PAGE BREAK =====
+
+. . . .
+.
+.
+.
+.
+That’s all for now!
+Next week 
+ -
+Lecture: Functional Requirements 
+Practical work assessment 1 will be held next 
+week.
+50/49

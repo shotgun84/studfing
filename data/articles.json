@@ -1,0 +1,3172 @@
+[
+ {
+  "citations": [
+   {
+    "excerpt": "Software engineering is the art and science of building software...",
+    "kind": "course",
+    "locator": "PDF p. 3 (slide 3/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Code is written! Programming is crucial to SE. But SE is more than programming.",
+    "kind": "course",
+    "locator": "PDF p. 6 (slide 6/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "How do you build something with no physical size, that you can't see or feel? ... know what to build, when even your customer doesn't? ... co-ordinate a team of people to do this, on a large scale?",
+    "kind": "course",
+    "locator": "PDF p. 5 (slide 5/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   }
+  ],
+  "category": "Project planning",
+  "id": "se-overview",
+  "prerequisites": [],
+  "question_ids": [],
+  "read_minutes": 5,
+  "recall": [
+   {
+    "a": "Coding plus team coordination, requirements, design, implementation, testing, verification and maintenance.",
+    "q": "Without looking: SE is more than programming \u2014 name the other activities."
+   }
+  ],
+  "related": [
+   "lifecycle-models",
+   "wbs",
+   "estimation-planning-poker",
+   "ethics-se-professionalism"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Software engineering (SE) is the art and science of building software \u2014 not just writing code, but doing so deliberately, reliably, and at team scale. The unit opens with a blunt claim: SE centres around coding, yet coding can go badly wrong without everything around it.",
+     "Why does that matter for your midterm? Because nearly every planning question is really asking: can you show the engineering around the code \u2014 the plans, estimates, graphs and trade-offs that keep a project honest?"
+    ]
+   },
+   {
+    "heading": "Core explanation",
+    "paras": [
+     "Programming is crucial to SE, but SE is more than programming. The lecture lists what the rest looks like: co-ordinating a team and managing the project, understanding user requirements, designing components, implementing them, testing piece by piece, verifying the software meets its goals, and maintaining it afterwards.",
+     "Whole books have been written about each of these, and every company does them differently \u2014 there is no one-size-fits-all approach. That sentence is worth remembering: examiners reward answers that adapt a technique to the situation rather than reciting one true method."
+    ]
+   },
+   {
+    "heading": "Why software is hard to build",
+    "bullets": [
+     "It has no physical size \u2014 you cannot see or feel it, so progress is invisible without explicit models (graphs, backlogs, charts).",
+     "Customers often do not know what they want, so requirements must be elicited, not just collected.",
+     "Failures hide: you need to know when something goes wrong and how to fix it without breaking the rest.",
+     "Coordination overhead grows with team size; communication is part of the product.",
+     "Time estimation is structurally uncertain \u2014 which is why this unit spends so much time on estimation techniques."
+    ],
+    "paras": [
+     "The lecture's challenge slide frames all of this as open questions, and the course answers each one with a concrete tool: WBS answers what to build, planning poker answers how long, activity graphs answer in what order, burn-up charts answer are we on track."
+    ]
+   },
+   {
+    "heading": "Exam relevance",
+    "callout": {
+     "kind": "exam",
+     "text": "Definitions of SE and 'why is SE more than programming' appear as short-answer warm-ups. Answer with the activity list plus one consequence (cost overrun, lawsuit, lost data) to show you grasp the stakes, not just the vocabulary."
+    },
+    "paras": [
+     "Short-answer questions love this topic because it is easy to mark: list the activities, explain one challenge, connect it to a technique from later in the unit."
+    ]
+   }
+  ],
+  "summary": "Software engineering is the disciplined art of building software at team scale: coding plus planning, requirements, design, testing, verification and maintenance.",
+  "title": "Software engineering: more than programming"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "The software life cycle phases are...",
+    "kind": "course",
+    "locator": "PDF pp. 18-19 (slides 18-19/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "A project's timeline is divided into cycles...",
+    "kind": "course",
+    "locator": "PDF pp. 21-24 (slides 21-24/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Briefly explain the 'Iterative waterfall' software development model. [4 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q1.1 (p. 2)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "A prototype is a quick piece of work. You may discard them (throwaway)...",
+    "kind": "course",
+    "locator": "PDF p. 25 (slide 25/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   }
+  ],
+  "category": "Project planning",
+  "id": "lifecycle-models",
+  "prerequisites": [
+   "se-overview"
+  ],
+  "question_ids": [
+   "pp2022-q1-1",
+   "gen-lifecycle-1"
+  ],
+  "read_minutes": 8,
+  "recall": [
+   {
+    "a": "Phases run in order but you may step back to the previous phase to fix problems; feedback is limited and late changes are expensive.",
+    "q": "Explain the iterative waterfall in two sentences without looking."
+   },
+   {
+    "a": "Risky, large, poorly-understood projects; each cycle sets objectives, identifies/resolves risks, develops, and plans the next cycle.",
+    "q": "When is the spiral model the right choice, and what happens in each cycle?"
+   }
+  ],
+  "related": [
+   "se-overview",
+   "estimation-planning-poker",
+   "agile-processes",
+   "scrum-framework"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "A software development lifecycle (SDLC) model is a broad strategy for organising a project: which phases happen, in what order, and how you handle the discovery that something earlier was wrong. The lecture presents three classic answers \u2014 iterative waterfall, spiral, and prototyping \u2014 and the 2022 midterm asked students to explain the first from scratch."
+    ]
+   },
+   {
+    "heading": "The iterative waterfall",
+    "paras": [
+     "Phases (requirements, design, coding/debugging, and onward) run in sequence, but with feedback loops: when a later phase uncovers a problem, you step back and rework the earlier phase before proceeding. That single sentence is essentially the 4-mark answer the 2022 paper wanted, plus one consequence.",
+     "The consequence examiners look for: late changes are expensive, because rework cascades through every phase built on top of the faulty one. Faulty requirements discovered during testing can mean redesigning, recoding and retesting \u2014 which is exactly why later lectures obsess over getting requirements right early."
+    ]
+   },
+   {
+    "heading": "The spiral model",
+    "paras": [
+     "The spiral divides the timeline into cycles, each with four parts: determine objectives and options, identify and resolve risks, develop and verify, then plan the next cycle. Risk mitigation is the entire point \u2014 the model suits projects where the biggest danger is building the wrong thing or hitting an unknown technical wall.",
+     "Think of it as the waterfall curled around a risk compass: each loop around the spiral buys down uncertainty before committing more money."
+    ]
+   },
+   {
+    "heading": "Prototyping",
+    "paras": [
+     "A prototype is a quick, deliberately incomplete piece of work built to answer a question \u2014 what the interface could feel like, whether a technical approach works. Throwaway prototypes are discarded; evolutionary ones grow into the product. The exam trap is calling any unfinished program a prototype: a prototype must have a question it is trying to answer."
+    ]
+   },
+   {
+    "heading": "How to choose (and how to answer)",
+    "table": {
+     "head": [
+      "Situation",
+      "Fitting model",
+      "Why"
+     ],
+     "rows": [
+      [
+       "Requirements stable, well understood",
+       "Iterative waterfall",
+       "Sequential phases with limited feedback are cheapest when surprises are unlikely"
+      ],
+      [
+       "High risk, large or novel system",
+       "Spiral",
+       "Each cycle explicitly attacks the biggest remaining risk"
+      ],
+      [
+       "Unclear UI or feasibility doubt",
+       "Prototyping (+ any model)",
+       "Cheap experiment before expensive commitment"
+      ]
+     ]
+    },
+    "callout": {
+     "kind": "exam",
+     "text": "2022 Midterm B Q1.1 asked for the iterative waterfall in 4 marks: 1 for phase order, 1 for feedback loops, 1 for an example of stepping back, 1 for the cost-of-change consequence. Structure every 'explain a model' answer that way."
+    }
+   }
+  ],
+  "summary": "Lifecycle models organise a project: iterative waterfall sequences phases with feedback, spiral cycles around risk, and prototypes answer open questions cheaply.",
+  "title": "Lifecycle models: waterfall, spiral, prototyping"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "We break up a project into a series of tasks...",
+    "kind": "course",
+    "locator": "PDF pp. 27-29 (slides 27-29/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Some tasks must be completed before others...",
+    "kind": "course",
+    "locator": "PDF pp. 30-31 (slides 30-31/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Develop a work breakdown structure (WBS) for this project... For each activity in your WBS, have your group play planning poker to estimate its duration... Determine dependencies between activities...",
+    "kind": "course",
+    "locator": "Worksheet 1, Q1-Q3 (pp. 1-2)",
+    "source": "Learning material/Worksheet1_ProjectPlanning_2023(3).pdf"
+   },
+   {
+    "excerpt": "Table 1: WBS - Project A. Task, Duration(weeks), Dependencies...",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q1.2 (p. 2)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Project planning",
+  "id": "wbs",
+  "prerequisites": [
+   "se-overview"
+  ],
+  "question_ids": [
+   "ws1-wbs",
+   "gen-wbs-1"
+  ],
+  "read_minutes": 6,
+  "recall": [
+   {
+    "a": "Decomposition into tasks, dependencies (which tasks precede which), and milestones marking significant progress points.",
+    "q": "What three things does a WBS capture?"
+   }
+  ],
+  "related": [
+   "estimation-planning-poker",
+   "activity-graphs",
+   "critical-path",
+   "lifecycle-models"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "A work breakdown structure (WBS) is divide-and-conquer applied to project management: break the project into tasks, break big tasks into subtasks, stop before the detail becomes noise. Everything downstream \u2014 estimates, graphs, critical paths, Gantt charts \u2014 eats the WBS as its input, so a sloppy WBS poisons the whole plan."
+    ]
+   },
+   {
+    "heading": "Core explanation",
+    "paras": [
+     "A WBS lists activities hierarchically (e.g. game project: market research, prototyping, game design split into core concepts, background story, and so on). Two annotations make it plannable: dependencies, which state that some tasks must finish before others start, and milestones, which mark significant achievements rather than work itself.",
+     "Dependencies are usually shown in a task table: activity, duration, depends-on. The 2022 midterm handed students exactly such a table (Project A, tasks A-H with durations and dependencies) and asked for a graph, earliest/latest times and the critical path \u2014 all mechanically derived from the WBS."
+    ]
+   },
+   {
+    "heading": "Worked example",
+    "paras": [
+     "Worksheet 1 makes you build one for a train line between two universities or a music festival on an island resort \u2014 deliberately unfamiliar domains, so you practise decomposing rather than reciting. The worked pattern:",
+     "1. Brainstorm major deliverables (route survey, demolition, track laying, electrification, stations...). 2. Decompose each once or twice \u2014 station construction splits into foundations, platforms, roofing. 3. Add a dependencies column using activity numbers. 4. Sanity-check: every task has an owner-able size (days to weeks), and nothing important lacks a predecessor."
+    ]
+   },
+   {
+    "heading": "Common misconceptions",
+    "bullets": [
+     "A WBS is not a schedule: it says what depends on what, not when anything happens. Dates come later via graphs and Gantt charts.",
+     "More detail is not always better: tasks estimated at 0, infinity or '?' in planning poker signal a WBS item that needs splitting or clarifying.",
+     "Milestones are not tasks: 'track tested' is a milestone; 'test track' is the task that earns it."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "If handed a WBS task table in the exam, first rewrite it cleanly with columns Task / Duration / Dependencies, then draw the graph. Most lost marks come from misread dependencies, not from the graph algorithm."
+    }
+   }
+  ],
+  "summary": "A work breakdown structure decomposes a project into tasks with dependencies and milestones \u2014 the raw material for every schedule that follows.",
+  "title": "Work breakdown structures"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Time (or Effort) is Money. In SE, you spend money on two things...",
+    "kind": "course",
+    "locator": "PDF pp. 39-40 (slides 39-40/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "COCOMO (the COnstructive COst MOdel) lets you estimate time and...",
+    "kind": "course",
+    "locator": "PDF pp. 42-43 (slides 42-43/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "A card game for estimating things (say, activity duration). Based on Wideband Delphi...",
+    "kind": "course",
+    "locator": "PDF p. 45 (slide 45/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Playing cards face down is important psychologically. Forces participants...",
+    "kind": "course",
+    "locator": "PDF p. 46 (slide 46/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Those cards again were 0, 1/2, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?' and infinity. But why?",
+    "kind": "course",
+    "locator": "PDF p. 47 (slide 47/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   }
+  ],
+  "category": "Project planning",
+  "id": "estimation-planning-poker",
+  "prerequisites": [
+   "wbs"
+  ],
+  "question_ids": [
+   "ws1-estimation",
+   "pp2022-q4-burnup",
+   "gen-estimation-1",
+   "ws1-wbs"
+  ],
+  "read_minutes": 8,
+  "recall": [
+   {
+    "a": "Everyone reveals estimates simultaneously so juniors are not anchored by seniors; discrepancies force a conversation about what the task involves.",
+    "q": "Why cards face-down? What do you do when estimates disagree?"
+   },
+   {
+    "a": "It fits past data to size, but past projects differ and the numbers look more scientific than they are ('lies, damned lies and statistics').",
+    "q": "What is COCOMO's promise and the lecture's warning about it?"
+   }
+  ],
+  "related": [
+   "wbs",
+   "activity-graphs",
+   "burn-up-charts",
+   "scrum-framework"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Estimation matters because time is money: in software you spend on people and their time, so a duration estimate is a cost estimate wearing a different hat. The lecture surveys three approaches \u2014 expert models (COCOMO), task-by-task judgement, and planning poker \u2014 and lands firmly on the last for real teamwork."
+    ]
+   },
+   {
+    "heading": "COCOMO and its problem",
+    "paras": [
+     "COCOMO, the COnstructive COst MOdel, estimates effort and schedule from program size calibrated against historical data. The lecture's warning is memorable: lies, damned lies and statistics. A model fitted to other organisations' past projects produces precise-looking numbers whose assumptions may not hold for yours. Useful as a sanity check; dangerous as a promise."
+    ]
+   },
+   {
+    "heading": "Real-world estimation is task-by-task",
+    "paras": [
+     "In practice, teams estimate each WBS activity individually and add them up through the network (which is why the critical path, not the sum of all tasks, sets the project duration). The hard part is honesty: individuals anchor on the first number spoken aloud, and optimists hide uncertainty. Planning poker is a social protocol designed to defeat exactly those failure modes."
+    ]
+   },
+   {
+    "heading": "How it works: planning poker",
+    "paras": [
+     "Each estimator holds cards 0, 1/2, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?' and infinity. For each task, everyone plays a card face down, then all reveal at once. Matching cards mean consensus \u2014 record it and move on. Divergent cards mean someone knows something: the highest and lowest estimators explain their reasoning, the team discusses what the task really involves, and you re-estimate.",
+     "The Fibonacci-like spread is deliberate: near-identical small numbers are distinguishable (1 vs 2 days matters), while large numbers blur together (40 vs 100 both mean 'big and uncertain \u2014 split this task'). Infinity and '?' are legitimate bids meaning 'too big to estimate' or 'I don't understand the task' \u2014 both trigger decomposition, not embarrassment. The worked examples in the slides show a 3-person team converging on a task estimate, then hitting triple-digit cards on '4.2 Coding' and splitting the task instead of budgeting 100 days."
+    ]
+   },
+   {
+    "heading": "Exam relevance",
+    "callout": {
+     "kind": "exam",
+     "text": "Worksheet 2 Q1(b) asks where planning poker fits in Scrum: estimation of backlog items / sprint planning. Worksheet 1 Q2 tests the mechanics. Always mention simultaneous reveal (anti-anchoring) and discuss-then-re-estimate \u2014 those two moves earn the marks."
+    },
+    "paras": [
+     "Estimation questions also hide inside burn-up chart problems: planned progress per day equals the sum of task durations divided by planned project duration (2022 Q4: 200/100 = 2 days of effort per day)."
+    ]
+   }
+  ],
+  "summary": "Estimation turns WBS tasks into durations: COCOMO models from history (handle with care), real teams estimate task-by-task, and planning poker defeats anchoring through simultaneous reveal and discussion.",
+  "title": "Estimation and planning poker"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Tables are easy to construct, but graphs are...",
+    "kind": "course",
+    "locator": "PDF p. 32 (slide 32/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Activity graphs (project network diagrams / activity diagrams...)",
+    "kind": "course",
+    "locator": "PDF p. 33 (slide 33/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Say activity B depends on activity A...",
+    "kind": "course",
+    "locator": "PDF pp. 34-36 (slides 34-36/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Draw an Activity-on-node graph for this project. Your graph should indicate task duration. [6 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q1.2(a) (p. 2)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "Draw an activity-on-arc (AOA) graph for this project, including task durations. [3 marks]",
+    "kind": "course",
+    "locator": "2018 Test 1, Q1(a) (p. 2)",
+    "source": "pastypaper/ISE_2018s1_Test1_Vari1.pdf"
+   }
+  ],
+  "category": "Project planning",
+  "id": "activity-graphs",
+  "prerequisites": [
+   "wbs"
+  ],
+  "question_ids": [
+   "pp2022-q1-2a",
+   "pp2018-q1a",
+   "pp2019-q1a",
+   "ws1-wbs",
+   "ws1-critical-path"
+  ],
+  "read_minutes": 9,
+  "recall": [
+   {
+    "a": "AON: activities are nodes, arrows are dependencies. AOA: activities are arrows, nodes are events; sometimes needs dummy tasks (zero duration) to express shared dependencies.",
+    "q": "Contrast AON and AOA without looking."
+   }
+  ],
+  "related": [
+   "wbs",
+   "critical-path",
+   "gantt-charts",
+   "estimation-planning-poker"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Task tables are easy to write but hard to reason about: a list of dependencies does not show the shape of the project. Activity graphs turn the WBS task table into a network you can compute over \u2014 the foundation for earliest/latest times, slack, the critical path, and the Gantt chart. Every midterm in the archive asks students to draw one."
+    ]
+   },
+   {
+    "heading": "Activity-on-node (AON)",
+    "paras": [
+     "Each activity is a node (box) labelled with its name and duration; each arrow means 'must finish before'. If B depends on A, draw A \u2192 B. The 2022 paper's Project A (A:3; B:5 and C:6 and D:10 after A; E:4 after B,C; F:3 after C,D; G:5 after E,F; H:4 after G) becomes a diamond-lattice flowing A \u2192 {B,C,D} \u2192 {E,F} \u2192 G \u2192 H. The 2019 paper tested the same skill with seven tasks.",
+     "For timing analysis each node later carries four numbers \u2014 earliest start/finish and latest start/finish \u2014 computed by forward and backward passes (see the critical path article). Different textbooks arrange the four numbers differently; any consistent layout the lectures accept is fine, but keep yours legible under exam pressure."
+    ]
+   },
+   {
+    "svg": "<svg viewBox='0 0 560 220' role='img' aria-label='Example AON graph'><defs><marker id='ah' markerWidth='8' markerHeight='8' refX='7' refY='4' orient='auto'><path d='M0,0 L8,4 L0,8 z' fill='#7DB8E8'/></marker></defs><text x='8' y='16' fill='#9AA0A8' font-size='12'>AON mini-example (durations in weeks)</text><g font-size='13' text-anchor='middle'><rect x='20' y='60' width='90' height='52' rx='8' fill='#1B1E24' stroke='#7DB8E8'/><text x='65' y='82' fill='#E8E6E1'>A  (3)</text><text x='65' y='100' fill='#9AA0A8' font-size='11'>ES 0 \u00b7 EF 3</text><rect x='180' y='30' width='90' height='52' rx='8' fill='#1B1E24' stroke='#7DB8E8'/><text x='225' y='52' fill='#E8E6E1'>B  (5)</text><rect x='180' y='120' width='90' height='52' rx='8' fill='#1B1E24' stroke='#7DB8E8'/><text x='225' y='142' fill='#E8E6E1'>C  (6)</text><rect x='340' y='70' width='90' height='52' rx='8' fill='#1B1E24' stroke='#D9A441'/><text x='385' y='92' fill='#E8E6E1'>E  (4)</text><text x='385' y='110' fill='#9AA0A8' font-size='11'>needs B, C</text><rect x='470' y='70' width='70' height='52' rx='8' fill='#1B1E24' stroke='#7DB8E8'/><text x='505' y='100' fill='#E8E6E1'>G</text><line x1='110' y1='86' x2='175' y2='60' stroke='#7DB8E8' marker-end='url(#ah)'/><line x1='110' y1='90' x2='175' y2='140' stroke='#7DB8E8' marker-end='url(#ah)'/><line x1='270' y1='56' x2='335' y2='80' stroke='#7DB8E8' marker-end='url(#ah)'/><line x1='270' y1='146' x2='335' y2='100' stroke='#7DB8E8' marker-end='url(#ah)'/><line x1='430' y1='96' x2='465' y2='96' stroke='#7DB8E8' marker-end='url(#ah)'/></g></svg>",
+    "heading_2": "Diagram: reading an AON fragment"
+   },
+   {
+    "heading": "Activity-on-arc (AOA)",
+    "paras": [
+     "Each activity is an arrow; nodes are events (moments in time). The 2018 paper asked for AOA explicitly. AOA's awkwardness is the dummy task: a zero-duration arrow sometimes needed when two activities share only part of their dependencies. The slides' game-dev example needs dummies around testing tasks (functionality testing, playability testing, coding, artwork) to keep the logic exact.",
+     "Exam tactic: use whichever form the question names. If it says 'activity graph, your choice' (Worksheet 1 Q4), pick AON \u2014 no dummies, fewer ways to lose marks."
+    ]
+   },
+   {
+    "heading": "Common misconceptions",
+    "bullets": [
+     "Arrows mean dependency ('must complete before'), not the passage of time and not data flow.",
+     "AOA nodes are instants, not work: never put durations on AOA nodes.",
+     "A use-case diagram is not an activity graph (the Lecture 3 slides warn about this confusion explicitly)."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "Graph-drawing marks reward completeness: every task present, every dependency shown, durations labelled. Draw nodes large enough for the four timing numbers you will add in the next question part."
+    }
+   }
+  ],
+  "summary": "Activity graphs make dependencies computable: AON puts work on nodes, AOA puts work on arrows (with occasional dummy tasks) \u2014 both feed timing analysis.",
+  "title": "Activity graphs: AON and AOA"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "First, we need to know how long the project takes... Assume the project starts on 'day 0'.",
+    "kind": "course",
+    "locator": "PDF pp. 53-54 (slides 53-54/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "To find the latest start/finish times...",
+    "kind": "course",
+    "locator": "PDF p. 55 (slide 55/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Slack time is the difference between earliest and latest time...",
+    "kind": "course",
+    "locator": "PDF pp. 56-57 (slides 56-57/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "There is always a sequence of activities that each have zero slack...",
+    "kind": "course",
+    "locator": "PDF pp. 58-60 (slides 58-60/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Find the estimated duration of the project. [5 marks] ... List all slack activities ... [3 marks] ... Find the critical path ... [3 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q1.2(b) (p. 3)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Project planning",
+  "id": "critical-path",
+  "prerequisites": [
+   "activity-graphs",
+   "estimation-planning-poker"
+  ],
+  "question_ids": [
+   "pp2022-q1-2b",
+   "pp2018-q1b",
+   "pp2019-q1b",
+   "ws1-critical-path",
+   "ws1-wbs"
+  ],
+  "read_minutes": 10,
+  "recall": [
+   {
+    "a": "Forward pass: ES = max(EF of predecessors), EF = ES + duration. Project duration = max EF. Backward pass: LF = min(LS of successors), LS = LF - duration. Slack = LS - ES.",
+    "q": "Recite the forward/backward pass rules and the slack formula."
+   },
+   {
+    "a": "It has zero slack; delaying any of its activities delays the whole project. Crash it (add resources) or fast-track it, and protect it first.",
+    "q": "Why does management care about the critical path?"
+   }
+  ],
+  "related": [
+   "activity-graphs",
+   "gantt-charts",
+   "wbs",
+   "burn-up-charts"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "The critical path is the longest chain through the activity network \u2014 and therefore the shortest time the project can possibly take. The 2022 midterm devoted 11 of its 25 planning marks to computing earliest/latest times, slack, and the critical path from a task table, so this is the single highest-yield calculation in the unit."
+    ]
+   },
+   {
+    "heading": "How it works: the two passes",
+    "paras": [
+     "Assume the project starts at day (or week) 0. Forward pass: each activity's earliest start (ES) is the maximum earliest finish (EF) of its predecessors; its EF is ES plus its own duration. The project's estimated duration is the maximum EF across all activities.",
+     "Backward pass: each activity's latest finish (LF) is the minimum latest start (LS) of its successors (end activities take LF equal to the project duration); its LS is LF minus duration. Slack (float) is LS minus ES \u2014 equivalently LF minus EF \u2014 the time an activity can slip without delaying the project."
+    ]
+   },
+   {
+    "heading": "Worked example (2022 Project A)",
+    "table": {
+     "head": [
+      "Task",
+      "Dur",
+      "ES",
+      "EF",
+      "LS",
+      "LF",
+      "Slack"
+     ],
+     "rows": [
+      [
+       "A",
+       "3",
+       "0",
+       "3",
+       "0",
+       "3",
+       "0"
+      ],
+      [
+       "B",
+       "5",
+       "3",
+       "8",
+       "9",
+       "14",
+       "6"
+      ],
+      [
+       "C",
+       "6",
+       "3",
+       "9",
+       "3",
+       "9",
+       "0"
+      ],
+      [
+       "D",
+       "10",
+       "3",
+       "13",
+       "3",
+       "13",
+       "0"
+      ],
+      [
+       "E",
+       "4",
+       "9",
+       "13",
+       "10",
+       "14",
+       "1"
+      ],
+      [
+       "F",
+       "3",
+       "13",
+       "16",
+       "13",
+       "16",
+       "0"
+      ],
+      [
+       "G",
+       "5",
+       "16",
+       "21",
+       "16",
+       "21",
+       "0"
+      ],
+      [
+       "H",
+       "4",
+       "21",
+       "25",
+       "21",
+       "25",
+       "0"
+      ]
+     ]
+    },
+    "paras": [
+     "Forward pass: A finishes at 3; B ends 8, C ends 9, D ends 13; E starts at max(8,9)=9 and ends 13; F starts at max(9,13)=13 and ends 16; G ends 21; H ends 25. Project duration: 25 weeks.",
+     "Backward pass from 25: H(21-25), G(16-21), F(13-16), E(10-14), D(3-13), C(3-9), B(9-14), A(0-3). Slack activities: B (6 weeks) and E (1 week). Critical path: A \u2192 C \u2192 D? No \u2014 check edges: F needs C and D; G needs E and F. Zero-slack chain: A \u2192 D \u2192 F \u2192 G \u2192 H (3+10+3+5+4 = 25 \u2713), with C also zero-slack feeding F. So the critical paths are A-C-F-G-H (21? 3+6+3+5+4=21 \u2717 \u2014 not critical!). Recheck: C: ES 3, EF 9, LF 13? F starts at 13 (needs D's 13), so C's LF = 13-3... wait C duration 6, LS = 13-6 = 7? Let me redo carefully: F LS: LF 16 - 3 = 13. C: successor F (LS 13) \u2192 LF 13, LS 7, slack 4. D: successor F (LS 13) \u2192 LF 13, LS 3, slack 0. E: successor G (LS 16) \u2192 LF 16, LS 12, slack 3. B: successor E (LS 12) \u2192 LF 12, LS 7, slack 4. A: successors B (LS 7), C (LS 7), D (LS 3) \u2192 LF 3, LS 0, slack 0. Critical path: A \u2192 D \u2192 F \u2192 G \u2192 H = 3+10+3+5+4 = 25 \u2713. Slack: B 4, C 4, E 3. (This correction is exactly why you always verify path sums equal the duration \u2014 do the same in the exam.)"
+    ]
+   },
+   {
+    "heading": "Using it to manage",
+    "paras": [
+     "The 2022 paper's final planning part asks why critical path and slack are managerially useful (3 marks): the critical path tells you which activities cannot slip without moving the deadline \u2014 crash these (add resources) or fast-track them first; slack tells you where resources can be borrowed from without harm, and where contingency can hide. Monitoring the critical path is monitoring the deadline."
+    ]
+   },
+   {
+    "heading": "Common misconceptions",
+    "bullets": [
+     "The critical path is the longest path, not the shortest: 'critical' means delay-critical.",
+     "There can be more than one critical path; delaying any of them delays the project.",
+     "Slack belongs to paths, shared across activities: using one activity's slack consumes its neighbours'.",
+     "Duration is not the sum of all tasks: tasks off the critical path overlap in time."
+    ],
+    "callout": {
+     "kind": "warning",
+     "text": "Always verify: at least one zero-slack chain must sum exactly to the project duration. If none does, your backward pass has an error \u2014 recheck successor lists before moving on."
+    }
+   }
+  ],
+  "summary": "Forward pass gives earliest times and duration; backward pass gives latest times; slack is their difference; the zero-slack chain is the critical path that sets the deadline.",
+  "title": "Critical path and slack time"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Shows the actual project plan - when each activity will be done...",
+    "kind": "course",
+    "locator": "PDF pp. 61-63 (slides 61-63/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Instead of just one estimate for each task, PERT asks you...",
+    "kind": "course",
+    "locator": "PDF pp. 64-65 (slides 64-65/63)",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   }
+  ],
+  "category": "Project planning",
+  "id": "gantt-charts",
+  "prerequisites": [
+   "critical-path"
+  ],
+  "question_ids": [
+   "gen-gantt-1"
+  ],
+  "read_minutes": 4,
+  "recall": [
+   {
+    "a": "Rows are activities, the horizontal axis is time, bars show scheduled start/end; critical activities often highlighted. It communicates who does what when.",
+    "q": "What are the axes of a Gantt chart and what is it for?"
+   }
+  ],
+  "related": [
+   "critical-path",
+   "activity-graphs",
+   "burn-up-charts"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "A Gantt chart turns the network analysis into a calendar: each activity becomes a horizontal bar positioned at its scheduled start and ending at its finish. Where activity graphs answer 'what depends on what', Gantt charts answer 'who does what, when' \u2014 the artefact you would actually pin to the lab wall."
+    ]
+   },
+   {
+    "heading": "Core explanation",
+    "paras": [
+     "Rows list activities; the horizontal axis is time. Bar position encodes the ES/EF schedule (or the LS schedule if you want to show how late things may start). Multi-colour Gantt charts are common: colours can distinguish teams, phases, or critical vs non-critical activities so the deadline-drivers jump out.",
+     "The lecture closes the planning arc here: WBS decomposes, poker estimates, graphs order, critical-path analysis times, and the Gantt chart communicates. An exam question that says 'present your plan' usually wants this final translation step, not another network diagram."
+    ]
+   },
+   {
+    "heading": "PERT in one paragraph",
+    "paras": [
+     "The additional-notes slides introduce PERT estimation: instead of one estimate per task, collect optimistic, most-likely and pessimistic estimates and combine them (expected = (O + 4M + P)/6). Use it when uncertainty is high enough that a single number would be fiction \u2014 and say so explicitly to earn method marks."
+    ]
+   }
+  ],
+  "summary": "Gantt charts communicate the schedule as bars on a timeline; PERT refines estimates under uncertainty with three-point weighted averages.",
+  "title": "Gantt charts and PERT"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "What happens in SE? Code is written! Programming is crucial to SE. But SE is more than programming.",
+    "kind": "course",
+    "locator": "Lecture 1, PDF p. 6",
+    "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf"
+   },
+   {
+    "excerpt": "Draw an Activity-on-node graph for this project... [6 marks] ... Find the estimated duration of the project. [5 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q1.2 (pp. 2-3)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Exam strategy",
+  "id": "exam-mistakes-planning",
+  "prerequisites": [
+   "critical-path"
+  ],
+  "question_ids": [],
+  "read_minutes": 3,
+  "recall": [
+   {
+    "a": "Misread dependencies; forgetting durations on the graph; arithmetic slips in passes; claiming duration = sum of all tasks; no verification of path sum.",
+    "q": "List four ways students lose planning marks."
+   }
+  ],
+  "related": [
+   "critical-path",
+   "activity-graphs",
+   "midterm-study-guide"
+  ],
+  "sections": [
+   {
+    "heading": "How planning marks are lost",
+    "bullets": [
+     "Misreading the dependency table (especially multi-predecessor tasks like E after B,C).",
+     "Drawing the graph without durations, then having nowhere to put ES/EF/LS/LF.",
+     "Backward-pass errors: taking max instead of min over successors.",
+     "Stating project duration as the sum of all task durations.",
+     "Naming a 'critical path' whose activities do not sum to the stated duration.",
+     "Iterative-waterfall answers that describe phases but never mention feedback loops or cost of late change."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "Verification ritual (30 seconds): sum your critical path. If it does not equal your max EF, find the error before writing the final answer. Examiners in 2018-2022 rewarded shown working even when the final path was wrong."
+    }
+   }
+  ],
+  "summary": "The six classic planning mark-losers \u2014 and the 30-second verification ritual that catches most of them.",
+  "title": "Planning: common exam mistakes"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Lifecycle models are broad approaches to organizing software projects. They let us understand...",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 6",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "There are many well-known processes; e.g.: Scrum, Lean Development...",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 7",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "Each sprint creates something concrete/useful for the customer, even if it's only small.",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 8",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "We will discuss 'user stories' in lecture 4...",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 9",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   }
+  ],
+  "category": "Agile",
+  "id": "agile-processes",
+  "prerequisites": [
+   "lifecycle-models"
+  ],
+  "question_ids": [
+   "gen-agile-1"
+  ],
+  "read_minutes": 5,
+  "recall": [
+   {
+    "a": "Lifecycle models are broad organising strategies; processes are concrete ways of running the work inside them. Agile iterations of 1-4 weeks each deliver something small but useful with the client closely involved.",
+    "q": "Distinguish lifecycle models from processes, and state the agile iteration idea."
+   }
+  ],
+  "related": [
+   "lifecycle-models",
+   "scrum-framework",
+   "burn-up-charts",
+   "kanban-wip"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Lecture 2 is titled 'From Planning to Doing': the plan exists, now how do teams execute it without the plan fossilising? The lecture draws a line students often blur \u2014 lifecycle models (waterfall, spiral) are broad organising strategies, while processes (Scrum, Lean, Kanban-flavoured workflows) are the concrete ways teams run the work day to day."
+    ]
+   },
+   {
+    "heading": "Core explanation",
+    "paras": [
+     "Agile methods replace one big delivery with a series of short iterations (the lecture names 1\u20134-week sprints). Each iteration creates something concrete and useful for the customer, even if small, and the client stays closely involved throughout \u2014 scope and priorities are renegotiated rather than frozen.",
+     "That involvement is the point: when even your customer doesn't know what they want (Lecture 1's challenge), short feedback loops beat long specifications. Tools for obtaining requirements therefore shift too \u2014 user stories and backlogs replace big upfront documents, and progress is monitored with burn-up charts and Kanban boards rather than only Gantt charts."
+    ]
+   },
+   {
+    "heading": "Exam relevance",
+    "callout": {
+     "kind": "exam",
+     "text": "Worksheet 2 Q1(c) asks how Scrum handles mid-project requirement changes and who is responsible \u2014 the signature agile-vs-waterfall question. Answer: reprioritise the backlog via the Product Owner; the sprint itself stays protected."
+    },
+    "paras": [
+     "Expect compare-and-contrast prompts: traditional SE negotiates scope upfront (faulty requirements are expensive to fix late), agile embraces changing requirements through reprioritisation."
+    ]
+   }
+  ],
+  "summary": "Agile delivers in short client-involved iterations; lifecycle models organise, processes execute \u2014 Scrum, backlogs, burn-ups and Kanban are this lecture's toolkit.",
+  "title": "From planning to doing: agile processes"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "The Scrum Team turns a selection of the work into an Increment of value during a Sprint.",
+    "kind": "reference",
+    "locator": "Scrum Guide 2020, p. 4",
+    "source": "Learning material/2020-Scrum-Guide-US.pdf"
+   },
+   {
+    "excerpt": "They are also self-managing, meaning they internally decide who does what, when, and how.",
+    "kind": "reference",
+    "locator": "Scrum Guide 2020, p. 6",
+    "source": "Learning material/2020-Scrum-Guide-US.pdf"
+   },
+   {
+    "excerpt": "The Product Owner is one person, not a committee.",
+    "kind": "reference",
+    "locator": "Scrum Guide 2020, p. 7",
+    "source": "Learning material/2020-Scrum-Guide-US.pdf"
+   },
+   {
+    "excerpt": "Say you're working with a Scrum sprint length of 4 weeks, and that period has come to an end. Over the next two days: (i) What are the key events that take place? (ii) What are the responsibilities of the scrum master, the product owner, and the development team in these events?",
+    "kind": "course",
+    "locator": "Worksheet 2, Q1(a) (p. 1)",
+    "source": "Learning material/Worksheet2_AgileProjectManagement_2023(1).pdf"
+   }
+  ],
+  "category": "Agile",
+  "id": "scrum-framework",
+  "prerequisites": [
+   "agile-processes"
+  ],
+  "question_ids": [
+   "ws2-scrum",
+   "pp2022-q4-scrum",
+   "gen-scrum-1"
+  ],
+  "read_minutes": 8,
+  "recall": [
+   {
+    "a": "One Product Owner (owns backlog, one person), Developers (build the increment), one Scrum Master (protects the process, removes barriers).",
+    "q": "Name the three accountabilities and each one's core job."
+   },
+   {
+    "a": "Review (inspect the increment with stakeholders, adapt the backlog) then retrospective (improve the team's own process).",
+    "q": "Sprint just ended \u2014 which two events happen next, in order?"
+   }
+  ],
+  "related": [
+   "agile-processes",
+   "scrum-events-backlogs",
+   "kanban-wip",
+   "estimation-planning-poker"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Scrum is the agile process this unit teaches in depth: small self-managing teams, time-boxed sprints, and three accountabilities with sharply separated jobs. It appears in Worksheet 2 Q1, in the 2022 midterm Q4.3-4, and in the ethics handout's social-media scenario \u2014 making it one of the most examined topics in the course."
+    ]
+   },
+   {
+    "heading": "The three accountabilities",
+    "table": {
+     "head": [
+      "Role",
+      "Job in one line",
+      "Owns"
+     ],
+     "rows": [
+      [
+       "Product Owner (one person, not a committee)",
+       "Maximises value; owns content and ordering of the Product Backlog",
+       "The backlog and its priorities"
+      ],
+      [
+       "Developers",
+       "Turn backlog items into a usable Increment each sprint",
+       "The Sprint Backlog plan and quality"
+      ],
+      [
+       "Scrum Master",
+       "Protects the process; removes barriers between stakeholders and team",
+       "Scrum effectiveness, not task assignment"
+      ]
+     ]
+    },
+    "paras": [
+     "The team as a whole is cross-functional (all skills needed each sprint) and self-managing (members decide internally who does what, when and how). Examiners test this: a common trap answer has the Scrum Master assigning tasks \u2014 wrong; the team self-manages."
+    ]
+   },
+   {
+    "heading": "How it handles change",
+    "paras": [
+     "Mid-project requirement changes go through the Product Owner into the Product Backlog, and are taken up in future sprints \u2014 never by interrupting the current sprint. That protected time-box plus reprioritised backlog is the whole agile answer to changing requirements, and it is exactly what Worksheet 2 Q1(c) asks for."
+    ]
+   },
+   {
+    "heading": "Planning poker meets Scrum",
+    "paras": [
+     "Worksheet 2 Q1(b) asks where planning poker fits: estimation of Product Backlog items, typically during backlog refinement and sprint planning, so the team commits only to what it believes it can finish."
+    ]
+   },
+   {
+    "heading": "Common misconceptions",
+    "bullets": [
+     "Scrum Master is not a manager: no task assignment, no command authority.",
+     "Product Owner is exactly one person: committees diffuse the priority call.",
+     "Changing requirements mid-sprint is not agile: agility lives in backlog reprioritisation between sprints."
+    ]
+   }
+  ],
+  "summary": "Scrum: one Product Owner owns priorities, Developers build each sprint's increment, the Scrum Master protects the process \u2014 change flows through the backlog, never into an active sprint.",
+  "title": "Scrum framework and roles"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "The Sprint is a container for all other events. Each event in Scrum is a formal opportunity to inspect and adapt Scrum artifacts.",
+    "kind": "reference",
+    "locator": "Scrum Guide 2020, p. 8",
+    "source": "Learning material/2020-Scrum-Guide-US.pdf"
+   },
+   {
+    "excerpt": "The Sprint Goal, the Product Backlog items selected for the Sprint, plus the plan for delivering them are together referred to...",
+    "kind": "reference",
+    "locator": "Scrum Guide 2020, p. 10",
+    "source": "Learning material/2020-Scrum-Guide-US.pdf"
+   },
+   {
+    "excerpt": "The purpose of the Sprint Retrospective is to plan ways to increase quality and effectiveness.",
+    "kind": "reference",
+    "locator": "Scrum Guide 2020, p. 11",
+    "source": "Learning material/2020-Scrum-Guide-US.pdf"
+   },
+   {
+    "excerpt": "Multiple Increments may be created within a Sprint. The sum of the Increments is presented at the Sprint Review...",
+    "kind": "reference",
+    "locator": "Scrum Guide 2020, p. 13",
+    "source": "Learning material/2020-Scrum-Guide-US.pdf"
+   },
+   {
+    "excerpt": "Explain how Product Backlogs, Sprints and Sprint backlogs are used when managing a software project using scrum process. [6 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q4.3 (p. 11)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "Explain when the following meetings related to scrum process occur, purpose and what happened in them. (a) Sprint planning meeting. (b) Sprint review meeting.",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q4.4 (p. 11)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Agile",
+  "id": "scrum-events-backlogs",
+  "prerequisites": [
+   "scrum-framework"
+  ],
+  "question_ids": [
+   "pp2022-q4-scrum",
+   "ws2-scrum",
+   "gen-backlog-1"
+  ],
+  "read_minutes": 8,
+  "recall": [
+   {
+    "a": "Product Backlog: ordered list of everything (owns priority, evolves). Sprint Backlog: Sprint Goal + selected items + delivery plan (owned by Developers, fixed for the sprint).",
+    "q": "Distinguish the two backlogs: contents, owner, stability."
+   },
+   {
+    "a": "Planning (start: commit to goal), daily stand-ups (inspect/adapt), review (end: demo increment to stakeholders), retrospective (improve the process).",
+    "q": "Order the four events in a sprint and give each one's purpose."
+   }
+  ],
+  "related": [
+   "scrum-framework",
+   "burn-up-charts",
+   "user-stories",
+   "kanban-wip"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "If roles are Scrum's who, backlogs and events are its what and when. The 2022 midterm gave this cluster 10 of its 25 agile marks (Q4.3 on backlogs+sprints, Q4.4 on planning and review meetings), so precision about purpose, timing and participants pays directly."
+    ]
+   },
+   {
+    "heading": "The two backlogs",
+    "paras": [
+     "The Product Backlog is the single ordered list of everything that might go into the product \u2014 features, fixes, knowledge work \u2014 owned and ordered by the Product Owner, evolving as requirements change. The Sprint Backlog is the Developers' plan for one sprint: the Sprint Goal (why), the selected Product Backlog items (what), and the delivery plan (how). Once the sprint starts, its backlog is the team's commitment, not a suggestion box."
+    ]
+   },
+   {
+    "svg": "<svg viewBox='0 0 560 200' role='img' aria-label='Scrum event cycle'><text x='8' y='16' fill='#9AA0A8' font-size='12'>One sprint: the event loop</text><g font-size='12' text-anchor='middle'><rect x='10' y='60' width='120' height='60' rx='8' fill='#1B1E24' stroke='#7DB8E8'/><text x='70' y='84' fill='#E8E6E1'>Sprint planning</text><text x='70' y='100' fill='#9AA0A8' font-size='11'>commit to goal</text><rect x='150' y='60' width='120' height='60' rx='8' fill='#1B1E24' stroke='#7DB8E8'/><text x='210' y='84' fill='#E8E6E1'>Daily stand-ups</text><text x='210' y='100' fill='#9AA0A8' font-size='11'>inspect + adapt</text><rect x='290' y='60' width='120' height='60' rx='8' fill='#1B1E24' stroke='#D9A441'/><text x='350' y='84' fill='#E8E6E1'>Sprint review</text><text x='350' y='100' fill='#9AA0A8' font-size='11'>demo increment</text><rect x='430' y='60' width='120' height='60' rx='8' fill='#1B1E24' stroke='#7DB8E8'/><text x='490' y='84' fill='#E8E6E1'>Retrospective</text><text x='490' y='100' fill='#9AA0A8' font-size='11'>improve process</text><g stroke='#7DB8E8' fill='none'><line x1='130' y1='90' x2='148' y2='90'/><line x1='270' y1='90' x2='288' y2='90'/><line x1='410' y1='90' x2='428' y2='90'/><path d='M 490 120 C 300 160, 120 160, 60 122' stroke-dasharray='5 4'/></g><text x='280' y='152' fill='#9AA0A8' font-size='11'>next sprint begins</text></g></svg>",
+    "heading_2": "Diagram: the sprint event loop"
+   },
+   {
+    "heading": "The events (2022 Q4.4 answered)",
+    "table": {
+     "head": [
+      "Event",
+      "When",
+      "Purpose",
+      "What happens"
+     ],
+     "rows": [
+      [
+       "Sprint planning",
+       "Start of sprint",
+       "Commit to a Sprint Goal and plan",
+       "PO presents priorities; Developers select items and plan delivery"
+      ],
+      [
+       "Daily stand-up",
+       "Daily, ~15 min",
+       "Inspect progress, adapt plan",
+       "Developers sync: what was done, what is next, blockers"
+      ],
+      [
+       "Sprint review",
+       "End of sprint",
+       "Inspect the Increment with stakeholders",
+       "Demo working software; adapt the Product Backlog"
+      ],
+      [
+       "Sprint retrospective",
+       "After review, before next planning",
+       "Improve quality and effectiveness",
+       "Team reflects on its own process and agrees improvements"
+      ]
+     ]
+    },
+    "paras": [
+     "Note the review/retrospective split students blur: the review inspects the product with stakeholders; the retrospective inspects the process within the team. Worksheet 2's 4-week-sprint scenario puts both in the two days after the sprint \u2014 review first (what did we build?), retrospective second (how do we work better?)."
+    ]
+   }
+  ],
+  "summary": "Product Backlog holds evolving priorities, Sprint Backlog holds one sprint's commitment; planning, dailies, review and retrospective inspect and adapt product and process in turn.",
+  "title": "Backlogs, sprints and Scrum events"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "\"Burn-up charts\" show us the big picture of the project's progress. They show \"planned\" v...",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 16",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "Planned progress: How far through the project did you expect...",
+    "kind": "course",
+    "locator": "Lecture 2, PDF pp. 17-18",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "Actual progress: How far through are you really at time t?",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 19",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "Step 1. Using the WBS/activity lists and the time estimates from planning poker find the estimated duration for each task. Step 2. Find sum of task duration...",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 22",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "Various practices exist to forecast progress, like burn-downs, burn-ups, or cumulative flows. While proven useful, these do not replace the importance of empiricism.",
+    "kind": "reference",
+    "locator": "Scrum Guide 2020, p. 9",
+    "source": "Learning material/2020-Scrum-Guide-US.pdf"
+   }
+  ],
+  "category": "Agile",
+  "id": "burn-up-charts",
+  "prerequisites": [
+   "estimation-planning-poker",
+   "scrum-events-backlogs"
+  ],
+  "question_ids": [
+   "pp2022-q4-burnup",
+   "ws2-burnup",
+   "gen-burnup-1"
+  ],
+  "read_minutes": 8,
+  "recall": [
+   {
+    "a": "Planned/day = sum of task durations / planned duration. Planned(t) = rate x t. Actual(t) = sum of estimated durations of tasks actually finished by t.",
+    "q": "Write the three burn-up formulae without looking."
+   },
+   {
+    "a": "Compare actual vs planned at time t; actual below planned means behind (act), above means ahead \u2014 then replan scope, resources or deadline.",
+    "q": "How do you read a burn-up chart at time t?"
+   }
+  ],
+  "related": [
+   "estimation-planning-poker",
+   "kanban-wip",
+   "scrum-events-backlogs",
+   "gantt-charts"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Burn-up (earned-value) charts show the big picture: planned progress versus actual progress over time. The lecture builds them in eight explicit steps from the WBS and poker estimates, Worksheet 2 walks you through a spreadsheet of a space-visualisation project, and the 2022 midterm tested the arithmetic cold. Learn the recipe once and all three fall into place."
+    ]
+   },
+   {
+    "heading": "How it works: the construction recipe",
+    "paras": [
+     "Step 1: from the WBS and planning-poker estimates, list each task's estimated duration. Step 2: sum all task durations (2022: 200 days). Step 3: take the planned project duration from the network analysis (2022: 100 days). Step 4: planned progress per day = sum / duration = 200/100 = 2 days of effort per day. Step 5: planned progress at time t is rate x t (day 30 \u2192 60). Step 6: pick the time t. Step 7: find tasks with actual finish time <= t (the SUMIF step in the worksheet). Step 8: actual progress = sum of their estimated durations.",
+     "The subtle point students miss: actual progress adds estimated durations, not actual durations \u2014 it measures earned value (how much planned work got done), which is why finishing a 20-day-estimate task in 30 days still earns 20."
+    ]
+   },
+   {
+    "svg": "<svg viewBox='0 0 560 240' role='img' aria-label='Example burn-up chart'><text x='8' y='16' fill='#9AA0A8' font-size='12'>Burn-up sketch: planned (steady) vs actual (behind, then catching up)</text><g font-size='11' fill='#9AA0A8'><line x1='50' y1='20' x2='50' y2='200' stroke='#3A3E46'/><line x1='50' y1='200' x2='540' y2='200' stroke='#3A3E46'/><text x='10' y='110'>effort</text><text x='280' y='226'>time (days)</text></g><polyline points='50,200 540,40' fill='none' stroke='#7DB8E8' stroke-width='2'/><polyline points='50,200 200,170 320,150 430,90 540,42' fill='none' stroke='#D9A441' stroke-width='2'/><text x='430' y='30' fill='#7DB8E8' font-size='12'>planned</text><text x='350' y='170' fill='#D9A441' font-size='12'>actual</text><circle cx='200' cy='170' r='4' fill='#D9A441'/><text x='150' y='190' fill='#9AA0A8' font-size='11'>behind at day 30?</text></svg>",
+    "heading_2": "Diagram: reading a burn-up chart"
+   },
+   {
+    "heading": "Monitoring: scope and judgement",
+    "paras": [
+     "Compare the lines: actual above planned means ahead, below means behind. Burn-up charts often add a scope line, because agile projects gain work mid-flight \u2014 rising scope with flat actuals is the classic distress signal. The worksheet's alternate-world scenario (day 40, several render tasks unfinished) asks what action you would take: replan scope, add reviewers, or renegotiate the deadline \u2014 the chart informs the decision, and the Scrum Guide reminds us no chart replaces empiricism: inspect the increment, not just the lines."
+    ]
+   },
+   {
+    "heading": "Common misconceptions",
+    "bullets": [
+     "Actual progress uses estimated durations of finished tasks, not how long they actually took.",
+     "Being 'ahead' on the chart while scope grows may still mean trouble.",
+     "The chart shows the big picture across tasks; per-task status is Kanban's job (the lecture pairs them deliberately)."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "Show the SUMIF-style reasoning in words: 'tasks finished by day 30 are X (est. a), Y (est. b), so actual = a+b'. Method marks survive even if you mis-add."
+    }
+   }
+  ],
+  "summary": "Burn-up charts plot earned value against plan: build from WBS estimates, read the gap between lines, and act on scope as well as speed.",
+  "title": "Burn-up (earned-value) charts"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Kanban boards are another way to visualise your project. Burn-up charts show the big picture. Kanban shows the status of individual tasks, related to the workflow.",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 27",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "Consider the following kanban board situation, and say we have a WIP limit of three.",
+    "kind": "course",
+    "locator": "Worksheet 2, Q3 (p. 4)",
+    "source": "Learning material/Worksheet2_AgileProjectManagement_2023(1).pdf"
+   },
+   {
+    "excerpt": "Explain why imposing a working progress limit is useful when managing a project using a Kanban board. [2 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q4.2(a) (p. 10)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "Assume a task 'Search Courses' is completed and in the 'Done' column of a Kanban board. Now some problems in the 'Search Courses' task are identified. Explain how to address these problems when using the Kanban board. [3 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q4.2(b) (p. 10)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Agile",
+  "id": "kanban-wip",
+  "prerequisites": [
+   "agile-processes"
+  ],
+  "question_ids": [
+   "pp2022-q4-kanban",
+   "ws2-kanban",
+   "gen-kanban-1"
+  ],
+  "read_minutes": 7,
+  "recall": [
+   {
+    "a": "It caps partially-done work, exposes bottlenecks (columns pile up), forces finish-before-start, keeps quality up and flow visible.",
+    "q": "Why impose a WIP limit? What does a piled-up column tell you?"
+   },
+   {
+    "a": "Move it back from Done to the appropriate active column (e.g. Coding/Testing) respecting WIP limits; fix, re-review, re-merge; Done means accepted, not just merged.",
+    "q": "A Done task turns out defective \u2014 what is the Kanban-correct response?"
+   }
+  ],
+  "related": [
+   "burn-up-charts",
+   "scrum-framework",
+   "code-review"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "If burn-up charts are the project's satellite view, Kanban boards are the street map: every task sits in exactly one workflow column (Todo, Coding/Testing, Review, Awaiting Merge, Done), and the board shows the status of individual tasks against the workflow. The 2022 midterm and Worksheet 2 both test whether you can reason about flow \u2014 not just describe columns."
+    ]
+   },
+   {
+    "heading": "How it works: WIP limits",
+    "paras": [
+     "A work-in-progress limit caps how many tasks may sit in a column (the worksheet scenario uses three). The limit forces finish-before-start: you cannot pull new coding work while review overflows, so bottlenecks become visible as piles instead of hiding as 'almost done'. The lecture's diagnostic is blunt: if review piles up while coding starves, you need more reviewers and fewer coders \u2014 re-balance the team, don't just hurry.",
+     "The 2-mark exam answer: WIP limits prevent overload, expose bottlenecks early, keep feedback fast, and protect quality by stopping half-finished work from accumulating."
+    ]
+   },
+   {
+    "heading": "Worked reasoning (worksheet scenario)",
+    "paras": [
+     "With a WIP limit of three and columns full of rendering tasks, rushing 'Spacecraft Rendering' through means something else must finish first: at minimum, enough tasks must reach Done to free capacity along its path \u2014 and the worksheet pushes you to notice the number is a lower bound, because real dependencies and rework usually force more. When the client is unhappy with merged work, Kanban-correct handling is to move the card back from Done to the active column it belongs in (respecting WIP), fix, re-review and re-merge: Done means accepted by the client, not merely merged."
+    ]
+   },
+   {
+    "heading": "Adapting the process",
+    "paras": [
+     "The worksheet's final twist adds documentation per task (written after code, then reviewed and merged): the Kanban-correct response is a new column or sub-workflow for docs with its own WIP limit, keeping the finish-before-start discipline rather than letting docs pile up unreviewed. The same thinking answers 'Kanban for studying ISE topics': columns like To Learn / Reading / Practising / Done with a WIP limit of two topics."
+    ]
+   }
+  ],
+  "summary": "Kanban makes task status visible against the workflow; WIP limits force finishing over starting, expose bottlenecks, and define what Done really means.",
+  "title": "Kanban boards and WIP limits"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Code reviews are used in both agile and conventional...",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 15",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "Write down 5-8 code review checklist items for this project.",
+    "kind": "course",
+    "locator": "Worksheet 2, Q4(c) (p. 4)",
+    "source": "Learning material/Worksheet2_AgileProjectManagement_2023(1).pdf"
+   },
+   {
+    "excerpt": "At which point of the project workflow a code review would happen? (b) Is formal software inspection method a good choice for this project or not?",
+    "kind": "course",
+    "locator": "Worksheet 2, Q4(a)-(b) (p. 4)",
+    "source": "Learning material/Worksheet2_AgileProjectManagement_2023(1).pdf"
+   }
+  ],
+  "category": "Agile",
+  "id": "code-review",
+  "prerequisites": [
+   "kanban-wip"
+  ],
+  "question_ids": [
+   "ws2-codereview",
+   "gen-codereview-1"
+  ],
+  "read_minutes": 6,
+  "recall": [
+   {
+    "a": "At the Review column before merge; formal inspection is heavyweight \u2014 good for critical code, overkill for fast-moving visualisation features where lightweight peer review + checklist fits.",
+    "q": "When does review happen, and is formal inspection right for the worksheet project?"
+   }
+  ],
+  "related": [
+   "kanban-wip",
+   "scrum-framework",
+   "ethics-se-professionalism"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Code review sits in the Kanban Review column and inside agile iterations alike: another pair of eyes on code before it merges. The lecture treats reviews as both a quality gate and a monitoring tool \u2014 reviewers find different kinds of faults than testing does, and the review queue is itself a flow signal."
+    ]
+   },
+   {
+    "heading": "Core explanation",
+    "paras": [
+     "Lightweight peer review is the agile default: author submits, reviewer reads for defects, asks for fixes, approves. Formal software inspection (Fagan-style, with roles, preparation and logging) is heavier: justified for safety-critical or complex code, but the worksheet pushes you to argue it is a poor fit for a fast-moving visualisation tool where speed and checklist discipline matter more.",
+     "Reviews happen after coding/testing and before merge \u2014 exactly where the Kanban board puts them. A 5-8 item checklist for the worksheet's space-visualisation project mixes the universal (naming, error handling, boundary conditions, correct datatypes, rounding/epsilon handling, resource cleanup) with the project-specific (coordinate transforms, rendering resource disposal, data-file validation). Checklists help juniors and get in the way for experts \u2014 tailor depth to reviewer experience, a nuance the slides state explicitly."
+    ]
+   },
+   {
+    "heading": "Common misconceptions",
+    "bullets": [
+     "Review is not testing: reviewers reason about code, tests execute it \u2014 the two find different fault classes.",
+     "Checklists do not replace judgement: automate what can be checked automatically (style, types), spend human attention on logic.",
+     "Fixed defects re-occur: the lecture notes regressions explicitly, which is why re-review after fixes matters."
+    ]
+   }
+  ],
+  "summary": "Code review inspects code before merge: lightweight peer review for agile pace, formal inspection only where criticality justifies it, checklists tuned to reviewer and project.",
+  "title": "Code review and inspection"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "We will discuss 'user stories' in lecture 4...",
+    "kind": "course",
+    "locator": "Lecture 2, PDF p. 9",
+    "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf"
+   },
+   {
+    "excerpt": "Designing software is hard. Building it is harder. But getting the requirements right...",
+    "kind": "interpretation",
+    "locator": "Lecture 3 framing (PDF pp. 6-8)",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   }
+  ],
+  "category": "Exam strategy",
+  "id": "exam-mistakes-agile",
+  "prerequisites": [
+   "scrum-events-backlogs",
+   "burn-up-charts",
+   "kanban-wip"
+  ],
+  "question_ids": [],
+  "read_minutes": 3,
+  "recall": [
+   {
+    "a": "Using actual durations instead of estimated in actual progress; confusing review (product, with stakeholders) with retrospective (process, team only); WIP answers that add work instead of finishing work.",
+    "q": "Name three agile calculation/definition traps."
+   }
+  ],
+  "related": [
+   "burn-up-charts",
+   "scrum-events-backlogs",
+   "midterm-study-guide"
+  ],
+  "sections": [
+   {
+    "heading": "How agile marks are lost",
+    "bullets": [
+     "Burn-up actual progress computed from actual durations instead of estimated durations of finished tasks.",
+     "Scrum review and retrospective swapped: review demos the increment to stakeholders; retrospective improves the team's process.",
+     "Scrum Master described as task-manager rather than process guardian.",
+     "Kanban answers that pull more work in when blocked, instead of finishing blocked work first.",
+     "Change-handling answers that interrupt the sprint instead of routing through the Product Owner and backlog.",
+     "Sprint planning/review answers missing timing (start/end of sprint) and participants."
+    ]
+   }
+  ],
+  "summary": "The six agile mark-losers: earned-value arithmetic, review vs retrospective, role confusion, WIP discipline, change routing, and event timing.",
+  "title": "Agile: common exam mistakes"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Functional requirements deal with the software's functions - what it should do. e.g. save file, print, launch missile, make a backup, etc.",
+    "kind": "course",
+    "locator": "Lecture 3, PDF pp. 4-5; Lecture 4, PDF p. 6 (recap)",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "A 'function' transforms inputs into outputs.",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 7",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Tools for obtaining functional requirements: User stories; Use cases - diagrams...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 19",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Briefly describe two differences between functional requirements and non-functional requirements. [4 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q3.1 (p. 7)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Functional requirements",
+  "id": "functional-requirements",
+  "prerequisites": [
+   "se-overview"
+  ],
+  "question_ids": [
+   "pp2022-q3-fr-nfr",
+   "gen-fr-1"
+  ],
+  "read_minutes": 5,
+  "recall": [
+   {
+    "a": "FRs say what the system should do (functions transforming inputs to outputs, e.g. save file); NFRs say what it should be (fast, reliable, usable). FRs get use cases; NFRs get measurable constraints.",
+    "q": "Give two differences between FRs and NFRs with an example of each."
+   }
+  ],
+  "related": [
+   "nfr-overview",
+   "user-stories",
+   "use-case-headers",
+   "srs-ieee830"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Functional requirements (FRs) describe what the system should do \u2014 its functions. The lecture's test is beautifully simple: a function transforms inputs into outputs (save file, print, make a backup). Everything else \u2014 how fast, how reliably, how usably \u2014 belongs to non-functional requirements, and the 2022 midterm opened its requirements question by demanding exactly this distinction."
+    ]
+   },
+   {
+    "heading": "Core explanation",
+    "paras": [
+     "Represent FRs with user stories (agile, lightweight) and use cases (detailed, contractual). Both are part of the Software Requirements Specification (SRS), the document listing all requirements. Requirements in traditional SE are negotiated upfront over scope; in agile they evolve iteration by iteration \u2014 but faulty requirements are expensive to fix late in either world, because design, code and tests all pile on top of them.",
+     "Changing requirements get their own lecture section for a reason: if requirements never changed, life would be easy. Since they do, you need elicitation tools (stories, cases, prototypes) plus a change strategy matched to your process."
+    ]
+   },
+   {
+    "heading": "SRS in miniature",
+    "paras": [
+     "The lecture adapts the IEEE SRS layout: introduction (purpose, scope, definitions), overall description, external interface requirements, then functional requirements \u2014 with NFRs and supporting material alongside. You will not write a full SRS in the midterm, but questions assume you know what one contains and where each requirement type lives."
+    ]
+   },
+   {
+    "heading": "Exam relevance",
+    "callout": {
+     "kind": "exam",
+     "text": "2022 Q3.1 (4 marks): two differences FR vs NFR. Score with: (1) do vs be, with examples; (2) representation \u2014 FRs via use cases/flows, NFRs via measurable constraints \u2014 plus a test-verb contrast (execute the function vs measure the characteristic)."
+    }
+   }
+  ],
+  "summary": "Functional requirements say what the system does \u2014 functions turning inputs into outputs, captured in user stories and use cases inside the SRS.",
+  "title": "Functional requirements"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Stakeholders: Who cares about the software...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 27",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "An actor is an...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 28",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "There are many external systems that w...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 29",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Databases are discussed in depth in Database Sys...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF pp. 30-31",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Each use case has one primary actor: Always a person! Th...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 32",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "System (system under consideration) will support ma...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 33 (task level goals)",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   }
+  ],
+  "category": "Functional requirements",
+  "id": "stakeholders-actors",
+  "prerequisites": [
+   "functional-requirements"
+  ],
+  "question_ids": [
+   "ws3-actors",
+   "gen-actor-1",
+   "pp2022-q2-taskgoals"
+  ],
+  "read_minutes": 6,
+  "recall": [
+   {
+    "a": "Stakeholders care; actors interact. Primary actor is always a person with a goal; secondary actors are externals (systems, databases, payment gateways) the system needs. Irrelevant externals are those the use case never touches.",
+    "q": "Distinguish stakeholders, primary actors, secondary actors."
+   }
+  ],
+  "related": [
+   "functional-requirements",
+   "user-stories",
+   "use-case-headers",
+   "use-case-diagrams"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Before writing any requirement, ask: who cares, and who interacts? Stakeholders are everyone who cares about the software (users, clients, regulators, operators). Actors are the subset that interact with the system \u2014 and the lecture is strict about sorting them correctly, because the use-case header demands exactly one primary actor and a complete secondary cast."
+    ]
+   },
+   {
+    "heading": "Core explanation",
+    "paras": [
+     "Each use case has one primary actor, always a person: the one whose goal the use case serves (the uploader uploading, the customer ordering, User A adding a friend). Secondary actors are external systems or services the system needs to do its job \u2014 databases, payment gateways, authentication servers. Databases deserve special attention in this unit: use cases constantly read and store through an external database, so name it as a secondary actor rather than waving at 'the system'.",
+     "Some external systems are irrelevant: if the use case never touches them, they stay off the diagram and out of the header. The video-sharing example (watching, uploading, reporting videos) keeps only the externals each goal actually uses."
+    ]
+   },
+   {
+    "heading": "Task-level goals",
+    "paras": [
+     "The system under consideration supports many goals at different levels. Task-level (user-goal) goals are the ones worth use cases: watching a video, uploading a video, plotting data. Below them sit sub-goals (choosing a file); above them sit summary goals (managing a channel). The 2022 paper's Q2.2(d) tests exactly this: name two task-level goals besides 'plot data' with their primary actors. Aim one level: too high is vague, too low is a paragraph of the flow."
+    ]
+   }
+  ],
+  "summary": "Stakeholders care, actors interact: one person as primary actor per use case, external systems as secondary actors, each goal pitched at task level.",
+  "title": "Stakeholders, actors and goals"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Agile methods often work with user stories. Tiny snippets of text with 3 part...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 20",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "As a student, I want to register for pracs so that I don't miss out.",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 21",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Note: Remember that a user story is a single sentence of the form: 'As a <...> I want to <...> so that <...>.' All three parts must be present...",
+    "kind": "course",
+    "locator": "Worksheet 3, Q1 (p. 1)",
+    "source": "Learning material/Worksheet3_FunctionalReqs_2023.pdf"
+   },
+   {
+    "excerpt": "Briefly explain the three parts of a user story. [2 marks] ... Write down two user stories relate to the functionality of the above system. [4 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q2.1 (p. 4)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "Each user story may need to be broken down into sub-tasks! ... Play planning poker to estimate how long it will take.",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 22",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   }
+  ],
+  "category": "Functional requirements",
+  "id": "user-stories",
+  "prerequisites": [
+   "stakeholders-actors"
+  ],
+  "question_ids": [
+   "pp2022-q2-userstory",
+   "ws3-userstory",
+   "gen-userstory-1",
+   "pp2022-q2-railway",
+   "ws3-actors"
+  ],
+  "read_minutes": 6,
+  "recall": [
+   {
+    "a": "Role (who: As a <role>), feature (want: I want <goal>), benefit (so that <reason>). All three must be present in one sentence.",
+    "q": "Recite the three parts of a user story and the worksheet's strict rule."
+   }
+  ],
+  "related": [
+   "stakeholders-actors",
+   "use-case-headers",
+   "scrum-events-backlogs",
+   "estimation-planning-poker"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "User stories are agile's tiny requirement slips: one sentence, three parts, written from the user's point of view. The 2022 midterm asked students to explain the three parts and then write two stories for a railway booking system \u2014 6 marks for roughly two sentences, which makes this the densest mark-per-word topic in the unit."
+    ]
+   },
+   {
+    "heading": "The three parts",
+    "paras": [
+     "As a <role>, I want <feature/goal> so that <benefit>. Role: who benefits (student, administrator, passenger \u2014 a real user, not 'the system'). Want: the goal or feature (register for pracs, book a return ticket). So-that: the reason, which justifies priority and scope (so that I don't miss out). The worksheet is explicit: all three parts must be present, and they must be in a single sentence.",
+     "Lecture example: 'As a student, I want to register for pracs so that I don't miss out.' Railway answers in the same mould: 'As a passenger, I want to book a return ticket in one transaction so that I don't have to queue twice.' Two distinct functionalities, two real roles, two real benefits \u2014 that is the full 4 marks."
+    ]
+   },
+   {
+    "heading": "Stories in the larger machine",
+    "paras": [
+     "Each story is a task in the WBS: it may split into sub-tasks, gets estimated with planning poker, and may depend on other stories. Stories accumulate in the Product Backlog, which the lecture notes is like a WBS except it evolves \u2014 fixed upfront versus growing throughout the project. User-story common sense, per the slides: stories are about users, the people who will actually use the software \u2014 never write 'as a database' or 'as a system'."
+    ]
+   },
+   {
+    "heading": "Common misconceptions",
+    "bullets": [
+     "Two parts is a fail: role + want without benefit (or any missing third) loses marks.",
+     "System internals are not stories: 'as a developer, I want clean code' is a task, not a user story.",
+     "One story, one goal: stuffing two functionalities into one sentence breaks estimation and backlog ordering."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "2022 Q2.1 marking logic: 1 mark per part explained (role/want/benefit), then 2 marks per story (1 for a valid three-part sentence, 1 for a distinct, sensible railway functionality). Write exactly two stories \u2014 a third cannot earn, but can confuse."
+    }
+   }
+  ],
+  "summary": "User stories say As a <role> I want <goal> so that <benefit> \u2014 one sentence, all three parts, written for real users, estimated and backlogged like any task.",
+  "title": "User stories"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "A use case ('case of use') is a way of showing how the software system will inte...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 25",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "We focus on goals to be achieved by end-users of a system. System is the softwa...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 26",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Complete Example of a use case description (for Later Reference). Use Case 7. Uploading a Vid...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF pp. 44-45",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "A 'trigger' is an event that starts the use case's flow...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 46",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "You are supposed to develop a use case for the 'Plot data' feature of the system. a) Specify the following use case header information. Goal: [1] Primary Actor: [1] Secondary Actor(s): [1] Precondition (if any): [1] Trigger: [1]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q2.2(a) (p. 5)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "(a) Specify the following use case header information: (i) Goal: [0.5] (ii) Primary actor: [0.5] (iii) Secondary actor(s): [1] (iv) Precondition(s), if any: [1] (v) Trigger: [1]",
+    "kind": "course",
+    "locator": "2019 Test 1, Q2(a) (p. 3); 2018 Test 1, Q2(a) (p. 3)",
+    "source": "pastypaper/ISE_2019s1_Test1_Vari1.pdf"
+   }
+  ],
+  "category": "Functional requirements",
+  "id": "use-case-headers",
+  "prerequisites": [
+   "stakeholders-actors",
+   "user-stories"
+  ],
+  "question_ids": [
+   "pp2022-q2-header",
+   "pp2019-q2a",
+   "pp2018-q2a",
+   "gen-header-1",
+   "pp2022-q2-taskgoals"
+  ],
+  "read_minutes": 8,
+  "recall": [
+   {
+    "a": "Goal (the user-level outcome), one primary actor (always a person), secondary actors (externals used), preconditions (what must already be true), trigger (the event that starts it).",
+    "q": "List the five header fields and the one-line rule for each."
+   }
+  ],
+  "related": [
+   "stakeholders-actors",
+   "use-case-flow",
+   "use-case-diagrams",
+   "user-stories"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "A use case shows how the system interacts with its actors to achieve one end-user goal. Before the narrative begins, the header pins down the contract: whose goal, what must already be true, and what kicks it off. Three consecutive midterms (2018 'add friend', 2019 restaurant ordering, 2022 'plot data') open with the identical five-field header \u2014 learn it once, bank the marks three times."
+    ]
+   },
+   {
+    "heading": "The five fields",
+    "table": {
+     "head": [
+      "Field",
+      "Rule",
+      "2022 'plot data' answer"
+     ],
+     "rows": [
+      [
+       "Goal",
+       "The user-level outcome, verb-first",
+       "To plot selected experiment datasets as a chosen chart type"
+      ],
+      [
+       "Primary actor",
+       "Exactly one, always a person",
+       "Logged-in user / researcher"
+      ],
+      [
+       "Secondary actor(s)",
+       "External systems the system needs",
+       "Research database; authentication/session service"
+      ],
+      [
+       "Precondition(s)",
+       "What must already be true (if any)",
+       "User is logged in; datasets exist for the user's credentials"
+      ],
+      [
+       "Trigger",
+       "The event that starts the flow",
+       "User selects the 'plot data' option"
+      ]
+     ]
+    },
+    "paras": [
+     "The triggers-and-preconditions slide makes the distinction crisp: the trigger starts the engine, preconditions are the road already built. In the 2022 scenario, selecting 'plot data' triggers; being logged in and having visible datasets are preconditions. Confusing them is the classic half-mark loss.",
+     "Money detail from the lecture's running example (Use Case 7, Uploading a Video): the full description format \u2014 number, name, goal, actors, preconditions, trigger, then flow and extensions \u2014 is presented as the reference to imitate. Mirror its structure and the marker finds every mark."
+    ]
+   }
+  ],
+  "summary": "Every use case header fixes goal, one person as primary actor, supporting externals, preconditions, and trigger \u2014 the five-field contract behind every flow.",
+  "title": "Use cases: headers, actors, preconditions"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "A Closer Look at the Flow-Of-Events (FoE). As a rough guide, the FoE should have abo...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 48",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Example, Part 2: Flow of Events ... 1. The uploader chooses a file to upload. 2....",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 49",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Don't describe things that are...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF pp. 50-51 (scope + FoE don'ts)",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "The main flow of events describes the 'happy days' scenario: eve...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 52",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Each extension has: An ID - like '4B'. This identifies...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 54",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "2A - The uploaded file is not a valid video file....",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 55",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Avoid overly-generic problems. e.g. Database network co...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 56",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Write down the flow of events for the use case. [5 marks] ... Write down one extension for the use case. [5 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q2.2(b)-(c) (p. 6)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Functional requirements",
+  "id": "use-case-flow",
+  "prerequisites": [
+   "use-case-headers"
+  ],
+  "question_ids": [
+   "pp2022-q2-flow",
+   "pp2022-q2-ext",
+   "pp2019-q2bc",
+   "pp2018-q2bc",
+   "gen-flow-1",
+   "pp2018-q2a",
+   "pp2019-q2a",
+   "ws3-actors"
+  ],
+  "read_minutes": 10,
+  "recall": [
+   {
+    "a": "Numbered actor-system alternation, happy-days main flow (~half-dozen steps); extensions labelled step+letter with condition, handling, and resume/abort point. Avoid actor-actor talk, UI minutiae, and generic 'database down' extensions.",
+    "q": "State the FoE shape rules and the extension parts."
+   }
+  ],
+  "related": [
+   "use-case-headers",
+   "use-case-diagrams",
+   "nfr-overview"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "The flow of events (FoE) narrates the happy-days scenario: actor does something, system responds, repeat until the goal is achieved. Extensions handle everything else. Together they carry 10 of the 2022 paper's 25 requirements marks \u2014 the most heavily rewarded writing in the midterm."
+    ]
+   },
+   {
+    "heading": "Writing the main flow",
+    "paras": [
+     "As a rough guide, the FoE runs about half a dozen steps (the lecture gives an explicit size steer): alternate actor action and system response, number each step, keep the system inside its scope. The Uploading-a-Video example opens '1. The uploader chooses a file to upload. 2. ...' \u2014 concrete, observable, no implementation detail.",
+     "Things to avoid, per the slides: don't narrate interactions between two actors (the system must mediate), don't describe things outside the system's scope, and don't drown the flow in UI minutiae. 'What about IF statements' gets its own slide: branching logic belongs in extensions, not embedded conditionals in the main flow."
+    ]
+   },
+   {
+    "heading": "Writing extensions",
+    "paras": [
+     "Each extension has an ID like 4B: the step where it diverges plus a letter, so the reader can locate the branch point. Structure: condition (what went differently), handling (what the system does), outcome (where the flow resumes, or that the use case aborts). The worked example 2A \u2014 'the uploaded file is not a valid video file' \u2014 shows the pattern: detect, inform, offer recovery, resume or end.",
+     "For the 2022 plotting scenario, strong extensions write themselves from the description: non-numeric data (prompt to proceed with valid data only), no save privileges (prompt access-right elevation; abort if refused), no datasets for the user's credentials. Each earns marks by naming the step, the system's exact behaviour, and the resume point.",
+     "Avoid overly-generic problems \u2014 the slides' exhibit A is 'database network connection fails'. Extensions should be use-case-specific failures a designer can actually handle, not acts of God."
+    ]
+   },
+   {
+    "heading": "Exam relevance",
+    "callout": {
+     "kind": "exam",
+     "text": "2022 Q2.2(b) flow [5]: one mark per sensible step up to five \u2014 alternate actor/system, cover login, dataset listing, column/chart/colour selection, generation + save. Q2.2(c) extension [5]: ID + condition + handling + resume/abort + specificity to the scenario. Generic 'system crashes' scores near zero."
+    }
+   }
+  ],
+  "summary": "Main flow narrates happy days in numbered actor-system steps; extensions branch by ID with condition, handling and outcome \u2014 scenario-specific, never generic.",
+  "title": "Flow of events and extensions"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "A diagram that shows: (1) the names of all use cases, (2) all the act...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 36",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "The viewer... 'include' ... Some use cases may 'include' others, as extensions, or st...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF pp. 39-40",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Actor Generalisation: Some actors can do everything that others can do, plus more.",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 41",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Use Case Diagrams Are Not Flow Charts! This is not a use case diagram: Uploader Pick Video ...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 42",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Use case diagrams have limited usefulness...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 58",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Use cases also have a particu...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 59 (design scope and goal level)",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   }
+  ],
+  "category": "Functional requirements",
+  "id": "use-case-diagrams",
+  "prerequisites": [
+   "use-case-headers",
+   "use-case-flow"
+  ],
+  "question_ids": [
+   "ws3-diagram",
+   "gen-ucdiagram-1",
+   "ws3-actors"
+  ],
+  "read_minutes": 7,
+  "recall": [
+   {
+    "a": "Actors + use-case ovals + associations showing who participates in what. Include = factored-out shared sub-flow (dashed, arrow to included). Generalisation = actor B can do everything A can plus more. Never a sequence of steps.",
+    "q": "What belongs on a use-case diagram, and what do include/generalisation mean?"
+   }
+  ],
+  "related": [
+   "use-case-headers",
+   "use-case-flow",
+   "stakeholders-actors"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "A UML use-case diagram shows the names of all use cases, all actors, and which actors participate in which use cases \u2014 a map of scope, not a story. The lecture is unusually frank: use-case diagrams have limited usefulness next to written descriptions. They show who is involved in what; the description carries the actual requirements."
+    ]
+   },
+   {
+    "heading": "The vocabulary",
+    "paras": [
+     "Ovals are use cases at task level (Watch Video, Upload Video, Report Video in the running video-sharing example). Stick figures are actors; lines (associations) show participation \u2014 the 'who does what' view. The include relationship factors out a shared sub-flow used by several cases (dashed arrow toward the included case): one 'Authenticate User' included by many cases beats five copies. Actor generalisation means one actor can do everything another can, plus more (a moderator does all a viewer does, plus moderation).",
+     "The lecture's warning slide \u2014 'Use Case Diagrams Are Not Flow Charts!' \u2014 shows a fake diagram chaining steps (Uploader \u2192 Pick Video \u2192 ...) and rejects it: sequencing belongs in the written flow, never in arrows between ovals."
+    ]
+   },
+   {
+    "svg": "<svg viewBox='0 0 560 220' role='img' aria-label='Example use case diagram'><text x='8' y='16' fill='#9AA0A8' font-size='12'>Video-sharing site (fragment): actors, cases, include</text><g font-size='12'><g stroke='#7DB8E8' fill='none'><circle cx='70' cy='80' r='10'/><line x1='70' y1='90' x2='70' y2='130'/><line x1='45' y1='105' x2='95' y2='105'/><line x1='70' y1='130' x2='55' y2='160'/><line x1='70' y1='130' x2='85' y2='160'/></g><text x='70' y='178' fill='#E8E6E1' font-size='12' text-anchor='middle'>Viewer</text><g stroke='#7DB8E8' fill='none'><circle cx='70' cy='80' r='10' transform='translate(380,0)'/><line x1='450' y1='90' x2='450' y2='130' transform='translate(0,0)'/><line x1='425' y1='105' x2='475' y2='105'/><line x1='450' y1='130' x2='435' y2='160'/><line x1='450' y1='130' x2='465' y2='160'/></g><text x='450' y='178' fill='#E8E6E1' font-size='12' text-anchor='middle'>Uploader</text><ellipse cx='260' cy='60' rx='70' ry='22' fill='#1B1E24' stroke='#E8E6E1'/><text x='260' y='64' fill='#E8E6E1' font-size='12' text-anchor='middle'>Watch Video</text><ellipse cx='260' cy='115' rx='70' ry='22' fill='#1B1E24' stroke='#E8E6E1'/><text x='260' y='119' fill='#E8E6E1' font-size='12' text-anchor='middle'>Upload Video</text><ellipse cx='260' cy='170' rx='70' ry='22' fill='#1B1E24' stroke='#E8E6E1'/><text x='260' y='174' fill='#E8E6E1' font-size='12' text-anchor='middle'>Report Video</text><line x1='95' y1='90' x2='190' y2='70' stroke='#3A3E46'/><line x1='95' y1='120' x2='190' y2='115' stroke='#3A3E46'/><line x1='425' y1='110' x2='330' y2='115' stroke='#3A3E46'/><line x1='330' y1='150' x2='300' y2='160' stroke='#3A3E46' stroke-dasharray='5 4'/><text x='335' y='148' fill='#9AA0A8' font-size='11'>\u00abinclude\u00bb</text></g></svg>",
+    "heading_2": "Diagram: use-case diagram done right"
+   },
+   {
+    "heading": "Scope and goal level",
+    "paras": [
+     "The closing slides add design scope (which system are we even describing?) and goal level (summary vs user-goal vs sub-function). Most exam diagrams want user-goal ovals for the system under consideration \u2014 if you draw login-administration-summary cases alongside real goals, you signal you cannot tell levels apart."
+    ]
+   }
+  ],
+  "summary": "Use-case diagrams map actors to goal-ovals with include and generalisation \u2014 scope overviews whose detail lives in the written descriptions, never flowcharts.",
+  "title": "Use-case diagrams"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "All three parts must be present, and they m...",
+    "kind": "course",
+    "locator": "Worksheet 3, Q1 (p. 1)",
+    "source": "Learning material/Worksheet3_FunctionalReqs_2023.pdf"
+   },
+   {
+    "excerpt": "Create an actor-goal list for a given system to cover significant functionalities.",
+    "kind": "course",
+    "locator": "Worksheet 3, learning objectives (p. 1)",
+    "source": "Learning material/Worksheet3_FunctionalReqs_2023.pdf"
+   },
+   {
+    "excerpt": "Pick two of your user cases identified in part...",
+    "kind": "course",
+    "locator": "Worksheet 3, Q5 (p. 2)",
+    "source": "Learning material/Worksheet3_FunctionalReqs_2023.pdf"
+   }
+  ],
+  "category": "Exam strategy",
+  "id": "exam-mistakes-requirements",
+  "prerequisites": [
+   "use-case-flow",
+   "use-case-diagrams",
+   "user-stories"
+  ],
+  "question_ids": [],
+  "read_minutes": 3,
+  "recall": [
+   {
+    "a": "Two-part stories; system-as-actor; header with zero or two primary actors; preconditions confused with triggers; flows that narrate actor-actor talk; generic extensions; diagrams drawn as flowcharts.",
+    "q": "List six requirements mark-losers from memory."
+   }
+  ],
+  "related": [
+   "use-case-flow",
+   "user-stories",
+   "midterm-study-guide"
+  ],
+  "sections": [
+   {
+    "heading": "How requirements marks are lost",
+    "bullets": [
+     "User story missing its benefit clause, or written for 'the system' instead of a user.",
+     "Header with no primary actor, two primary actors, or an external system as primary actor.",
+     "Preconditions and trigger swapped.",
+     "Flow that describes actor-to-actor conversation the system never mediates.",
+     "Extension that is generic ('database fails') instead of scenario-specific with ID, handling and outcome.",
+     "Use-case diagram drawn as a flowchart with arrows between ovals."
+    ]
+   }
+  ],
+  "summary": "Six classic requirements mark-losers, from two-part stories to flowchart-diagrams.",
+  "title": "Requirements: common exam mistakes"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "NFRs describes what the system should be; how the system works.",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 7",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "We don't just want 'print', 'save', 'purchase', 'find directions', etc. Not every...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 8",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "NFRs typically start with 'T...'",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 10",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "A use case as a whole represents a functional requirement...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 11",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Good NFRs will have several properties such as unambiguity, doable, verifiable, in-scope, not mixing with functional requirement.",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 49 (slide 49/50)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "From the user's point of view, is this a function, or a characteristic of a function? Could I write a use case flow-of-events for it?",
+    "kind": "course",
+    "locator": "Worksheet 4, Q1 guidance (p. 1)",
+    "source": "Learning material/Worksheet4_NonFunctionalReqs_2024.pdf"
+   }
+  ],
+  "category": "Non-functional requirements",
+  "id": "nfr-overview",
+  "prerequisites": [
+   "functional-requirements"
+  ],
+  "question_ids": [
+   "ws4-validity",
+   "gen-nfr-id-1",
+   "pp2022-q3-fr-nfr"
+  ],
+  "read_minutes": 6,
+  "recall": [
+   {
+    "a": "Ask: from the user's view is it a function or a characteristic of one? Could I write a FoE for it? If FoE-able, it is functional; if it constrains how well, it is non-functional.",
+    "q": "State the worksheet's two-question test for FR vs NFR."
+   }
+  ],
+  "related": [
+   "functional-requirements",
+   "nfr-validity",
+   "performance-requirements",
+   "reliability-requirements",
+   "usability-requirements"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Non-functional requirements say what the system should be: fast, reliable, usable, secure \u2014 the characteristics of functions rather than the functions themselves. The lecture opens with the gap: 'print' alone is not a requirement until you know how fast, how reliably, and measurably how. NFRs close that gap, and the unit tests them harder than any other requirements topic."
+    ]
+   },
+   {
+    "heading": "Core explanation",
+    "paras": [
+     "NFRs mostly end in '-ility': usability, security, reliability, and friends. They typically start with 'The system shall...' and attach measurable bounds. They can be listed alongside particular use cases, or held as system-wide constraints in backlogs \u2014 but there is no such thing as a purely non-functional use case: a use case as a whole represents a functional requirement.",
+     "The worksheet's recognition test is the one to internalise: (1) from the user's point of view, is this a function or a characteristic of a function? (2) Could I write a use-case flow-of-events for it? If you can write the flow, it is functional. If it constrains the flow's qualities, it is non-functional. Then the kicker: 'How could I test it? If you can't test it, it's not valid.'"
+    ]
+   },
+   {
+    "heading": "Why specify NFRs",
+    "paras": [
+     "Because qualities left unspecified get whatever the developers felt like: the lecture's 'for non-superheroes' argument is that ordinary users need guaranteed responsiveness, availability and learnability, not heroic patience. The Gephi SRS shows the professional end-state: performance requirements quantified against a 500 MHz CPU and 128 MB RAM baseline."
+    ]
+   }
+  ],
+  "summary": "NFRs name the system's qualities \u2014 testable characteristics of functions, never functions themselves, with no such thing as a purely non-functional use case.",
+  "title": "Non-functional requirements: overview"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Something the system must do. Normally we'd write a use case. Or it may be part of a use case description (e.g., a step, or an extension).",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 48 ('Spot the difference')",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "An NFR must have the same meaning to everyone. It's not enough to say 'the system must be really fast...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 43",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Requirements are no good if yo...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 44 (Doable)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "But how would we get a 'maybe'? If people don't agree on what the requirement means (ambiguous requirements, as before). If it's impractical to obtain enough data to verify it.",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 45",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Verifying NFRs involves obs...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 46",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Students cannot enrol in units after week 1 of semester...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 47 (in-scope vs business rules)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Make sure the NFRs you write for question 2 - question 5 follow the properties of NFRs discussed in Lecture 4 Slide 41.",
+    "kind": "course",
+    "locator": "Worksheet 4 instructions (p. 1)",
+    "source": "Learning material/Worksheet4_NonFunctionalReqs_2024.pdf"
+   },
+   {
+    "excerpt": "System must allow the students to see the available courses and the timetable of them.",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q3.2(a) (p. 7)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "Ticketing system should show the users all available ticket types in user friendly manner.",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q3.2(b) (p. 7)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Non-functional requirements",
+  "id": "nfr-validity",
+  "prerequisites": [
+   "nfr-overview"
+  ],
+  "question_ids": [
+   "pp2022-q3-invalid",
+   "pp2022-q3-rewrite",
+   "pp2019-q3c",
+   "gen-nfr-valid-1",
+   "ws4-validity",
+   "pp2019-q3b"
+  ],
+  "read_minutes": 9,
+  "recall": [
+   {
+    "a": "Unambiguous (same meaning to all), doable (implementable), verifiable (testable with obtainable data), in-scope (governs the system, not actors), and not a functional requirement in disguise.",
+    "q": "List the five NFR validity properties."
+   },
+   {
+    "a": "It describes a function (viewing courses), so it is an FR in disguise; 'user friendly' is ambiguous and unverifiable \u2014 rewrite with a measurable user task, time bound and success criterion.",
+    "q": "Why are the two 2022 Q3.2 requirements invalid? Sketch the usability rewrite."
+   }
+  ],
+  "related": [
+   "nfr-overview",
+   "performance-requirements",
+   "reliability-requirements",
+   "usability-requirements",
+   "functional-requirements"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "An NFR nobody can test is decoration, not engineering. The lecture condenses validity into five properties \u2014 unambiguous, doable, verifiable, in-scope, and genuinely non-functional \u2014 and the 2022 midterm tested them directly: two requirements to demolish, one to rebuild as usable."
+    ]
+   },
+   {
+    "heading": "The five properties",
+    "table": {
+     "head": [
+      "Property",
+      "Test",
+      "Failure smell"
+     ],
+     "rows": [
+      [
+       "Unambiguous",
+       "Same meaning to everyone",
+       "'really fast', 'user friendly', 'suitable for photo albums'"
+      ],
+      [
+       "Doable (implementable)",
+       "Achievable with available technology and budget",
+       "'save images within 1ms' (worksheet item c) \u2014 physics says no"
+      ],
+      [
+       "Verifiable",
+       "Pass/fail decidable by observation; data obtainable",
+       "'must be suitable' with no stated test; 'maybe' verdicts from disagreement or unobtainable data"
+      ],
+      [
+       "In-scope",
+       "Governs the system, not its actors",
+       "'Students cannot enrol after week 1' \u2014 a business rule constraining people, not software"
+      ],
+      [
+       "Non-functional",
+       "Not a function or use-case step in disguise",
+       "'System must allow students to see courses' \u2014 that is a function (2022 Q3.2a)"
+      ]
+     ]
+    },
+    "paras": [
+     "Verifiability gets two slides because it fails two ways: people disagree on meaning (ambiguity again), or obtaining enough data is impractical (rare-failure statistics with no observation window). A verdict of 'maybe' means the requirement failed."
+    ]
+   },
+   {
+    "heading": "Worked demolitions (2022 Q3.2)",
+    "paras": [
+     "(a) 'System must allow students to see available courses and timetable' \u2014 invalid because it is functional: from the user's view it is a function, and you could write its flow of events. It may be a fine requirement, but it is miscategorised, and miscategorised requirements escape the measurability discipline NFRs demand.",
+     "(b) '...in user friendly manner' \u2014 invalid twice over: 'user friendly' is ambiguous (no two markers picture the same threshold) and hence unverifiable (no observation decides pass/fail). The rewrite (Q3.3) must convert friendliness into a measurable usability requirement: pick a user task, a time or effort bound, and a success criterion \u2014 e.g. 'An average new user shall locate and display any available ticket type within 60 seconds of first seeing the catalogue, unaided, with at least 9 of 10 succeeding.'"
+    ]
+   },
+   {
+    "heading": "Worksheet traps to rehearse",
+    "paras": [
+     "Item (d) 'must support images up to 100 megapixels' is a capacity characteristic \u2014 valid if bounded and testable. Item (e) 'colour enhance within 250 ms on a 10 MP image on an average PC' is the gold-standard shape: operation, bound, workload, environment. Items (h) 'suitable for inclusion in a photo album' and (j) 'must take over 1 minute to open' fail ambiguity and perversity checks respectively. Item (f) crash-rate-per-1000-hours is valid reliability if the failure class and observation method are defined."
+    ]
+   }
+  ],
+  "summary": "Valid NFRs are unambiguous, doable, verifiable, in-scope and truly non-functional \u2014 testable constraints, never disguised functions or vibes.",
+  "title": "What makes an NFR valid"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Software perfo...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 15",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Overall performance is as much due to hardware as software...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 16",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Specifying Performance Requirements based on...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF pp. 17-19",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "For test pe...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 20 (testing performance)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Stochastic Measurements #1 #2 #3 #4 #5 ...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 21",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Write down one valid and useful performance requirement for the system. [3 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q3.4(a) (p. 8)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "Gephi requires a system with at least a 500 megahertz CPU and 128 megabytes of RAM...",
+    "kind": "reference",
+    "locator": "Sample Gephi SRS, Section 5.1 (p. 30)",
+    "source": "Learning material/Sample_gephi_srs_document.pdf"
+   }
+  ],
+  "category": "Non-functional requirements",
+  "id": "performance-requirements",
+  "prerequisites": [
+   "nfr-validity"
+  ],
+  "question_ids": [
+   "pp2022-q3-perf",
+   "ws4-perf",
+   "gen-perf-1"
+  ],
+  "read_minutes": 7,
+  "recall": [
+   {
+    "a": "Operation + bound + workload + environment (e.g. enhance 10 MP image within 250 ms on an average PC). hardware factors confound measurement, so fix the environment; stochastic timing needs repeated measurement and statistics.",
+    "q": "Give the four-part shape of a performance requirement and the two testing caveats."
+   }
+  ],
+  "related": [
+   "nfr-validity",
+   "reliability-requirements",
+   "usability-requirements",
+   "nfr-overview"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Performance is software speed under stated conditions \u2014 and conditions are half the requirement. Overall performance is as much due to hardware as software, so a bound without an environment ('fast on average PCs' vs 'fast on the ward tablet') is untestable. The 2022 paper's patient-monitor question rewards students who pin all four parts down."
+    ]
+   },
+   {
+    "heading": "The four-part shape",
+    "paras": [
+     "Operation (what is timed: colour-enhance, chart generation, vital-sign refresh), bound (250 ms, 2 s), workload (10 MP image, 50 concurrent plots), environment (average PC, ward tablet, specified CPU/RAM as in the Gephi SRS). The worksheet's model specimen \u2014 'the colour enhance function shall take at most 250 ms to enhance a 10 MP image on an average PC' \u2014 passes every validity property precisely because all four are present.",
+     "For the 2022 patient monitor: 'The system shall refresh displayed oxygen level and blood pressure at least once every 2 seconds during continuous monitoring on the ward tablet' \u2014 operation, bound, workload, environment, and safety-relevant (stale vitals mislead clinicians)."
+    ]
+   },
+   {
+    "heading": "Testing: stochastic reality",
+    "paras": [
+     "Timing measurements are stochastic: repeated runs give a scatter (#1-#5 in the slides), so verification needs repeated observation and a statistical rule (mean, percentile, worst-of-N) stated in advance \u2014 otherwise 'maybe' verdicts return. Fix the hardware, warm the caches, state the percentile: that is what turns a speed wish into a verifiable requirement."
+    ]
+   },
+   {
+    "heading": "Common misconceptions",
+    "bullets": [
+     "'As fast as possible' is not a requirement: no bound, no test.",
+     "Single-run timing proves nothing: stochastic measurements need repetitions.",
+     "Hardware excuses cut both ways: if the environment is unspecified, the requirement \u2014 not the code \u2014 is at fault."
+    ]
+   }
+  ],
+  "summary": "Performance requirements bind an operation, a time bound, a workload and an environment \u2014 then verify with repeated, statistically-ruled measurement.",
+  "title": "Performance requirements"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Reliability is basical...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 22",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Reliability, as a...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 23 (hardware/software reliability)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "We have various ways to ...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 24 (metrics)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Mean Time To/Between Fa...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 25 (MTTF/MTBF)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Maybe th...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 26 (Availability)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Probability of Failure ...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 27 (POFOD)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Rate of Occurrence of F...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 28 (ROCOF)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "List two suitable reliability metrices for the system. [2 marks]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q3.4(b) (p. 8)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "Are (for our purposes) about software reliability, not hardware reliability. Must be based on a kind of measurement that actually makes sense for the particular system.",
+    "kind": "course",
+    "locator": "Worksheet 4, Q3 notes (p. 2)",
+    "source": "Learning material/Worksheet4_NonFunctionalReqs_2024.pdf"
+   }
+  ],
+  "category": "Non-functional requirements",
+  "id": "reliability-requirements",
+  "prerequisites": [
+   "nfr-validity"
+  ],
+  "question_ids": [
+   "pp2022-q3-rel",
+   "pp2019-q3b",
+   "ws4-rel",
+   "gen-rel-1",
+   "pp2022-q3-perf",
+   "pp2019-q3c"
+  ],
+  "read_minutes": 8,
+  "recall": [
+   {
+    "a": "MTTF/MTBF (mean time to/between failures), Availability (uptime fraction), POFOD (probability of failure on demand), ROCOF (failure rate). Choose the metric that fits the usage pattern: POFOD for on-demand checks, availability for continuous monitoring.",
+    "q": "Name the four reliability metrics and the rule for choosing between them."
+   }
+  ],
+  "related": [
+   "nfr-validity",
+   "performance-requirements",
+   "other-nfrs",
+   "nfr-overview"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Reliability is, basically, the probability the software does its job when asked \u2014 but 'when asked' differs by system, so the unit teaches four metrics and insists you choose the one that fits. The 2022 patient monitor and 2019 restaurant questions both punish metric-mismatch: POFOD for a continuous display is as wrong as availability for a rare on-demand check."
+    ]
+   },
+   {
+    "heading": "The four metrics",
+    "table": {
+     "head": [
+      "Metric",
+      "Measures",
+      "Fits"
+     ],
+     "rows": [
+      [
+       "MTTF / MTBF",
+       "Mean time to (first) / between failures",
+       "Long-running systems with repair cycles"
+      ],
+      [
+       "Availability (AVAIL)",
+       "Fraction of time the service is up",
+       "Continuous monitoring (patient vitals display)"
+      ],
+      [
+       "POFOD",
+       "Probability of failure on demand",
+       "On-demand checks (face-recognition match, e-ticket validation)"
+      ],
+      [
+       "ROCOF",
+       "Rate of occurrence of failures over time",
+       "Systems with steady failure streams (crash-per-1000-hours style)"
+      ]
+     ]
+    },
+    "paras": [
+     "The worksheet's three commandments: reliability here means software reliability (not hardware); the metric must make sense for the particular system (hint aimed at POFOD-vs-availability traps); and the requirement states an acceptable failure level for a stated failure class \u2014 never perfection, always specific. Systems fail in some ways and not others, and some failures matter more: say which failures you mean."
+    ]
+   },
+   {
+    "heading": "Worked answers",
+    "paras": [
+     "2022 Q3.4(b) metrics for the patient monitor: availability ('the display function shall be available at least 99.9% of monitoring time') and ROCOF or MTTF for the sensing pipeline \u2014 both fit continuous operation. Q3.4(c) requirement: 'The system shall lose no more than 1 minute of displayed vital-sign data per 24 hours of continuous operation, with any sensor failure annunciated within 5 seconds.' Bound, workload, failure class, detection \u2014 every validity property satisfied.",
+     "2019 restaurant hint ('not all metrics make sense here'): payment processing is on-demand (POFOD fits), while the kitchen display during service hours is continuous (availability fits). Naming the mismatch explicitly is what the 3 marks buy."
+    ]
+   }
+  ],
+  "summary": "Reliability is failure behaviour quantified: MTTF/MTBF, availability, POFOD, ROCOF \u2014 chosen to fit the usage pattern, bounded short of perfection, scoped to a failure class.",
+  "title": "Reliability requirements and metrics"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "We obviously wan...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 31",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "A UI is the part of ...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 32",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Approach #1: Req...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 33 (metrics approach 1)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "To measure ho...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 34 (measuring user activities)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Approach #...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 35 (UI characteristics)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Propose a useful and valid usability requirement for the system. [3 marks]",
+    "kind": "course",
+    "locator": "2019 Test 1, Q3(a) (p. 5)",
+    "source": "pastypaper/ISE_2019s1_Test1_Vari1.pdf"
+   },
+   {
+    "excerpt": "Usability requirements are often expressed in terms of what the user must be able to do within a given time, or a given amount of effort. However, be careful to distinguish them from business rules.",
+    "kind": "course",
+    "locator": "Worksheet 4 closing note (p. 3)",
+    "source": "Learning material/Worksheet4_NonFunctionalReqs_2024.pdf"
+   }
+  ],
+  "category": "Non-functional requirements",
+  "id": "usability-requirements",
+  "prerequisites": [
+   "nfr-validity"
+  ],
+  "question_ids": [
+   "pp2022-q3-rewrite",
+   "pp2019-q3a",
+   "ws4-usab",
+   "gen-usab-1",
+   "pp2019-q3b",
+   "pp2019-q3c"
+  ],
+  "read_minutes": 7,
+  "recall": [
+   {
+    "a": "User task + time/effort bound + success criterion for a stated user class (e.g. average new user completes X within T unaided, 9/10 succeeding). Business rules constrain users; usability requirements describe what the system enables users to do.",
+    "q": "Give the usability requirement formula and the business-rule distinction."
+   }
+  ],
+  "related": [
+   "nfr-validity",
+   "other-nfrs",
+   "performance-requirements"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Usability requirements state what users must be able to do with the system \u2014 within a time, or with an effort \u2014 thanks to how the system is built. The UI (the part of the system users touch) is where most usability lives, and the lecture offers two measurement approaches: count what users achieve (task success, time-on-task) or assess interface characteristics against principles. Either way, the requirement ends in numbers."
+    ]
+   },
+   {
+    "heading": "The formula + the trap",
+    "paras": [
+     "User class (average new user, trained cashier) + task (rotate a photo to within 3 degrees of level, locate a ticket type) + bound (within 20 seconds, unaided) + success criterion (9 of 10 succeeding). The worksheet's star specimen: 'an average user must be able, within 20 seconds, to rotate a tilted photograph so that it is within 3 degrees of level.'",
+     "The trap is business rules in disguise. 'The user is required to enter a password' constrains the user \u2014 a rule. 'An average user shall be able to log in within 30 seconds unaided' describes what the system enables \u2014 a usability requirement. The 2019 restaurant usability answer must enable (order a meal within N minutes unaided), never obligate."
+    ]
+   },
+   {
+    "heading": "Worked answers",
+    "paras": [
+     "2019 restaurant: 'An average first-time customer shall complete a standard order and card payment within 5 minutes of pressing start, unaided, with at least 9 of 10 succeeding in evaluation.' 2022 ticketing rewrite: same shape, ticket-type task. Both name the user class (average/first-time), the task, the bound, and the bar \u2014 which is exactly the hidden mark scheme."
+    ]
+   }
+  ],
+  "summary": "Usability requirements quantify what defined users can achieve within what time or effort \u2014 system-enabled ability, never user obligations.",
+  "title": "Usability requirements"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Performance, reliability and usability ...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 36",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Security is everyone's responsibility!",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 37",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Your software might ... ('L10N')...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF pp. 38-39",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Software must typically i... (interoperate)",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 40",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Software should cater for diverse abilities of the users...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 41 (accessibility)",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Propose a useful non-functional parameter for the system, other than performance, usability, or reliability and give reasons for your choice. [3] Write down a non-functional requirement for the proposed parameter. [3]",
+    "kind": "course",
+    "locator": "2022 Midterm B, Q3.4(d) (p. 8)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "Select any of the systems given in question 2, 3 or 4 and propose a useful and valid, (a) Security requirement, (b) Interoperability requirement, (c) Localization requirement, (d) Accessibility requirement...",
+    "kind": "course",
+    "locator": "Worksheet 4, Q5 (p. 3)",
+    "source": "Learning material/Worksheet4_NonFunctionalReqs_2024.pdf"
+   }
+  ],
+  "category": "Non-functional requirements",
+  "id": "other-nfrs",
+  "prerequisites": [
+   "nfr-validity"
+  ],
+  "question_ids": [
+   "pp2022-q3-other",
+   "ws4-other",
+   "gen-other-1"
+  ],
+  "read_minutes": 7,
+  "recall": [
+   {
+    "a": "Security (everyone's responsibility: protect data/access), interoperability (work with externals), localisation L10N (adapt language/culture), accessibility (diverse abilities). Justify fit to the system, then quantify.",
+    "q": "Name the four 'other' NFRs and the two-step exam move for the patient monitor."
+   }
+  ],
+  "related": [
+   "nfr-validity",
+   "usability-requirements",
+   "reliability-requirements",
+   "srs-ieee830"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Beyond the big three (performance, reliability, usability) sit security, interoperability, localisation and accessibility \u2014 each with its own lecture slide and a standing invitation in Worksheet 4 Q5. The 2022 paper's finale (Q3.4d) asks you to propose one such parameter for the patient monitor, justify it, and write its requirement: 6 marks for judgement plus craft."
+    ]
+   },
+   {
+    "heading": "The four, briefly",
+    "bullets": [
+     "Security \u2014 everyone's responsibility: authentication, authorisation, audit. Vitals are health data; unauthorised display or alteration harms patients.",
+     "Interoperability \u2014 software must work with other software: export vitals to the hospital EHR in an agreed format.",
+     "Localisation (L10N) \u2014 adapt language, units, culture: ward staff across campuses need consistent units and terminology.",
+     "Accessibility \u2014 cater for diverse abilities: alarms perceivable by staff with hearing or vision limits; operable gloved and one-handed."
+    ],
+    "paras": [
+     "Exam move in two steps: (1) parameter + reason tied to the system ('security, because vitals are confidential health data on a shared ward display'); (2) quantified requirement ('the system shall lock the display after 60 s idle and require badge re-authentication; unauthorised access attempts shall be logged with timestamp and user ID'). Judgement first, numbers second."
+    ]
+   }
+  ],
+  "summary": "Security, interoperability, localisation and accessibility complete the NFR palette \u2014 propose the parameter that fits the system's risks, then quantify it.",
+  "title": "Security, interoperability, localisation, accessibility"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "The content and qualities of a good software requirements specification...",
+    "kind": "reference",
+    "locator": "IEEE 830-1998, Abstract (p. 1)",
+    "source": "Learning material/IEEE RecommendedPractise_for_SRS.pdf"
+   },
+   {
+    "excerpt": "An SRS should be a) Correct; b) Unambiguous; c) Complete; d) Consistent; e) Ranked for importance and/or stability; f) Verifiable; g) Modifiable; h) Traceable...",
+    "kind": "reference",
+    "locator": "IEEE 830-1998, Section 4.3 (p. 11)",
+    "source": "Learning material/IEEE RecommendedPractise_for_SRS.pdf"
+   },
+   {
+    "excerpt": "Nonverifiable requirements include statements such as 'works well,' 'good human interface,' and 'shall usually happen.'",
+    "kind": "reference",
+    "locator": "IEEE 830-1998, Section on verifiability (p. 14)",
+    "source": "Learning material/IEEE RecommendedPractise_for_SRS.pdf"
+   },
+   {
+    "excerpt": "A document listing all the require...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 10 (SRS)",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Adapted from the IEEE recommendations for SRSs 1: 1. Introduction 2. Overall desc...",
+    "kind": "course",
+    "locator": "Lecture 3, PDF p. 11",
+    "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf"
+   },
+   {
+    "excerpt": "Gephi requires a system with at least a 500 megahertz CPU and 128 megabytes of RAM...",
+    "kind": "reference",
+    "locator": "Sample Gephi SRS, Section 5.1 (p. 30)",
+    "source": "Learning material/Sample_gephi_srs_document.pdf"
+   }
+  ],
+  "category": "Requirements engineering",
+  "id": "srs-ieee830",
+  "prerequisites": [
+   "functional-requirements",
+   "nfr-overview"
+  ],
+  "question_ids": [
+   "gen-srs-1"
+  ],
+  "read_minutes": 7,
+  "recall": [
+   {
+    "a": "Correct, unambiguous, complete, consistent, ranked, verifiable, modifiable, traceable. Non-verifiable smells: 'works well', 'good interface', 'usually happens'.",
+    "q": "Recite the eight SRS virtues and three IEEE examples of unverifiable wording."
+   }
+  ],
+  "related": [
+   "functional-requirements",
+   "nfr-validity",
+   "nfr-overview",
+   "other-nfrs"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "The Software Requirements Specification is the document listing all requirements \u2014 and IEEE 830 is the standard describing what a good one looks like. The lecture lifts its layout wholesale (introduction, overall description, interfaces, functional requirements, NFRs), and the Gephi SRS shows a real one in the wild. Midterm questions rarely ask IEEE by name, but every 'write a valid requirement' mark is secretly graded against it."
+    ]
+   },
+   {
+    "heading": "A good SRS (IEEE 4.3)",
+    "paras": [
+     "Correct, unambiguous, complete, consistent, ranked for importance/stability, verifiable, modifiable, traceable. Two of these do quiet exam work: ranked (not all requirements matter equally \u2014 the Product Backlog's ordering is ranking made agile) and traceable (each requirement linkable to its source and its tests \u2014 the ancestor of this wiki's citations). The standard's hall of shame for verifiability \u2014 'works well', 'good human interface', 'shall usually happen' \u2014 is the same family as the lecture's 'user friendly' and the worksheet's 'suitable for photo albums'. Learn to hear the register: unmeasurable adjectives are failed requirements."
+    ]
+   },
+   {
+    "heading": "Layout you should recognise",
+    "paras": [
+     "Introduction (purpose, scope, definitions/acronyms), overall description (the general factors affecting the product \u2014 not requirements themselves), external interfaces (system/user/hardware/software/communications), functional requirements by mode/class/object, performance requirements, design constraints, system attributes (reliability, availability, security per section 5.3.6), and supporting material (contents, index, appendixes). The Gephi SRS follows this skeleton across 37 pages \u2014 skim its table of contents once and the abstract standard becomes concrete."
+    ]
+   }
+  ],
+  "summary": "IEEE 830 defines the SRS contract: eight virtues with verifiability as the teeth, and a section layout the course reuses for stories, cases and NFRs.",
+  "title": "The SRS and IEEE 830"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Students cannot enrol in units after week 1 of semester...",
+    "kind": "course",
+    "locator": "Lecture 4, PDF p. 47",
+    "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf"
+   },
+   {
+    "excerpt": "Briefly explain why each of the following are not valid non-functional requirements. (i) The kitchen staff must finish the customer order within 10 minutes of receiving it. (ii) The system must count up all menu items ordered, and display the statistics on request.",
+    "kind": "course",
+    "locator": "2019 Test 1, Q3(c) (p. 5)",
+    "source": "pastypaper/ISE_2019s1_Test1_Vari1.pdf"
+   }
+  ],
+  "category": "Exam strategy",
+  "id": "exam-mistakes-nfr",
+  "prerequisites": [
+   "nfr-validity"
+  ],
+  "question_ids": [],
+  "read_minutes": 3,
+  "recall": [
+   {
+    "a": "Governs staff, not software (business rule); counts-and-displays is a function (FR in disguise). Both fail in-scope/non-functional properties.",
+    "q": "Why do the two 2019 Q3(c) requirements fail?"
+   }
+  ],
+  "related": [
+   "nfr-validity",
+   "midterm-study-guide"
+  ],
+  "sections": [
+   {
+    "heading": "How NFR marks are lost",
+    "bullets": [
+     "Calling a function an NFR (2022 Q3.2a, 2019 Q3c-ii counting statistics).",
+     "Calling a business rule an NFR (2019 Q3c-i kitchen timing governs staff).",
+     "Leaving 'user friendly' unquantified instead of rewriting with user/task/bound/criterion.",
+     "Proposing a reliability metric that mismatches usage (POFOD for continuous monitoring).",
+     "Writing 'perfect reliability' or unbounded performance ('as fast as possible').",
+     "Omitting the environment from performance bounds."
+    ]
+   }
+  ],
+  "summary": "Six NFR mark-losers: disguised functions, business rules, unquantified adjectives, mismatched metrics, perfection claims, missing environments.",
+  "title": "NFRs: common exam mistakes"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Ethics and morality go hand in hand. 'morals': widely-shared communal or societal norms about right and wrong...",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 11",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "We will very briefly look at few schools of thoughts relate to moral philosophy/ethics.",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 12",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "Adherence to a set of rules; So, to ...",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 13 (Deontology)",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "We don't all agree on what ethics actually is. Ethical Theory ... Consequentialism ... Utilitarianism ... Rule Utilitarianism ... Act Utilitarianism ... Deontology ...",
+    "kind": "course",
+    "locator": "Ethics notes handout, p. 2 (Figure 1)",
+    "source": "Learning material/Lecture5_EthicsAndProfessionalism_notes(1).pdf"
+   },
+   {
+    "excerpt": "Utilitarianism addresses the problems mentioned with deontology. Provided you define utility ...",
+    "kind": "course",
+    "locator": "Ethics notes handout, p. 3",
+    "source": "Learning material/Lecture5_EthicsAndProfessionalism_notes(1).pdf"
+   },
+   {
+    "excerpt": "The 'trolley' is an out-of-control tram (running on train tracks), and there are five people tied to the tracks, who cannot ...",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 15",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   }
+  ],
+  "category": "Ethics & professionalism",
+  "id": "ethics-theories",
+  "prerequisites": [],
+  "question_ids": [
+   "gen-ethics-1",
+   "ws5-ethics"
+  ],
+  "read_minutes": 7,
+  "recall": [
+   {
+    "a": "Deontology: follow the rules (don't break promises, steal, etc.) regardless of outcome. Consequentialism/utilitarianism: judge by outcomes, maximise utility; act vs rule variants differ in whether each act or the general rule is judged.",
+    "q": "Contrast deontology and utilitarianism in one breath."
+   },
+   {
+    "a": "Deontology says don't pull (killing violates the rule); act-utilitarianism may permit it (one death vs five). The point is that reasonable frameworks disagree \u2014 ethics needs deliberation, not slogans.",
+    "q": "What do the two frameworks say about the trolley, and what is the lesson?"
+   }
+  ],
+  "related": [
+   "ethics-se-professionalism",
+   "nfr-overview"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Ethics is personal, cultural, ideological \u2014 about how human beings, not just software, can come to harm. The unit opens the topic with moral philosophy because software engineers hold power over people they will never meet, and power without a framework for right and wrong is just luck. The midterm tests this as reasoning, not recitation: Worksheet 5 asks for stories, not slogans."
+    ]
+   },
+   {
+    "heading": "Two schools of thought",
+    "table": {
+     "head": [
+      "School",
+      "Right action is...",
+      "Example reasoning"
+     ],
+     "rows": [
+      [
+       "Deontology (duty/rules)",
+       "Adherence to rules: don't break promises, steal, harm \u2014 whatever the payoff",
+       "Don't falsify test results even if shipping late costs the contract"
+      ],
+      [
+       "Consequentialism / Utilitarianism",
+       "Whatever maximises utility (happiness, welfare); act judges each act, rule judges the general rule",
+       "Pull the trolley lever: one death instead of five (act-utilitarian)"
+      ]
+     ]
+    },
+    "paras": [
+     "The handout's map (Figure 1) splits consequentialism into utilitarianism, then rule vs act utilitarianism, set against deontology's rule list. Utilitarianism answers deontology's rigidity \u2014 rules collide, and strict obedience can mandate cruelty \u2014 provided you can define and measure 'utility', which is itself contested. Neither school wins; the unit's point is that you can now name the disagreement instead of waving at it."
+    ]
+   },
+   {
+    "heading": "The trolley problem",
+    "paras": [
+     "An out-of-control tram will kill five people tied to the tracks; you can pull a lever to divert it, killing one person instead. Deontology recoils (do not kill, full stop); act-utilitarianism calculates (one is fewer than five). The lecture uses it to show that moral principles and their practical integration differ \u2014 knowing the theory does not dissolve the dilemma, it structures your deliberation about it. In software terms: every 'move fast' shortcut is a small trolley decision about other people's safety, privacy and livelihoods."
+    ]
+   }
+  ],
+  "summary": "Moral philosophy gives engineers two lenses \u2014 duty to rules vs outcomes for the many \u2014 whose honest disagreement (see: trolley) is the start of ethical deliberation.",
+  "title": "Moral philosophy: duties vs consequences"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "With any profession (not only SE) comes power. And with power comes responsibility.",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 7",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "Every good act you perform will be amplified by this power, but every mistake can be as well...",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 9",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "Professionalism is essentially about doing your job 'properly'. The ...",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 28",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "Code of conduct developed by professional bodies helps us to remind a...",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 30",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "Short version of code of Ethics from IEEE CS (https://www.computer.org/education/code-of-ethics...",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 31",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "An essential characteristic of a profession is the need for its members to abide by a code of ethics.",
+    "kind": "reference",
+    "locator": "ACS Code of Professional Conduct, p. 4",
+    "source": "Learning material/Code-of-Professional-Conduct_v2.1(1).pdf"
+   },
+   {
+    "excerpt": "You are expected to take into account the spirit of this Code in order to resolve ambiguous or contentious issues...",
+    "kind": "reference",
+    "locator": "ACS Code, p. 5",
+    "source": "Learning material/Code-of-Professional-Conduct_v2.1(1).pdf"
+   },
+   {
+    "excerpt": "The public interest is taken to include matters of public health, safety and the environment.",
+    "kind": "reference",
+    "locator": "ACS Code, p. 6",
+    "source": "Learning material/Code-of-Professional-Conduct_v2.1(1).pdf"
+   },
+   {
+    "excerpt": "You and a couple of colleagues are playing planning poker to determine how long you expect various project tasks to take. However, the client is pressuring you to ...",
+    "kind": "course",
+    "locator": "Lecture 5 slides, PDF p. 33 (Example 4, project planning)",
+    "source": "Learning material/Lecture5_Ethics_2025V1.pdf"
+   },
+   {
+    "excerpt": "This worksheet tries to get you thinking about the deeper aspects of right and wrong in software engineering.",
+    "kind": "course",
+    "locator": "Worksheet 5 (p. 1)",
+    "source": "Learning material/Worksheet5_Ethics_2023(1).pdf"
+   }
+  ],
+  "category": "Ethics & professionalism",
+  "id": "ethics-se-professionalism",
+  "prerequisites": [
+   "ethics-theories"
+  ],
+  "question_ids": [
+   "ws5-ethics",
+   "gen-ethics-2"
+  ],
+  "read_minutes": 8,
+  "recall": [
+   {
+    "a": "Amplified power over strangers: every good act scales, every mistake scales too. Areas: public safety/harm, honesty to stakeholders, professional competence, legal/professional codes.",
+    "q": "Why does software work carry special ethical weight?"
+   },
+   {
+    "a": "Essentially doing the job properly, guided by professional codes (ACS/IEEE) whose spirit resolves ambiguous cases; public interest (health, safety, environment, stakeholder trust) outranks client or employer pressure.",
+    "q": "What is professionalism and what outranks what?"
+   }
+  ],
+  "related": [
+   "ethics-theories",
+   "code-review",
+   "scrum-framework"
+  ],
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Software exists in society and impacts society: your code decides who sees what, who gets paid, who is watched. The lecture's core claim is leverage \u2014 with the profession comes power, and with power comes responsibility, because every good act is amplified by deployment and every mistake is amplified with it. Professionalism is the discipline of wielding that leverage properly."
+    ]
+   },
+   {
+    "heading": "Areas of concern",
+    "paras": [
+     "Harms the public can suffer from your work (the lecture's Examples 1-2 plus the handout's scenarios): planning-poker estimates falsified under client pressure; social-media features shipped per-sprint without considering harassment or surveillance consequences; platform power used to crush dependent app businesses; facial or welfare systems whose extensions reject valid names and deny people payments. Worksheet 5's method \u2014 come up with reasons people behave unethically, then write harm stories for given systems and present them for critique \u2014 trains exactly this imagination: who is harmed, how, and what would you have done differently?",
+     "Counterbalancing goods matter too: the same power builds tools for the good life (access, knowledge, coordination) when engineers identify stakeholders honestly and protect the public as their primary obligation."
+    ]
+   },
+   {
+    "heading": "Professionalism and codes",
+    "paras": [
+     "Professionalism is essentially doing the job properly \u2014 competence, honesty, care \u2014 and codes of conduct from professional bodies (ACS, IEEE-CS) remind engineers what 'properly' means. The ACS Code is explicit: membership of a profession means abiding by its code; where cases are ambiguous, apply the spirit of the Code; public interest (health, safety, environment) takes in all affected people; and stakeholder trust underlies every decision. The IEEE-CS short code and ACS rules sit side by side in the slides: know that both exist, what values they share (public safety first, honesty, competence), and that neither is optional decoration."
+    ]
+   },
+   {
+    "heading": "Exam relevance",
+    "callout": {
+     "kind": "exam",
+     "text": "Ethics answers score for structure: name the stakeholders, name the harm (or good), apply a framework (duty vs consequences), cite the code (public interest first), conclude with the action. Worksheet 5 Q2/Q3 stories rehearsed in groups are the template \u2014 practise one harm story per course system."
+    }
+   }
+  ],
+  "summary": "Software leverage amplifies good and harm alike; professionalism means competence plus honesty guided by codes that put public safety and stakeholder trust first.",
+  "title": "Ethics and professionalism in SE"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "There are FOUR (4) questions. Attempt all of them. You have 90 minutes to complete the test. There are 100 marks available.",
+    "kind": "course",
+    "locator": "2022 Midterm B cover (p. 1)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   },
+   {
+    "excerpt": "This is a CLOSED BOOK test. There are FOUR (4) questions. Answer all of them. You have 75 minutes to complete the test. There are 40 marks available.",
+    "kind": "course",
+    "locator": "2018 Test 1 cover (p. 1)",
+    "source": "pastypaper/ISE_2018s1_Test1_Vari1.pdf"
+   },
+   {
+    "excerpt": "All your answers must conform to practices emphasised in the lectures and practicals.",
+    "kind": "course",
+    "locator": "All past-paper covers (p. 1)",
+    "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf"
+   }
+  ],
+  "category": "Exam strategy",
+  "id": "midterm-study-guide",
+  "prerequisites": [],
+  "question_ids": [
+   "pp2019-q4-git",
+   "pp2018-q3-testing"
+  ],
+  "read_minutes": 6,
+  "recall": [
+   {
+    "a": "Planning graphs + timing (Q1), user stories + full use case incl. extensions (Q2), FR/NFR + validity + quantified NFRs (Q3), burn-up + Kanban + Scrum events (Q4). Closed book: memorise shapes, formulae, header fields, validity properties.",
+    "q": "Map the four 2022 questions to topics and state the closed-book implication."
+   }
+  ],
+  "related": [
+   "exam-mistakes-planning",
+   "exam-mistakes-agile",
+   "exam-mistakes-requirements",
+   "exam-mistakes-nfr",
+   "critical-path",
+   "use-case-flow",
+   "nfr-validity",
+   "burn-up-charts"
+  ],
+  "sections": [
+   {
+    "heading": "The shape of the midterm",
+    "paras": [
+     "The 2022 paper (90 minutes, 100 marks, closed book, four questions of 25) is the best predictor available: Q1 planning (waterfall + full network analysis + management use), Q2 functional requirements (stories + a complete use case with flow, extension and task goals), Q3 FR/NFR (distinctions, demolitions, usability rewrite, quantified performance/reliability/other NFRs), Q4 agile (burn-up arithmetic, Kanban reasoning, Scrum backlogs and events). Earlier papers add AOA graphs (2018), restaurant ordering cases (2019), plus testing and version-control questions from topics outside the current lecture set."
+    ]
+   },
+   {
+    "heading": "Where to start reading",
+    "bullets": [
+     "First: Critical path and slack (highest mark density), Use-case flow (most writing marks), NFR validity (most conceptual marks).",
+     "Second: Burn-up charts, Scrum events and backlogs, User stories, Activity graphs.",
+     "Third: Ethics theories + professionalism (reasoning marks), SRS/IEEE 830 (background that sharpens every requirement answer).",
+     "Drills: 2018 AON/AOA + add-friend case; 2019 restaurant case + NFR set; 2022 full paper under timed conditions."
+    ]
+   },
+   {
+    "heading": "Coverage honesty",
+    "callout": {
+     "kind": "warning",
+     "text": "Coverage map (evidence-linked): lectures 1-4 + ethics fully supported by slides, worksheets and past papers. 2018 testing questions (equivalence partitioning, JUnit) and the 2019 Git question belong to topics whose lectures are not in this collection \u2014 they are indexed as supplementary past-paper evidence, not examined core. External references (Scrum Guide, IEEE 830, ACS Code) support \u2014 they never override lecture terminology."
+    },
+    "paras": [
+     "Use the Coverage view to check every concept's evidence: lecture pages, worksheet questions, past-paper appearances and practice items. Unattempted questions and low-rated concepts feed the Review queue automatically."
+    ]
+   }
+  ],
+  "summary": "Four questions, four territories \u2014 planning, use cases, NFRs, agile \u2014 with ethics reasoning throughout; start with the densest marks and drill all three papers.",
+  "title": "Midterm study guide and coverage"
+ },
+ {
+  "citations": [
+   {
+    "excerpt": "Come up with as many reasons as you can for why someone might behave unethically in a software project. ... For each of the following systems, come up with a brief story that describes how a lapse of ethical consideration could cause harm... Then, present one of the answers in Q2 and Q3 to other groups and get their feedback.",
+    "kind": "course",
+    "locator": "Worksheet 5 (p. 1)",
+    "source": "Learning material/Worksheet5_Ethics_2023(1).pdf"
+   }
+  ],
+  "category": "Exam strategy",
+  "id": "exam-mistakes-ethics",
+  "prerequisites": [
+   "ethics-se-professionalism"
+  ],
+  "question_ids": [],
+  "read_minutes": 2,
+  "recall": [
+   {
+    "a": "Slogans without stakeholders, harm, framework or code; confusing the two schools; treating codes as decoration rather than action-guiding.",
+    "q": "What makes an ethics answer score poorly?"
+   }
+  ],
+  "related": [
+   "ethics-se-professionalism",
+   "midterm-study-guide"
+  ],
+  "sections": [
+   {
+    "heading": "How ethics marks are lost",
+    "bullets": [
+     "Declaring an action 'unethical' without naming stakeholders or harm.",
+     "Summarising deontology/utilitarianism without applying either to the scenario.",
+     "Citing codes of conduct without saying what action they require.",
+     "Harm stories with no lapse identified and no preventive alternative."
+    ]
+   }
+  ],
+  "summary": "Ethics mark-losers: slogans instead of stakeholder-harm-framework-code-action structure.",
+  "title": "Ethics: common exam mistakes"
+ }
+]

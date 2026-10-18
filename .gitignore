@@ -1,0 +1,16 @@
+# secrets & personal state — never commit
+data/.keys.json
+data/progress.json
+meridian-progress*.json
+
+# python / tooling junk
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+.opencode/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini

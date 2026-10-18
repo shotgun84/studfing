@@ -1,0 +1,523 @@
+Page 1 of 11 
+ 
+ 
+ 
+Mid Term Test -B 
+Date: Thursday 27th April 2022 
+Weight: 30% of the unit’s final mark. 
+ 
+Family Name: 
+ 
+ 
+Given Name(s): 
+ 
+ 
+Curtin Student ID: 
+ 
+ 
+Lab Group (weekday and time): 
+ 
+ 
+ Signature: ___________ _____________ Venue: _______________________ 
+ 
+• This is a CLOSED BOOK test. 
+• There are FOUR (4) questions. Attempt all of them. 
+• You have 90 minutes to complete the test. 
+• There are 100 marks available. 
+• There are 11 pages including the cover page in this paper. 
+• Calculators are not allowed. 
+ 
+Write in non-erasable pen on the question paper. Avoid using red pens. If you run 
+out of space, answer on the back of the page. All your answers must conform to 
+practices emphasized in the lectures and practicals. 
+Curtin University — Discipline of Computing 
+Introduction to Software Engineering 
+(ISAD1000/ISAD5004) 
+Semester 1, 2022
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 2 of 11 
+ 
+Q1. Project planning (25 marks) 
+1) Briefly explain the “Iterative waterfall” software development model. 
+[4 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2) Consider a software project consisting of the following information about tasks (Table1). 
+Table 1: WBS - Project A 
+Task 
+Duration(weeks) 
+Dependencies 
+A 
+3 
+- 
+B 
+5 
+A 
+C 
+6 
+A 
+D 
+10 
+A 
+E 
+4 
+B, C 
+F 
+3 
+C, D 
+G 
+5 
+E, F 
+H 
+4 
+G 
+ 
+a) Draw an Activity-on-node graph for this project. Your graph should indicate task 
+duration. 
+[6 marks]
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 3 of 11 
+ 
+b) Answer the followings using ES, EF, LS, LF time calculation within the network 
+graph you have produced earlier. 
+If you wish, you may reproduce the activity graph and show the calculations here. 
+ 
+i) Find the estimated duration of the project. 
+[5 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ii) List all slack activities of the project with their slack time. 
+[3 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+iii) Find the critical path of the project. 
+[3 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+iv) Explain how knowing the critical path and slack time can be useful in managing 
+the above project. [3 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Question 2 appears on the next page
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 4 of 11 
+ 
+Q2. Functional Requirements (25 marks) 
+ 
+1) 
+a) Briefly explain the three parts of a user story. 
+[2 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+b) Consider an on-line system to book railway tickets for long distance journeys. 
+ Write down two user stories relate to the functionality of the above system. 
+ 
+ 
+[4 marks]
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 5 of 11 
+ 
+2) Consider the following description about a software for plotting and analysing scientific 
+data from experiments using different chart types such as scatter, line etc. 
+ 
+All the datasets from experiments will be kept in a research database. User can start 
+plotting by selecting “plot data” option. Then the user will be provided with list of 
+available datasets, based on the user credential. When the user selects a dataset from the 
+list, system will show the columns in the dataset and a description. Then the user selects 
+the chart type and provides which columns and rows of the dataset are to be plotted. User 
+can select the colour style and provides the chart tiles also. If the colour style is not 
+selected, a default style will be used. Once the chart information is provided, chart will be 
+generated, displayed on the screen, and saved as a .png file as well. If the selected data 
+contains non-numeric data, user will be prompted with the option to proceed with only 
+the valid data and if user accepts this option, a plot will be generated only with the valid 
+data. 
+User needs to be logged into the system to do plotting or analysing data while the 
+description of all experiments can be viewed by anyone. Issues can be occurred if the user 
+does not have privileges to save the generated plots. If so, the system prompts the user to 
+send an access right elevation request and if successful, the plot can be saved. 
+ 
+ You are supposed to develop a use case for the “Plot data” feature of the system. 
+ 
+a) Specify the following use case header information. 
+Goal: 
+[1 mark] 
+ 
+ 
+ 
+ 
+Primary Actor: 
+[1 mark] 
+ 
+ 
+ 
+Secondary Actor(s): 
+[1 mark] 
+ 
+ 
+ 
+Precondition (if any): 
+[1 mark] 
+ 
+ 
+ 
+Trigger: 
+[1 mark]
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 6 of 11 
+ 
+b) Write down the flow of events for the use case. 
+[5 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+c) Write down one extension for the use case. 
+[5 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+d) Identify two task levels goals of the system other than plotting data and identify the 
+primary actors for them. [4 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Question 3 appears on the next page
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 7 of 11 
+ 
+Q3. Functional and Non-functional Requirements (25 marks) 
+ 
+1) Briefly describe two differences between functional requirements and non-functional 
+requirements. 
+[4 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2) Explain why each of the followings are invalid non-functional requirements. 
+[4 marks] 
+ 
+a) System must allow the students to see the available courses and the timetable of them. 
+ 
+ 
+ 
+ 
+b) Ticketing system should show the users all available ticket types in user friendly 
+manner. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3) Rewrite (b) above to convert it to a valid and useful usability requirement. 
+[3 marks]
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 8 of 11 
+ 
+ 
+4) Consider about a patient monitoring system which displays oxygen level and the blood 
+pressure of a patient in a hospital ward. 
+ 
+a) Write down one valid and useful performance requirement for the system. 
+[3 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+b) List two suitable reliability metrices for the system. 
+[2 marks] 
+ 
+ 
+ 
+ 
+ 
+c) Write down one valid and useful reliability requirement for the system. 
+[3 marks] 
+ 
+ 
+ 
+ 
+ 
+d) 
+i) Propose a useful non-functional parameter for the system, other than performance, 
+usability, or reliability and give reasons for your choice of the parameter. 
+ 
+[3 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ii) Write down a non-functional requirement for the proposed parameter. [3 marks] 
+ 
+ 
+ 
+ 
+Question 4 appears on the next page
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 9 of 11 
+ 
+Q4. Agile project management (25 marks) 
+1) A work-break-down structure with activity durations and some other useful information 
+are shown in the table-2 below. 
+Table 2: Activity time – Project B 
+Activity 
+Estimated Duration 
+(days) 
+Actual 
+Finish time 
+1. Stakeholder meetings 
+20 
+30 
+2. Prototyping 
+30 
+20 
+3.1. Identify designs. 
+10 
+10 
+3.2. Develop search interface. 
+8 
+12 
+3.3. Develop results display. 
+12 
+10 
+4.1 Code search function 
+20 
+40 
+4.1. … 
+25 
+55 
+5.1 
+40 
+ .. 
+5.2 
+35 
+ … 
+Sum of Task Durations 
+200 
+Planned project Duration 
+100 
+ 
+ Assume you want to create a burn-up chart for the project. 
+ 
+ 
+a) Find the planned progress per day for the project. 
+[2 marks] 
+ 
+ 
+ 
+ 
+ 
+b) Find the planned progress as at day 30. Show how you have arrived at your answer. 
+ 
+[2 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+c) Find the actual progress as at day 30. Show how you have arrived at your answer. 
+ 
+[4 marks] 
+ 
+ 
+ 
+d) Comment on the progress of your project as at day 30. [2 marks]
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 10 of 11 
+ 
+2) 
+a) Explain why imposing a working progress limit is useful when managing a project 
+using a Kanban board. 
+[2 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+b) Assume a task “Search Courses” is completed and in the “Done” column of a Kanban 
+board. Now some problems in the “Search Courses” task are identified. Explain how 
+to address these problems when using the Kanban board. 
+[3 marks]
+
+===== PAGE BREAK =====
+
+ISE 
+ 
+Semester 1, 2022 
+Page 11 of 11 
+ 
+3) Explain how Product Backlogs, Sprints and Sprint backlogs are used when managing a 
+software project using scrum process. 
+[6 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4) Explain when the following meetings related to scrum process occur, purpose and what 
+happened in them. 
+ 
+a) Sprint planning meeting. [2 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+b) Sprint review meeting. [2 marks] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+End of the Test

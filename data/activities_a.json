@@ -1,0 +1,768 @@
+{
+ "wbs": [
+  {
+   "id": "a-wbs-fib",
+   "type": "fib",
+   "tag": "recall",
+   "prompt": "Complete the WBS rule",
+   "instructions": "Drag each word into its blank \u2014 or tap a word, then tap a blank.",
+   "text": [
+    "A ___ breaks a project into ___ with ___ and ___ ."
+   ],
+   "tiles": [
+    {
+     "id": "w",
+     "text": "WBS"
+    },
+    {
+     "id": "t",
+     "text": "tasks"
+    },
+    {
+     "id": "d",
+     "text": "dependencies"
+    },
+    {
+     "id": "m",
+     "text": "milestones"
+    },
+    {
+     "id": "g",
+     "text": "Gantt"
+    },
+    {
+     "id": "p",
+     "text": "poker"
+    }
+   ],
+   "answers": [
+    [
+     "w"
+    ],
+    [
+     "t"
+    ],
+    [
+     "d"
+    ],
+    [
+     "m"
+    ]
+   ],
+   "explanation": "A WBS decomposes work into tasks, annotated with dependencies and milestones. Gantt charts and poker come later \u2014 they consume the WBS, they are not part of it.",
+   "hints": [
+    "The acronym names the whole structure.",
+    "What feeds the dependency column?"
+   ],
+   "source": "Lecture 1, WBS section (PDF pp. 27-31)",
+   "version": 1,
+   "articles": [
+    "wbs"
+   ]
+  },
+  {
+   "id": "a-wbs-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Put the planning workflow in order",
+   "instructions": "Drag rows into sequence \u2014 one continuous drag does it. Alt+\u2191/\u2193 works from the keyboard.",
+   "items": [
+    {
+     "id": "s1",
+     "label": "Break the project into WBS tasks"
+    },
+    {
+     "id": "s2",
+     "label": "Estimate each task (planning poker)"
+    },
+    {
+     "id": "s3",
+     "label": "Record dependencies in a task table"
+    },
+    {
+     "id": "s4",
+     "label": "Draw the activity graph"
+    },
+    {
+     "id": "s5",
+     "label": "Compute ES/EF, LS/LF, slack, critical path"
+    }
+   ],
+   "correct": [
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5"
+   ],
+   "explanation": "Decompose \u2192 estimate \u2192 order \u2192 draw \u2192 time-analyse. Every later step eats the earlier step's output, which is why a sloppy WBS poisons the whole plan.",
+   "source": "Lecture 1 (PDF pp. 27-60); Worksheet 1",
+   "version": 1,
+   "articles": [
+    "wbs"
+   ]
+  }
+ ],
+ "critical-path": [
+  {
+   "id": "a-cp-fib",
+   "type": "fib",
+   "tag": "recall",
+   "prompt": "Complete the slack rule",
+   "instructions": "Drag the words into place.",
+   "text": [
+    "Slack = ___ \u2212 ___ . The ___ path is the zero-slack chain."
+   ],
+   "tiles": [
+    {
+     "id": "ls",
+     "text": "LS"
+    },
+    {
+     "id": "es",
+     "text": "ES"
+    },
+    {
+     "id": "ef",
+     "text": "EF"
+    },
+    {
+     "id": "c",
+     "text": "critical"
+    },
+    {
+     "id": "s",
+     "text": "shortest"
+    }
+   ],
+   "answers": [
+    [
+     "ls"
+    ],
+    [
+     "es"
+    ],
+    [
+     "c"
+    ]
+   ],
+   "explanation": "Slack = LS \u2212 ES (equivalently LF \u2212 EF). The zero-slack chain is the critical path \u2014 the longest path, which sets the shortest possible duration.",
+   "source": "Lecture 1 (PDF pp. 56-58)",
+   "version": 1,
+   "articles": [
+    "critical-path"
+   ]
+  },
+  {
+   "id": "a-cp-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Order the timing analysis",
+   "items": [
+    {
+     "id": "f",
+     "label": "Forward pass \u2192 earliest times"
+    },
+    {
+     "id": "d",
+     "label": "Project duration = max EF"
+    },
+    {
+     "id": "b",
+     "label": "Backward pass \u2192 latest times"
+    },
+    {
+     "id": "s",
+     "label": "Slack = LS \u2212 ES per activity"
+    },
+    {
+     "id": "c",
+     "label": "Chain the zeros \u2192 critical path"
+    }
+   ],
+   "correct": [
+    "f",
+    "d",
+    "b",
+    "s",
+    "c"
+   ],
+   "explanation": "Forwards for earliest and duration, backwards for latest, subtract for slack, chain the zeros \u2014 then verify the chain sums to the duration.",
+   "source": "Lecture 1 (PDF pp. 53-60)",
+   "version": 1,
+   "articles": [
+    "critical-path"
+   ]
+  },
+  {
+   "id": "a-cp-hot",
+   "type": "hotspot",
+   "tag": "identify",
+   "prompt": "Click the 10-week activity on the critical chain",
+   "instructions": "Select the D task in the Project A network.",
+   "visual": "projA",
+   "article": "critical-path",
+   "target": "D",
+   "explanation": "D (10 weeks) sits on A \u2192 D \u2192 F \u2192 G \u2192 H. It has zero slack: any slip delays the 25-week deadline.",
+   "source": "2022 Midterm B, Q1.2",
+   "version": 1,
+   "articles": [
+    "critical-path"
+   ]
+  }
+ ],
+ "activity-graphs": [
+  {
+   "id": "a-aon-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "In which diagram do the arrows represent activities?",
+   "options": [
+    "Activity-on-node (AON)",
+    "Activity-on-arc (AOA)",
+    "Both \u2014 they are the same",
+    "Neither \u2014 arrows are data flow"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "In AON, activities are the nodes (boxes); arrows are only dependencies.",
+    "2": "They encode the same project differently \u2014 work lives on nodes in one, arrows in the other.",
+    "3": "Arrows mean 'must complete before', not data flow."
+   },
+   "explanation": "AOA puts work on arrows (nodes are instants, sometimes needing dummy tasks); AON puts work on nodes.",
+   "source": "Lecture 1 (PDF pp. 34-38)",
+   "version": 1,
+   "articles": [
+    "activity-graphs"
+   ]
+  }
+ ],
+ "gantt-charts": [
+  {
+   "id": "a-gantt-short",
+   "type": "short",
+   "tag": "read",
+   "prompt": "On the mini Gantt sketch, which activity could absorb a 2-week delay without moving the deadline?",
+   "instructions": "Answer with the activity letter.",
+   "accept": [
+    "b",
+    "activity b",
+    "task b"
+   ],
+   "explanation": "Only slack absorbs delay. B carries 4 weeks of float; every gold (critical) bar would move the deadline immediately.",
+   "source": "Lecture 1 (PDF pp. 61-63)",
+   "version": 1,
+   "articles": [
+    "gantt-charts"
+   ]
+  }
+ ],
+ "lifecycle-models": [
+  {
+   "id": "a-life-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Match each situation to its fitting model",
+   "left": [
+    {
+     "id": "s",
+     "label": "Requirements stable, well understood"
+    },
+    {
+     "id": "r",
+     "label": "High risk, large, novel system"
+    },
+    {
+     "id": "u",
+     "label": "UI unclear, feasibility in doubt"
+    }
+   ],
+   "right": [
+    {
+     "id": "w",
+     "label": "Iterative waterfall"
+    },
+    {
+     "id": "sp",
+     "label": "Spiral"
+    },
+    {
+     "id": "p",
+     "label": "Prototyping"
+    }
+   ],
+   "key": {
+    "s": "w",
+    "r": "sp",
+    "u": "p"
+   },
+   "pairNotes": {
+    "r": "Spiral exists to buy down risk per cycle \u2014 that is its whole point.",
+    "u": "A prototype answers one question fast; it is not a first draft of the product."
+   },
+   "explanation": "Stable \u2192 waterfall's cheap sequence; risky \u2192 spiral's risk cycles; doubtful \u2192 prototype the question before committing.",
+   "source": "Lecture 1 (PDF pp. 18-25)",
+   "version": 1,
+   "articles": [
+    "lifecycle-models"
+   ]
+  },
+  {
+   "id": "a-life-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Order the waterfall phases",
+   "items": [
+    {
+     "id": "r",
+     "label": "Requirements"
+    },
+    {
+     "id": "d",
+     "label": "Design"
+    },
+    {
+     "id": "c",
+     "label": "Coding / debugging"
+    },
+    {
+     "id": "t",
+     "label": "Testing"
+    }
+   ],
+   "correct": [
+    "r",
+    "d",
+    "c",
+    "t"
+   ],
+   "explanation": "The lecture's phase order. Iterative waterfall keeps the order but adds feedback loops \u2014 a test failure can send work back to design.",
+   "source": "Lecture 1 (PDF pp. 18-19)",
+   "version": 1,
+   "articles": [
+    "lifecycle-models"
+   ]
+  }
+ ],
+ "estimation-planning-poker": [
+  {
+   "id": "a-poker-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "Planning poker reveals estimates simultaneously to prevent anchoring.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 0,
+   "confirm": "Face-down reveal stops juniors anchoring on the first loud number; outliers then explain and the team re-estimates.",
+   "explanation": "Simultaneous reveal defeats anchoring. Divergent cards trigger discussion about what the task really involves.",
+   "source": "Lecture 1 (PDF pp. 45-46)",
+   "version": 1,
+   "articles": [
+    "estimation-planning-poker"
+   ]
+  },
+  {
+   "id": "a-poker-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Order one planning-poker round",
+   "items": [
+    {
+     "id": "p",
+     "label": "Play a card face down"
+    },
+    {
+     "id": "r",
+     "label": "Reveal simultaneously"
+    },
+    {
+     "id": "d",
+     "label": "Highest/lowest estimators explain"
+    },
+    {
+     "id": "e",
+     "label": "Re-estimate to convergence"
+    }
+   ],
+   "correct": [
+    "p",
+    "r",
+    "d",
+    "e"
+   ],
+   "explanation": "Conceal \u2192 reveal \u2192 discuss \u2192 converge. '?' and \u221e are legitimate bids: clarify or split the task.",
+   "source": "Lecture 1 (PDF pp. 45-49)",
+   "version": 1,
+   "articles": [
+    "estimation-planning-poker"
+   ]
+  }
+ ],
+ "scrum-framework": [
+  {
+   "id": "a-scrum-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Match each accountability to its job",
+   "left": [
+    {
+     "id": "po",
+     "label": "Product Owner"
+    },
+    {
+     "id": "dev",
+     "label": "Developers"
+    },
+    {
+     "id": "sm",
+     "label": "Scrum Master"
+    }
+   ],
+   "right": [
+    {
+     "id": "b",
+     "label": "Owns backlog order, maximises value"
+    },
+    {
+     "id": "i",
+     "label": "Build each sprint's increment"
+    },
+    {
+     "id": "p",
+     "label": "Protects the process, removes barriers"
+    }
+   ],
+   "key": {
+    "po": "b",
+    "dev": "i",
+    "sm": "p"
+   },
+   "explanation": "One owner of priorities, one team building the increment, one guardian of the process \u2014 and the team manages itself.",
+   "source": "Scrum Guide (pp. 5-7)",
+   "version": 1,
+   "articles": [
+    "scrum-framework"
+   ]
+  },
+  {
+   "id": "a-scrum-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "The Scrum Master assigns tasks to developers.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "The team is self-managing: members decide internally who does what. The Scrum Master guards the process, never the task list."
+   },
+   "explanation": "False. Self-managing teams allocate their own work; the Scrum Master removes barriers and protects the process.",
+   "source": "Scrum Guide (p. 6)",
+   "version": 1,
+   "articles": [
+    "scrum-framework"
+   ]
+  }
+ ],
+ "scrum-events-backlogs": [
+  {
+   "id": "a-sprint-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Order a sprint's events",
+   "items": [
+    {
+     "id": "p",
+     "label": "Sprint planning"
+    },
+    {
+     "id": "d",
+     "label": "Daily stand-ups"
+    },
+    {
+     "id": "r",
+     "label": "Sprint review"
+    },
+    {
+     "id": "t",
+     "label": "Retrospective"
+    }
+   ],
+   "correct": [
+    "p",
+    "d",
+    "r",
+    "t"
+   ],
+   "explanation": "Commit, steer, inspect the product with stakeholders, then improve the process. Review looks outward; retrospective looks inward.",
+   "source": "Scrum Guide (pp. 8-13)",
+   "version": 1,
+   "articles": [
+    "scrum-events-backlogs"
+   ]
+  },
+  {
+   "id": "a-review-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "Which event inspects the product with stakeholders?",
+   "options": [
+    "Sprint planning",
+    "Daily stand-up",
+    "Sprint review",
+    "Sprint retrospective"
+   ],
+   "answerIndex": 2,
+   "distractor": {
+    "0": "Planning commits to the goal \u2014 inspection happens at the end.",
+    "1": "Dailies steer the Developers' own plan.",
+    "3": "The retrospective inspects the process, within the team only."
+   },
+   "explanation": "The review demos the increment to stakeholders and adapts the backlog; the retrospective follows and improves how the team works.",
+   "source": "2022 Midterm B, Q4.4",
+   "version": 1,
+   "articles": [
+    "scrum-events-backlogs"
+   ]
+  }
+ ],
+ "burn-up-charts": [
+  {
+   "id": "a-burn-fib",
+   "type": "fib",
+   "tag": "recall",
+   "prompt": "Complete the earned-value rule",
+   "text": [
+    "Actual progress = sum of ___ durations of tasks ___ by time t."
+   ],
+   "tiles": [
+    {
+     "id": "e",
+     "text": "estimated"
+    },
+    {
+     "id": "f",
+     "text": "finished"
+    },
+    {
+     "id": "a",
+     "text": "actual"
+    },
+    {
+     "id": "p",
+     "text": "planned"
+    }
+   ],
+   "answers": [
+    [
+     "e"
+    ],
+    [
+     "f"
+    ]
+   ],
+   "explanation": "Actual progress adds estimated durations of finished tasks \u2014 earned value. Using actual durations instead is the classic exam trap.",
+   "source": "Lecture 2 (PDF p. 22)",
+   "version": 1,
+   "articles": [
+    "burn-up-charts"
+   ]
+  },
+  {
+   "id": "a-burn-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "Burn-up actual progress is computed from how long finished tasks actually took.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "It uses their estimated durations \u2014 finishing a 20-day-estimate task in 30 days still earns 20."
+   },
+   "explanation": "False. Earned value = estimates of completed work, which is why planned and actual lines are comparable.",
+   "source": "Lecture 2 (PDF pp. 22-24)",
+   "version": 1,
+   "articles": [
+    "burn-up-charts"
+   ]
+  },
+  {
+   "id": "a-burn-code",
+   "type": "code",
+   "tag": "predict",
+   "prompt": "Predict the spreadsheet result",
+   "instructions": "Read the SUMIF helper, then predict actual progress at day 30.",
+   "code": "Planned = SUM(B2:B20)          // 200\nRate    = Planned / Duration   // 200 / 100\nActual  = SUMIF(Finish, \"<=\" & T, B)\n// tasks finished by day 30: estimates 20, 10, 15",
+   "mode": "predict",
+   "options": [
+    "30 (the day number)",
+    "45 (sum of estimates)",
+    "60 (planned progress)",
+    "200 (the total)"
+   ],
+   "answerIndex": 1,
+   "explanation": "SUMIF adds estimates only for finished tasks: 20 + 10 + 15 = 45. Planned at day 30 is 60 \u2014 so the project trails.",
+   "hints": [
+    "SUMIF filters by the finish column first.",
+    "Add the three estimates, not the day."
+   ],
+   "source": "Lecture 2 (PDF pp. 22-24); Worksheet 2, Q2",
+   "version": 1,
+   "articles": [
+    "burn-up-charts"
+   ]
+  }
+ ],
+ "kanban-wip": [
+  {
+   "id": "a-kanban-tree",
+   "type": "tree",
+   "tag": "scenario",
+   "prompt": "Scenario: a 'Done' card turns out defective",
+   "instructions": "You are on a team with a WIP limit of 3. 'Search Courses' is Done \u2014 but a user reports it crashes on empty queries. Decide what happens next.",
+   "start": "alert",
+   "nodes": {
+    "alert": {
+     "text": "Bug report lands: 'Search Courses' (in Done) crashes on empty queries. Review is full (3/3), Coding has 1 card. What do you do first?",
+     "options": [
+      {
+       "label": "Pull fresh work into Coding anyway",
+       "to": "rushed",
+       "note": "Starting new work while a defect escapes violates finish-before-start."
+      },
+      {
+       "label": "Move the card back to Coding/Testing and fix it within WIP",
+       "to": "fixing",
+       "good": true,
+       "note": "Done means accepted \u2014 a defective card re-enters the flow."
+      },
+      {
+       "label": "Ask to raise the WIP limit so everything fits",
+       "to": "limit",
+       "note": "Raising WIP hides the constraint instead of resolving it."
+      }
+     ]
+    },
+    "rushed": {
+     "text": "Two streams now compete: the defect and the new feature. Review stays clogged; the crash reaches more users.",
+     "title": "Split focus",
+     "ending": true,
+     "rating": "Risky",
+     "debrief": "WIP limits exist to force finishing over starting. New work while a known defect escapes multiplies rework."
+    },
+    "limit": {
+     "text": "The board absorbs everything \u2014 columns swell to 5, 6, 7 cards. Nothing finishes; the pile-up signal is gone.",
+     "title": "Limit inflated",
+     "ending": true,
+     "rating": "Poor",
+     "debrief": "A WIP limit you raise whenever it binds is decoration. The pile-up was the diagnosis; the fix was rebalancing toward Review."
+    },
+    "fixing": {
+     "text": "The card is back in Coding/Testing and the crash is fixed. Review still holds 3 cards. How does the fix reach Done?",
+     "options": [
+      {
+       "label": "Merge it straight to Done \u2014 it was Done before",
+       "to": "sloppy",
+       "note": "Fixes re-break things; the lecture says regressions re-occur."
+      },
+      {
+       "label": "Let it flow through Review and Awaiting Merge again",
+       "to": "solid",
+       "good": true,
+       "note": "Done is re-earned, not remembered."
+      }
+     ]
+    },
+    "sloppy": {
+     "text": "The fix ships unreviewed and breaks saved searches. Another card travels backwards \u2014 the team now distrusts Done.",
+     "title": "Unreviewed merge",
+     "ending": true,
+     "rating": "Risky",
+     "debrief": "Regression discipline is the point of the Review column. Every fix gets re-reviewed, or Done stops meaning accepted."
+    },
+    "solid": {
+     "text": "Re-reviewed, re-merged, re-accepted. The board kept flowing because the team finished the defect before starting anything new.",
+     "title": "Discipline held",
+     "ending": true,
+     "rating": "Solid",
+     "debrief": "Move Done defects back, respect WIP, re-review fixes. That is the whole Kanban contract in one incident."
+    }
+   },
+   "explanation": "Kanban incidents test one habit: finish before you start. The board's columns and WIP limit tell you exactly where defective work belongs.",
+   "source": "2022 Midterm B, Q4.2; Worksheet 2, Q3",
+   "version": 1,
+   "articles": [
+    "kanban-wip"
+   ]
+  }
+ ],
+ "code-review": [
+  {
+   "id": "a-review-code",
+   "type": "code",
+   "tag": "debug",
+   "prompt": "Find the bug in the progress helper",
+   "instructions": "Click the faulty line. Context: Worksheet 2's SUMIF crash-course.",
+   "code": "// planned vs actual helper\nPlanned = SUM(B2:B20)\nActual = SUMIF(A2:A20, H1, B2:B20)\nStatus = IF(Actual >= Planned, \"ahead\", \"behind\")",
+   "mode": "bug",
+   "bugLine": 3,
+   "explanation": "Line 3 passes H1 as a literal match instead of a comparison: it needs \">=\" & H1 (or \"<=\" & T for finished-by-time). Without the operator string, only exact matches count.",
+   "hints": [
+    "SUMIF's second parameter is a condition string.",
+    "How do you say 'greater than or equal to H1' in a formula?"
+   ],
+   "source": "Worksheet 2, Q2 (SUMIF notes)",
+   "version": 1,
+   "articles": [
+    "code-review"
+   ]
+  },
+  {
+   "id": "a-review-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "A good checklist lets reviewers stop thinking about the code.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "The slides say checklists help juniors and get in the way for experts \u2014 judgement stays with the human."
+   },
+   "explanation": "False. Automate what checks can be automated; spend human attention on logic. Checklists guide, never replace, judgement.",
+   "source": "Lecture 2 (PDF pp. 41-42)",
+   "version": 1,
+   "articles": [
+    "code-review"
+   ]
+  }
+ ],
+ "exam-mistakes-agile": [
+  {
+   "id": "a-agile-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "Ahead on the burn-up while scope keeps growing means the project is safe.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "Rising scope with flat actuals is the classic distress signal \u2014 the gap that matters includes the scope line."
+   },
+   "explanation": "False. Read all three lines: actual vs planned vs scope. Growth can swallow any lead.",
+   "source": "Lecture 2 (PDF pp. 20-21)",
+   "version": 1,
+   "articles": [
+    "exam-mistakes-agile"
+   ]
+  }
+ ]
+}

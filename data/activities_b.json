@@ -1,0 +1,884 @@
+{
+ "user-stories": [
+  {
+   "id": "a-story-fib",
+   "type": "fib",
+   "tag": "recall",
+   "prompt": "Rebuild the story formula",
+   "text": [
+    "As a ___ , I want ___ so that ___ ."
+   ],
+   "tiles": [
+    {
+     "id": "r",
+     "text": "student"
+    },
+    {
+     "id": "w",
+     "text": "to register for pracs"
+    },
+    {
+     "id": "b",
+     "text": "I don't miss out"
+    },
+    {
+     "id": "s",
+     "text": "the system"
+    },
+    {
+     "id": "c",
+     "text": "clean code"
+    }
+   ],
+   "answers": [
+    [
+     "r"
+    ],
+    [
+     "w"
+    ],
+    [
+     "b"
+    ]
+   ],
+   "explanation": "Role, want, benefit \u2014 one sentence, all three present. 'The system' is never a role; 'clean code' is a task, not a user benefit.",
+   "hints": [
+    "Who benefits \u2014 a real user, not the software.",
+    "The last part justifies priority."
+   ],
+   "source": "Lecture 3 (PDF pp. 20-21); Worksheet 3, Q1",
+   "version": 1,
+   "articles": [
+    "user-stories"
+   ]
+  },
+  {
+   "id": "a-story-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "'As a database, I want indexes so that queries run fast' is a valid user story.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "Stories are about users \u2014 people who use the software. A database is an implementation detail."
+   },
+   "explanation": "False. User-story common sense: stories serve real users. System internals belong in tasks, not stories.",
+   "source": "Lecture 3 (PDF p. 24)",
+   "version": 1,
+   "articles": [
+    "user-stories"
+   ]
+  }
+ ],
+ "stakeholders-actors": [
+  {
+   "id": "a-actor-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Sort the restaurant scenario's people and systems",
+   "left": [
+    {
+     "id": "c",
+     "label": "Hungry customer"
+    },
+    {
+     "id": "p",
+     "label": "Payment gateway"
+    },
+    {
+     "id": "g",
+     "label": "Food safety regulator"
+    }
+   ],
+   "right": [
+    {
+     "id": "pa",
+     "label": "Primary actor (a person with the goal)"
+    },
+    {
+     "id": "sa",
+     "label": "Secondary actor (needed external)"
+    },
+    {
+     "id": "sh",
+     "label": "Stakeholder, not an actor"
+    }
+   ],
+   "key": {
+    "c": "pa",
+    "p": "sa",
+    "g": "sh"
+   },
+   "pairNotes": {
+    "g": "Regulators care deeply but never touch the use case \u2014 stakeholders, not actors."
+   },
+   "explanation": "Actors interact; stakeholders merely care. Exactly one person carries each use-case goal; the gateway is used, the regulator only watches.",
+   "source": "2019 Test 1, Q2; Lecture 3 (PDF pp. 27-29)",
+   "version": 1,
+   "articles": [
+    "stakeholders-actors"
+   ]
+  }
+ ],
+ "use-case-headers": [
+  {
+   "id": "a-head-fib",
+   "type": "fib",
+   "tag": "recall",
+   "prompt": "Trigger or precondition?",
+   "text": [
+    "The ___ starts the flow; the ___ must already be true."
+   ],
+   "tiles": [
+    {
+     "id": "t",
+     "text": "trigger"
+    },
+    {
+     "id": "p",
+     "text": "precondition"
+    },
+    {
+     "id": "g",
+     "text": "goal"
+    },
+    {
+     "id": "e",
+     "text": "extension"
+    }
+   ],
+   "answers": [
+    [
+     "t"
+    ],
+    [
+     "p"
+    ]
+   ],
+   "explanation": "Selecting 'plot data' triggers; being logged in pre-exists. Swapping them is the classic half-mark loss (2022 Q2.2a).",
+   "source": "Lecture 3 (PDF p. 46)",
+   "version": 1,
+   "articles": [
+    "use-case-headers"
+   ]
+  }
+ ],
+ "use-case-flow": [
+  {
+   "id": "a-flow-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Reconstruct the happy-days flow",
+   "instructions": "Plot-data scenario, five steps. Alternate actor and system.",
+   "items": [
+    {
+     "id": "s1",
+     "label": "User selects the plot-data option"
+    },
+    {
+     "id": "s2",
+     "label": "System lists datasets for the credentials"
+    },
+    {
+     "id": "s3",
+     "label": "User picks dataset, columns and chart style"
+    },
+    {
+     "id": "s4",
+     "label": "System generates, displays and saves the PNG"
+    },
+    {
+     "id": "s5",
+     "label": "System confirms success"
+    }
+   ],
+   "correct": [
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5"
+   ],
+   "explanation": "Trigger \u2192 system lists \u2192 actor specifies \u2192 system produces \u2192 confirm. Every deviation branches to an extension, never into the main flow.",
+   "source": "2022 Midterm B, Q2.2(b)",
+   "version": 1,
+   "articles": [
+    "use-case-flow"
+   ]
+  },
+  {
+   "id": "a-flow-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "'Database network connection fails' makes a strong extension.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "The slides' exhibit-A reject: overly-generic problems fit every system and help no designer."
+   },
+   "explanation": "False. Extensions must be scenario-specific with step ID, handling and outcome \u2014 e.g. non-numeric data at step 5.",
+   "source": "Lecture 3 (PDF p. 56)",
+   "version": 1,
+   "articles": [
+    "use-case-flow"
+   ]
+  }
+ ],
+ "use-case-diagrams": [
+  {
+   "id": "a-ucd-hot",
+   "type": "hotspot",
+   "tag": "identify",
+   "prompt": "Which case is included by 'Upload Video'?",
+   "instructions": "Click the included oval in the video-sharing diagram.",
+   "visual": "ucd-recall",
+   "article": "use-case-diagrams",
+   "target": "auth",
+   "explanation": "'Authenticate' is factored out with \u00abinclude\u00bb \u2014 one shared sub-flow instead of five copies. Login-style cases are the textbook include.",
+   "source": "Lecture 3 (PDF pp. 39-40)",
+   "version": 1,
+   "articles": [
+    "use-case-diagrams"
+   ]
+  }
+ ],
+ "nfr-validity": [
+  {
+   "id": "a-valid-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "'Students must finish enrolment before week 1.' Why is this not a valid NFR?",
+   "options": [
+    "It is ambiguous",
+    "It governs actors, not the system \u2014 a business rule",
+    "It demands perfection",
+    "It is actually a valid NFR"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "Its meaning is perfectly clear \u2014 clarity isn't the failure.",
+    "2": "It states no reliability bound at all.",
+    "3": "Check scope: who must do what?"
+   },
+   "explanation": "In-scope failure: the rule constrains students, not software. Business rules look like NFRs but live outside the system boundary.",
+   "source": "Lecture 4 (PDF p. 47)",
+   "version": 1,
+   "articles": [
+    "nfr-validity"
+   ]
+  },
+  {
+   "id": "a-valid-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Order the five validity gates",
+   "instructions": "Run every candidate NFR through these in lecture order.",
+   "items": [
+    {
+     "id": "u",
+     "label": "Unambiguous \u2014 same meaning to all"
+    },
+    {
+     "id": "d",
+     "label": "Doable with available tech"
+    },
+    {
+     "id": "v",
+     "label": "Verifiable by observation"
+    },
+    {
+     "id": "s",
+     "label": "In-scope \u2014 governs the system"
+    },
+    {
+     "id": "n",
+     "label": "Truly non-functional, not a disguised function"
+    }
+   ],
+   "correct": [
+    "u",
+    "d",
+    "v",
+    "s",
+    "n"
+   ],
+   "explanation": "The Worksheet 4 Q1 verdict machine: meaning, feasibility, testability, scope, category. Fail any gate and the NFR is decoration.",
+   "source": "Lecture 4 (PDF pp. 42-49)",
+   "version": 1,
+   "articles": [
+    "nfr-validity"
+   ]
+  }
+ ],
+ "performance-requirements": [
+  {
+   "id": "a-perf-short",
+   "type": "short",
+   "tag": "recall",
+   "prompt": "Operation + bound + workload + ___ ?",
+   "instructions": "Name the missing fourth part of a performance requirement.",
+   "accept": [
+    "environment",
+    "the environment",
+    "operating environment",
+    "hardware environment",
+    "platform",
+    "test environment"
+   ],
+   "explanation": "Environment. 'Colour-enhance within 250 ms on a 10 MP image on an average PC' \u2014 drop the PC and the bound is untestable.",
+   "source": "Lecture 4 (PDF pp. 17-20)",
+   "version": 1,
+   "articles": [
+    "performance-requirements"
+   ]
+  }
+ ],
+ "reliability-requirements": [
+  {
+   "id": "a-rel-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Match each system to its fitting metric",
+   "left": [
+    {
+     "id": "pay",
+     "label": "Card payment authorisation"
+    },
+    {
+     "id": "vit",
+     "label": "Ward vitals display"
+    },
+    {
+     "id": "srv",
+     "label": "Forecast server over a cyclone season"
+    }
+   ],
+   "right": [
+    {
+     "id": "p",
+     "label": "POFOD (per demand)"
+    },
+    {
+     "id": "a",
+     "label": "Availability (uptime fraction)"
+    },
+    {
+     "id": "m",
+     "label": "MTBF (mean time between failures)"
+    }
+   ],
+   "key": {
+    "pay": "p",
+    "vit": "a",
+    "srv": "m"
+   },
+   "pairNotes": {
+    "vit": "Continuous monitoring has no 'demands' \u2014 uptime fraction is the honest measure."
+   },
+   "explanation": "On-demand checks want per-attempt probability; continuous service wants uptime; long-running kit wants MTBF. Mismatches fail (2019 Q3 hint).",
+   "source": "Lecture 4 (PDF pp. 24-28); 2019 Test 1, Q3",
+   "version": 1,
+   "articles": [
+    "reliability-requirements"
+   ]
+  },
+  {
+   "id": "a-rel-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "A reliability requirement should demand that the system never fails.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "Perfection is untestable and unachievable \u2014 the worksheet says so explicitly. State an acceptable level for a stated failure class."
+   },
+   "explanation": "False. Reliability quantifies acceptable failure, never perfection \u2014 e.g. \u22641 min of lost vitals display per 24 h.",
+   "source": "Worksheet 4, Q3 notes (p. 2)",
+   "version": 1,
+   "articles": [
+    "reliability-requirements"
+   ]
+  }
+ ],
+ "usability-requirements": [
+  {
+   "id": "a-usa-fib",
+   "type": "fib",
+   "tag": "recall",
+   "prompt": "Complete the usability formula",
+   "text": [
+    "An average ___ shall complete a defined ___ within a ___ , with a stated ___ ."
+   ],
+   "tiles": [
+    {
+     "id": "u",
+     "text": "user"
+    },
+    {
+     "id": "t",
+     "text": "task"
+    },
+    {
+     "id": "b",
+     "text": "time bound"
+    },
+    {
+     "id": "c",
+     "text": "success criterion"
+    },
+    {
+     "id": "s",
+     "text": "system"
+    },
+    {
+     "id": "f",
+     "text": "password"
+    }
+   ],
+   "answers": [
+    [
+     "u"
+    ],
+    [
+     "t"
+    ],
+    [
+     "b"
+    ],
+    [
+     "c"
+    ]
+   ],
+   "explanation": "User class + task + time/effort bound + success criterion. 'The system' and 'password' fail the enables-vs-obligates test \u2014 rules, not usability.",
+   "source": "Lecture 4 (PDF pp. 31-35)",
+   "version": 1,
+   "articles": [
+    "usability-requirements"
+   ]
+  },
+  {
+   "id": "a-usa-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "Which is a usability requirement?",
+   "options": [
+    "Users must enter a password to log in",
+    "An average user shall log in within 30 seconds unaided, 9 of 10 succeeding",
+    "The system must count logins per day"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "That obligates the user \u2014 a business rule, not an ability the system enables.",
+    "2": "Counting is a function with a writable flow \u2014 an FR in disguise."
+   },
+   "explanation": "Only the middle option enables (not obligates) with user, task, bound and bar. The other two fail scope and category respectively.",
+   "source": "Worksheet 4, closing note (p. 3)",
+   "version": 1,
+   "articles": [
+    "usability-requirements"
+   ]
+  }
+ ],
+ "other-nfrs": [
+  {
+   "id": "a-other-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Match each risk to its NFR family",
+   "left": [
+    {
+     "id": "v",
+     "label": "Ward display shows confidential vitals"
+    },
+    {
+     "id": "e",
+     "label": "Vitals must reach the hospital record"
+    },
+    {
+     "id": "a",
+     "label": "Gloved nurse must notice alarms"
+    }
+   ],
+   "right": [
+    {
+     "id": "s",
+     "label": "Security"
+    },
+    {
+     "id": "i",
+     "label": "Interoperability"
+    },
+    {
+     "id": "c",
+     "label": "Accessibility"
+    }
+   ],
+   "key": {
+    "v": "s",
+    "e": "i",
+    "a": "c"
+   },
+   "explanation": "Confidential \u2192 security; cross-system \u2192 interoperability; diverse abilities \u2192 accessibility. 2022 Q3.4(d) rewards exactly this risk-first reasoning.",
+   "source": "2022 Midterm B, Q3.4(d)",
+   "version": 1,
+   "articles": [
+    "other-nfrs"
+   ]
+  }
+ ],
+ "srs-ieee830": [
+  {
+   "id": "a-srs-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "Which IEEE virtue is backlog ordering in disguise?",
+   "options": [
+    "Ranked for importance/stability",
+    "Modifiable",
+    "Traceable",
+    "Correct"
+   ],
+   "answerIndex": 0,
+   "distractor": {
+    "1": "Modifiability is about cheap document change, not order.",
+    "2": "Traceability links requirements to sources and tests.",
+    "3": "Correctness matters, but ordering is explicitly 'ranked'."
+   },
+   "explanation": "Ranked: not all requirements matter equally. The Product Owner's ordering is ranking made agile; traceability is this wiki's citation habit.",
+   "source": "IEEE 830, Section 4.3 (p. 11)",
+   "version": 1,
+   "articles": [
+    "srs-ieee830"
+   ]
+  },
+  {
+   "id": "a-srs-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "'The system shall have a good human interface' is verifiable.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "IEEE's own hall-of-shame example: no observation decides 'good'. Rewrite with user, task, bound, bar."
+   },
+   "explanation": "False \u2014 non-verifiable, hence invalid. Same family as 'user friendly' (2022 Q3.2b) and 'suitable for photo albums' (Worksheet 4).",
+   "source": "IEEE 830 (p. 14)",
+   "version": 1,
+   "articles": [
+    "srs-ieee830"
+   ]
+  }
+ ],
+ "ethics-theories": [
+  {
+   "id": "a-eth-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Match each claim to its school",
+   "left": [
+    {
+     "id": "d",
+     "label": "'Don't falsify results, whatever it costs'"
+    },
+    {
+     "id": "u",
+     "label": "'Pull the lever: one death beats five'"
+    }
+   ],
+   "right": [
+    {
+     "id": "de",
+     "label": "Deontology (duty to rules)"
+    },
+    {
+     "id": "ut",
+     "label": "Act-utilitarianism (best outcome)"
+    }
+   ],
+   "key": {
+    "d": "de",
+    "u": "ut"
+   },
+   "explanation": "Duty judges the act; utility judges the outcome. The frameworks can honestly disagree \u2014 which is why engineers must deliberate explicitly.",
+   "source": "Lecture 5 (PDF pp. 12-15)",
+   "version": 1,
+   "articles": [
+    "ethics-theories"
+   ]
+  },
+  {
+   "id": "a-eth-tree",
+   "type": "tree",
+   "tag": "scenario",
+   "prompt": "Scenario: the client leans on your estimates",
+   "instructions": "You and two colleagues are mid-planning-poker. The client says the bid must come down or the contract walks. Decide.",
+   "start": "pressure",
+   "nodes": {
+    "pressure": {
+     "text": "Estimates say 40 days; the client demands 25 and hints the contract depends on it. The team looks at you. What do you do?",
+     "options": [
+      {
+       "label": "Trim the cards to 25 to keep the contract",
+       "to": "falsified",
+       "note": "Knowingly false estimates betray the team and future users."
+      },
+      {
+       "label": "Refuse to change the numbers, disclose the uncertainty and offer options",
+       "to": "honest",
+       "good": true,
+       "note": "Honesty plus options: the ACS stakeholder-trust response."
+      },
+      {
+       "label": "Say nothing and let the loudest voice decide",
+       "to": "silent",
+       "note": "Silence delegates your professional judgement to pressure."
+      }
+     ]
+    },
+    "falsified": {
+     "text": "The project 'commits' to 25 days, overruns to 43, and the client you tried to please terminates anyway. The team absorbs unpaid overtime.",
+     "title": "Numbers bent",
+     "ending": true,
+     "rating": "Poor",
+     "debrief": "Falsified estimates help nobody: the overrun still arrives, now compounded by broken trust. Public and stakeholder interest outranks client pressure in the ACS Code."
+    },
+    "silent": {
+     "text": "Estimates drift down under pressure. Nobody owns the numbers, so nobody defends them \u2014 the same overrun, with deniability instead of integrity.",
+     "title": "Diffusion",
+     "ending": true,
+     "rating": "Risky",
+     "debrief": "Diffusion of responsibility is how groups misbehave. Professionalism means owning your estimate out loud, even when it costs."
+    },
+    "honest": {
+     "text": "You hold the 40-day estimate, show the breakdown, and offer scope phasing: core in 25 days, remainder next. The client pushes back. Now what?",
+     "options": [
+      {
+       "label": "Offer the phased scope in writing with risks stated",
+       "to": "phased",
+       "good": true,
+       "note": "Transparency converts conflict into planning."
+      },
+      {
+       "label": "Concede the 40 was 'pessimistic' to smooth things over",
+       "to": "falsified",
+       "note": "Same falsification, slower \u2014 and now documented as yours."
+      }
+     ]
+    },
+    "phased": {
+     "text": "The client accepts phased delivery. The team ships the core on time; trust \u2014 the currency the ACS Code protects \u2014 survives the negotiation.",
+     "title": "Held the line",
+     "ending": true,
+     "rating": "Solid",
+     "debrief": "Duty (don't lie) plus utility (a shippable core) plus code (stakeholder trust first). Frameworks converge here: honesty with options."
+    }
+   },
+   "explanation": "Estimate pressure is the handout's own scenario (Example 4). The pattern generalises: disclose, document, offer options \u2014 never silently comply.",
+   "source": "Lecture 5 slides (PDF p. 33); ethics handout Example 4",
+   "version": 1,
+   "articles": [
+    "ethics-theories"
+   ]
+  }
+ ],
+ "ethics-se-professionalism": [
+  {
+   "id": "a-eth-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "Under the ACS Code, public interest outranks loyalty to your employer or client.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 0,
+   "confirm": "Health, safety, environment and stakeholder trust come first \u2014 the Code says so explicitly.",
+   "explanation": "True. Professionalism means the public's safety and trust constrain what any client or employer can ask of you.",
+   "source": "ACS Code of Professional Conduct (p. 6)",
+   "version": 1,
+   "articles": [
+    "ethics-se-professionalism"
+   ]
+  }
+ ],
+ "midterm-study-guide": [
+  {
+   "id": "a-plan-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Order the five-day plan",
+   "instructions": "Highest yield first, integration last.",
+   "items": [
+    {
+     "id": "c",
+     "label": "Day 1 \u00b7 Calculation track"
+    },
+    {
+     "id": "r",
+     "label": "Day 2 \u00b7 Requirements track"
+    },
+    {
+     "id": "n",
+     "label": "Day 3 \u00b7 NFR validity"
+    },
+    {
+     "id": "a",
+     "label": "Day 4 \u00b7 Agile + ethics"
+    },
+    {
+     "id": "f",
+     "label": "Day 5 \u00b7 Full paper, timed"
+    }
+   ],
+   "correct": [
+    "c",
+    "r",
+    "n",
+    "a",
+    "f"
+   ],
+   "explanation": "Marks density first (graphs, use cases), judgement last (ethics reasoning), then one closed-book rehearsal under time.",
+   "source": "Midterm study guide (coverage map)",
+   "version": 1,
+   "articles": [
+    "midterm-study-guide"
+   ]
+  },
+  {
+   "id": "a-paper-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "The 2022 midterm allowed calculators.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "The cover says plainly: calculators are not allowed. Arithmetic must be hand-checkable \u2014 show working."
+   },
+   "explanation": "False \u2014 closed book, no calculators, 90 minutes, 100 marks. Method marks reward shown working even with slips.",
+   "source": "2022 Midterm B cover (p. 1)",
+   "version": 1,
+   "articles": [
+    "midterm-study-guide"
+   ]
+  }
+ ],
+ "functional-requirements": [
+  {
+   "id": "a-fr-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Sort each sentence: function or characteristic?",
+   "left": [
+    {
+     "id": "g",
+     "label": "'Generate PNG charts from datasets'"
+    },
+    {
+     "id": "s",
+     "label": "'Render them within 2 s on the lab PC'"
+    }
+   ],
+   "right": [
+    {
+     "id": "f",
+     "label": "Functional (write its flow)"
+    },
+    {
+     "id": "n",
+     "label": "Non-functional (measure it)"
+    }
+   ],
+   "key": {
+    "g": "f",
+    "s": "n"
+   },
+   "explanation": "Inputs-to-outputs versus a measurable bound on that function. The worksheet's two-question test decides every case.",
+   "source": "Worksheet 4, Q1 guidance (p. 1)",
+   "version": 1,
+   "articles": [
+    "functional-requirements"
+   ]
+  }
+ ],
+ "exam-mistakes-requirements": [
+  {
+   "id": "a-req-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "A use-case diagram shows the order of steps in a scenario.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "The slides' warning slide exists precisely because this is tempting: diagrams map who-does-what, flows carry sequence."
+   },
+   "explanation": "False \u2014 that confusion is an instant mark-loser. Sequencing lives in the written flow; ovals never chain into flowcharts.",
+   "source": "Lecture 3 (PDF p. 42)",
+   "version": 1,
+   "articles": [
+    "exam-mistakes-requirements"
+   ]
+  }
+ ],
+ "exam-mistakes-planning": [
+  {
+   "id": "a-plan-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "Project duration equals the sum of all task durations.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "Only the critical path's tasks sum to the duration \u2014 off-path work overlaps in time. 2022 Project A totals far more than 25 weeks of tasks."
+   },
+   "explanation": "False. Duration is the longest path through the network, not the sum of everything.",
+   "source": "Lecture 1 (PDF pp. 53-58)",
+   "version": 1,
+   "articles": [
+    "exam-mistakes-planning"
+   ]
+  }
+ ],
+ "exam-mistakes-nfr": [
+  {
+   "id": "a-nfr-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "POFOD is the right metric for a continuously displayed vital-signs monitor.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "distractor": {
+    "0": "Continuous display has no discrete 'demands' \u2014 availability (uptime fraction) fits. POFOD suits on-demand checks like ticket validation."
+   },
+   "explanation": "False \u2014 the classic metric mismatch. Match the metric to the usage pattern or the requirement is nonsense.",
+   "source": "2019 Test 1, Q3 hint; Lecture 4 (PDF pp. 24-28)",
+   "version": 1,
+   "articles": [
+    "exam-mistakes-nfr"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+Intro to SE (ISAD1000/5004) 
+Worksheet 5: Ethics and Professionalism 
+Worksheet 5: Ethics and Professionalism 
+Updated: 31st May, 2020 
+Revised: 14th May 2023, 23rd August 2023 
+This worksheet tries to get you thinking about the deeper aspects of right and wrong in 
+software engineering. 
+Attempt this worksheet in groups of 3-5 students. Try to see how different group members 
+look at the given question in different angles relating to ethics. 
+Then, present one of the answers in Q2 and Q3 to other groups and get their feedback. 
+1. Motivation (10 minutes)
+Come up with as many reasons as you can for why someone might behave unethically in a 
+software project. 
+2. Imagining Harm (45 minutes)
+For each of the following systems, come up with a brief story that describes how a lapse of 
+ethics/professionalism could lead to real harm to other people. 
+In each case, note the following: 
+• It may be easier to work backwards, first considering who could be harmed and how
+(physically, financially, socially, psychologically, etc.), what involvement the software
+might have in this, and what actual SE mistakes could lead to that.
+• You may be able to come up with “nightmare scenarios”, but you could also describe
+more subtle problems. Both are valid!
+• Mix it up. Don’t just rewrite the scenarios from the lecture, for instance.
+• Really bad things tend to happen due to very high level management mistakes, and/or
+multiple mistakes piling up.
+A single bug is generally not an ethical mistake itself, because we cannot reasonably avoid
+them. In software engineering there are (or should be!) ways of fixing bugs before they
+result in actual harm.
+Here are the software systems to consider: 
+(a) A video chat system.
+(b) A software system for controlling traﬀic lights.
+(c) An online banking system.
+(d) A software package for helping to design houses.
+(e) An aircraft autopilot.
+3. Code of ethics ( 15 minutes)
+Discuss how following either ACS code of ethics or IEEE-CS code of ethics could have
+helpful to reduce the harm to other people you have identified in 2 above for two of the
+software systems of your choice.
+End of Worksheet 
+CRICOS Provide Code: 00301J 
+Page 1 of 1

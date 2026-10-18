@@ -1,0 +1,146 @@
+[
+  {
+    "file": "2020-Scrum-Guide-US.pdf",
+    "rel": "Learning material\\2020-Scrum-Guide-US.pdf",
+    "pages": 14,
+    "chars": 30141,
+    "status": "complete",
+    "sha": "e7d0b1a7"
+  },
+  {
+    "file": "Code-of-Professional-Conduct_v2.1(1).pdf",
+    "rel": "Learning material\\Code-of-Professional-Conduct_v2.1(1).pdf",
+    "pages": 8,
+    "chars": 13172,
+    "status": "complete",
+    "sha": "f8ca4b02"
+  },
+  {
+    "file": "IEEE RecommendedPractise_for_SRS.pdf",
+    "rel": "Learning material\\IEEE RecommendedPractise_for_SRS.pdf",
+    "pages": 39,
+    "chars": 91634,
+    "status": "complete",
+    "sha": "6e53b6e2"
+  },
+  {
+    "file": "Lecture1_Planning_2025S1_1ppV2.pdf",
+    "rel": "Learning material\\Lecture1_Planning_2025S1_1ppV2.pdf",
+    "pages": 67,
+    "chars": 42881,
+    "status": "complete",
+    "sha": "fbb2a4d8"
+  },
+  {
+    "file": "Lecture2_AgileProjectManagement_2025_S1pp.pdf",
+    "rel": "Learning material\\Lecture2_AgileProjectManagement_2025_S1pp.pdf",
+    "pages": 50,
+    "chars": 30105,
+    "status": "complete",
+    "sha": "adc34097"
+  },
+  {
+    "file": "Lecture3_FunctionalReqs_2025_1pp.pdf",
+    "rel": "Learning material\\Lecture3_FunctionalReqs_2025_1pp.pdf",
+    "pages": 61,
+    "chars": 36539,
+    "status": "complete",
+    "sha": "75209bbb"
+  },
+  {
+    "file": "Lecture4_NFRs_2025_1pp(1).pdf",
+    "rel": "Learning material\\Lecture4_NFRs_2025_1pp(1).pdf",
+    "pages": 51,
+    "chars": 35378,
+    "status": "complete",
+    "sha": "7523efcf"
+  },
+  {
+    "file": "Lecture5_Ethics_2025V1.pdf",
+    "rel": "Learning material\\Lecture5_Ethics_2025V1.pdf",
+    "pages": 35,
+    "chars": 21202,
+    "status": "complete",
+    "sha": "0600d9d4"
+  },
+  {
+    "file": "Lecture5_EthicsAndProfessionalism_notes(1).pdf",
+    "rel": "Learning material\\Lecture5_EthicsAndProfessionalism_notes(1).pdf",
+    "pages": 11,
+    "chars": 32356,
+    "status": "complete",
+    "sha": "20ca001a"
+  },
+  {
+    "file": "Sample_gephi_srs_document.pdf",
+    "rel": "Learning material\\Sample_gephi_srs_document.pdf",
+    "pages": 37,
+    "chars": 30400,
+    "status": "complete",
+    "sha": "d84d41ef"
+  },
+  {
+    "file": "Worksheet1_ProjectPlanning_2023(3).pdf",
+    "rel": "Learning material\\Worksheet1_ProjectPlanning_2023(3).pdf",
+    "pages": 3,
+    "chars": 4197,
+    "status": "complete",
+    "sha": "25cc7b37"
+  },
+  {
+    "file": "Worksheet2_AgileProjectManagement_2023(1).pdf",
+    "rel": "Learning material\\Worksheet2_AgileProjectManagement_2023(1).pdf",
+    "pages": 4,
+    "chars": 8239,
+    "status": "complete",
+    "sha": "334271cd"
+  },
+  {
+    "file": "Worksheet3_FunctionalReqs_2023.pdf",
+    "rel": "Learning material\\Worksheet3_FunctionalReqs_2023.pdf",
+    "pages": 2,
+    "chars": 4036,
+    "status": "complete",
+    "sha": "eed3f949"
+  },
+  {
+    "file": "Worksheet4_NonFunctionalReqs_2024.pdf",
+    "rel": "Learning material\\Worksheet4_NonFunctionalReqs_2024.pdf",
+    "pages": 3,
+    "chars": 6078,
+    "status": "complete",
+    "sha": "0bd22a72"
+  },
+  {
+    "file": "Worksheet5_Ethics_2023(1).pdf",
+    "rel": "Learning material\\Worksheet5_Ethics_2023(1).pdf",
+    "pages": 1,
+    "chars": 2189,
+    "status": "complete",
+    "sha": "a3c804f8"
+  },
+  {
+    "file": "ISE_2018s1_Test1_Vari1.pdf",
+    "rel": "pastypaper\\ISE_2018s1_Test1_Vari1.pdf",
+    "pages": 8,
+    "chars": 3791,
+    "status": "complete",
+    "sha": "74b4db7e"
+  },
+  {
+    "file": "ISE_2019s1_Test1_Vari1.pdf",
+    "rel": "pastypaper\\ISE_2019s1_Test1_Vari1.pdf",
+    "pages": 8,
+    "chars": 4566,
+    "status": "complete",
+    "sha": "70bd89ab"
+  },
+  {
+    "file": "ISE_2022MidtermB_Bentley.pdf",
+    "rel": "pastypaper\\ISE_2022MidtermB_Bentley.pdf",
+    "pages": 11,
+    "chars": 8476,
+    "status": "complete",
+    "sha": "9d2abc08"
+  }
+]

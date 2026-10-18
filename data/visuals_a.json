@@ -1,0 +1,934 @@
+{
+ "wbs": [
+  {
+   "id": "wbs-tree",
+   "type": "diagram",
+   "title": "Work breakdown structure: island music festival",
+   "what": "Decomposition in action \u2014 one level of deliverables, then sub-tasks. The shape examiners expect.",
+   "caption": "Festival WBS (adapted from Worksheet 1's island music-festival brief). Every box is ownable work; numbering feeds the dependency column.",
+   "alt": "Tree diagram: music festival splits into transport, catering, stage, bookings, safety, each with sub-tasks.",
+   "links": [
+    "activity-graphs",
+    "estimation-planning-poker"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Worksheet1_ProjectPlanning_2023(3).pdf",
+     "locator": "Worksheet 1, Q1-Q3 (pp. 1-2)"
+    }
+   ],
+   "canvas": {
+    "w": 620,
+    "h": 340
+   },
+   "nodes": [
+    {
+     "id": "root",
+     "lines": [
+      "Island music festival"
+     ],
+     "x": 235,
+     "y": 8,
+     "w": 150,
+     "tone": "amber"
+    },
+    {
+     "id": "t",
+     "lines": [
+      "1. Transport",
+      "ferries, buses, taxis"
+     ],
+     "x": 8,
+     "y": 110,
+     "w": 140
+    },
+    {
+     "id": "c",
+     "lines": [
+      "2. Catering",
+      "meals, drinks"
+     ],
+     "x": 168,
+     "y": 110,
+     "w": 140
+    },
+    {
+     "id": "s",
+     "lines": [
+      "3. Stage & sound",
+      "setup, light, seating"
+     ],
+     "x": 328,
+     "y": 110,
+     "w": 140
+    },
+    {
+     "id": "b",
+     "lines": [
+      "4. Bookings",
+      "bands, staff"
+     ],
+     "x": 488,
+     "y": 110,
+     "w": 124
+    },
+    {
+     "id": "t1",
+     "lines": [
+      "1.1 Ferry timetable"
+     ],
+     "x": 8,
+     "y": 230,
+     "w": 140,
+     "tone": "dim"
+    },
+    {
+     "id": "t2",
+     "lines": [
+      "1.2 Shuttle buses"
+     ],
+     "x": 168,
+     "y": 230,
+     "w": 140,
+     "tone": "dim"
+    },
+    {
+     "id": "s1",
+     "lines": [
+      "3.1 Stage setup"
+     ],
+     "x": 328,
+     "y": 230,
+     "w": 140,
+     "tone": "dim"
+    },
+    {
+     "id": "s2",
+     "lines": [
+      "3.2 Sound check"
+     ],
+     "x": 488,
+     "y": 230,
+     "w": 124,
+     "tone": "dim"
+    }
+   ],
+   "edges": [
+    {
+     "from": "root",
+     "to": "t"
+    },
+    {
+     "from": "root",
+     "to": "c"
+    },
+    {
+     "from": "root",
+     "to": "s"
+    },
+    {
+     "from": "root",
+     "to": "b"
+    },
+    {
+     "from": "t",
+     "to": "t1"
+    },
+    {
+     "from": "t",
+     "to": "t2"
+    },
+    {
+     "from": "s",
+     "to": "s1"
+    },
+    {
+     "from": "s",
+     "to": "s2"
+    }
+   ]
+  },
+  {
+   "id": "wbs-good-bad",
+   "type": "compare",
+   "title": "Decomposition: useful vs useless",
+   "what": "Same project, two breakdowns \u2014 only one can be estimated or scheduled.",
+   "caption": "Good boxes are ownable, estimable tasks; bad boxes are vague phases or milestones masquerading as work.",
+   "alt": "Side-by-side comparison of a good and bad work breakdown.",
+   "links": [
+    "estimation-planning-poker",
+    "exam-mistakes-planning"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Worksheet1_ProjectPlanning_2023(3).pdf",
+     "locator": "Worksheet 1, Q1 (p. 1)"
+    }
+   ],
+   "left": {
+    "title": "\u2713 Useful breakdown",
+    "tag": "estimable",
+    "points": [
+     "'1.1 Ferry timetable' \u2014 one owner, days of work",
+     "Sub-tasks sized in days/weeks, poker-estimable",
+     "Dependencies statable: 1.2 needs 1.1"
+    ]
+   },
+   "right": {
+    "title": "\u2717 Useless breakdown",
+    "tag": "not estimable",
+    "points": [
+     "'Do transport stuff' \u2014 who owns it? how long?",
+     "'Track tested' is a milestone, not a task",
+     "Poker bids of \u221e or ? signal: split this box"
+    ]
+   },
+   "why": "The exam never asks you to admire a WBS \u2014 it asks you to estimate, order and schedule from one. Only the left column supports that."
+  }
+ ],
+ "activity-graphs": [
+  {
+   "id": "aon-full",
+   "type": "figure",
+   "title": "An AON fragment carrying its timing analysis",
+   "what": "Nodes hold work; the four numbers hold the schedule. Gold \u2605 marks the critical chain.",
+   "caption": "Mini-network consistent with 2022 Project A logic (E joins B and C). ES/EF from the forward pass, LS/LF from the backward pass, slack = LS \u2212 ES.",
+   "alt": "Activity-on-node diagram with earliest/latest start/finish and slack on each node; critical nodes highlighted.",
+   "svg": "<svg viewBox=\"0 0 600 300\" role=\"img\" aria-label=\"Annotated AON fragment with timing boxes\">\n<defs><marker id=\"ah2\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 z\" fill=\"#7DB8E8\"/></marker></defs>\n<text x=\"8\" y=\"18\" fill=\"#9AA0A8\" font-size=\"12\">AON with timing boxes (weeks). Forward pass \u2192 earliest \u00b7 \u2190 backward pass gives latest.</text>\n<g font-size=\"12\" text-anchor=\"middle\">\n<rect x=\"20\" y=\"90\" width=\"120\" height=\"86\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#7DB8E8\" stroke-width=\"2\"/>\n<text x=\"80\" y=\"112\" fill=\"#E8E6E1\">A (3)</text><text x=\"80\" y=\"130\" fill=\"#9AA0A8\" font-size=\"11\">ES 0 \u00b7 EF 3</text><text x=\"80\" y=\"146\" fill=\"#9AA0A8\" font-size=\"11\">LS 0 \u00b7 LF 3</text><text x=\"80\" y=\"164\" fill=\"#D9A441\" font-size=\"11\">slack 0 \u2605</text>\n<rect x=\"240\" y=\"40\" width=\"120\" height=\"86\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#7DB8E8\"/>\n<text x=\"300\" y=\"62\" fill=\"#E8E6E1\">B (5)</text><text x=\"300\" y=\"80\" fill=\"#9AA0A8\" font-size=\"11\">ES 3 \u00b7 EF 8</text><text x=\"300\" y=\"96\" fill=\"#9AA0A8\" font-size=\"11\">LS 7 \u00b7 LF 12</text><text x=\"300\" y=\"114\" fill=\"#7FB685\" font-size=\"11\">slack 4</text>\n<rect x=\"240\" y=\"180\" width=\"120\" height=\"86\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#D9A441\" stroke-width=\"2\"/>\n<text x=\"300\" y=\"202\" fill=\"#E8E6E1\">C (6)</text><text x=\"300\" y=\"220\" fill=\"#9AA0A8\" font-size=\"11\">ES 3 \u00b7 EF 9</text><text x=\"300\" y=\"236\" fill=\"#9AA0A8\" font-size=\"11\">LS 3 \u00b7 LF 9</text><text x=\"300\" y=\"254\" fill=\"#D9A441\" font-size=\"11\">slack 0 \u2605</text>\n<rect x=\"440\" y=\"110\" width=\"120\" height=\"86\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#7DB8E8\"/>\n<text x=\"500\" y=\"132\" fill=\"#E8E6E1\">E (4)</text><text x=\"500\" y=\"150\" fill=\"#9AA0A8\" font-size=\"11\">ES 9 \u00b7 EF 13</text><text x=\"500\" y=\"166\" fill=\"#9AA0A8\" font-size=\"11\">LS 12 \u00b7 LF 16</text><text x=\"500\" y=\"184\" fill=\"#7FB685\" font-size=\"11\">slack 3</text>\n<line x1=\"140\" y1=\"120\" x2=\"235\" y2=\"70\" stroke=\"#7DB8E8\" marker-end=\"url(#ah2)\"/>\n<line x1=\"140\" y1=\"140\" x2=\"235\" y2=\"210\" stroke=\"#D9A441\" stroke-width=\"2\" marker-end=\"url(#ah2)\"/>\n<line x1=\"360\" y1=\"83\" x2=\"435\" y2=\"125\" stroke=\"#7DB8E8\" marker-end=\"url(#ah2)\"/>\n<line x1=\"360\" y1=\"223\" x2=\"435\" y2=\"160\" stroke=\"#7DB8E8\" marker-end=\"url(#ah2)\"/>\n</g></svg>",
+   "hotspots": [
+    {
+     "x": 1.5,
+     "y": 27,
+     "title": "Timing box",
+     "text": "Each node carries ES \u00b7 EF on top, LS \u00b7 LF below. Durations stay on the node \u2014 AOA puts them on arrows instead.",
+     "link": "critical-path"
+    },
+    {
+     "x": 62,
+     "y": 78,
+     "title": "Slack 4 (green)",
+     "text": "B can slip 4 weeks without moving the deadline. Borrow resources here first.",
+     "link": "critical-path"
+    },
+    {
+     "x": 62,
+     "y": 12,
+     "title": "Critical chain \u2605",
+     "text": "Zero-slack nodes (A \u2192 C \u2192 \u2026) form the critical path. Their sum must equal the project duration.",
+     "link": "critical-path"
+    }
+   ],
+   "links": [
+    "critical-path",
+    "wbs"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf",
+     "locator": "PDF pp. 34-35, 53-57"
+    },
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B, Q1.2 (pp. 2-3)"
+    }
+   ]
+  },
+  {
+   "id": "passes-recipe",
+   "type": "steps",
+   "title": "Timing analysis in four passes",
+   "what": "The exact algorithm behind every 2022 Q1.2(b)-style question.",
+   "caption": "Forward for earliest, backward for latest, subtract for slack, chain the zeros.",
+   "alt": "Four-step procedure: forward pass, backward pass, slack, critical path.",
+   "links": [
+    "critical-path"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf",
+     "locator": "PDF pp. 53-58"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Forward pass \u2192 earliest",
+     "text": "Start at day 0. ES = max(EF of predecessors); EF = ES + duration. Project duration = max EF."
+    },
+    {
+     "title": "Backward pass \u2192 latest",
+     "text": "End activities take LF = duration. LF = min(LS of successors); LS = LF \u2212 duration. Work backwards."
+    },
+    {
+     "title": "Subtract \u2192 slack",
+     "text": "Slack = LS \u2212 ES (= LF \u2212 EF). Shared along paths \u2014 spending it here removes it downstream."
+    },
+    {
+     "title": "Chain the zeros \u2192 critical path",
+     "text": "Join zero-slack activities; verify their durations sum exactly to the project duration. If not, recheck successors."
+    }
+   ]
+  }
+ ],
+ "critical-path": [
+  {
+   "id": "projA",
+   "type": "diagram",
+   "title": "2022 Project A: the network that decides the deadline",
+   "what": "Trace the gold chain \u2014 the only sequence with zero slack, totalling exactly 25 weeks.",
+   "caption": "Critical path A \u2192 D \u2192 F \u2192 G \u2192 H = 3+10+3+5+4 = 25 weeks = project duration \u2713. Slack lives on B (4), C (4), E (3).",
+   "alt": "Project A network with critical path highlighted and slack annotated.",
+   "links": [
+    "activity-graphs",
+    "gantt-charts",
+    "burn-up-charts"
+   ],
+   "cites": [
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B, Q1.2 (pp. 2-3)"
+    }
+   ],
+   "canvas": {
+    "w": 780,
+    "h": 310
+   },
+   "nodes": [
+    {
+     "id": "A",
+     "lines": [
+      "A (3)",
+      "ES 0 \u00b7 EF 3",
+      "LS 0 \u00b7 LF 3 \u00b7 slack 0"
+     ],
+     "x": 8,
+     "y": 120,
+     "w": 150,
+     "tone": "amber"
+    },
+    {
+     "id": "B",
+     "lines": [
+      "B (5)",
+      "ES 3 \u00b7 EF 8",
+      "LS 7 \u00b7 LF 12 \u00b7 slack 4"
+     ],
+     "x": 198,
+     "y": 15,
+     "w": 165,
+     "tone": "dim"
+    },
+    {
+     "id": "C",
+     "lines": [
+      "C (6)",
+      "ES 3 \u00b7 EF 9",
+      "LS 7 \u00b7 LF 12 \u00b7 slack 4"
+     ],
+     "x": 198,
+     "y": 120,
+     "w": 165,
+     "tone": "dim"
+    },
+    {
+     "id": "D",
+     "lines": [
+      "D (10)",
+      "ES 3 \u00b7 EF 13",
+      "LS 3 \u00b7 LF 13 \u00b7 slack 0 \u2605"
+     ],
+     "x": 198,
+     "y": 225,
+     "w": 165,
+     "tone": "amber"
+    },
+    {
+     "id": "E",
+     "lines": [
+      "E (4)",
+      "ES 9 \u00b7 EF 13",
+      "LS 12 \u00b7 LF 16 \u00b7 slack 3"
+     ],
+     "x": 403,
+     "y": 55,
+     "w": 165,
+     "tone": "dim"
+    },
+    {
+     "id": "F",
+     "lines": [
+      "F (3)",
+      "ES 13 \u00b7 EF 16",
+      "LS 13 \u00b7 LF 16 \u00b7 slack 0 \u2605"
+     ],
+     "x": 403,
+     "y": 195,
+     "w": 165,
+     "tone": "amber"
+    },
+    {
+     "id": "G",
+     "lines": [
+      "G (5)",
+      "ES 16 \u00b7 EF 21",
+      "LS 16 \u00b7 LF 21 \u00b7 slack 0 \u2605"
+     ],
+     "x": 608,
+     "y": 60,
+     "w": 160,
+     "tone": "amber"
+    },
+    {
+     "id": "H",
+     "lines": [
+      "H (4)",
+      "ES 21 \u00b7 EF 25",
+      "slack 0 \u2605"
+     ],
+     "x": 608,
+     "y": 195,
+     "w": 160,
+     "tone": "amber"
+    }
+   ],
+   "edges": [
+    {
+     "from": "A",
+     "to": "B"
+    },
+    {
+     "from": "A",
+     "to": "C"
+    },
+    {
+     "from": "A",
+     "to": "D"
+    },
+    {
+     "from": "B",
+     "to": "E"
+    },
+    {
+     "from": "C",
+     "to": "E"
+    },
+    {
+     "from": "C",
+     "to": "F"
+    },
+    {
+     "from": "D",
+     "to": "F"
+    },
+    {
+     "from": "E",
+     "to": "G"
+    },
+    {
+     "from": "F",
+     "to": "G"
+    },
+    {
+     "from": "G",
+     "to": "H"
+    }
+   ]
+  }
+ ],
+ "gantt-charts": [
+  {
+   "id": "gantt-mini",
+   "type": "chart",
+   "title": "From network to calendar: a Gantt sketch",
+   "what": "Bars place each activity at its ES; gold bars are the deadline-drivers.",
+   "caption": "Same mini-network as the AON figure. B's bar floats with 4 weeks of slack; the gold chain admits no float.",
+   "alt": "Gantt chart with critical activities highlighted.",
+   "links": [
+    "critical-path",
+    "activity-graphs"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf",
+     "locator": "PDF pp. 61-63"
+    }
+   ],
+   "chart": {
+    "kind": "gantt",
+    "xLabel": "weeks",
+    "tasks": [
+     {
+      "name": "A (3)",
+      "start": 0,
+      "end": 3,
+      "crit": true
+     },
+     {
+      "name": "B (5)",
+      "start": 3,
+      "end": 8,
+      "crit": false
+     },
+     {
+      "name": "C (6)",
+      "start": 3,
+      "end": 9,
+      "crit": true
+     },
+     {
+      "name": "E (4)",
+      "start": 9,
+      "end": 13,
+      "crit": false
+     },
+     {
+      "name": "F (3)",
+      "start": 13,
+      "end": 16,
+      "crit": true
+     },
+     {
+      "name": "G (5)",
+      "start": 16,
+      "end": 21,
+      "crit": true
+     }
+    ],
+    "note": "Bars start at earliest-start times from the forward pass."
+   }
+  }
+ ],
+ "lifecycle-models": [
+  {
+   "id": "lifecycle-timeline",
+   "type": "timeline",
+   "title": "Three answers to 'how do we organise this?'",
+   "what": "Cost of change grows left-to-right; feedback arrives earlier as you move down the list.",
+   "caption": "Waterfall sequences phases; iterative waterfall adds feedback loops; spiral curls around risk; prototypes answer questions cheaply first.",
+   "alt": "Timeline of lifecycle models with feedback characteristics.",
+   "links": [
+    "se-overview",
+    "agile-processes",
+    "estimation-planning-poker"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf",
+     "locator": "PDF pp. 16-25"
+    }
+   ],
+   "milestones": [
+    {
+     "t": "Waterfall",
+     "label": "Phases in order",
+     "text": "Requirements \u2192 design \u2192 code \u2192 test. Cheap when stable; late change cascades expensively."
+    },
+    {
+     "t": "+ feedback",
+     "label": "Iterative waterfall",
+     "text": "Same phases, but later stages can send work back. The 2022 Q1.1 answer: order + loops + cost-of-change."
+    },
+    {
+     "t": "Cycles",
+     "label": "Spiral",
+     "text": "Loop: set objectives \u2192 resolve risks \u2192 develop \u2192 plan next cycle. For risky, large, novel systems."
+    },
+    {
+     "t": "Before all",
+     "label": "Prototyping",
+     "text": "Quick, possibly throwaway build to answer one question (UI? feasibility?) before committing."
+    }
+   ]
+  },
+  {
+   "id": "waterfall-spiral",
+   "type": "compare",
+   "title": "Waterfall vs spiral: when each wins",
+   "what": "Match the model to the uncertainty, not to fashion.",
+   "caption": "Stable requirements \u2192 waterfall's cheap sequence. High risk \u2192 spiral's explicit risk cycles.",
+   "alt": "Comparison of waterfall and spiral models.",
+   "links": [
+    "agile-processes"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf",
+     "locator": "PDF pp. 19-24"
+    }
+   ],
+   "left": {
+    "title": "Iterative waterfall",
+    "tag": "stable scope",
+    "points": [
+     "Phases run in order with limited feedback",
+     "Assumes requirements understood upfront",
+     "Risk: late discovery \u2192 cascading rework"
+    ]
+   },
+   "right": {
+    "title": "Spiral",
+    "tag": "high risk",
+    "points": [
+     "Each cycle attacks the biggest remaining risk",
+     "Objectives + options set per cycle",
+     "Cost: overhead of repeated planning cycles"
+    ]
+   },
+   "why": "2022 Q1.1 rewards: phase order + feedback loops + step-back example + cost-of-change consequence."
+  }
+ ],
+ "estimation-planning-poker": [
+  {
+   "id": "poker-converge",
+   "type": "chart",
+   "title": "Planning poker: disagreement converging",
+   "what": "Face-down reveal surfaces hidden assumptions; discussion, not authority, resolves the spread.",
+   "caption": "Illustrative bidding across two rounds for one task (person-days). Round 1's \u221e forces task-splitting talk; round 2 converges. Numbers illustrative \u2014 the mechanism is the lesson.",
+   "alt": "Bar chart of two poker rounds showing converging estimates.",
+   "links": [
+    "wbs",
+    "scrum-framework"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture1_Planning_2025S1_1ppV2.pdf",
+     "locator": "PDF pp. 45-49"
+    }
+   ],
+   "chart": {
+    "kind": "bar",
+    "xLabel": "bids (person-days)",
+    "yLabel": "cards played",
+    "labels": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "5",
+     "8",
+     "13",
+     "\u221e"
+    ],
+    "series": [
+     {
+      "name": "Round 1",
+      "color": "#7DB8E8",
+      "values": [
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       0,
+       1
+      ]
+     },
+     {
+      "name": "Round 2",
+      "color": "#D9A441",
+      "values": [
+       0,
+       0,
+       0,
+       2,
+       1,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "note": "Illustrative data \u2014 demonstrates convergence, not a real team's bids."
+   }
+  }
+ ],
+ "scrum-framework": [
+  {
+   "id": "scrum-roles",
+   "type": "diagram",
+   "title": "Scrum's three accountabilities",
+   "what": "One backlog owner, one building team, one process guardian \u2014 and a team that manages itself.",
+   "caption": "Product Owner owns priorities; Developers own the increment; Scrum Master owns process health. Change enters via the backlog, never mid-sprint.",
+   "alt": "Hub diagram of Scrum roles and their responsibilities.",
+   "links": [
+    "scrum-events-backlogs",
+    "agile-processes",
+    "estimation-planning-poker"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/2020-Scrum-Guide-US.pdf",
+     "locator": "Scrum Guide 2020, pp. 5-7"
+    },
+    {
+     "source": "Learning material/Worksheet2_AgileProjectManagement_2023(1).pdf",
+     "locator": "Worksheet 2, Q1 (p. 1)"
+    }
+   ],
+   "canvas": {
+    "w": 600,
+    "h": 300
+   },
+   "nodes": [
+    {
+     "id": "po",
+     "lines": [
+      "Product Owner",
+      "one person \u00b7 owns backlog"
+     ],
+     "x": 20,
+     "y": 30,
+     "w": 170,
+     "link": "scrum-events-backlogs"
+    },
+    {
+     "id": "dev",
+     "lines": [
+      "Developers",
+      "build the increment"
+     ],
+     "x": 215,
+     "y": 30,
+     "w": 170,
+     "link": "scrum-events-backlogs"
+    },
+    {
+     "id": "sm",
+     "lines": [
+      "Scrum Master",
+      "guards process \u00b7 removes barriers"
+     ],
+     "x": 410,
+     "y": 30,
+     "w": 170,
+     "link": "scrum-events-backlogs"
+    },
+    {
+     "id": "team",
+     "lines": [
+      "Scrum Team: cross-functional + self-managing"
+     ],
+     "x": 130,
+     "y": 170,
+     "w": 340,
+     "tone": "amber"
+    },
+    {
+     "id": "chg",
+     "lines": [
+      "Mid-project change \u2192 PO \u2192 backlog \u2192 future sprint"
+     ],
+     "x": 130,
+     "y": 245,
+     "w": 340,
+     "tone": "dim"
+    }
+   ],
+   "edges": [
+    {
+     "from": "po",
+     "to": "team"
+    },
+    {
+     "from": "dev",
+     "to": "team"
+    },
+    {
+     "from": "sm",
+     "to": "team"
+    },
+    {
+     "from": "team",
+     "to": "chg"
+    }
+   ]
+  }
+ ],
+ "scrum-events-backlogs": [
+  {
+   "id": "sprint-walk",
+   "type": "steps",
+   "title": "Walking one sprint, event by event",
+   "what": "Four events, four purposes \u2014 inspect the product, then inspect the process.",
+   "caption": "Planning commits, dailies steer, review demos to stakeholders, retrospective improves the team itself.",
+   "alt": "Step-by-step walkthrough of sprint events.",
+   "links": [
+    "scrum-framework",
+    "burn-up-charts"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/2020-Scrum-Guide-US.pdf",
+     "locator": "Scrum Guide 2020, pp. 8-13"
+    },
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B, Q4.3-4.4 (p. 11)"
+    }
+   ],
+   "steps": [
+    {
+     "title": "1 \u00b7 Sprint planning (start)",
+     "text": "PO presents priorities; Developers select items and plan delivery. Output: Sprint Goal + Sprint Backlog commitment."
+    },
+    {
+     "title": "2 \u00b7 Daily stand-ups",
+     "text": "~15 min: what was done, what is next, blockers. Developers sync; the plan adapts."
+    },
+    {
+     "title": "3 \u00b7 Sprint review (end)",
+     "text": "Demo the working increment to stakeholders; adapt the Product Backlog. Inspects the PRODUCT."
+    },
+    {
+     "title": "4 \u00b7 Retrospective (after review)",
+     "text": "Team reflects on its own process and agrees improvements. Inspects the PROCESS. Then the next sprint begins."
+    }
+   ]
+  }
+ ],
+ "burn-up-charts": [
+  {
+   "id": "burnup-sim",
+   "type": "chart",
+   "title": "Burn-up simulator: plan vs reality",
+   "what": "Drag the sliders \u2014 see how pace and scope shocks move the lines examiners ask you to read.",
+   "caption": "Planned = total \u00f7 duration \u00d7 t. Actual = earned value (estimates of finished tasks). Scope line rises when work is added mid-flight. Illustrative simulator \u2014 plug in your own WBS numbers.",
+   "alt": "Interactive burn-up chart with adjustable pace and scope.",
+   "links": [
+    "estimation-planning-poker",
+    "kanban-wip",
+    "scrum-events-backlogs"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf",
+     "locator": "Lecture 2, PDF pp. 16-24"
+    },
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B, Q4.1 (p. 9)"
+    }
+   ],
+   "chart": {
+    "kind": "sim",
+    "sim": "burnup",
+    "note": "Illustrative simulation for intuition, not course data. Exam arithmetic uses the SUMIF method from Worksheet 2."
+   }
+  }
+ ],
+ "kanban-wip": [
+  {
+   "id": "kanban-annot",
+   "type": "figure",
+   "title": "Reading a Kanban board: the pile-up tells the story",
+   "what": "Columns are workflow stages; a full column is a bottleneck diagnosis, not a badge.",
+   "caption": "Review at its WIP limit while coding starves: the lecture's prescription \u2014 more reviewers, fewer coders. Modelled on Worksheet 2 Q3.",
+   "alt": "Kanban board with review column full at WIP limit.",
+   "svg": "<svg viewBox=\"0 0 620 240\" role=\"img\" aria-label=\"Annotated Kanban board with WIP limit of three\">\n<text x=\"8\" y=\"18\" fill=\"#9AA0A8\" font-size=\"12\">WIP limit = 3 per active column. Finish before you start.</text>\n<g font-size=\"12\">\n<rect x=\"8\" y=\"30\" width=\"112\" height=\"200\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#31343C\"/>\n<text x=\"64\" y=\"52\" fill=\"#E8E6E1\" text-anchor=\"middle\">Todo</text>\n<rect x=\"16\" y=\"62\" width=\"96\" height=\"34\" rx=\"6\" fill=\"#26282E\" stroke=\"#31343C\"/><text x=\"64\" y=\"83\" fill=\"#9AA0A8\" text-anchor=\"middle\" font-size=\"11\">Textures</text>\n<rect x=\"128\" y=\"30\" width=\"112\" height=\"200\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#31343C\"/>\n<text x=\"184\" y=\"52\" fill=\"#E8E6E1\" text-anchor=\"middle\">Coding</text>\n<rect x=\"136\" y=\"62\" width=\"96\" height=\"34\" rx=\"6\" fill=\"#26282E\" stroke=\"#31343C\"/><text x=\"184\" y=\"83\" fill=\"#9AA0A8\" text-anchor=\"middle\" font-size=\"11\">Star Rend.</text>\n<rect x=\"248\" y=\"30\" width=\"150\" height=\"200\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#D97A6C\" stroke-width=\"2\"/>\n<text x=\"323\" y=\"52\" fill=\"#D97A6C\" text-anchor=\"middle\">Review \u2605 pile-up!</text>\n<rect x=\"256\" y=\"62\" width=\"134\" height=\"30\" rx=\"6\" fill=\"#26282E\" stroke=\"#31343C\"/><text x=\"323\" y=\"81\" fill=\"#9AA0A8\" text-anchor=\"middle\" font-size=\"11\">Orbit Vis.</text>\n<rect x=\"256\" y=\"98\" width=\"134\" height=\"30\" rx=\"6\" fill=\"#26282E\" stroke=\"#31343C\"/><text x=\"323\" y=\"117\" fill=\"#9AA0A8\" text-anchor=\"middle\" font-size=\"11\">Popup Labels</text>\n<rect x=\"256\" y=\"134\" width=\"134\" height=\"30\" rx=\"6\" fill=\"#26282E\" stroke=\"#31343C\"/><text x=\"323\" y=\"153\" fill=\"#9AA0A8\" text-anchor=\"middle\" font-size=\"11\">Camera Fly</text>\n<rect x=\"406\" y=\"30\" width=\"100\" height=\"200\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#31343C\"/>\n<text x=\"456\" y=\"52\" fill=\"#E8E6E1\" text-anchor=\"middle\" font-size=\"11\">Await Merge</text>\n<rect x=\"514\" y=\"30\" width=\"98\" height=\"200\" rx=\"8\" fill=\"#1B1E24\" stroke=\"#7FB685\"/>\n<text x=\"563\" y=\"52\" fill=\"#7FB685\" text-anchor=\"middle\" font-size=\"11\">Done \u2713</text>\n<rect x=\"522\" y=\"62\" width=\"82\" height=\"30\" rx=\"6\" fill=\"#26282E\" stroke=\"#7FB685\"/><text x=\"563\" y=\"81\" fill=\"#9AA0A8\" text-anchor=\"middle\" font-size=\"11\">Time Trk</text>\n</g></svg>",
+   "hotspots": [
+    {
+     "x": 63,
+     "y": 22,
+     "title": "Pile-up = bottleneck",
+     "text": "Review is full (3/3) while Coding has one card: work cannot be pulled forward. Rebalance the team toward reviewing.",
+     "link": "code-review"
+    },
+    {
+     "x": 91,
+     "y": 62,
+     "title": "Done means accepted",
+     "text": "A card here was merged AND accepted. Defects found later move the card back to an active column \u2014 within WIP.",
+     "link": "scrum-events-backlogs"
+    }
+   ],
+   "links": [
+    "burn-up-charts",
+    "code-review"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf",
+     "locator": "Lecture 2, PDF pp. 27-34"
+    },
+    {
+     "source": "Learning material/Worksheet2_AgileProjectManagement_2023(1).pdf",
+     "locator": "Worksheet 2, Q3 (p. 4)"
+    }
+   ]
+  }
+ ],
+ "code-review": [
+  {
+   "id": "review-flow",
+   "type": "steps",
+   "title": "The review loop inside the workflow",
+   "what": "Review sits after coding, before merge \u2014 and re-review closes the loop regressions open.",
+   "caption": "Lightweight peer review fits agile pace; formal inspection is reserved for critical code.",
+   "alt": "Step sequence of code review workflow.",
+   "links": [
+    "kanban-wip",
+    "ethics-se-professionalism"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture2_AgileProjectManagement_2025_S1pp.pdf",
+     "locator": "Lecture 2, PDF pp. 36-47"
+    }
+   ],
+   "steps": [
+    {
+     "title": "1 \u00b7 Submit",
+     "text": "Author finishes code + tests; the Kanban card enters Review. Checklist attached (5\u20138 items, tuned to reviewer experience)."
+    },
+    {
+     "title": "2 \u00b7 Inspect",
+     "text": "Reviewer reads for logic defects \u2014 the fault class testing misses. Automate style/types; spend humans on reasoning."
+    },
+    {
+     "title": "3 \u00b7 Fix",
+     "text": "Author addresses findings. Trivial fixes applied directly; design issues discussed, not silently patched."
+    },
+    {
+     "title": "4 \u00b7 Re-review + merge",
+     "text": "Fixed defects re-verified (regressions re-occur), then merged. Card advances to Awaiting Merge \u2192 Done."
+    }
+   ]
+  },
+  {
+   "id": "review-compare",
+   "type": "compare",
+   "title": "Peer review vs formal inspection",
+   "what": "Match review weight to code criticality \u2014 the Worksheet 2 Q4 judgement call.",
+   "caption": "Fast visualisation tool \u2192 lightweight peer review + checklist. Safety-critical core \u2192 formal inspection with roles and logging.",
+   "alt": "Comparison of peer review and formal inspection.",
+   "links": [
+    "kanban-wip"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Worksheet2_AgileProjectManagement_2023(1).pdf",
+     "locator": "Worksheet 2, Q4 (p. 4)"
+    }
+   ],
+   "left": {
+    "title": "Peer review",
+    "tag": "agile default",
+    "points": [
+     "Author \u2192 reviewer \u2192 fix \u2192 merge",
+     "Checklist of 5\u20138 project-specific items",
+     "Fits fast-moving feature work"
+    ]
+   },
+   "right": {
+    "title": "Formal inspection",
+    "tag": "heavyweight",
+    "points": [
+     "Defined roles, preparation, logging",
+     "Justified for critical/complex code",
+     "Overkill that slows a visualisation tool"
+    ]
+   },
+   "why": "The exam asks 'is formal inspection suitable here?' \u2014 answer with pace-vs-criticality, then draft the checklist."
+  }
+ ]
+}

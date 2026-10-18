@@ -1,0 +1,89 @@
+Intro to SE (ISAD1000/5004) 
+Worksheet 2: Functional Requirements 
+Page 1 of 2 
+CRICOS Provide Code: 00301J 
+Worksheet 3: Functional Requirements 
+Updated: 02thMarch, 2023 
+Learning Objectives: 
+1.
+Write user stories for identifying functional requirements of a computer system.
+2.
+Create an actor-goal list for a given system to cover significant functionalities.
+3.
+Draw a use case diagram for a given system to cover significant functionalities.
+4.
+Write full use case description for a given use case, with extensions.
+Attempt question 1 – question 3 of this worksheet in a group of 3-4 students. 
+Attempt question 4 – question 6 of this worksheet individually, but it would be helpful to compare 
+and discuss your answers with your peers. 
+1. Actors
+For each of the following systems, identify the actors, both human and non-human: 
+(a) A word processor.
+(b) An online retail website.
+(c) A class registration system.
+(d) An online mapping application.
+(e) A set of traffic lights.
+2. User Stories
+For each of (b), (c) and (d) above, suggest four or more important user stories. Consider 
+various human actors. 
+For this purpose, pick user stories that each relate to a single functional requirement. (In general, 
+user stories could relate to any requirement, but we’ll focus on functional requirements for now.) 
+3. Developing Use Cases: Actor-goal list
+Pick one of (b), (c) and (d) from part 1 and identify significant task level goals and all actors 
+of the selected system. Show them in an actor-goal list. 
+actors, consider what other systems – software or hardware – might need to access the 
+same data. 
+Note: Remember that a user story is a single sentence of the form: 
+“As a 
+I want to 
+so that 
+.” 
+All three parts must be present, and they must be meaningful.
+
+===== PAGE BREAK =====
+
+Intro to SE (ISAD1000/5004) 
+Worksheet 2: Functional Requirements 
+Page 2 of 2 
+CRICOS Provide Code: 00301J 
+ 
+ 
+ 
+4. Developing Use Cases: Use Case Diagram 
+Using the actor-goal list you have already created as the starting point, identify use 
+cases and draw a use case diagram for the system you have selected in part 3 above. 
+Consider the whole system when drawing the use case diagram. Your diagram should 
+show all actors and significant use cases. 
+You may not consider «include» relationships initially, but you may refine the created use 
+case diagram to add «include» relationships. 
+ 
+ 
+5. Developing Use Cases: Use Case Description 
+Pick two of your user cases identified in part 3-4 above and expand them into complete 
+use case descriptions (system-scope, user-goal-level). 
+ 
+6. Additional Task 
+Pick one of your user stories identified in part 2 above and convert/expand them into 
+complete use case descriptions. 
+First you can look at your user stories to identify the goals and actors. 
+Then start producing the full description (system-scope, user-goal-level). 
+ 
+ 
+End of Worksheet 
+Note: Use case diagrams are a very broad picture of a system. They don’t show any 
+details of a use case other than its name and the actors involved. For instance, the use 
+case flow of events is not shown here. 
+Any «include» relationships (arrows between use cases), if they exist at all, do not rep- 
+resent time or order. Do not confuse use case diagrams with activity graphs. 
+Drawing your diagrams by hand is sufficient for this exercise. You may try digital tools 
+such as MS Visio, lucid charts(an on-line tool) also 
+Note: Use case descriptions would have a header, flow of events and alternative flow of 
+events sections. You can create a template of use case description with all required 
+sections with headings as a table in a document and use it to develop use case 
+descriptions. 
+Note: There is no one to one mapping between user stories and use cases., however you 
+may be able to identify use case relate to a user story or one or many user stories relate 
+to a user case. 
+Note: Some goals may have sub-goals also, but you are not expected to go to fine details 
+at this lesson. 
+Actor-goal list helps to identify use cases.

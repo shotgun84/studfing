@@ -1,0 +1,905 @@
+{
+ "nodes": [
+  {
+   "id": "se-overview",
+   "title": "Software engineering: more than programming",
+   "category": "Project planning"
+  },
+  {
+   "id": "lifecycle-models",
+   "title": "Lifecycle models: waterfall, spiral, prototyping",
+   "category": "Project planning"
+  },
+  {
+   "id": "wbs",
+   "title": "Work breakdown structures",
+   "category": "Project planning"
+  },
+  {
+   "id": "estimation-planning-poker",
+   "title": "Estimation and planning poker",
+   "category": "Project planning"
+  },
+  {
+   "id": "activity-graphs",
+   "title": "Activity graphs: AON and AOA",
+   "category": "Project planning"
+  },
+  {
+   "id": "critical-path",
+   "title": "Critical path and slack time",
+   "category": "Project planning"
+  },
+  {
+   "id": "gantt-charts",
+   "title": "Gantt charts and PERT",
+   "category": "Project planning"
+  },
+  {
+   "id": "exam-mistakes-planning",
+   "title": "Planning: common exam mistakes",
+   "category": "Exam strategy"
+  },
+  {
+   "id": "agile-processes",
+   "title": "From planning to doing: agile processes",
+   "category": "Agile"
+  },
+  {
+   "id": "scrum-framework",
+   "title": "Scrum framework and roles",
+   "category": "Agile"
+  },
+  {
+   "id": "scrum-events-backlogs",
+   "title": "Backlogs, sprints and Scrum events",
+   "category": "Agile"
+  },
+  {
+   "id": "burn-up-charts",
+   "title": "Burn-up (earned-value) charts",
+   "category": "Agile"
+  },
+  {
+   "id": "kanban-wip",
+   "title": "Kanban boards and WIP limits",
+   "category": "Agile"
+  },
+  {
+   "id": "code-review",
+   "title": "Code review and inspection",
+   "category": "Agile"
+  },
+  {
+   "id": "exam-mistakes-agile",
+   "title": "Agile: common exam mistakes",
+   "category": "Exam strategy"
+  },
+  {
+   "id": "functional-requirements",
+   "title": "Functional requirements",
+   "category": "Functional requirements"
+  },
+  {
+   "id": "stakeholders-actors",
+   "title": "Stakeholders, actors and goals",
+   "category": "Functional requirements"
+  },
+  {
+   "id": "user-stories",
+   "title": "User stories",
+   "category": "Functional requirements"
+  },
+  {
+   "id": "use-case-headers",
+   "title": "Use cases: headers, actors, preconditions",
+   "category": "Functional requirements"
+  },
+  {
+   "id": "use-case-flow",
+   "title": "Flow of events and extensions",
+   "category": "Functional requirements"
+  },
+  {
+   "id": "use-case-diagrams",
+   "title": "Use-case diagrams",
+   "category": "Functional requirements"
+  },
+  {
+   "id": "exam-mistakes-requirements",
+   "title": "Requirements: common exam mistakes",
+   "category": "Exam strategy"
+  },
+  {
+   "id": "nfr-overview",
+   "title": "Non-functional requirements: overview",
+   "category": "Non-functional requirements"
+  },
+  {
+   "id": "nfr-validity",
+   "title": "What makes an NFR valid",
+   "category": "Non-functional requirements"
+  },
+  {
+   "id": "performance-requirements",
+   "title": "Performance requirements",
+   "category": "Non-functional requirements"
+  },
+  {
+   "id": "reliability-requirements",
+   "title": "Reliability requirements and metrics",
+   "category": "Non-functional requirements"
+  },
+  {
+   "id": "usability-requirements",
+   "title": "Usability requirements",
+   "category": "Non-functional requirements"
+  },
+  {
+   "id": "other-nfrs",
+   "title": "Security, interoperability, localisation, accessibility",
+   "category": "Non-functional requirements"
+  },
+  {
+   "id": "srs-ieee830",
+   "title": "The SRS and IEEE 830",
+   "category": "Requirements engineering"
+  },
+  {
+   "id": "exam-mistakes-nfr",
+   "title": "NFRs: common exam mistakes",
+   "category": "Exam strategy"
+  },
+  {
+   "id": "ethics-theories",
+   "title": "Moral philosophy: duties vs consequences",
+   "category": "Ethics & professionalism"
+  },
+  {
+   "id": "ethics-se-professionalism",
+   "title": "Ethics and professionalism in SE",
+   "category": "Ethics & professionalism"
+  },
+  {
+   "id": "midterm-study-guide",
+   "title": "Midterm study guide and coverage",
+   "category": "Exam strategy"
+  },
+  {
+   "id": "exam-mistakes-ethics",
+   "title": "Ethics: common exam mistakes",
+   "category": "Exam strategy"
+  }
+ ],
+ "edges": [
+  {
+   "from": "se-overview",
+   "to": "lifecycle-models"
+  },
+  {
+   "from": "se-overview",
+   "to": "wbs"
+  },
+  {
+   "from": "se-overview",
+   "to": "estimation-planning-poker"
+  },
+  {
+   "from": "se-overview",
+   "to": "ethics-se-professionalism"
+  },
+  {
+   "from": "lifecycle-models",
+   "to": "se-overview"
+  },
+  {
+   "from": "lifecycle-models",
+   "to": "estimation-planning-poker"
+  },
+  {
+   "from": "lifecycle-models",
+   "to": "agile-processes"
+  },
+  {
+   "from": "lifecycle-models",
+   "to": "scrum-framework"
+  },
+  {
+   "from": "wbs",
+   "to": "estimation-planning-poker"
+  },
+  {
+   "from": "wbs",
+   "to": "activity-graphs"
+  },
+  {
+   "from": "wbs",
+   "to": "critical-path"
+  },
+  {
+   "from": "wbs",
+   "to": "lifecycle-models"
+  },
+  {
+   "from": "wbs",
+   "to": "se-overview"
+  },
+  {
+   "from": "estimation-planning-poker",
+   "to": "wbs"
+  },
+  {
+   "from": "estimation-planning-poker",
+   "to": "activity-graphs"
+  },
+  {
+   "from": "estimation-planning-poker",
+   "to": "burn-up-charts"
+  },
+  {
+   "from": "estimation-planning-poker",
+   "to": "scrum-framework"
+  },
+  {
+   "from": "activity-graphs",
+   "to": "wbs"
+  },
+  {
+   "from": "activity-graphs",
+   "to": "critical-path"
+  },
+  {
+   "from": "activity-graphs",
+   "to": "gantt-charts"
+  },
+  {
+   "from": "activity-graphs",
+   "to": "estimation-planning-poker"
+  },
+  {
+   "from": "critical-path",
+   "to": "activity-graphs"
+  },
+  {
+   "from": "critical-path",
+   "to": "gantt-charts"
+  },
+  {
+   "from": "critical-path",
+   "to": "wbs"
+  },
+  {
+   "from": "critical-path",
+   "to": "burn-up-charts"
+  },
+  {
+   "from": "critical-path",
+   "to": "estimation-planning-poker"
+  },
+  {
+   "from": "gantt-charts",
+   "to": "critical-path"
+  },
+  {
+   "from": "gantt-charts",
+   "to": "activity-graphs"
+  },
+  {
+   "from": "gantt-charts",
+   "to": "burn-up-charts"
+  },
+  {
+   "from": "exam-mistakes-planning",
+   "to": "critical-path"
+  },
+  {
+   "from": "exam-mistakes-planning",
+   "to": "activity-graphs"
+  },
+  {
+   "from": "exam-mistakes-planning",
+   "to": "midterm-study-guide"
+  },
+  {
+   "from": "agile-processes",
+   "to": "lifecycle-models"
+  },
+  {
+   "from": "agile-processes",
+   "to": "scrum-framework"
+  },
+  {
+   "from": "agile-processes",
+   "to": "burn-up-charts"
+  },
+  {
+   "from": "agile-processes",
+   "to": "kanban-wip"
+  },
+  {
+   "from": "scrum-framework",
+   "to": "agile-processes"
+  },
+  {
+   "from": "scrum-framework",
+   "to": "scrum-events-backlogs"
+  },
+  {
+   "from": "scrum-framework",
+   "to": "kanban-wip"
+  },
+  {
+   "from": "scrum-framework",
+   "to": "estimation-planning-poker"
+  },
+  {
+   "from": "scrum-events-backlogs",
+   "to": "scrum-framework"
+  },
+  {
+   "from": "scrum-events-backlogs",
+   "to": "burn-up-charts"
+  },
+  {
+   "from": "scrum-events-backlogs",
+   "to": "user-stories"
+  },
+  {
+   "from": "scrum-events-backlogs",
+   "to": "kanban-wip"
+  },
+  {
+   "from": "burn-up-charts",
+   "to": "estimation-planning-poker"
+  },
+  {
+   "from": "burn-up-charts",
+   "to": "kanban-wip"
+  },
+  {
+   "from": "burn-up-charts",
+   "to": "scrum-events-backlogs"
+  },
+  {
+   "from": "burn-up-charts",
+   "to": "gantt-charts"
+  },
+  {
+   "from": "kanban-wip",
+   "to": "burn-up-charts"
+  },
+  {
+   "from": "kanban-wip",
+   "to": "scrum-framework"
+  },
+  {
+   "from": "kanban-wip",
+   "to": "code-review"
+  },
+  {
+   "from": "kanban-wip",
+   "to": "agile-processes"
+  },
+  {
+   "from": "code-review",
+   "to": "kanban-wip"
+  },
+  {
+   "from": "code-review",
+   "to": "scrum-framework"
+  },
+  {
+   "from": "code-review",
+   "to": "ethics-se-professionalism"
+  },
+  {
+   "from": "exam-mistakes-agile",
+   "to": "burn-up-charts"
+  },
+  {
+   "from": "exam-mistakes-agile",
+   "to": "scrum-events-backlogs"
+  },
+  {
+   "from": "exam-mistakes-agile",
+   "to": "midterm-study-guide"
+  },
+  {
+   "from": "exam-mistakes-agile",
+   "to": "kanban-wip"
+  },
+  {
+   "from": "functional-requirements",
+   "to": "nfr-overview"
+  },
+  {
+   "from": "functional-requirements",
+   "to": "user-stories"
+  },
+  {
+   "from": "functional-requirements",
+   "to": "use-case-headers"
+  },
+  {
+   "from": "functional-requirements",
+   "to": "srs-ieee830"
+  },
+  {
+   "from": "functional-requirements",
+   "to": "se-overview"
+  },
+  {
+   "from": "stakeholders-actors",
+   "to": "functional-requirements"
+  },
+  {
+   "from": "stakeholders-actors",
+   "to": "user-stories"
+  },
+  {
+   "from": "stakeholders-actors",
+   "to": "use-case-headers"
+  },
+  {
+   "from": "stakeholders-actors",
+   "to": "use-case-diagrams"
+  },
+  {
+   "from": "user-stories",
+   "to": "stakeholders-actors"
+  },
+  {
+   "from": "user-stories",
+   "to": "use-case-headers"
+  },
+  {
+   "from": "user-stories",
+   "to": "scrum-events-backlogs"
+  },
+  {
+   "from": "user-stories",
+   "to": "estimation-planning-poker"
+  },
+  {
+   "from": "use-case-headers",
+   "to": "stakeholders-actors"
+  },
+  {
+   "from": "use-case-headers",
+   "to": "use-case-flow"
+  },
+  {
+   "from": "use-case-headers",
+   "to": "use-case-diagrams"
+  },
+  {
+   "from": "use-case-headers",
+   "to": "user-stories"
+  },
+  {
+   "from": "use-case-flow",
+   "to": "use-case-headers"
+  },
+  {
+   "from": "use-case-flow",
+   "to": "use-case-diagrams"
+  },
+  {
+   "from": "use-case-flow",
+   "to": "nfr-overview"
+  },
+  {
+   "from": "use-case-diagrams",
+   "to": "use-case-headers"
+  },
+  {
+   "from": "use-case-diagrams",
+   "to": "use-case-flow"
+  },
+  {
+   "from": "use-case-diagrams",
+   "to": "stakeholders-actors"
+  },
+  {
+   "from": "exam-mistakes-requirements",
+   "to": "use-case-flow"
+  },
+  {
+   "from": "exam-mistakes-requirements",
+   "to": "user-stories"
+  },
+  {
+   "from": "exam-mistakes-requirements",
+   "to": "midterm-study-guide"
+  },
+  {
+   "from": "exam-mistakes-requirements",
+   "to": "use-case-diagrams"
+  },
+  {
+   "from": "nfr-overview",
+   "to": "functional-requirements"
+  },
+  {
+   "from": "nfr-overview",
+   "to": "nfr-validity"
+  },
+  {
+   "from": "nfr-overview",
+   "to": "performance-requirements"
+  },
+  {
+   "from": "nfr-overview",
+   "to": "reliability-requirements"
+  },
+  {
+   "from": "nfr-overview",
+   "to": "usability-requirements"
+  },
+  {
+   "from": "nfr-validity",
+   "to": "nfr-overview"
+  },
+  {
+   "from": "nfr-validity",
+   "to": "performance-requirements"
+  },
+  {
+   "from": "nfr-validity",
+   "to": "reliability-requirements"
+  },
+  {
+   "from": "nfr-validity",
+   "to": "usability-requirements"
+  },
+  {
+   "from": "nfr-validity",
+   "to": "functional-requirements"
+  },
+  {
+   "from": "performance-requirements",
+   "to": "nfr-validity"
+  },
+  {
+   "from": "performance-requirements",
+   "to": "reliability-requirements"
+  },
+  {
+   "from": "performance-requirements",
+   "to": "usability-requirements"
+  },
+  {
+   "from": "performance-requirements",
+   "to": "nfr-overview"
+  },
+  {
+   "from": "reliability-requirements",
+   "to": "nfr-validity"
+  },
+  {
+   "from": "reliability-requirements",
+   "to": "performance-requirements"
+  },
+  {
+   "from": "reliability-requirements",
+   "to": "other-nfrs"
+  },
+  {
+   "from": "reliability-requirements",
+   "to": "nfr-overview"
+  },
+  {
+   "from": "usability-requirements",
+   "to": "nfr-validity"
+  },
+  {
+   "from": "usability-requirements",
+   "to": "other-nfrs"
+  },
+  {
+   "from": "usability-requirements",
+   "to": "performance-requirements"
+  },
+  {
+   "from": "other-nfrs",
+   "to": "nfr-validity"
+  },
+  {
+   "from": "other-nfrs",
+   "to": "usability-requirements"
+  },
+  {
+   "from": "other-nfrs",
+   "to": "reliability-requirements"
+  },
+  {
+   "from": "other-nfrs",
+   "to": "srs-ieee830"
+  },
+  {
+   "from": "srs-ieee830",
+   "to": "functional-requirements"
+  },
+  {
+   "from": "srs-ieee830",
+   "to": "nfr-validity"
+  },
+  {
+   "from": "srs-ieee830",
+   "to": "nfr-overview"
+  },
+  {
+   "from": "srs-ieee830",
+   "to": "other-nfrs"
+  },
+  {
+   "from": "exam-mistakes-nfr",
+   "to": "nfr-validity"
+  },
+  {
+   "from": "exam-mistakes-nfr",
+   "to": "midterm-study-guide"
+  },
+  {
+   "from": "ethics-theories",
+   "to": "ethics-se-professionalism"
+  },
+  {
+   "from": "ethics-theories",
+   "to": "nfr-overview"
+  },
+  {
+   "from": "ethics-se-professionalism",
+   "to": "ethics-theories"
+  },
+  {
+   "from": "ethics-se-professionalism",
+   "to": "code-review"
+  },
+  {
+   "from": "ethics-se-professionalism",
+   "to": "scrum-framework"
+  },
+  {
+   "from": "midterm-study-guide",
+   "to": "exam-mistakes-planning"
+  },
+  {
+   "from": "midterm-study-guide",
+   "to": "exam-mistakes-agile"
+  },
+  {
+   "from": "midterm-study-guide",
+   "to": "exam-mistakes-requirements"
+  },
+  {
+   "from": "midterm-study-guide",
+   "to": "exam-mistakes-nfr"
+  },
+  {
+   "from": "midterm-study-guide",
+   "to": "critical-path"
+  },
+  {
+   "from": "midterm-study-guide",
+   "to": "use-case-flow"
+  },
+  {
+   "from": "midterm-study-guide",
+   "to": "nfr-validity"
+  },
+  {
+   "from": "midterm-study-guide",
+   "to": "burn-up-charts"
+  },
+  {
+   "from": "exam-mistakes-ethics",
+   "to": "ethics-se-professionalism"
+  },
+  {
+   "from": "exam-mistakes-ethics",
+   "to": "midterm-study-guide"
+  }
+ ],
+ "backlinks": {
+  "se-overview": [
+   "lifecycle-models",
+   "wbs",
+   "functional-requirements"
+  ],
+  "lifecycle-models": [
+   "se-overview",
+   "wbs",
+   "agile-processes"
+  ],
+  "wbs": [
+   "se-overview",
+   "estimation-planning-poker",
+   "activity-graphs",
+   "critical-path"
+  ],
+  "estimation-planning-poker": [
+   "se-overview",
+   "lifecycle-models",
+   "wbs",
+   "activity-graphs",
+   "critical-path",
+   "scrum-framework",
+   "burn-up-charts",
+   "user-stories"
+  ],
+  "activity-graphs": [
+   "wbs",
+   "estimation-planning-poker",
+   "critical-path",
+   "gantt-charts",
+   "exam-mistakes-planning"
+  ],
+  "critical-path": [
+   "wbs",
+   "activity-graphs",
+   "gantt-charts",
+   "exam-mistakes-planning",
+   "midterm-study-guide"
+  ],
+  "gantt-charts": [
+   "activity-graphs",
+   "critical-path",
+   "burn-up-charts"
+  ],
+  "exam-mistakes-planning": [
+   "midterm-study-guide"
+  ],
+  "agile-processes": [
+   "lifecycle-models",
+   "scrum-framework",
+   "kanban-wip"
+  ],
+  "scrum-framework": [
+   "lifecycle-models",
+   "estimation-planning-poker",
+   "agile-processes",
+   "scrum-events-backlogs",
+   "kanban-wip",
+   "code-review",
+   "ethics-se-professionalism"
+  ],
+  "scrum-events-backlogs": [
+   "scrum-framework",
+   "burn-up-charts",
+   "exam-mistakes-agile",
+   "user-stories"
+  ],
+  "burn-up-charts": [
+   "estimation-planning-poker",
+   "critical-path",
+   "gantt-charts",
+   "agile-processes",
+   "scrum-events-backlogs",
+   "kanban-wip",
+   "exam-mistakes-agile",
+   "midterm-study-guide"
+  ],
+  "kanban-wip": [
+   "agile-processes",
+   "scrum-framework",
+   "scrum-events-backlogs",
+   "burn-up-charts",
+   "code-review",
+   "exam-mistakes-agile"
+  ],
+  "code-review": [
+   "kanban-wip",
+   "ethics-se-professionalism"
+  ],
+  "exam-mistakes-agile": [
+   "midterm-study-guide"
+  ],
+  "functional-requirements": [
+   "stakeholders-actors",
+   "nfr-overview",
+   "nfr-validity",
+   "srs-ieee830"
+  ],
+  "stakeholders-actors": [
+   "user-stories",
+   "use-case-headers",
+   "use-case-diagrams"
+  ],
+  "user-stories": [
+   "scrum-events-backlogs",
+   "functional-requirements",
+   "stakeholders-actors",
+   "use-case-headers",
+   "exam-mistakes-requirements"
+  ],
+  "use-case-headers": [
+   "functional-requirements",
+   "stakeholders-actors",
+   "user-stories",
+   "use-case-flow",
+   "use-case-diagrams"
+  ],
+  "use-case-flow": [
+   "use-case-headers",
+   "use-case-diagrams",
+   "exam-mistakes-requirements",
+   "midterm-study-guide"
+  ],
+  "use-case-diagrams": [
+   "stakeholders-actors",
+   "use-case-headers",
+   "use-case-flow",
+   "exam-mistakes-requirements"
+  ],
+  "exam-mistakes-requirements": [
+   "midterm-study-guide"
+  ],
+  "nfr-overview": [
+   "functional-requirements",
+   "use-case-flow",
+   "nfr-validity",
+   "performance-requirements",
+   "reliability-requirements",
+   "srs-ieee830",
+   "ethics-theories"
+  ],
+  "nfr-validity": [
+   "nfr-overview",
+   "performance-requirements",
+   "reliability-requirements",
+   "usability-requirements",
+   "other-nfrs",
+   "srs-ieee830",
+   "exam-mistakes-nfr",
+   "midterm-study-guide"
+  ],
+  "performance-requirements": [
+   "nfr-overview",
+   "nfr-validity",
+   "reliability-requirements",
+   "usability-requirements"
+  ],
+  "reliability-requirements": [
+   "nfr-overview",
+   "nfr-validity",
+   "performance-requirements",
+   "other-nfrs"
+  ],
+  "usability-requirements": [
+   "nfr-overview",
+   "nfr-validity",
+   "performance-requirements",
+   "other-nfrs"
+  ],
+  "other-nfrs": [
+   "reliability-requirements",
+   "usability-requirements",
+   "srs-ieee830"
+  ],
+  "srs-ieee830": [
+   "functional-requirements",
+   "other-nfrs"
+  ],
+  "exam-mistakes-nfr": [
+   "midterm-study-guide"
+  ],
+  "ethics-theories": [
+   "ethics-se-professionalism"
+  ],
+  "ethics-se-professionalism": [
+   "se-overview",
+   "code-review",
+   "ethics-theories",
+   "exam-mistakes-ethics"
+  ],
+  "midterm-study-guide": [
+   "exam-mistakes-planning",
+   "exam-mistakes-agile",
+   "exam-mistakes-requirements",
+   "exam-mistakes-nfr",
+   "exam-mistakes-ethics"
+  ],
+  "exam-mistakes-ethics": []
+ }
+}

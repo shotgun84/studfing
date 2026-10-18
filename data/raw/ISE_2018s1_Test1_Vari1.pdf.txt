@@ -1,0 +1,150 @@
+Curtin University — Discipline of Computing
+Introduction to Software Engineering (ISAD1000)
+Semester 1, 2018
+Test 1
+Date: Wednesday 11 April.
+Weight: 20% of the unit mark.
+Family Name:
+Given Name(s):
+Student ID:
+This is a CLOSED BOOK test. There are FOUR (4) questions. Answer all of them.
+You have 75 minutes to complete the test. There are 40 marks available.
+Write in non-erasable, blue or black pen on the question paper. Use the back of the
+pages if needed. All your answers must conform to practices emphasised in the lectures
+and practicals.
+|
+Page 1 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2018
+Question 1 (6 marks)
+Consider a project consisting of the following tasks:
+Task
+Duration (weeks)
+Dependencies
+A
+6
+–
+B
+5
+–
+C
+1
+A
+D
+8
+B
+E
+3
+B
+F
+2
+C, D
+G
+7
+E, F
+(a) Draw an activity-on-arc (AOA) graph for this project, including task durations.
+[3 marks]
+(b) Identify the critical path, and show your working.
+[3 marks]
+Question 2 appears on the next page
+Page 2 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2018
+Question 2 (12 marks)
+Say you’re developing a social media network (like Facebook), where each user has a
+network of friends. Each user of the system is identified by their email address. The
+system will store all information in an external database.
+Develop a use case for the “add friend” feature. We will call the user wanting to add a
+friend “User A”, and the potential friend “User B”. Note that User B must agree to User
+A’s request.
+(a) Specify the following use case header information:
+(i) Goal:
+[0.5 marks]
+(ii) Primary actor:
+[0.5 marks]
+(iii) Secondary actor(s):
+[1 mark]
+(iv) Precondition(s), if any:
+[1 mark]
+(v) Trigger:
+[1 mark]
+Question 2 continues on the next page
+Page 3 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2018
+(b) Write the flow of events for the use case.
+[4 marks]
+(c) Write two separate extensions (in full detail).
+[4 marks]
+Question 3 appears on the next page
+Page 4 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2018
+Question 3 (12 marks)
+Use equivalence partitioning to design test cases for each of the following submodules.
+Include all necessary information discussed in the lectures and practicals.
+(a)
+Submodule pressureAdvice
+Imports: pressure (integer)
+Exports: advice (string)
+Returns a string containing advice on the specified pressure value. If the
+pressure is negative, we return “invalid”. If the pressure is between 17–32,
+inclusive, we return “fine”. Otherwise, we return “low” or “high” if the
+pressure falls on either side of that range (but is still non-negative).
+[6 marks]
+Question 3 continues on the next page
+Page 5 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2018
+(b)
+Submodule minCountA
+Imports: text (string), minCount (integer)
+Exports: result (integer)
+Counts the number of occurrences of the uppercase letter “A” within text.
+The submodule returns this count only if it is greater than or equal to min-
+Count. Otherwise, it returns the value of minCount itself instead.
+There are no error conditions. The above description completely describes
+the submodule’s actions.
+[6 marks]
+Question 4 appears on the next page
+Page 6 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2018
+Question 4 (10 marks)
+Implement your test design from Question 3 (both parts (a) and (b)) in Java. You do
+not need to use JUnit, but you can if you wish. In either case, adhere to the practices
+emphasised in the lectures and practicals. Your Java code must match your test case
+design from Question 3.
+However, to save time:
+• For any submodules with more than 4 test cases, you may simply implement 4
+test cases only (of your choice).
+• You may omit any Java import statements.
+Apart from this, show all the test code needed. Assume all production code has already
+been written, and is located inside the file “Product.java”.
+Continue answer for Question 4 on the next page
+Page 7 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2018
+End of Test
+Page 8 of 8

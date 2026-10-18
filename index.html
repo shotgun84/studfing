@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian — ISAD1000 Personal Wikipedia</title>
+<meta name="description" content="Your ISAD1000 course as an interconnected encyclopedia for midterm preparation.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/static/styles.css">
+<link rel="stylesheet" href="/static/visuals.css">
+<link rel="stylesheet" href="/static/activities.css">
+<link rel="stylesheet" href="/static/library.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to article</a>
+<div class="progress" id="readProgress" aria-hidden="true"><span></span></div>
+
+<header class="topbar" role="banner">
+  <button class="iconbtn only-mobile" id="navToggle" aria-label="Open navigation">☰</button>
+  <a class="brand" href="#/" aria-label="Meridian home">
+    <span class="brand-mark" aria-hidden="true">◈</span>
+    <span class="brand-name">Meridian <em>ISAD1000</em></span>
+  </a>
+  <div class="searchwrap" role="search">
+    <span class="searchkey" aria-hidden="true">⌕</span>
+    <input id="searchInput" type="search" placeholder="Search articles, questions, slides…  (Ctrl+K)" aria-label="Search the encyclopedia" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </div>
+  <nav class="topactions" aria-label="Quick actions">
+    <button class="btn ghost" id="surpriseBtn" title="Open a random concept">⚄ Surprise me</button>
+    <button class="iconbtn" id="readingBtn" title="Toggle distraction-free reading mode" aria-label="Reading mode">◐</button>
+    <button class="iconbtn" id="themeBtn" title="Toggle light / dark" aria-label="Theme">◑</button>
+  </nav>
+</header>
+
+<div class="palette" id="palette" hidden>
+  <div class="palette-box" role="dialog" aria-label="Search results">
+    <div class="palette-top">
+      <input id="paletteInput" type="search" placeholder="Type to search…" aria-label="Search" autocomplete="off">
+      <button class="iconbtn" id="paletteClose" aria-label="Close search">✕</button>
+    </div>
+    <ol id="paletteList" class="palette-list"></ol>
+    <p class="palette-hint">↑↓ navigate · Enter open · Esc close</p>
+  </div>
+</div>
+
+<div class="shell">
+    <aside class="rail left" id="leftRail" aria-label="Course navigation">
+    <a class="libtop" href="#/library" title="Open the Learning materials library">📚 Learning materials</a>
+    <div class="rail-head"><span>Contents</span><button class="iconbtn only-mobile" id="navClose" aria-label="Close navigation">✕</button></div>
+    <nav id="sideNav"></nav>
+    <div class="rail-foot">
+      <a href="#/questions">❖ Question bank</a>
+      <a href="#/graph">◈ Concept graph</a>
+      <a href="#/review">↻ Review queue <b id="reviewCount"></b></a>
+      <a href="#/study">▶ Study mode</a>
+    </div>
+  </aside>
+
+  <main id="main" tabindex="-1">
+    <div id="view"></div>
+    <footer class="colophon">
+      <p>Meridian · a personal encyclopedia for <b>ISAD1000/ISAD5004 Introduction to Software Engineering</b> midterms.
+      Built from your lectures, worksheets and past papers — every claim cites its source.
+      <span id="buildStats"></span></p>
+    </footer>
+  </main>
+
+  <aside class="rail right" id="rightRail" aria-label="Article context"></aside>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/static/static.js" defer></script>
+<script src="/static/app.js" defer></script>
+<script src="/static/visuals.js" defer></script>
+<script src="/static/activity_core.js" defer></script>
+<script src="/static/activities.js" defer></script>
+<script src="/static/library.js" defer></script>
+</body>
+</html>

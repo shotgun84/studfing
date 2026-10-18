@@ -1,0 +1,1727 @@
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Introduction to Software Engineering (ISAD1000/5004)
+Lecture 3: Software Requirements/ 
+Functional Requirements
+Updated: 27th February 2021
+Revisions : 07th March 2022,
+Minor revisions: 09th March 2023 , 08th August 2023, 08 March2024
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical Sciences (EECMS)
+Copyright © 2022, Curtin University 
+CRICOS Provide Code: 00301J
+. . . .
+.
+.
+.
+.
+1/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Outline
+Overview of software Requirements
+Requirements in traditional SE and in agile methods 
+Tools for obtaining functional requirements 
+User stories
+Use Cases
+Use Case terminology
+Use case Diagrams
+Use Case descriptions
+2/61
+
+===== PAGE BREAK =====
+
+From Planning to Doing
+Kanban
+Scrum
+Code Reviews
+. . . .
+.
+.
+.
+.
+3/49
+Revisiting the previous lecture: What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to do many other things.
+Software 
+Engineering
+Co-ordinate a 
+team, and plan 
+and manage a 
+project.
+Understand 
+user 
+requirements.
+Design the 
+software 
+(component
+s/modules). 
+Implement the 
+components/modules of 
+the software.
+Test the 
+software, 
+piece by 
+piece.
+Verify that 
+the software 
+meets its 
+goals.
+Maintaining 
+the software
+SDLCs and project 
+planning –Week1,2 & 3 
+We will look at user 
+requirements this 
+week ( Functional 
+requirements).
+Software requirements are the 
+functionalities and the features 
+of the software you develop 
+expect to have.
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Types of Software Requirements
+►We need a lot more information before these become proper 
+requirements:
+►What are the steps to print something?
+►Exactly how fast and reliable should the software be, and how 
+do we measure that?
+►There are other requirements such as domain, user requirements 
+which we will not cover in this lecture.
+Software requirements topic is covered in depth in Requirements Engineering 
+(CMPE2002)
+Functional requirements 
+deal with the software’s 
+functions – what it 
+should do.
+e.g., save ﬁle, print, launch 
+missile, make a backup, 
+etc.
+Non-functional 
+requirements
+deal with the software’s 
+characteristics – what it 
+should be.
+e.g., fast, secure, easy to 
+use, reliable, etc.
+More in 
+week 5
+4/61
+week 4
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+The client and the software we develop
+►Software requirements can be complicated:
+© Alex Gorbatchev
+►The client rarely knows 
+precisely what they want.
+(The client is the person, 
+company, department, etc. that 
+you are building the software 
+for.)
+►Communication between 
+you and the client is vital. 
+You must understand the 
+client’s requirements.
+►If you don’t, you will build 
+the wrong software! (And 
+then you won’t be very 
+popular.)
+►Things often change mid-
+way through a project.
+5/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Requirements Principles
+There are different approaches to obtaining requirements; whatever
+approach you take, there are some common principles: 
+“What”, not “how”
+►Software requirements only say what the software should 
+do.
+►No point ﬁguring out “how” until you’ve nailed the “what”.
+Resolving uncertainty
+►Projects always begin with great uncertainty.
+►What on Earth is the client talking about?!
+►We want to reduce that uncertainty as quickly as possible.
+Divide and conquer (relevant to all SE activities really)
+►Requirements must be broken down.
+►Humans (you) understand things much better in 
+small pieces.
+6/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+Requirements in Traditional SE
+►You negotiate with the client over the scope and the price in 
+the beginning of the project.
+►Project scope basically means “everything the project is 
+supposed to do”.
+►It means “how much we’re talking about” – what’s relevant 
+and what’s irrelevant.
+►It can mean “how much you’re going to deliver“.
+►SE team and the client agree on what to up-front. 
+(document using a Software Requirement Specification) 
+Resulted 
+in SRS
+►Then you design and 
+build the software.
+►Intended to resemble a 
+traditional engineering 
+project.
+7/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Requirements in Agile methods
+►Many projects use agile methods in software development.
+ ( Lecture 2)
+►Agile methods take a diﬀerent approach to requirements.
+►The whole project is a series of short bursts of development.
+►These are called iterations, or increments, or “sprints”, etc.
+►The client is closely involved throughout the project.
+►You and the client still talk about scope and price, but for 
+each iteration (not the whole project).
+►Rapid, incremental delivery.
+►The requirements, and the product, are built-up 
+incrementally.
+►Still you may have a SRS also for high level requirements.
+8/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Agile Iterations
+Each of the iterations might be 1- 4 weeks in length.
+►First iteration:
+►Agree with client on initial (very, very basic) 
+requirements.
+►Create initial (very, very basic) product.
+►Second iteration:
+►Agree with client on additional requirements.
+►Update product.
+►Third iteration (as above)
+►. . .
+►Final iteration (for now):
+►Agree with client on last requirements (for now).
+►Update product.
+. . . .
+.
+.
+.
+.
+9/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Software Requirements Speciﬁcation (SRS)
+►A document listing all the requirements (functional and non-functional) 
+as well as top-level details of the project.
+►Often forms a legal contract between the client and the 
+developers.
+►With an SRS, all (or most) requirements are speciﬁed up-
+front.
+►Must have the right level of detail.
+►Errors in the SRS can lead to huge problems.
+►When writing an SRS, you must be unambiguous, consistent, 
+complete and concise.
+►Otherwise, software developers will be confused.
+►They’ll build the wrong system!
+►You must also be very careful that you understand what the client 
+needs.
+►Traditionally, many software projects use a SRS.
+10/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+SRS Layout
+Adapted from the IEEE recommendations for SRSs 1:
+1. Introduction
+2. Overall description
+3. External interface requirements
+4. Functional requirements
+5. Other Non-functional requirements
+1IEEE Std 830-1998
+.
+.
+.
+.
+11/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+SRS Layout
+1. Introduction
+1.
+Purpose
+2.
+Scope
+3.
+Deﬁnitions, acronyms, and abbreviations
+4.
+References
+5.
+Overview
+2. Overall description
+1.
+Product perspectives
+2.
+Product functions
+3.
+User characteristics
+4.
+Constraints
+5.
+Assumptions and dependence
+3. External interface requirements
+4. Functional requirements
+5. Other Non-functional requirements
+. . . .
+.
+.
+.
+.
+12/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+SRS Layout
+1. Introduction
+2. Overall description
+3. External interface requirements
+(Particular kind of non-functional requirements 
+and constraints.)
+1.
+User interfaces
+2.
+Hardware interfaces
+3.
+Software interfaces
+4.
+Communications interfaces
+4. Functional requirements
+5. Other Non-functional requirements
+. . . .
+.
+.
+.
+.
+13/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+SRS Layout
+1. Introduction
+2. Overall description
+3. External interface requirements
+4. Functional requirements
+(Can be organised in various ways; e.g. by mode, by user 
+class, by feature, by stimulus, etc.)
+5. Other Non-functional requirements
+1.
+Performance requirements
+2.
+Safety requirements
+3.
+Security requirements
+4.
+..etc.
+. . . .
+.
+.
+.
+.
+More in week 4
+14/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+Changing Requirements
+►If the requirements don’t change, life is easy.
+►You agree on the requirements.
+►You design, implement and test the product.
+►You deliver it.
+►Proﬁt!
+►But this never really happens – requirements always change.
+►Why?
+►Because it’s near-impossible to get the details right, initially.
+►Tradeoﬀs must be made – e.g., cost vs. performance.
+►Software works in complex environments.
+►Diﬀerent kinds of users, with diﬀerent knowledge, preferences, 
+working styles, etc.
+►Diﬀerent kinds of hardware.
+►Interactions with many other diﬀerent systems.
+►You write software because what the client needs has never 
+been done before (at least, not exactly the right way).
+15/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Changing Requirements in Traditional SE
+►Faulty requirements are very expensive to ﬁx late in a 
+project.
+►You need to redo a lot of work.
+►The later the requirements are left unﬁxed, the more work 
+you will have to redo.
+►If requirements are going to change, the sooner the better.
+►(To minimise the damage.)
+►We use “inspection” to help make this happen.
+►Formal process for reviewing the SRS, and anything 
+else we produce.
+►Acts as a rigorous approval process.
+►If inspection ﬁnds too many faults, then you’re not ﬁnished.
+►Not perfect, but better than nothing.
+16/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Changing Requirements in Agile methods 
+►As the requirements, and the product, are built-up 
+incrementally, 
+►Faulty requirements are very quick to ﬁnd, 
+because the client can see almost 
+immediately.
+►Not much rework is required when you get something 
+wrong.
+►Damage is (basically) limited to one iteration’s 
+worth of work.
+17/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Prototyping for clarifying requirements 
+►Prototype is a dummy version of the software build very quickly.
+►Used to “try out” an idea, or set of ideas.
+►Often just the user interface (the visible part) of the software.
+►Mostly thrown away afterwards. (Because you cut corners in 
+order to build it quickly!.)
+►Prototypes help resolve uncertainty.
+►Gives the client ideas.
+►Gives the client something to criticise, leading to better 
+requirements.
+►Gives you ideas too.
+►Helps put you and the client “on the same page”.
+►Perhaps a way for SRS-based projects to become more 
+“agile”.
+18/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Tools for obtaining functional requirements 
+►User stories
+►Use cases – diagrams and textual 
+specifications
+19/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+User Stories
+►Agile methods often work with user stories.
+►Tiny snippets of text with 3 parts:
+►User role – who are we talking about?
+►Ability – what does this user want to do?
+►Beneﬁt – why is this important?
+►Phrased like either of the following:
+[user role]
+[ability]
+As a
+I want to
+so that [beneﬁt].
+OR
+[beneﬁt]
+In order to
+as a [user role], I want to [ability].
+.
+.
+.
+.
+(Choose one form and use it consistently.)
+►Created by you ( Software Developer) and the client, together.
+►Forms the basis of the next iteration (i.e., what you’re working 
+on next).
+20/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+User Story Examples
+As a student, 
+As a student, I want to register for pracs so that I don’t 
+miss out.
+As an administrator, I want to add prac classes so that there 
+are classes available to students.
+As an administrator, I want to remove prac classes so there 
+aren’t more classes than necessary.
+I want to view all prac classes so that I can 
+choose which one to attend.
+User role
+ability
+benefit
+21/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+User Stories: Why?
+►Divide-and-conquer, and resolving uncertainty.
+►Breaks down the requirements.
+►Makes it obvious what features the software needs, and who
+needs them.
+►The why (the “beneﬁt” part) ensures you and the client both 
+understand the importance of each feature.
+►Requirements → Planning! (Remember last two lectures.)
+►Each user story is a task in your work breakdown structure.
+►There can be sub-tasks as well.
+►Play planning poker to estimate how long it will take.
+►Some user stories will naturally depend on others.
+22/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+User stories and Backlogs
+►Agile methods use a backlog of user stories.
+►A queue of features waiting to be implemented.
+►Similar in principle to a work breakdown structure (WBS).
+►The diﬀerence: WBSs are ﬁxed up-front; backlogs evolve.
+►User stories are added to the backlog throughout the project.
+►A process of discovery (resolving uncertainty).
+►You and the client agree on what to add, based on what 
+you’ve learnt so far.
+►This is done repeatedly and regularly.
+►User stories are also removed from the backlog when they 
+are ﬁnished.
+►User stories represent units of work and you (as a software 
+engineer) carry out the work, story-by-story.
+►Start with the highest priority user stories.
+23/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+User Story Common Sense
+►User stories are about users – the people who will 
+actually use the software that you’re about to make.
+►User stories are not about:
+►You. You’re the developer, not the user (unless you’re 
+making the software for yourself).
+►Things that aren’t people.
+►In particular, the following have no meaning:
+►As the software, I want to. . .
+►As the database, I want to. . .
+►As the payment system, I want to. . .
+A database can’t call itself “I”, nor can it “want” anything.
+►Don’t mix up “ability” and “beneﬁt”.
+►The ability is what the software should do.
+►The beneﬁt is why we care about it.
+24/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Use Cases
+►A use case (“case of use”) is a way of showing how the software system 
+will interact with the outside world.
+►Many use cases may be needed for any given software system.
+►Graphical method can be used to give the overview of the requirements 
+and textual description will give flow of events and other details related 
+achieving the use case.
+►Each use case describes a functional requirement.
+►“Functional requirement” is the concept.
+►“Use case” is the written/graphical description of it.
+(In fact, use cases can also describe parts of functional requirements, 
+or several functional requirements together.)
+►Introduced by Ivar Jacobson1 around 1992.
+►Can start with the big picture.
+►Alistair Cockburn’s methodology 2 emphasised the textual description. This 
+method (simpliﬁed) will be used in this lecture.
+1Jacobson (1992) Object-Oriented Software Engineering 
+2Cockburn (2000) Writing Eﬀective Use Cases, ISBN 0-201-70225-8
+.
+.
+.
+.
+25/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Use Cases
+►We focus on goals to be achieved by end-users of a 
+system.
+►System is the software under consideration.
+►We model the stakeholders that use a system and 
+contribute to the completion of the goals as actors, and 
+the ways that the system will be used to achieve these 
+goals are modelled as use cases.
+ -USE-CASE 2.0 The Guide to Succeeding with Use Case, Jacobson
+►Actors, goals and the system are the main 
+consideration of use cases.
+.
+.
+.
+.
+26/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Use Case terminology: Stakeholders
+►Stakeholders : Who cares about the software, and who is 
+aﬀected by it.
+►The question “who?” is very important.
+►The obvious stakeholders:
+►The users, obviously;
+►The developers, since they have to build it;
+►The client, who (probably) has to pay for it.
+►The not-quite-as-obvious stakeholders:
+►The passengers on an aircraft, if your software controls 
+the aircraft;
+►Victims of crime, if your software facilitates police operations;
+►Website owners, if your software is an Internet search 
+engine;
+►…..and many more.
+27/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Use Case terminology: Actors
+►Some stakeholders are actors.
+►An actor is an entity that:
+►interacts with the system being created, but which
+ is not part of the system.
+►Some actors are human: administrators, managers, 
+employees, students, lecturers, etc.
+►Some actors may be non-human:
+►Databases – external systems for storing complex data;
+►Sensors – devices for observing the real world;
+►Robots;
+►…etc.
+28/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+Actors: Some External Systems are Irrelevant
+►There are many external systems that we don’t care about (when 
+discussing functional requirements):
+►the operating system (Linux, Windows, OS X, etc.),
+►input/output devices (hard drives, keyboards, monitors, etc.),
+►networking infrastructure (network cards, routers, ISPs, etc.),
+►and possibly others.
+►Don’t state the obvious.
+►Of course there’s a monitor. Of course the system will use it.
+►But talking about that means less focus on important details.
+►Be concerned with “what”, not “how”.
+“The Approver retrieves customer details from a database.”
+►This might involve a hard drive, or a network card. But we 
+don’t care about those low-level details yet.
+►Real actors just use these systems to interact with the
+system-under-construction.
+►Human actors use the keyboard, mouse, monitor and OS.
+►Non-human actors use the OS and networking.
+29/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+Use Case terminology: Databases
+►We’ll talk about databases a lot when writing use cases.
+►A database is (usually) an external piece of software for 
+storing data.
+►Usually large amounts of complex, structured data.
+►Sometimes runs on a physically separate computer.
+►You use a database to avoid worrying about issues like:
+►How to permanently store data yourself.
+►How to access it eﬃciently.
+►How to keep it safe, in case something fails.
+►That means your system must communicate with the 
+database to store and retrieve data when necessary.
+►Databases are a classic non-human actor.
+►However, not all systems have or need a database!
+►Don’t automatically assume one is present.
+30/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+Databases: What You Need to Know
+►Databases are discusssed in depth in Database 
+Systems – ISYS2014.
+►You are not expected to know how they work in this unit,
+except that:
+►Databases store, delete and retrieve data when asked.
+►Databases don’t make decisions or take actions.
+►Databases don’t communicate directly with users, only 
+with other software.
+Note: Some people confusingly say “database” when they
+mean “a software system that uses a database”. Don’t do that 
+here!)
+►Databases don’t connect diﬀerent systems together.
+►Technically they could, but it’s better if diﬀerent systems 
+communicate directly.
+►A database should only be accessed from one software system.
+31/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+More on Actors and Goals
+►Each use case has one primary actor:
+►Always a person!
+►The person who is most directly involved.
+►Usually, the person who initiates the use case.
+►(On rare occasions, the system itself initiates the use 
+case.)
+►The goal of the use case is the goal of the primary actor.
+►What does the primary actor want to happen?
+►A use case often also has secondary actor(s):
+►Any other people or external systems involved.
+►Can be human or non-human.
+►They have some responsibilies to the primary actor.
+►Diﬀerent use cases can have diﬀerent actors.
+►The primary actor in one use case could be 
+secondary in another.
+►Note: the software that you’re writing is NOT a primary 
+or secondary actor.
+32/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Use Case terminology: task level goals
+►System ( system under consideration) will support many goals 
+from different stakeholders.
+►These goals can be identified as task-level-goals to make 
+simple and manageable.
+.
+.
+.
+.
+Example: actor-goal table 
+Source: Writing Effective Use Cases, Alistair Cockburn
+Goals are written 
+as a short 
+verb phrase
+33/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Example System
+►Say we’re developing a video sharing website (like 
+YouTube).
+►Use case for identifying requirements – think about: 
+►What would be your task-level-goals?
+►What would be your actors?
+►How actors interact with the system to achieve 
+goals?
+►We may create a simple actor-goal list AND/OR a UML use 
+case diagram before writing the use case description.
+►We write the use case description/specification for each use 
+case. 
+UML: Unified Modelling Language; you will learn more in RE unit later.
+34/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Example System
+►Task level goals 
+►Watching a video;
+►Uploading a video;
+►Reporting a video (for harassment, copyright 
+infringement, etc.);
+►Posting a comment on a video;
+►…
+(You might be able to think of other features too.)
+►Actors
+►Uploader, viewer, reporter , video database …
+►Exercise 1: create an Actor-goal list for this example.
+ (refer slide 34 for an example)
+►We would then ,
+►create UML use case diagram/s for the system.
+►write a use case description/ specification for each of 
+the goals.
+35/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+UML Use Case Diagrams
+►A diagram that shows: (1) the names of all use cases, (2) 
+all the actors, and (3) the relationships between them all.
+►An actor is a stick ﬁgure:
+►A use case is an 
+ellipse:
+Actor
+►Lines indicate participation:
+Actor
+Use Case
+.
+.
+.
+.
+Use Case
+36/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Viewer
+Comment
+on Video
+Basic Use Case Diagram
+Watch Video
+Database
+Report Video
+►The viewer and database actors participate in three use 
+cases here.
+. . . .
+.
+.
+.
+.
+37/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Viewer
+Comment
+on Video
+Who Does What?
+►Use case diagrams clearly show which actors 
+participate in which use cases.
+►Some actors only participate in speciﬁc use cases.
+Report Video
+Database
+Advertiser
+Payment System
+. . . .
+.
+.
+.
+.
+Watch Video
+38/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Viewer
+The «include» Relationship
+Some use cases may “include” others, as extensions, or 
+steps in the ﬂow of events.
+Watch Video
+Report Video
+Database
+Advertiser
+Payment System
+«include»
+Comment 
+on Video
+«include»
+. . . .
+.
+.
+.
+.
+39/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+The «include» Relationship
+►You can “include” one use case inside another.
+►The included use case may be a step inside the larger use case.
+►However, the included use case is still a separate use case too.
+►«include» represents an important SE principle: reuse.
+►“Comment on Video” and “Report Video” can be done:
+1. Separately, OR
+2. As part of “Watch Video”.
+►To write all three use cases, we could have a lot of duplication.
+►Duplication wastes eﬀort and leads to ambiguities.
+►Using «include» is clearer and more concise.
+►(There’s also an «extends» relationship, but Alistair Cockburn 
+discourages this due to unnecessary confusion.)
+40/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Actor Generalisation
+►Some actors can do everything that others can do, plus more.
+►Below, some users are “uploaders” or “moderators” but are 
+also “viewers”.
+Comment 
+on Video
+Report Video
+Upload Video
+Database
+Moderator
+Uploader
+.
+.
+.
+.
+Watch Video
+Viewer
+41/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Use Case Diagrams Are Not Flow Charts!
+This is not a use case diagram:
+Uploader
+Pick 
+Video
+Process 
+Video
+Enter 
+Details
+Publish
+Database
+. . . .
+.
+.
+.
+.
+42/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Use Case Description 
+►Use case description describes how the actors interacts 
+with the system, organized under several headings.
+Every use case description is made up of the following:
+Header
+Basic information about the use case: (1) what it’s for, 
+(2) who it involves, and (3) when it happens.
+Flow of Events (FoE)
+A sequence of numbered steps:
+►Describes how the system interacts with its actors.
+►Describes what should “normally” happen.
+Extensions
+A set of alternative scenarios:
+►Describes what happens if things go wrong, or 
+diﬀerently.
+43/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Complete Example of a use case description (for Later Reference)
+Use Case 7. Uploading a Video [Note: this is only one use case. Others are needed for the other features.]
+Goal:
+to allow a registered user to upload and share a video.
+Primary actor: uploader (human).
+Secondary actors:
+database.
+Precondition:
+uploader is logged in, and has at least 1MB of remaining space.
+Trigger:
+uploader selects the “upload video” option.
+4.
+The use case resumes at step 4.
+.
+.
+.
+.
+Flow of Events:
+1.
+The uploader chooses a ﬁle to upload.
+2.
+The system receives the uploaded ﬁle.
+3.
+The system converts the video ﬁle to the site’s standard format, while 
+displaying the progress.
+4.
+The uploader enters video details, including name, description, location & tags.
+5.
+The uploader selects the publish option.
+6.
+The system stores the ﬁnished video and its details in the database.
+Extensions:
+2A – The uploaded ﬁle is not a valid video ﬁle.
+1.
+The system asks the uploader to choose another ﬁle.
+2.
+The use case resumes at step 1.
+3A – The system detects a match for an existing copyrighted video or soundtrack.
+1.
+The system notiﬁes the uploader.
+2.
+The use case ends.
+3B – The uploader has insuﬃcient space to store the video.
+1.
+The system calculates how much of the video can be stored.
+2.
+The uploader selects a segment of that length.
+3.
+The system replaces the whole video with the segment.
+header
+44/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Use Case 7. Uploading a Video
+ Goal: to allow a registered user to upload and 
+share a video.
+ Primary actor: uploader (human).
+Secondary actors: database.
+ Precondition: uploader is logged in, and has at least 1MB 
+of remaining space.
+ Trigger: uploader selects the “upload video” option.
+ 
+. . . .
+.
+.
+.
+.
+Example, Part 1 : Use Case Header
+45/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+Triggers and Preconditions
+►A “trigger” is an event that starts the use case’s ﬂow 
+of events (FoE).
+►May or may not be a user action.
+►Could (alternatively) be a time-of-day.
+►A “precondition”, if false, will prevent the use case 
+from starting; e.g.
+►The user must be logged on.
+►The user must have permission to do X.
+►The system must be in mode M.
+►A use case starts if
+1. The trigger occurs, AND
+2. At that moment in time, all preconditions are true.
+►Don’t confuse preconditions with:
+►Triggers; OR
+►Conditions that arise after the use case starts.
+46/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+A Visual Guide of how a user case works 
+?
+Software Running 
+but Idle
+Step 1
+Step 2
+Step 3
+...
+Trigger 
+Event
+Preconditions 
+Met?
+Yes
+No
+Finished
+Flow of Events
+. . . .
+.
+.
+.
+.
+►Shows the basic conceptual order of things in a use case.
+►Don’t draw this yourself – it’s just for your understanding.
+►While the software is “running but idle”, it’s looking for 
+trigger events for any use case.
+►Remember: there are generally many diﬀerent use cases.
+47/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+A Closer Look at the Flow-Of-Events (FoE)
+►As a rough guide, the FoE should have about 3–10 steps.
+►Steps can be,
+►Interactions initiated by an actor. e.g.,
+►“The uploader chooses a ﬁle to upload.”
+►Interactions initiated by the system. e.g.
+►“The system receives the uploaded ﬁle. ”
+►Signiﬁcant processing done by the system (possibly 
+combinable with other steps). e.g.,
+►“The system converts the video ﬁle to the site’s standard 
+format, while displaying the progress. ”
+►Some actors – especially databases – never initiate an 
+interaction, but they can still be part of one.
+48/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Example, Part 2 : Flow of Events
+. . . .
+.
+.
+.
+.
+1. The uploader chooses a ﬁle to upload.
+2. The system receives the uploaded ﬁle.
+3. The system converts the video ﬁle to the site’s 
+standard format, while displaying the progress.
+4. The uploader enters video details, including 
+name, description, location and tags.
+5. The uploader selects the publish option.
+6. The system stores the ﬁnished video and its details in 
+the database.
+7. The system displays a message indicating uploading 
+details.
+Here is the example Flow of Events for uploading a video use 
+case:
+49/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Scope and the use cases : Things to concern 
+►Don’t describe things that are “out of scope”.
+►The use case is only concerned with the operation of the 
+software system.
+►In the real world, use cases can specify a wider or narrower 
+scope.
+►For ISE we’ll focus on “system scope”.
+►Valid, in-scope preconditions (which the system can verify):
+►“Uploader has logged in”.
+►“Uploader has not been banned from uploading”.
+►“Uploader has at least 1MB of remaining allocated space”.
+►Invalid, out-of-scope preconditions:
+►“Uploader is awake.”
+►“System has been installed.”
+►“Universe exists.”
+50/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Flow-of-Events : Things to Avoid
+►Don’t show interactions between two actors.
+►“ Viewer asks uploader to cancel uploading”
+►This is outside the scope of the system.
+►Avoid technology-speciﬁc language.
+►“ Uploader presses the abort button.”
+►Instead: “ Uploader selects the abort option.”
+►Use cases should capture the essence of the 
+interactions, not the implementation details.
+►Don’t limit your design options unnecessarily.
+►Avoid the passive voice, and use the active voice.
+►“ The video uploading is aborted.”
+►Instead: “The system aborts the video upload.”
+►Always state explicitly who or what carries out each 
+action.
+►Reduces uncertainty and ambiguity.
+51/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Extensions
+►The main ﬂow of events describes the “happy days” scenario:
+►everything goes right, and the goal is achieved.
+►Variations to this main scenario are called extensions.
+►There may be several extensions.
+►Sometimes there are zero extensions, but not often.
+►Each extension “branches oﬀ” a particular point in the FoE.
+►The extension describes what happens if something 
+speciﬁc goes wrong (or diﬀerently) at that point.
+►There may be several extensions at the same point.
+52/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Extensions – A Visual Guide
+?
+Software Running 
+but Idle
+Trigger 
+Event
+Preconditions 
+Met?
+Yes
+No
+Step 1
+Step 2
+Step 3
+...
+Step
+1A.1
+Step
+1A.2
+Step
+1A.3
+Step
+2A.1
+Step
+2A.2
+Step
+2B.1
+Step
+2B.2
+Finished
+Extension 1A
+. . . .
+.
+.
+.
+.
+Extension 2A
+Extension 2B
+(use case ends)
+Again, don’t draw this. It’s 
+just for your understanding.
+53/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Parts of an Extension
+Each extension has:
+An ID – like “4B”. This identiﬁes two things:
+►The step in the FoE (e.g., 4) that something 
+might go wrong (or diﬀerently).
+►Distinguishes one extension from another, 
+if they occur at the same point.
+A condition – states why the extension takes place.
+A list of steps – an alternate “mini” ﬂow-of-events. 
+An exit point – what happens afterwards:
+►The use case might simply end, if the error 
+is unrecoverable.
+►The use case might resume at a 
+particular step in the FoE.
+54/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+Example, Part 3 : Extensions
+. . . .
+.
+.
+.
+.
+2A – The uploaded ﬁle is not a valid video ﬁle.
+1. The system asks the uploader to choose another ﬁle.
+2. The use case resumes at step 1.
+3A – The system detects a match for an existing copyrighted video 
+or soundtrack.
+1. The system notiﬁes the uploader.
+2. The use case ends.
+3B – The uploader has insuﬃcient space to store the video.
+1. The system calculates how much of the video can be 
+stored.
+2. The uploader selects a segment of that length.
+3. The system replaces the whole video with the segment.
+4. The use case resumes at step 4.
+55/61
+
+===== PAGE BREAK =====
+
+. . . .
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+.
+.
+.
+.
+Extensions :Things to Avoid
+Avoid overly-generic problems. e.g.
+►Database network connection is lost.
+►Out of memory.
+►User closes program. 
+Because:
+►These problems would apply to almost all use cases.
+►We don’t want to repeat the solution over and over 
+and over – unnecessary work!
+Avoid problems that the system can’t address. e.g.
+►User is ﬁred from their job.
+►Computer explodes. 
+Because:
+►We write use cases to guide us in writing the software.
+►Anything that the software can’t help with is beyond 
+the scope of the exercise.
+56/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+What about “IF” statements?
+►In learning how to code, you will encounter “IF” 
+statements, which allow your program to make a choice 
+between two alternatives.
+►Tempting to use these in the use case ﬂow of events, 
+instead of extensions.
+►Actually, not a good idea.
+►Extensions should be separate from the main FoE.
+►This makes it easier to see, overall, what’s going on.
+57/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Use Cases vs. Use Case Diagrams
+►Use case diagrams have limited usefulness.
+►They show an overview only.
+►Use Case Diagrams don’t show the preconditions, trigger, ﬂow 
+of events or extensions.
+►They don’t distinguish between primary and secondary actors.
+►The fully-written use cases contain most of the information.
+►In particular, use case diagrams cannot show the ﬂow of 
+events.
+►There’s no way to show ordering/sequence of steps in the 
+diagram.
+►«include» cannot be used in this way, nor can any other 
+relationship.
+58/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Additional notes :Design Scope and Goal Level
+►Use cases also have a particular “design scope” and 
+“goal level”.
+►“Design scope”: what thing are you talking about?
+►Your software/system, OR
+►Just a part of your software/system (a “subsystem”), OR
+►The organisation that will use your software/system.
+►“Goal level”: how much functionality are you talking about?
+►A single functional requirement (“user goal”), OR
+►A single step within one functional requirement 
+(“subfunction”), OR
+►A sequence of functional requirements (“strategic”).
+►Scope and level help you deal with a manageable amount 
+of information.
+59/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+Summary
+►Identifying and specifying requirements of software system is 
+important to deliver what actually the client wants.
+►Traditionally, SRS is used to document the requirements of software 
+systems. SRS is a comprehensive document covering many aspects 
+of requirements an agreed upon early stages of project.
+►In agile methods, requirements are built-up incrementally.
+►Functional requirements deal with the software’s functions – what it 
+should do.
+►User stories and use cases are two tools useful to document 
+functional requirements.
+►User role, ability and the benefit are considered in user stories. 
+►Use case descriptions give more detail requirements than user 
+stories with flow of events, trigger events and extensions. 
+60/61
+
+===== PAGE BREAK =====
+
+Requirements
+Stakeholders and Actors
+Use Cases
+Use Case Diagrams
+. . . .
+.
+.
+.
+.
+That’s all for now!
+See you next week
+Next week’s lecture: Specifying non-functional requirements
+Next week’s lab: Specifying functional requirements
+Assessments: You will have your practical assessment 1 in this 
+week’s regular labs.
+61/61

@@ -1,0 +1,254 @@
+[
+ {
+  "id": "vq-wbs-error",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "A teammate's festival WBS lists: 1. Transport, 1.1 Ferry timetable, 2. Stage setup, 2.1 Stage tested. Which item breaks WBS rules?",
+  "choices": [
+   "1. Transport \u2014 too vague to estimate",
+   "1.1 Ferry timetable \u2014 too detailed",
+   "2.1 Stage tested \u2014 it is a milestone, not a task",
+   "2. Stage setup \u2014 overlaps with transport"
+  ],
+  "answerIndex": 2,
+  "answer": {
+   "official": false,
+   "text": "'Stage tested' marks an achievement, not work \u2014 milestones don't consume time or owners. Replace with the task that earns it ('test stage electrics') or move it to the milestone list.",
+   "rubric": [
+    "Identifies 2.1 as the fault",
+    "Names milestone-vs-task rule"
+   ]
+  },
+  "articles": [
+   "wbs"
+  ]
+ },
+ {
+  "id": "vq-aon-slip",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "In the annotated AON figure (A\u2192B, A\u2192C, C\u2192E\u2026): B has slack 4, E has slack 3. B slips by 2 weeks. What happens to the deadline?",
+  "choices": [
+   "Nothing \u2014 B still has 2 weeks of slack left",
+   "The deadline slips 2 weeks",
+   "E's slack drops to zero",
+   "The critical path changes"
+  ],
+  "answerIndex": 0,
+  "answer": {
+   "official": false,
+   "text": "B consumes 2 of its 4 slack weeks; 2 remain, so no successor is delayed. (Shared-slack warning: E's path slack also shrinks \u2014 check before borrowing more.)",
+   "rubric": [
+    "Chooses 'nothing' with slack arithmetic",
+    "Notes shared-slack caveat"
+   ]
+  },
+  "articles": [
+   "critical-path",
+   "activity-graphs"
+  ]
+ },
+ {
+  "id": "vq-burnup-read",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "At day 30, the actual-progress line sits clearly below the planned line while scope stays flat. The correct reading?",
+  "choices": [
+   "Ahead \u2014 less work done means efficiency",
+   "Behind \u2014 earned value trails plan; replan, rebalance or renegotiate",
+   "On track \u2014 lines always converge by themselves",
+   "Invalid chart \u2014 lines must never diverge"
+  ],
+  "answerIndex": 1,
+  "answer": {
+   "official": false,
+   "text": "Actual < planned with flat scope = genuinely behind. Compare, then act: add reviewers, cut scope via the PO, or renegotiate the deadline \u2014 the chart informs, empiricism (the increment) decides.",
+   "rubric": [
+    "Reads behind-schedule",
+    "Names a concrete action"
+   ]
+  },
+  "articles": [
+   "burn-up-charts"
+  ]
+ },
+ {
+  "id": "vq-nfr-sort",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "'The system shall count ordered menu items and display the statistics on request.' Why is this NOT a valid NFR?",
+  "choices": [
+   "It is ambiguous",
+   "It is a function in disguise \u2014 you could write its flow of events",
+   "It governs kitchen staff, not software",
+   "It demands perfection"
+  ],
+  "answerIndex": 1,
+  "answer": {
+   "official": false,
+   "text": "Counting-and-displaying is a function (inputs \u2192 outputs) with a writable flow \u2014 a miscategorised FR (2019 Q3c-ii). Ambiguity isn't the issue; category is.",
+   "rubric": [
+    "Identifies functional-in-disguise",
+    "Cites the flow-of-events test"
+   ]
+  },
+  "articles": [
+   "nfr-validity"
+  ]
+ },
+ {
+  "id": "vq-uc-ext",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "For the 2022 'Plot data' case, which extension earns marks?",
+  "choices": [
+   "5A \u2014 selected data contains non-numeric values: prompt to proceed with valid data only; abort cleanly if declined",
+   "X1 \u2014 database network connection fails",
+   "X2 \u2014 server loses power during plotting",
+   "X3 \u2014 user changes their mind about science"
+  ],
+  "answerIndex": 0,
+  "answer": {
+   "official": false,
+   "text": "5A is scenario-specific with step ID, condition, handling and outcome. The rest are generic failures the slides explicitly reject (Slide 56).",
+   "rubric": [
+    "Picks 5A",
+    "Rejects generic failures with the specificity rule"
+   ]
+  },
+  "articles": [
+   "use-case-flow"
+  ]
+ },
+ {
+  "id": "vq-kanban-next",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "WIP limit 3. Review holds 3 cards; Coding holds 1. A developer finishes coding. What should they do next?",
+  "choices": [
+   "Pull a new task into Coding",
+   "Help clear Review (review, test, merge) before starting new work",
+   "Move a card from Review to Done to free space",
+   "Ask the Scrum Master to raise the WIP limit"
+  ],
+  "answerIndex": 1,
+  "answer": {
+   "official": false,
+   "text": "Finish-before-start: the pile-up is the bottleneck signal. Swarm reviewing; never force Done or inflate WIP to hide the constraint.",
+   "rubric": [
+    "Chooses help-clear-Review",
+    "States finish-before-start"
+   ]
+  },
+  "articles": [
+   "kanban-wip"
+  ]
+ },
+ {
+  "id": "vq-perf-pick",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "Which is a valid, useful performance requirement?",
+  "choices": [
+   "The system must be really fast",
+   "Colour-enhance shall take \u2264250 ms for a 10 MP image on an average PC",
+   "The system must save images within 1 ms",
+   "The system should usually respond quickly"
+  ],
+  "answerIndex": 1,
+  "answer": {
+   "official": false,
+   "text": "Only the second has operation + bound + workload + environment (Worksheet 4 Q1e, the model specimen). The others fail unambiguous/doable/verifiable respectively.",
+   "rubric": [
+    "Picks the quantified option",
+    "Names a failed property for one reject"
+   ]
+  },
+  "articles": [
+   "performance-requirements"
+  ]
+ },
+ {
+  "id": "vq-scrum-event",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "The increment is demoed to stakeholders and the Product Backlog is adapted. Which event, and what follows it?",
+  "choices": [
+   "Sprint planning \u2014 followed by daily stand-ups",
+   "Sprint review \u2014 followed by the retrospective",
+   "Sprint retrospective \u2014 followed by the next planning",
+   "Backlog refinement \u2014 followed by the review"
+  ],
+  "answerIndex": 1,
+  "answer": {
+   "official": false,
+   "text": "Review inspects the product with stakeholders; the retrospective follows and inspects the process. Order matters: what we built, then how we work.",
+   "rubric": [
+    "Names review",
+    "Orders retrospective after it"
+   ]
+  },
+  "articles": [
+   "scrum-events-backlogs"
+  ]
+ },
+ {
+  "id": "vq-gantt-crit",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "On the mini Gantt sketch, which bar can absorb a 2-week delay without moving the deadline?",
+  "choices": [
+   "C (6) \u2014 longest bar",
+   "B (5) \u2014 it carries 4 weeks of slack",
+   "A (3) \u2014 first bar",
+   "G (5) \u2014 last bar"
+  ],
+  "answerIndex": 1,
+  "answer": {
+   "official": false,
+   "text": "Only slack absorbs delay. B's 4-week float covers 2 weeks; every gold (critical) bar would move the deadline immediately.",
+   "rubric": [
+    "Picks B via slack",
+    "States critical bars have zero float"
+   ]
+  },
+  "articles": [
+   "gantt-charts",
+   "critical-path"
+  ]
+ },
+ {
+  "id": "vq-story-parts",
+  "origin": "generated",
+  "type": "mcq",
+  "source": "Generated visual practice (course-grounded, needs verification)",
+  "prompt": "'As a passenger, I want to book a return ticket.' What is missing, and why does it cost marks?",
+  "choices": [
+   "The role \u2014 'passenger' is not a user",
+   "The benefit \u2014 without 'so that', priority and scope can't be judged",
+   "Nothing \u2014 two parts suffice",
+   "The system constraint \u2014 stories must name the database"
+  ],
+  "answerIndex": 1,
+  "answer": {
+   "official": false,
+   "text": "The 'so that' clause justifies and prioritises the story. The worksheet rule is explicit: all three parts, one sentence.",
+   "rubric": [
+    "Names the missing benefit",
+    "Links benefit to priority"
+   ]
+  },
+  "articles": [
+   "user-stories"
+  ]
+ }
+]

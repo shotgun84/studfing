@@ -1,0 +1,170 @@
+Curtin University — Discipline of Computing
+Introduction to Software Engineering (ISAD1000)
+Semester 1, 2019
+Test 1
+Date: Thursday 11 April.
+Weight: 20% of the unit mark.
+Family Name:
+Given Name(s):
+Student ID:
+This is a CLOSED BOOK test. There are FOUR (4) questions. Answer all of them.
+You have 75 minutes to complete the test. There are 40 marks available.
+Write in non-erasable, blue or black pen on the question paper. Use the back of the
+pages if needed. All your answers must conform to practices emphasised in the lectures
+and practicals.
+|
+Page 1 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2019
+Question 1 (8 marks)
+Consider a project consisting of the following tasks:
+Task
+Duration (weeks)
+Dependencies
+A
+4
+–
+B
+5
+–
+C
+10
+A
+D
+6
+B
+E
+2
+B
+F
+3
+C, D
+G
+6
+E
+(a) Draw an activity-on-node (AON) graph for this project, including task durations.
+[5 marks]
+(b) Identify the critical path, and calculate the expected project duration.
+(Note: you do not need to show the earliest and latest start/finish times.) [3 marks]
+Question 2 appears on the next page
+Page 2 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2019
+Question 2 (12 marks)
+Say you’re developing an automated ordering system for a restaurant.
+Once seated, customers press “start” on a tablet mounted into the table, then choose
+items from the menu on the tablet, then pay by credit card. Once the external pay-
+ment system confirms that the payment has been processed, the ordered items and
+table number are displayed to kitchen staff (on a monitor in the kitchen), who begin
+preparing the items requested.
+The available menu items are kept in a database. However, sometimes the kitchen will
+run out of certain ingredients, leaving staff unable make certain items, and unfortu-
+nately the database is not always kept up-to-date in this respect. In addition, the sys-
+tem automatically disables itself between 8:30pm and 10:30am, when the restaurant is
+closed; i.e. the system remains running, but will not allow anyone to place an order.
+(Note: the above system description is used in both Question 2 and Question 3.)
+(a) Specify the following use case header information:
+(i) Goal:
+[0.5 marks]
+(ii) Primary actor:
+[0.5 marks]
+(iii) Secondary actor(s):
+[1 mark]
+(iv) Precondition(s), if any:
+[1 mark]
+(v) Trigger:
+[1 mark]
+Question 2 continues on the next page
+Page 3 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2019
+(b) Write the flow of events for the use case.
+[4 marks]
+(c) Write two separate extensions (in full detail).
+[4 marks]
+Question 3 appears on the next page
+Page 4 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2019
+Question 3 (10 marks)
+(For this question, refer to the restaurant ordering system description from Question 2.)
+(a) Propose a valid and useful usability requirement for the system.
+[3 marks]
+(b) Propose a valid and useful reliability requirement for the system.
+(Hint: not all reliability metrics are useful in this situation.)
+[3 marks]
+(c) Briefly explain why each of the following are not valid non-functional require-
+ments.
+(i) The kitchen staff must finish the customer order within 10 minutes of receiv-
+ing it.
+[2 marks]
+(ii) The system must count up all menu items ordered, and display the statistics
+on request.
+[2 marks]
+Question 4 appears on the next page
+Page 5 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2019
+Question 4 (10 marks)
+This question concerns version control, using Git. Describe what happens as a result of
+entering the following commands (one after another):
+Notes:
+• Make your answer easy to read!
+• Be concise. If you can write a single combined answer covering multiple steps,
+please do so.
+• Say which branch(es) are involved at each point.
+• “vim File.java” will of course load File.java for editing, or create it if it does not
+already exist. You may assume that the developer makes at least some change to
+the file when this happens
+1. git clone https://curtin.edu.au/ise.git
+2. git checkout master
+3. git branch formEditor
+4. git branch reporter
+5. git checkout formEditor
+6. vim Editor.java
+7. vim Form.java
+8. git add Editor.java Form.java
+9. git commit -m "Improved usability."
+Question 4 continues on the next page
+Page 6 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2019
+10. mv Editor.java FormEditor.java
+11. git add -A Editor.java FormEditor.java
+12. git commit -m "Fixed naming."
+13. git checkout master
+14. git merge formEditor
+15. git checkout reporter
+16. vim Reports.java
+17. git add Reports.java
+18. git commit -m "Added report fields."
+19. git checkout master
+20. git merge reporter
+21. git push -u origin master
+Continue answer for Question 4 on the next page
+Page 7 of 8
+
+===== PAGE BREAK =====
+
+ISE Test 1
+Semester 1, 2019
+End of Test
+Page 8 of 8

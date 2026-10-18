@@ -1,0 +1,2130 @@
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Introduction to Software Engineering (ISAD1000/ ISAD5004)
+Lecture 1:Introduction and Project Planning
+Updated: 24th February, 2025
+Minor Revisions : 25 February 2022, 02 March 2023/ 25 July 2023/28 Feb2024/2025
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical Sciences (EECMS)
+Copyright © 2020, Curtin University 
+CRICOS Provide Code: 00301J
+. . . .
+.
+.
+.
+.
+1/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Outline
+SE Overview and unit organization
+SLDCs and Project Planning Methods for SE
+Software Lifecycle 
+Project Management Methods
+Activities ( WBS) and network graphs 
+Estimation 
+Critical Path
+Gantt Charts
+2/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Deﬁnition of Software Engineering
+Software engineering is the art and 
+science of writing software 
+eﬀectively.
+3/63
+“Software engineering is the branch of computer science that creates 
+practical, cost-effective solutions to computing and information-
+processing problems, preferentially by applying scientific knowledge, 
+developing software systems in the service of mankind.”
+Professors Nancy R. Mead, David Garlan, and Mary Shaw of Carnegie Mellon University
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Is SE important?
+►Software Engineering centres around coding.
+►Coding can be done well, and it can be done very, very badly.
+►The consequences of poor coding can be disasterous:
+►Lives can be put in danger.
+►In 1985–1987, the THERAC 25 medical radiation machine 
+gave fatal doses to several patients 
+https://onlineethics.org/cases/therac-25/investigation-therac-25-accidents-
+abstract#:~:text=The%20Therac%2D25%2C%20a%20computerized,severe%20injury%20or%20even%20de
+ath.)
+►In 2000–2010, dozens of deaths were recorded due to 
+“sudden unintended acceleration” in Toyota and Lexus 
+vehicles
+(https://www.edn.com/toyotas-killer-firmware-bad-design-and-its-consequences/)
+►Lots of very dangerous things are controlled by software!
+►Billions of dollars can be wasted.
+►Stops people getting work done – productivity losses.
+►Drives customers away.
+►Can cause organisations to get sued/prosecuted.
+►Can destroy valuable information.
+►SE is there to ensure that coding is done well.
+4/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Challenges in Software Engineering
+How do you:
+►build something with no physical size, 
+that you can’t see or feel?
+►know what to build, when even your 
+customer doesn’t?
+►know when it goes wrong, and how to 
+ﬁx it?
+►improve it without breaking it?
+►co-ordinate a team of people to do this, 
+on a large scale?
+►know how long it will take, and get it 
+done on time?
+5/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+.
+.
+.
+.
+What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to:
+►Co-ordinate a team, and plan and manage a project.
+►Understand user requirements.
+►Design the software (components/modules). 
+►Implement the components/modules of the software.
+►Test the software, piece by piece.
+►Verify that the software meets its goals.
+►Maintaining the software
+►Whole books – and lots of them – have been written about 
+each of these points.
+►However, every SE company is diﬀerent.
+►Every project is diﬀerent.
+►There is no “one-size-ﬁts-all” approach.
+6/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+.
+.
+.
+.
+What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to do many other things.
+7/63
+Software 
+Engineering
+Co-ordinate a 
+team, and plan 
+and manage a 
+project.
+Understand 
+user 
+requirements.
+Design the 
+software 
+(component
+s/modules). 
+Implement the 
+components/modules of 
+the software.
+Test the 
+software, 
+piece by 
+piece.
+Verify that 
+the software 
+meets its 
+goals.
+Maintaining 
+the software
+►Whole books – and lots of them –
+have been written about each of 
+these points.
+►However, every SE company is 
+diﬀerent.
+►Every project is diﬀerent.
+►There is no “one-size-ﬁts-all” 
+approach.
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Very short history of SE/programming
+►The world’s ﬁrst computer programmer was Ada 
+Lovelace (1815–1852).
+►Wrote programs for a computer that was never made –
+Charles Babbage’s Analytical Engine.
+►“Software Engineering” was coined by a NASA 
+engineer called Margaret Hamilton. (1960s)
+►Also popularised by a NATO conference (1968).
+►Attendees reported many problems in writing 
+software: the “software crisis”.
+►Object Oriented (OO) programming slowly gained 
+popularity; now the dominant programming paradigm.
+►“Agile” software engineering is gaining 
+popularity over previous SE practices.
+►As software engineering gets older, we are learning 
+what works and what doesn’t.
+.
+.
+.
+.
+8/63
+Image source: 
+https://commons.wikimedia.o
+rg/wiki/File:Margaret_Hamilt
+on_-
+_restoration.jpg#/media/File:
+Margaret_Hamilton.gif
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Scope of SE and the Limitations of this unit
+►Software engineering is needed most of all for very large
+programs:
+►Operating Systems (Windows, Linux, Android, Mac OS, 
+iOS, etc.);
+►Web browsers (Chrome, Firefox, Safari, IE, etc.);
+►Oﬃce suites (Microsoft Oﬃce, OpenOﬃce, etc.);
+►Certain popular games;
+►Certain popular websites;
+►Nuclear power plant control software.
+►…
+►Most of you aren’t ready to launch into this (yet). 
+►We need to start small.
+9/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Unit Learning outcomes
+On successful completion of this unit students can: 
+ 
+1.
+Apply conventional and agile software project management tools and techniques 
+Project planning, Agile Methods, Version control
+2.
+Articulate functional and non-functional requirements
+Functional/ non-functional requirements 
+3.
+Develop test designs and code using black-box and white-box methods
+Testing , Test fixtures 
+4.
+Identify software design quality issues and propose solutions
+Modularity 
+5.
+Understand the social impact of software and the importance of ethical and 
+professional conduct. Demonstrate the importance of ethical and professional 
+conduct in software engineering profession with an understanding of social impact of 
+software
+Ethics and Professionalism
+10/63
+Weeks 1,2,3,7
+Weeks 1,2,3,7
+Weeks 4,5
+Weeks 4,5
+Weeks 10,11,12
+Weeks 10,11,12
+Weeks 8
+Weeks 8
+Weeks 6
+Weeks 6
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Concurrent prerequisites 
+ 
+►This unit depends on any one of the following units:
+►Fundamentals of Programming ( COMP1005); OR
+►Object Oriented Program Design ( COMP1001); OR
+►Programming Design and 
+Implementation(COMP1007)
+►You must:
+►Be currently enrolled in one of the above : OR
+►Have passed one of the above; OR
+►Have been credited for one of the above
+►One is enough
+11/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Unit Resources & Assessments
+►Weekly lecturers and practical sessions 
+►Practical sessions are very important for learning process
+►Unit page on Blackboard learning management systems 
+( http:/lms.curtin.edu.au) 
+►Lecture slides and worksheets are available under “Lecture 
+Materials “ section
+►Recordings will be available after the each lecture via ilecture section 
+( live-streaming is also enabled)
+►Recordings from previous semesters are available under “Lecture 
+Videos from …” section.
+►“Reading list” shows additional reading material
+►“Learning Resources” shows lab schedule/ assessment extension 
+request information etc. 
+Assessments
+►Practical assessments – 20%
+►Mid-term test -30%
+►Final assessment ( Exercise submission) – 50%
+Refer unit outline for more details 
+12/63
+
+===== PAGE BREAK =====
+
+13/63
+13
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Get ready for uni life
+►Be familiar with the set-up , talk with people- enjoy!. 
+►There can be other units you are doing other than this unit.
+►There can be many things happening in your life other 
+than doing studies. 
+►Try to think a bit and see whether your studies are 
+becoming distracted. 
+►Be little bit mindful
+►Try to seek help 
+►Get things under control 
+ before become a “disaster” 
+►Common issues
+►Underestimate yourself - be kind to yourself
+►Overestimate yourself – bit difficult if we don’t 
+know that we don’t know 
+(don’t discourage yourself please ! don’t be under-confidence)
+►Talk to your friends, your tutors, senior tutors, lecturers ….
+14/63
+
+===== PAGE BREAK =====
+
+Software Development Life 
+Cycles and Software project 
+planning methods
+ 
+15/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Software Development Life Cycle (SDLC)
+►The “Software Development Life Cycle” is the idea that 
+software projects are divided into diﬀerent kinds of 
+activities:
+►Gathering requirements.
+►Designing the system.
+►Implementing the system.
+►Testing and inspecting it.
+►Maintaining (ﬁxing and improving) it.
+►Sometimes called “phases”. All software projects include 
+them.
+►But they can ﬁt together in many diﬀerent ways.
+►We need to plan the project to make sure we get these 
+activities done. 
+►This is a very broad idea.
+Not all projects go as shown in the above diagram, though the same phases would be 
+there.
+16/63
+Image source: 
+https://datarob.com/essentials-
+software-development-life-cycle/
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Life Cycle Models
+►The SE industry has many diﬀerent approaches to getting the job 
+done.
+►The SE academics long ago starting proposing various life cycle 
+models.
+►Each model is a way of understanding how the software 
+development life cycle (SDLC) works.
+►Each model is also a somewhat idealistic simpliﬁcation.
+►Common categories1 :
+►Predictive life cycle: A more traditional approach, with the bulk of planning 
+occurring upfront, then executing in a single pass; a sequential process.
+►Iterative life cycle: An approach that allows feedback for unfinished work 
+to improve and modify that work. ( e.g.; Iterative waterfall.)
+►Incremental life cycle: An approach that provides finished deliverables 
+that the customer may be able to use immediately. ( e.g.; Spiral)
+►Agile life cycle: An approach that is both iterative and incremental to 
+refine work items and deliver frequently
+►Predictive models and Agile methods are at extremes but commonly a middle 
+ground is used in the industry. 
+►We will look at Agile methods more detail in another lecture.
+1Software Extension to the PMBOK® Guide Fifth Edition, Chapter 3 
+17/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+1. The Iterative Waterfall Model (Graphical Depiction)
+Requirements
+Design
+Coding/
+Debugging
+Testing
+Maintenance/
+Operations
+The typical depiction of Iterative Waterfall1.
+1Adapted from Bell and Thayer (1976), Software Requirements: Are They
+.
+.
+.
+.
+Really a Problem?
+18/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+The Iterative Waterfall Model (Discussion)
+►The software life cycle phases are done one after another, in 
+order.
+►It is expected that some “iteration” will be needed.
+►It will take several attempts to get each phase “right”.
+Note : You will encounter iteration when you write code also.
+It’s also called “looping”.
+But here it relates to the humans, rather than the code.
+19/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Non-Iterative Waterfall?
+►“The waterfall model” is often the subject of ridicule.
+►Some people will say it’s outdated and unworkable, and 
+an example of what not to do.
+►They are sort-of right, if you squint.
+►There are several things to unpack here:
+1. Often people consider the “waterfall model” to 
+be non-iterative (by default).
+2. A non-iterative waterfall is indeed a terrible idea – you 
+can’t correct your mistakes!
+3. But, nobody ever actually had the idea in the ﬁrst place! 
+Some people just got confused.
+4. BUT, it is still a useful discussion point on the need 
+for iteration. (Hence this slide!)
+20/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+2. The Spiral Model (Graphical Depiction)
+Start
+1. Set Objectives 
+and Identify
+Options
+.
+.
+.
+.
+2. Evaluate 
+Options and
+Risks
+3. Develop 
+and Verify
+4. Plan
+Next Iteration
+Adapted from Boehm (1986), A Spiral Model of Software Development and 
+Enhancement.
+21/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+The Spiral Model (Discussion)
+►A project’s timeline is divided into cycles (iterations).
+►Each cycle accomplishes something.
+►What it accomplishes is ﬂexible, and not precisely mapped 
+out in advance.
+►Not certain how many cycles you will need.
+►But basically, as you get further “outwards”, you get 
+further through the life cycle phases: requirements, 
+design, coding, testing and maintenance.
+►The Spiral Model makes iteration both more detailed and
+more ﬂexible.
+►By contrast, Iterative Waterfall has iteration, but doesn’t 
+really say how it works.
+22/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Parts of a Spiral Cycle
+►Each cycle consists of four parts:
+1. Determine what the cycle is going to accomplish, and 
+possible options for how.
+2. Determine the risks of each option (what could go wrong), and 
+resolve them, possibly using prototyping.
+3. Develop the material (whether requirements, design, code or
+testing) that needs to be done and verify that it’s acceptable.
+4. Review the work done and ensure that everyone is ready 
+to proceed to the next cycle.
+►Throughout the software project, we have requirements, 
+design, coding, testing and maintenance.
+►The four parts of the cycle address all of the phases.
+►The Spiral Model is a systematic way to develop anything in a 
+team.
+23/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+“Risk Mitigation” (Playing it Safe)
+►Spiral Model is more suitable when your project is risky.
+►Don’t worry, you’re not going to be in mortal danger. . . 2
+►SE risks are all to do with money and reputation.
+►Every project always has risks:
+►It could go over-budget.
+►It could go over-time.
+►It could fail altogether.
+►Some projects have more risks than others, mainly when 
+you don’t have enough information:
+►About what the client wants.
+►About the best way to do something.
+►Prototyping is one way to get more information, to 
+help address risks.
+2Although.. .
+xkcd.com/292
+.
+.
+.
+.
+24/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Prototyping
+►A prototype is a quick piece of work.
+►You may discard them (throw-away) or convert it to usable 
+work(evolutionary/incremental etc.)
+►It helps you get early insight into the best ways to design 
+your software.
+►The earlier you know something, the fewer mistakes 
+you’ll make as a result!
+►User interface (UI) prototypes:
+►A poor UI can make software virtually unusable.
+►The look and layout of the software (on the screen) can 
+be a real artform.
+►So, design several mockups of the screen layout, and show
+them to the client.
+►The client may not like them, but you’ll learn useful info.
+25/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Project Management methods and SDLCs 
+►The Waterfall/Spiral models are very abstract, lofty ideas(Not the 
+whole story.)
+►To actually plan and manage a project, we also need 
+something more detailed and down-to-Earth.
+►We need to plan our time and resources effectively to 
+deliver the intended outcome of the project.
+►To plan and manage SE projects, some project 
+management methods used in other domains are 
+adopted.
+►Once we know the scope and the goals of the project, we can 
+start the planning process with a work breakdown structure 
+(WBS).
+►WBS helps to identify tasks, find dependency between tasks, time 
+needs to complete the tasks and more information.
+26/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Work Breakdown Structure(WBS)
+►We break up a project into a series of tasks.
+►We break up tasks into smaller sub-tasks.
+►Eventually our tasks are “bite-sized” enough that we can 
+easily see how to do each one, and how long it will take ( 
+time estimation).
+►Helps to identify how each task depend on each other ( 
+dependency identification)
+►Helps the team understand everything that needs to be done.
+►Diﬀerent tasks get assigned to diﬀerent team members.
+27/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Work Breakdown Structure – Example
+1. Market research
+2. Prototyping
+3. Game design
+3.1 Identify core game concepts
+3.2 Develop basic storyline
+3.3 Develop game world and mechanics
+3.4 Specify game characters and abilities
+4. Game implementation
+4.1 Artwork
+4.2 Coding
+5. Testing
+5.1 Functionality
+5.2 Playability
+5.3 Rework
+6. Release
+28/63
+WBS for a project 
+to develop a 
+computer game 
+1. Market research
+2. Prototyping
+3. Game design
+4. Game implementation
+5. Testing
+6. Release
+Initial WBS
+Refined WBS
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Work Breakdown Structure – Discussion
+►A case of “divide-and-conquer”.
+►We’re much better at solving a series of small problems 
+than one big one.
+►You’ll see this idea coming up again and again!
+►Not speciﬁc to software projects.
+►This is a generic planning tool – you can use it for 
+planning any project.
+►Not a schedule.
+►We have more work to do before we get to that.
+►We haven’t even assigned an order to the tasks yet.
+►Not broken down “too far”.
+►Nobody wants to deal with a thousand 1-minute tasks.
+29/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+WBS: Dependencies and Milestones
+►Some tasks must be completed before 
+others can begin. e.g.
+►We can’t test a game until after it’s been 
+coded.
+►To code a game, all four design tasks to 
+be complete.
+►We need to know the dependencies.
+►Ideally, we’d like to do things in parallel –
+much faster!
+►Dependencies tell us what can’t be done 
+in parallel.
+►Milestones are a way of measuring 
+progress.
+►A milestone is “reached” upon completion of a 
+speciﬁc activity (or activities), so that others 
+can begin.
+►Milestones are deﬁned in advance, at the start 
+of a project.
+1. Market research
+2. Prototyping
+3. Game design
+3.1 identify core game..
+3.2 Storyline ..
+3.3 Develop game …
+3.4 Specify characters
+4. Game implementation
+4.1 Artwork
+4.2 Coding
+5. Testing
+5.1 Functionality
+5.2 Playability
+5.3 Rework
+6. Release
+30/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+WBS: Task Table
+►Many representations can be used for indicating dependency 
+and timing information.
+►A tabular format is one of the simplest.
+►WBS can be updated with time and dependency information in a 
+tabular format.
+31/63
+Activity
+Time
+Dependencies
+1.
+Market research
+20
+–
+2.
+Prototyping
+13
+–
+3.1.
+Identify core game concepts
+2
+1, 2
+3.2.
+Develop basic storyline
+5
+3.1
+3.3.
+Develop game world and mechanics
+8
+3.1
+3.4.
+Specify game characters and abilities
+5
+3.1
+4.1.
+Implement artwork
+20
+3.2, 3.3, 3.4
+4.2.
+Code core game logic
+40
+3.2, 3.3, 3.4 
+5.1 Functionality Testing
+20
+4.2
+5.2 Playability Testing
+8
+4.1, 4.2
+5.3 Rework
+13
+5.1,5.2
+6 Release
+5
+5.3
+We will look at 
+how to find time 
+estimates shortly
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Graphs for showing activities 
+►Tables are easy to construct, but graphs are easier to read. 
+Graphs (Computer Science Terminology)
+►Graph is a network of nodes (also called vertices) and edges.
+►A node/vertex is drawn as a point, circle, rectangle, etc.
+►An edge is a connection between two nodes.
+►Sometimes edges have arrows. These edges are called arcs, and 
+appear on directed graphs.
+►Nodes and edges often have labels: names, numbers, or other 
+information.
+►Can be several different types of nodes and edges, depending on the 
+situation.
+►Graphs appear in many different situations, for different purposes.
+32/63
+edges
+nodes
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Activity Graphs
+►Activity graphs ( project network diagrams / activity 
+diagrams) are widely used to show a graphical breakdown 
+of a project.
+►Shows which activities depend on which other activities.
+►Two representations:
+►These represent the exact same information, but in 
+diﬀerent ways. (One will probably feel more “natural” to 
+you.)
+►In both AON and AOA graphs, “start” and “stop” nodes 
+represent the beginning and end of a project.
+Activity-on-Node (AON) – nodes are activities, arcs 
+indicate dependencies.
+Activity-on-Arc (AOA) – nodes are milestones, arcs 
+are activities.
+33/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Activity-on-Node (AON) Graphs showing dependencies
+►Say activity B depends on activity A:
+A
+B
+►F depends on both D and E, which both in turn depend on C.
+C 
+D 
+F
+ E
+►Both I and J depend on both G and H:
+G I
+ 
+H 
+J
+. . . .
+.
+.
+.
+.
+34/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Start
+2
+Prototyping
+3.3
+Activity-on-Node (AON) Example
+Playability 
+Testing
+3.4
+4.1
+Artwork
+Rework
+Market
+Research
+Coding
+Functionality 
+ Testing
+ 
+1
+3.1
+3.2
+4.2
+5.1
+5.3
+6
+5.2
+End
+►Nodes (circles) are tasks. Arrows are 
+dependencies.
+►Note the special dummy “Start” and ”End” tasks.
+►Not real tasks but help to show what happens 
+ﬁrst and last.
+(I haven’t labelled every task here, but you get the idea.)
+. . . .
+.
+.
+.
+.
+35/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Activity-on-Arc (AOA) Graphs showing dependencies
+►Activity B depends on activity A:
+Activity A
+Activity B
+►F depends on both D and E, which both in turn depend on C:
+Activity D
+Activity C
+Activity F
+Activity E
+►Both I and J depend on both G and H:
+Activity G
+Activity I
+Activity H
+Activity J
+. . . .
+.
+.
+.
+.
+36/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Activity-on-Arc (AOA) Example
+1
+3.1
+5.1
+5.2
+5.3
+End
+6
+Start
+2
+3.2
+3.3
+3.4
+4.2
+4.1
+►Arrows are tasks. Nodes (circles) are 
+“milestones”.
+►Same information as before; diﬀerent 
+way of thinking.
+►The dotted line is a special dummy task.
+►Sometimes needed to show 
+dependencies properly.
+. . . .
+.
+.
+.
+.
+37/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+5.1. Functionality 
+Testing
+5.2. Playability 
+Testing
+4.2. Coding
+4.1. Artwork
+►The dummy task (dotted line):
+►Not real, but needed to make the AOA diagram work.
+►Conceptually, when we ﬁnish Coding (4.2), the dummy task is 
+instantaneously ﬁnished too.
+►Playability Testing (5.2) depends on Artwork (4.1) and the 
+dummy task, and the dummy task depends on Coding (4.2).
+►Playability Testing really just depends on Artwork and Coding.
+►(And Functionality Testing (5.1) only depends on Coding.)
+. . . .
+.
+.
+.
+.
+Dummy Tasks (A-O-A)
+38/63
+Activity
+Dependencies
+5.1 Functionality 
+Testing
+4.2
+5.2 Playability 
+Testing
+4.1, 4.2
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Estimating the duration of activities
+►Time (or Eﬀort) is Money
+►In SE, you spend money on two main things:
+►Staﬀ salaries (per person per year).
+►Oﬃce space (rent per m2 per year).
+(There’s also hardware, various services, etc., but those 
+costs are usually relatively small.)
+►And your oﬃce space is based on how many staﬀ you have.
+►So, the total cost of an SE project mainly just depends on:
+►How many people it takes.
+►How much time it takes.
+►We often express this in “eﬀort”:
+(Eﬀort is measured in “person-hours”, “person-months”, etc.)
+.
+.
+.
+.
+Eﬀort = Time taken by a person × Number of 
+People
+39/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Estimation
+►Vitally important to estimate time, eﬀort and (hence) cost.
+►You’re spending someone else’s money!
+►They want to know how much you need, and when you’ll 
+be done.
+►Unfortunately, SE estimation is extremely diﬃcult!
+►SE is the ultimate “self-automation” profession.
+►You never really need to do the same thing twice.
+►Because you can just copy-and-paste what you did before.
+►(Or, in practice, use more sophisticated “reuse” 
+techniques.)
+►Which means: everything you do is a “ﬁrst”, more or less.
+►So how can you tell how long it will take?
+►When doing time estimation, we have to think about scope 
+of the project as well.
+40/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Estimating Time, or Scope?
+►Sometimes the question is “How long will it take to make X?”
+►Fixed scope, ﬂexible timeline/budget.
+►You could also be asked “How much can you make in T 
+months?”
+►Fixed timeline/budget, ﬂexible scope.
+►Before you begin a project, you’ll have many choices of what
+exactly you should build.
+►You need to decide what’s possible, and most important, in 
+the time given.
+Note: “Project scope” basically means “everything the project is 
+supposed to do”.
+►“Scope” generally means “everything relevant” to a particular 
+situation.
+►(“Scope” has another meaning in programming languages too, but 
+that’s a completely separate thing – see PDI/OOPD/FoP.)
+41/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Estimation Models: COCOMO
+►COCOMO (the COnstructive COst MOdel) 3 lets 
+you estimate time and eﬀort of a SE project.
+►It actually doesn’t really work! But why is interesting.
+►Based on statistical “regression”:
+►B.W Boehm collected data on (initially) 61 software projects.
+►Total time, eﬀort and total size (lines of code, or LOC).
+►Other characteristics: team experience and 
+interdepenencies on other systems.
+►Created equations to calculate time & eﬀort from size.
+►To use COCOMO, you:
+►Estimate the eventual size (LOC) of your upcoming project.
+►Categorise: experienced/inexperienced team, separate 
+from or dependent on other systems, etc.
+►Finally, evaluate the equations.
+3Boehm (1981) Software Engineering Economics.
+.
+.
+.
+.
+42/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+.
+.
+.
+.
+The Problem with COCOMO
+►“Lies, damned lies and statistics”:
+►COCOMO will give predictions for time and eﬀort.
+►Wrong predictions. Likely very wrong.
+►Statistics don’t lie when used properly.
+►Statistical regression is well used in science (and in 
+data analysis generally).
+►But you need a lot of data, even to predict something simple.
+►You need huge amounts of data to predict something 
+complex.
+►SE projects are very complex (for estimation purposes).
+►“Time” and “eﬀort” sound simple, but you’re really trying to 
+measure aspects of human creativity – not simple!
+►Someone had to try, and Boehm remains a signiﬁcant ﬁgure 
+in pioneering SE research.
+►But, for COCOMO, he just didn’t have enough data.
+►Practically speaking, you can’t collect enough data.
+43/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Real-World Estimation
+►In reality, cost/time estimation is mostly done on a 
+task-by-task basis, using a WBS.
+►Several experienced engineers independently take an educated 
+guess, for each task, based on experience and intuition.
+►Estimates are compared, argued over and adjusted.
+►Roughly speaking, this is the Wideband Delphi process.
+►It works because:
+►Small tasks are much less complex than a whole 
+project.
+►Experience and intuition take into account factors 
+that are diﬃcult to model mathematically.
+4Boehm (1981) Software Engineering Economics.
+.
+.
+.
+.
+44/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+.
+.
+.
+.
+Planning Poker (yes, this is a real thing!)
+►A card game for estimating things (say, activity duration).
+►Based on Wideband Delphi.
+►Each team member holds a set of cards labelled: 0, 1/2, 1, 2, 3, 
+5, 8, 13, 20, 40, 100, “?” and “∞”.
+►Partly based on the Fibonacci sequence.
+►There are variations, but they all look roughly like this.
+►Before you start, pick your units:
+►Does a “3” mean 3 weeks, 3 person hours, etc?
+►Are you estimating time, or eﬀort?
+►Are you working in hours, days, weeks or months?
+►The whole team must use the same units consistently!
+►Play the game for each task in the Work Breakdown Structure.
+1. All team members play a card, face down, at the same time.
+2. All team members turn over their card, at the same time.
+3. Discuss why your estimates are all diﬀerent!
+45/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Planning Poker – Psychology and Conversation
+►Playing cards face down is important psychologically.
+►Forces participants to think independently ﬁrst.
+►If you hear someone else’s estimate before making your 
+own,
+you won’t be able to make your own.
+►The human brain is very susceptible to suggestion.
+►Don’t think about ELEPHANTS. Now, what are you thinking 
+about?
+►The conversation afterwards is also important.
+►Diﬀerent team members will have diﬀerent ideas about 
+what the task may involve.
+►They must share their understanding, to help the team 
+agree on a single number.
+►If there is still disagreement, you can take an average of the
+estimates, but don’t do that unless you have to.
+46/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Planning Poker – The Cards
+►Those cards again were 0, 1/2 , 1, 2, 3, 5, 8, 13, 20, 40, 100, “?” 
+and “∞”. But why?
+►Too small, too big, or too mysterious?
+►“0” means you think a task is trivial (too small).
+►“∞” means you think a task is impossible, or too big 
+to estimate properly.
+►“?” means you have no idea – you need more information.
+►The task should be combined with others, split up, 
+or re-thought as needed.
+►Otherwise, choose one of the remaining number cards.
+►Your choices are very limited. You can’t just pick any 
+number.
+►This actually forces you to be more realistic.
+►Estimation is not very precise, and so arguing about 15 vs 
+20 is just wasting time.
+►“Round up” to the next available number, where needed.
+47/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Planning Poker – Example 1
+►Say:
+►You have a team of 3.
+►You’re working in person-days.
+►You want to estimate the task “3.2. Specify game characters 
+and abilities”.
+►Everyone plays a card face down. . . and then turns them over:
+2
+5
+13
+Signiﬁcant diﬀerence of opinion!
+►So, the team discusses what “specifying game characters 
+and abilities” is really all about.
+►Is the person who said “13” considering things that the others 
+have missed?
+►Or are they making incorrect or pessimistic assumptions?
+. . . .
+.
+.
+.
+.
+48/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Planning Poker – Example 2
+►Let’s move onto “4.2. Coding”. Now the team gives us this:
+∞
+100
+100
+.
+.
+.
+.
+The task is probably too big.
+►Two estimates are right at the edge, and one is “impossible”.
+►A good course of action here is to break up this task; e.g.:
+4.2. Coding
+4.2.1 Core game logic
+4.2.2 Networking
+4.2.3 Player interface
+►Each of these sub-sub-tasks is then estimated separately.
+►We have to adjust our AOA or AON graph accordingly.
+►This is what “iteration” is about!
+49/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Task Table with time estimates and dependencies
+Activity
+Time 
+(days)
+Dependencies
+1.
+Market research
+20
+–
+2.
+Prototyping
+13
+–
+3.1.
+Identify core game concepts
+2
+1, 2
+3.2.
+Develop basic storyline
+5
+3.1
+3.3.
+Develop game world and mechanics
+8
+3.1
+3.4.
+Specify game characters and abilities
+5
+3.1
+4.1.
+Implement artwork
+20
+3.2, 3.3, 3.4
+4.2.
+Code core game logic
+40
+3.2, 3.3, 3.4
+5.1. 
+Testing Functionality
+20
+4.2
+5.2.
+Testing playability
+8
+4.1, 4.2
+5.3.
+Rework
+13
+5.1, 5.2
+6.
+Release
+5
+5.3
+►Wecan add timing information to both AOA and AON graphs.
+50/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Activity-on-Node (AON) Graph with timing information
+Start
+1
+t=20
+2
+t=13
+3.1
+t=2
+3.2
+t=5
+3.3
+t=8
+3.4
+t=5
+4.2
+t=40
+...
+4.1
+t=20
+Note: t values are in days.
+. . . .
+.
+.
+.
+.
+►This is only part of the graph from 
+ before.
+►We could also include the earliest/latest start & ﬁnish times.
+►This makes for rather bulky graphs.
+►But it’s nice to have all the information.
+►With all information (1) project duration, (2) slack tasks/ times 
+and , (3) critical path can be identified 
+51/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Activity-on-Arc (AOA) Graph With Timing
+Start
+1
+t=20
+3.1
+t=2
+...
+...
+2
+t=13
+3.2
+t=5
+3.3
+t=8
+3.4
+t=5
+4.2.1
+t=40
+4.1
+t=20
+. . . .
+.
+.
+.
+.
+52/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+.
+.
+.
+.
+Project Duration and Earliest and Latest Times calculations
+►First, we need to know how long the project should 
+take.
+►We can do this by Earliest Start (ES) and Earliest Finish 
+(EF) time calculation.
+►Find the task with the highest earliest-ﬁnish (EF) time.
+►By deﬁnition, this is when you expect the project to end.
+►This is the project duration. 
+►We find Latest Start (LS) and Latest Finish (LF) also for getting 
+other useful information such as critical path.
+53/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Finding Earliest and Latest Times
+►Assume the project starts on “day 0”.
+►We give each task four other numbers:
+►Earliest Start (ES) and Earliest Finish (EF): given the task’s 
+dependencies, when can it ﬁrst conceivably be started and
+ﬁnished?
+►Latest Start (LS) and Latest Finish (LF): when must the task be 
+started/ﬁnished, so that the project remains on-time?
+►For tasks with no dependencies, ES = 0.
+►You can start them right away.
+►Other tasks can start once their dependencies are complete.
+►ES for task X = highest EF among task X’s dependencies.
+►For all tasks, EF = ES + Duration.
+►This is enough information to ﬁnd ES and EF for every task.
+54/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+.
+.
+.
+.
+Project Duration and Latest Start/Finish Times
+►To ﬁnd the latest start/ﬁnish times, we work backwards from the 
+end of the project.
+►First, we need to know how long the project should take!
+►Find the task with the highest earliest-ﬁnish (EF) time.
+►By deﬁnition, this is when you expect the project to end.
+►This is the project duration 
+►This becomes the latest-ﬁnish (LF) time for that task, and all tasks 
+“at the end” (that no other task depends on).
+►For other tasks, there’s a set of tasks that depend on it.
+►Say tasks Y and Z depend on X.
+►LF for task X = lowest latest-start (LS) among tasks Y and Z.
+►If task X were completed after this point, it would break the scheduling for 
+either Y or Z.
+►For all tasks, LS = LF − task’s duration.
+►We can now ﬁnd LF and LS for every task.
+55/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Slack Time (Float Time)
+►We like to ﬁnish projects in the shortest possible time 
+(without taking shortcuts).
+►So, activities are done in parallel, whenever possible.
+►But they often take diﬀerent times to complete:
+A
+t=1
+B
+t=2
+C
+t=5
+D
+t=2
+t values are in days.
+. . . .
+.
+.
+.
+.
+►B and C can be done in parallel, but B can be ﬁnished 3 days 
+before C (5 − 2).
+►B could also be delayed for 3 days without delaying the project.
+►We say that B has 3 days “slack time” or “ﬂoat time”.
+56/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Finding slack time 
+►Slack time is the diﬀerence between earliest and latest time:
+►ES and EF can be shown in the Task Table or the Activity Graphs to 
+find Slack Time 
+►Above formula mainly helps in pinning down the exact deﬁnition.
+►The formula looks simple, but getting ES and LS in the ﬁrst place 
+involves some eﬀort. We encourage you to practice getting ES and LS 
+calculation.
+►For simple projects, you may usually determine the slack more 
+easily; you may just look at the duration of any parallel tasks, and 
+take that diﬀerence, unless the graph is particularly complex. 
+. . . .
+.
+.
+.
+.
+Task Slack = LS − ES = LF − EF
+57/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+The Critical Path
+►There is always a sequence of activities that each have 
+zero slack time.
+►Equivalently, their earliest and latest times are the same.
+►If you delay any of them, you delay the whole project.
+►This is the critical path; each activity on it is a 
+critical activity.
+►“Critical” in terms of time, not the ﬁnal result.
+►“Non-critical” activites are still essential.
+►Monitoring the progress of critical activities will tell 
+you whether the whole project is on track or not.
+►Must always span the whole project timeline from start to 
+end.
+►Critical path can be find using activity graphs with ES, EF, 
+LS, LF information. ( first calculate the slack activities)
+58/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+The Critical Path ( Exercise)
+►Use the AON or AOA activity graphs created for the sample 
+WBS to find:
+1.
+Project duration.
+2.
+Any slack activities and slack times.
+3.
+Critical path of the project.
+Hint : Find ES, EF for all tasks , then fine LS, LF for all tasks.
+ 
+59/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+How do we indicate ES, EF, LS, and LF within the 
+activity graph?
+►Different notations are in use.
+►Using the simple notation below is sufficient.
+►More detailed notation is as follows. ( no need to use this )
+60/63
+ES=
+EF=
+LS=
+LF=
+ES
+t
+LS
+A
+LS
+slack
+LF
+A
+t=5
+Slack
+ES=
+EF=
+LS=
+LF=
+A
+t=5
+OR
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Gantt Chart
+►Shows the actual project plan – when each activity will 
+be done.
+►One last planning decision: when do you actually plan to 
+start each activity?
+►Ideally at the “earliest start time”, but not always possible.
+►How many software engineers do you have?
+►You can’t do 5 activities at the same time with only 3 people.
+►Some activities may have to be delayed.
+►Drawing the Gantt chart :
+►Like a weird bar graph. Each activity is a horizontal bar.
+►The length indicates the activity’s duration.
+►The horizontal position indicates the planned start time.
+►Time units are written along the top, and activity names 
+down the left.
+►Can be tricky to draw. Use a tool to do it.
+61/63
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Gantt Charts – Basic Example
+1. Market research
+2. Prototyping
+3.1. Core game concepts
+3.2. Basic storyline
+3.3. World & mechanics
+3.4. Characters & 
+abilities
+4.1. Artwork
+4.2. Core game logic
+. . .
+.
+.
+.
+.
+Project progress (days)
+0
+10
+20
+30
+40
+50
+60
+70
+62/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Gantt Charts – Extra
+►Multi-colour Gantt charts are common. Colours could be 
+used to show:
+►Groups of related tasks.
+►Who is doing which activity.
+►Dependency information can be added, using arrows.
+►Show arrows from the end of one activity. 
+►To the start of another.
+►You can add milestones too, if required.
+63/63
+Source: https://en.wikipedia.org/wiki/Gantt_chart
+
+===== PAGE BREAK =====
+
+. . . .
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Additional notes: Program Evaluation and Review 
+Technique (PERT)
+►PERT5 is a project management technique, based on 
+what we’ve been discussing but with different time 
+estimation method:
+1. Identifying activities and milestones;
+2. Determining their dependencies;
+3. Drawing an AOA or AON graph;
+4. Estimating activity times( three possible times);
+5. Determining the critical path ;
+6. Updating the graph as needed.
+5www.netmba.com/operations/project/pert/
+.
+.
+.
+.
+64/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+Additional notes:PERT Estimation
+►Instead of just one estimate for each task, PERT asks 
+you to make three:
+►The optimistic – the shortest plausible time (so that there is 
+a 1% chance of it being correct);
+►The most likely – the time with the highest probability;
+►The pessimistic – the longest plausible time.
+►This helps deal with uncertainty.
+►PERT then asks you to calculate the expected time:
+Expected = Optimistic + (4 × Most Likely) + Pessimistic
+6
+►Expected times are used to construct PERT charts.
+►(Don’t confuse the most likely and expected times. They 
+will be similar, not the same.)
+. . . .
+.
+.
+.
+.
+65/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+Summary 
+►SE is centred around code however many more activities such 
+as co-ordinate a team, plan and manage a project, 
+understanding user requirements, design and testing , maintain 
+the software.
+►Different SDLCs are developed to support the SE process.
+►SE projects adopt conventional project management concepts 
+also.
+►Project activities can be identified using a WBS.
+►Finding time estimates for project activities is a challenging task.
+►Activity graphs can be used to show the activity dependencies 
+,time and they can be used to find estimated project duration, 
+critical path and slack times.
+►Gantt charts can be used in project planning and monitoring.
+66/63
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+. . . .
+.
+.
+.
+.
+That’s all for now!
+See you in next week 
+Topic - Agile project Management Methods
+67/63

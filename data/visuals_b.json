@@ -1,0 +1,855 @@
+{
+ "functional-requirements": [
+  {
+   "id": "fr-nfr-pair",
+   "type": "compare",
+   "title": "Same system, two requirement kinds",
+   "what": "One sentence belongs in a use case; the other constrains how well it runs.",
+   "caption": "The FR is executable (write its flow); the NFR bounds it measurably (operation + bound + workload + environment).",
+   "alt": "Side-by-side functional vs non-functional requirement for chart generation.",
+   "links": [
+    "nfr-overview",
+    "use-case-flow",
+    "performance-requirements"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf",
+     "locator": "Lecture 4, PDF pp. 6-8"
+    }
+   ],
+   "left": {
+    "title": "Functional requirement",
+    "tag": "what it does",
+    "points": [
+     "'The system shall generate PNG charts from selected datasets' \u2014 a function: inputs \u2192 outputs",
+     "Test: execute it. Represent: use case + flow of events"
+    ]
+   },
+   "right": {
+    "title": "Non-functional requirement",
+    "tag": "how well",
+    "points": [
+     "'Generation shall complete within 2 s for 10 MP datasets on the lab PC' \u2014 operation + bound + workload + environment",
+     "Test: measure it repeatedly. Represent: quantified constraint"
+    ]
+   },
+   "why": "Worksheet 4's recognition test: from the user's view, function or characteristic? Could you write a flow for it?"
+  }
+ ],
+ "stakeholders-actors": [
+  {
+   "id": "goal-levels",
+   "type": "diagram",
+   "title": "Goal levels: aim at the user-goal band",
+   "what": "Too high is vague strategy; too low is a flow paragraph. Exam answers live in the middle.",
+   "caption": "Summary goals span whole sessions; task (user-goal) goals earn use cases; sub-goals are single flow steps.",
+   "alt": "Pyramid of goal levels with examples from the plotting system.",
+   "links": [
+    "use-case-headers",
+    "use-case-diagrams"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf",
+     "locator": "PDF pp. 32-33, 59"
+    }
+   ],
+   "canvas": {
+    "w": 600,
+    "h": 280
+   },
+   "nodes": [
+    {
+     "id": "s",
+     "lines": [
+      "Summary: manage lab's research output"
+     ],
+     "x": 180,
+     "y": 10,
+     "w": 240,
+     "tone": "dim"
+    },
+    {
+     "id": "u1",
+     "lines": [
+      "User-goal: plot dataset \u2605"
+     ],
+     "x": 30,
+     "y": 110,
+     "w": 160,
+     "tone": "amber",
+     "link": "use-case-headers"
+    },
+    {
+     "id": "u2",
+     "lines": [
+      "User-goal: analyse statistics \u2605"
+     ],
+     "x": 220,
+     "y": 110,
+     "w": 170,
+     "tone": "amber",
+     "link": "use-case-headers"
+    },
+    {
+     "id": "u3",
+     "lines": [
+      "User-goal: manage descriptions \u2605"
+     ],
+     "x": 420,
+     "y": 110,
+     "w": 160,
+     "tone": "amber",
+     "link": "use-case-headers"
+    },
+    {
+     "id": "f",
+     "lines": [
+      "Sub-function: choose colour style"
+     ],
+     "x": 180,
+     "y": 210,
+     "w": 240,
+     "tone": "dim"
+    }
+   ],
+   "edges": [
+    {
+     "from": "s",
+     "to": "u1"
+    },
+    {
+     "from": "s",
+     "to": "u2"
+    },
+    {
+     "from": "s",
+     "to": "u3"
+    },
+    {
+     "from": "u1",
+     "to": "f"
+    }
+   ]
+  }
+ ],
+ "user-stories": [
+  {
+   "id": "story-good-bad",
+   "type": "compare",
+   "title": "Anatomy of a user story: present vs missing parts",
+   "what": "Three parts or it fails \u2014 role, want, benefit, in one sentence.",
+   "caption": "Left: the lecture's prac-registration story. Right: the same idea with its benefit amputated \u2014 unprioritizable.",
+   "alt": "Good vs bad user story comparison with parts labelled.",
+   "links": [
+    "stakeholders-actors",
+    "scrum-events-backlogs"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf",
+     "locator": "PDF pp. 20-21"
+    },
+    {
+     "source": "Learning material/Worksheet3_FunctionalReqs_2023.pdf",
+     "locator": "Worksheet 3, Q1 (p. 1)"
+    }
+   ],
+   "left": {
+    "title": "\u2713 Complete story",
+    "tag": "3/3 parts",
+    "points": [
+     "As a STUDENT (role) \u2014 a real user",
+     "I want to register for pracs (want)",
+     "SO THAT I don't miss out (benefit \u2192 priority)"
+    ]
+   },
+   "right": {
+    "title": "\u2717 Fails the worksheet rule",
+    "tag": "2/3 parts",
+    "points": [
+     "As a student, I want to register for pracs. (role + want only)",
+     "No benefit \u2192 cannot judge priority or scope",
+     "Fix: append the reason the user cares"
+    ]
+   },
+   "why": "2022 Q2.1: 1 mark per part explained, then 2 marks per three-part railway story. Two missing benefits = half the question gone."
+  }
+ ],
+ "use-case-headers": [
+  {
+   "id": "header-card",
+   "type": "figure",
+   "title": "The five-field contract, filled for 'Plot data'",
+   "what": "Every midterm use-case question opens with exactly these fields \u2014 memorise the shape.",
+   "caption": "2022 Q2.2(a) model header: goal, one person as primary, externals as secondary, preconditions, trigger.",
+   "alt": "Annotated use-case header with five labelled fields.",
+   "svg": "<svg viewBox=\"0 0 600 250\" role=\"img\" aria-label=\"Annotated use-case header card for Plot data\">\n<rect x=\"8\" y=\"8\" width=\"584\" height=\"234\" rx=\"10\" fill=\"#1B1E24\" stroke=\"#7DB8E8\"/>\n<text x=\"28\" y=\"40\" fill=\"#E8E6E1\" font-size=\"15\">Use Case \u2014 Plot data</text>\n<g font-size=\"12\">\n<text x=\"28\" y=\"70\" fill=\"#D9A441\">Goal:</text><text x=\"90\" y=\"70\" fill=\"#E8E6E1\">to plot selected datasets as a chosen chart type</text>\n<text x=\"28\" y=\"98\" fill=\"#D9A441\">Primary actor:</text><text x=\"150\" y=\"98\" fill=\"#E8E6E1\">logged-in user (a person \u2605)</text>\n<text x=\"28\" y=\"126\" fill=\"#D9A441\">Secondary:</text><text x=\"150\" y=\"126\" fill=\"#E8E6E1\">research database \u00b7 auth/session service</text>\n<text x=\"28\" y=\"154\" fill=\"#D9A441\">Preconditions:</text><text x=\"150\" y=\"154\" fill=\"#E8E6E1\">logged in \u00b7 datasets visible for credentials</text>\n<text x=\"28\" y=\"182\" fill=\"#D9A441\">Trigger:</text><text x=\"150\" y=\"182\" fill=\"#E8E6E1\">user selects the \u201cplot data\u201d option \u25b6</text>\n<text x=\"28\" y=\"216\" fill=\"#9AA0A8\" font-size=\"11\">Trigger starts the engine; preconditions are the road already built.</text>\n</g></svg>",
+   "hotspots": [
+    {
+     "x": 1.5,
+     "y": 30,
+     "title": "Primary actor: always a person",
+     "text": "The one whose goal this is. External systems go in Secondary, never here.",
+     "link": "stakeholders-actors"
+    },
+    {
+     "x": 1.5,
+     "y": 66,
+     "title": "Trigger vs precondition",
+     "text": "Selecting 'plot data' STARTS the flow; being logged in must ALREADY be true. Swapping them is the classic half-mark loss.",
+     "link": "use-case-flow"
+    }
+   ],
+   "links": [
+    "stakeholders-actors",
+    "use-case-flow"
+   ],
+   "cites": [
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B, Q2.2(a) (p. 5)"
+    },
+    {
+     "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf",
+     "locator": "PDF p. 46"
+    }
+   ]
+  }
+ ],
+ "use-case-flow": [
+  {
+   "id": "fow-steps",
+   "type": "steps",
+   "title": "Happy-days flow for 'Plot data', step by step",
+   "what": "Actor acts, system responds \u2014 six numbered steps to the goal. This is the 5-mark shape.",
+   "caption": "Alternate actor/system, keep the system inside its scope, end with the goal achieved and the PNG saved.",
+   "alt": "Six-step flow of events for the plot-data use case.",
+   "links": [
+    "use-case-headers",
+    "use-case-diagrams"
+   ],
+   "cites": [
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B, Q2.2(b) (p. 6)"
+    },
+    {
+     "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf",
+     "locator": "PDF pp. 48-51"
+    }
+   ],
+   "steps": [
+    {
+     "title": "1 \u00b7 Actor: trigger",
+     "text": "User selects the 'plot data' option. (The trigger fires; preconditions already hold.)"
+    },
+    {
+     "title": "2 \u00b7 System: list",
+     "text": "System shows datasets available for the user's credentials, with descriptions."
+    },
+    {
+     "title": "3 \u00b7 Actor: choose",
+     "text": "User picks a dataset; system shows its columns, description and chart options."
+    },
+    {
+     "title": "4 \u00b7 Actor: specify",
+     "text": "User selects chart type, columns/rows, colours and titles (defaults apply if skipped)."
+    },
+    {
+     "title": "5 \u00b7 System: generate",
+     "text": "System renders the chart, displays it, and saves it as .png."
+    },
+    {
+     "title": "6 \u00b7 System: confirm",
+     "text": "System confirms success. Goal achieved \u2014 any deviation branches to an extension."
+    }
+   ]
+  },
+  {
+   "id": "ext-good-bad",
+   "type": "compare",
+   "title": "Extension that scores vs extension that doesn't",
+   "what": "Specific, scenario-grown, resumable \u2014 versus generic doom.",
+   "caption": "Left names its step (5A), condition, handling and outcome. Right could attach to any system ever built.",
+   "alt": "Good vs bad use-case extension comparison.",
+   "links": [
+    "use-case-headers"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf",
+     "locator": "PDF pp. 54-56"
+    },
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B, Q2.2(c) (p. 6)"
+    }
+   ],
+   "left": {
+    "title": "\u2713 5A \u2014 non-numeric data",
+    "tag": "scores",
+    "points": [
+     "Condition tied to step 5 of THIS scenario",
+     "System prompts: proceed with valid data only?",
+     "Accepted \u2192 plots subset, notes exclusions. Declined \u2192 aborts cleanly"
+    ]
+   },
+   "right": {
+    "title": "\u2717 'Database connection fails'",
+    "tag": "\u2248 0 marks",
+    "points": [
+     "Overly generic \u2014 the slides' exhibit-A reject",
+     "No step ID, no handling a designer could build",
+     "Slide 56: avoid problems that fit every system"
+    ]
+   },
+   "why": "Save-privilege elevation and credential-scoped datasets are the scenario's other gift extensions \u2014 use them."
+  }
+ ],
+ "use-case-diagrams": [
+  {
+   "id": "ucd-recall",
+   "type": "reveal",
+   "title": "Name the ovals: video-sharing diagram, labels hidden",
+   "what": "Click each mask to recall the case \u2014 then check include and generalisation.",
+   "caption": "Viewer watches and reports; uploader uploads (which includes authentication). Who-does-what is the whole point of the diagram.",
+   "alt": "Use-case diagram with hidden labels for self-testing.",
+   "links": [
+    "use-case-headers",
+    "stakeholders-actors"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf",
+     "locator": "PDF pp. 36-42"
+    }
+   ],
+   "canvas": {
+    "w": 600,
+    "h": 240
+   },
+   "nodes": [
+    {
+     "id": "v",
+     "label": "Viewer",
+     "x": 20,
+     "y": 90,
+     "w": 90,
+     "tone": "dim"
+    },
+    {
+     "id": "w",
+     "label": "Watch Video",
+     "x": 180,
+     "y": 30,
+     "w": 150
+    },
+    {
+     "id": "r",
+     "label": "Report Video",
+     "x": 180,
+     "y": 130,
+     "w": 150
+    },
+    {
+     "id": "u",
+     "label": "Upload Video",
+     "x": 380,
+     "y": 80,
+     "w": 150,
+     "tone": "amber"
+    },
+    {
+     "id": "auth",
+     "label": "Authenticate",
+     "x": 380,
+     "y": 180,
+     "w": 150,
+     "tone": "dim"
+    }
+   ],
+   "edges": [
+    {
+     "from": "v",
+     "to": "w"
+    },
+    {
+     "from": "v",
+     "to": "r"
+    },
+    {
+     "from": "u",
+     "to": "auth",
+     "label": "\u00abinclude\u00bb"
+    }
+   ]
+  }
+ ],
+ "nfr-overview": [
+  {
+   "id": "nfr-layers",
+   "type": "layers",
+   "title": "The NFR families, one layer per quality",
+   "what": "Click a layer to isolate it \u2014 each opens its article's metrics and exam moves.",
+   "caption": "Big three (performance, reliability, usability) plus security, interoperability, localisation, accessibility. Select a layer to focus; show all to reset.",
+   "alt": "Layered stack of non-functional requirement families.",
+   "links": [
+    "performance-requirements",
+    "reliability-requirements",
+    "usability-requirements",
+    "other-nfrs"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf",
+     "locator": "Lecture 4, PDF pp. 7-11, 36-41"
+    }
+   ],
+   "layers": [
+    {
+     "id": "perf",
+     "label": "Performance \u2014 how fast",
+     "desc": "Bounds on speed under stated workload + environment.",
+     "link": "performance-requirements"
+    },
+    {
+     "id": "rel",
+     "label": "Reliability \u2014 how surely",
+     "desc": "Failure behaviour quantified: MTTF, availability, POFOD, ROCOF.",
+     "link": "reliability-requirements"
+    },
+    {
+     "id": "usa",
+     "label": "Usability \u2014 how easily",
+     "desc": "What defined users achieve, in what time/effort.",
+     "link": "usability-requirements"
+    },
+    {
+     "id": "oth",
+     "label": "Security \u00b7 Interop \u00b7 L10N \u00b7 Access",
+     "desc": "The 'other' layer behind 2022 Q3.4(d)'s 6 marks.",
+     "link": "other-nfrs"
+    }
+   ]
+  }
+ ],
+ "nfr-validity": [
+  {
+   "id": "rewrite-compare",
+   "type": "compare",
+   "title": "From invalid to valid: the Q3.2(b) \u2192 Q3.3 rewrite",
+   "what": "Watch 'user friendly' dissolve into a measurable usability requirement.",
+   "caption": "'User friendly' fails unambiguous + verifiable. The rewrite names user, task, bound and success bar.",
+   "alt": "Invalid versus rewritten usability requirement.",
+   "links": [
+    "usability-requirements",
+    "performance-requirements"
+   ],
+   "cites": [
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B, Q3.2(b)-Q3.3 (p. 7)"
+    }
+   ],
+   "left": {
+    "title": "\u2717 Invalid (Q3.2b)",
+    "tag": "ambiguous",
+    "points": [
+     "'\u2026show ticket types in user friendly manner'",
+     "No two markers picture the same threshold",
+     "No observation decides pass/fail \u2192 unverifiable"
+    ]
+   },
+   "right": {
+    "title": "\u2713 Valid rewrite (Q3.3)",
+    "tag": "measurable",
+    "points": [
+     "'An average first-time user shall find any ticket type within 60 s, unaided\u2026'",
+     "'\u2026with \u22659 of 10 evaluated users succeeding'",
+     "User + task + bound + criterion \u2014 every property holds"
+    ]
+   },
+   "why": "Copy the four-part shape onto any usability rewrite: user class, task, time/effort bound, success criterion."
+  },
+  {
+   "id": "nfr-checklist",
+   "type": "steps",
+   "title": "The five-property validity check",
+   "what": "Run every candidate NFR through these gates before writing it in an exam.",
+   "caption": "Unambiguous, doable, verifiable, in-scope, genuinely non-functional \u2014 Worksheet 4 Q1's verdict machine.",
+   "alt": "Five validity checks for NFRs.",
+   "links": [
+    "nfr-overview",
+    "srs-ieee830"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf",
+     "locator": "PDF pp. 42-49"
+    },
+    {
+     "source": "Learning material/Worksheet4_NonFunctionalReqs_2024.pdf",
+     "locator": "Worksheet 4, Q1 (p. 1)"
+    }
+   ],
+   "steps": [
+    {
+     "title": "1 \u00b7 Unambiguous?",
+     "text": "Same meaning to everyone. Reject 'fast', 'friendly', 'suitable'."
+    },
+    {
+     "title": "2 \u00b7 Doable?",
+     "text": "Achievable with available tech. Reject 'save within 1 ms' physics violations."
+    },
+    {
+     "title": "3 \u00b7 Verifiable?",
+     "text": "Pass/fail decidable by observation with obtainable data. 'Maybe' = fail."
+    },
+    {
+     "title": "4 \u00b7 In-scope?",
+     "text": "Governs the system, not its actors. 'Staff finish in 10 min' is a business rule."
+    },
+    {
+     "title": "5 \u00b7 Truly non-functional?",
+     "text": "Characteristic, not function. If you can write its flow, it is an FR in disguise."
+    }
+   ]
+  }
+ ],
+ "performance-requirements": [
+  {
+   "id": "stochastic",
+   "type": "chart",
+   "title": "Why timing needs statistics: five runs, one scatter",
+   "what": "Single-run timing proves nothing \u2014 the slides' stochastic measurements demand a stated rule.",
+   "caption": "Illustrative run times for one operation (ms). A verifiable requirement states the statistic: median of 11 runs, 95th percentile, or worst-of-N.",
+   "alt": "Line chart of scattered timing measurements with median band.",
+   "links": [
+    "nfr-validity"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf",
+     "locator": "PDF pp. 20-21"
+    }
+   ],
+   "chart": {
+    "kind": "line",
+    "xLabel": "run #",
+    "yLabel": "ms",
+    "labels": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8"
+    ],
+    "series": [
+     {
+      "name": "observed",
+      "color": "#7DB8E8",
+      "values": [
+       238,
+       251,
+       229,
+       262,
+       244,
+       233,
+       258,
+       247
+      ]
+     },
+     {
+      "name": "bound (250 ms)",
+      "color": "#D97A6C",
+      "values": [
+       250,
+       250,
+       250,
+       250,
+       250,
+       250,
+       250,
+       250
+      ]
+     }
+    ],
+    "note": "Illustrative measurements demonstrating scatter, not experimental results."
+   }
+  }
+ ],
+ "reliability-requirements": [
+  {
+   "id": "metric-chooser",
+   "type": "compare",
+   "title": "POFOD or availability? Match the metric to the usage",
+   "what": "The 2019 hint in action: not every metric makes sense in every situation.",
+   "caption": "On-demand checks want per-demand probability; continuous monitoring wants uptime fraction.",
+   "alt": "Metric selection guidance for reliability requirements.",
+   "links": [
+    "nfr-validity",
+    "other-nfrs"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf",
+     "locator": "PDF pp. 24-28"
+    },
+    {
+     "source": "pastypaper/ISE_2019s1_Test1_Vari1.pdf",
+     "locator": "2019 Test 1, Q3 (p. 5)"
+    }
+   ],
+   "left": {
+    "title": "POFOD fits\u2026",
+    "tag": "on demand",
+    "points": [
+     "E-ticket validation, face-match checks",
+     "'\u22641 failure per 1000 demands'",
+     "Each attempt is a discrete trial"
+    ]
+   },
+   "right": {
+    "title": "Availability fits\u2026",
+    "tag": "continuous",
+    "points": [
+     "Patient vitals display, kitchen screen",
+     "'\u226599.9% of monitoring time'",
+     "Service is either up or down, always"
+    ]
+   },
+   "why": "Naming the mismatch explicitly ('POFOD suits the payment step; availability suits the display') is what the 3 marks buy."
+  }
+ ],
+ "usability-requirements": [
+  {
+   "id": "usability-formula",
+   "type": "figure",
+   "title": "The usability formula, annotated",
+   "what": "Four slots \u2014 fill all four or the requirement is decoration.",
+   "caption": "User class + task + time/effort bound + success criterion. Business rules ('user must\u2026') fail the enables-vs-obligates test.",
+   "alt": "Annotated usability requirement with four labelled parts.",
+   "links": [
+    "nfr-validity"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture4_NFRs_2025_1pp(1).pdf",
+     "locator": "PDF pp. 31-35"
+    },
+    {
+     "source": "Learning material/Worksheet4_NonFunctionalReqs_2024.pdf",
+     "locator": "Worksheet 4, closing note (p. 3)"
+    }
+   ],
+   "svg": "<svg viewBox=\"0 0 620 170\" role=\"img\" aria-label=\"Annotated usability requirement\">\n<rect x=\"8\" y=\"8\" width=\"604\" height=\"154\" rx=\"10\" fill=\"#1B1E24\" stroke=\"#7FB685\"/>\n<g font-size=\"13\">\n<text x=\"28\" y=\"48\" fill=\"#D9A441\">An average new user</text><text x=\"28\" y=\"66\" fill=\"#9AA0A8\" font-size=\"11\">\u2460 user class</text>\n<text x=\"228\" y=\"48\" fill=\"#E8E6E1\">shall rotate a tilted photo to \u22643\u00b0 of level</text><text x=\"228\" y=\"66\" fill=\"#9AA0A8\" font-size=\"11\">\u2461 task + tolerance</text>\n<text x=\"28\" y=\"108\" fill=\"#E8E6E1\">within 20 seconds, unaided,</text><text x=\"28\" y=\"126\" fill=\"#9AA0A8\" font-size=\"11\">\u2462 bound</text>\n<text x=\"328\" y=\"108\" fill=\"#7FB685\">with \u22659 of 10 succeeding</text><text x=\"328\" y=\"126\" fill=\"#9AA0A8\" font-size=\"11\">\u2463 criterion</text>\n<text x=\"28\" y=\"150\" fill=\"#9AA0A8\" font-size=\"11\">Worksheet 4's model specimen (Q1i) \u2014 every exam rewrite should rhyme with it.</text>\n</g></svg>",
+   "hotspots": [
+    {
+     "x": 1.5,
+     "y": 20,
+     "title": "\u2460 User class",
+     "text": "Named and bounded: 'average new user'. Requirements for 'users' in general are untestable.",
+     "link": "nfr-validity"
+    },
+    {
+     "x": 96,
+     "y": 60,
+     "title": "\u2463 Success criterion",
+     "text": "The pass bar: 9 of 10. Without it, one evaluator's 'usable' is another's failure.",
+     "link": "nfr-validity"
+    }
+   ]
+  }
+ ],
+ "srs-ieee830": [
+  {
+   "id": "srs-stack",
+   "type": "layers",
+   "title": "The SRS as a stack: what lives where",
+   "what": "The lecture's IEEE-adapted layout \u2014 know which section each requirement type belongs to.",
+   "caption": "Introduction \u2192 overall description \u2192 interfaces \u2192 functional requirements \u2192 NFRs \u2192 supporting material. Gephi's 37-page SRS follows this skeleton.",
+   "alt": "Layered SRS document structure.",
+   "links": [
+    "functional-requirements",
+    "nfr-overview"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture3_FunctionalReqs_2025_1pp.pdf",
+     "locator": "PDF pp. 10-14"
+    },
+    {
+     "source": "Learning material/IEEE RecommendedPractise_for_SRS.pdf",
+     "locator": "IEEE 830, Section 4.3 (p. 11)"
+    }
+   ],
+   "layers": [
+    {
+     "id": "intro",
+     "label": "1 \u00b7 Introduction",
+     "desc": "Purpose, scope, definitions, acronyms.",
+     "link": "functional-requirements"
+    },
+    {
+     "id": "overall",
+     "label": "2 \u00b7 Overall description",
+     "desc": "General factors \u2014 not requirements themselves.",
+     "link": "functional-requirements"
+    },
+    {
+     "id": "iface",
+     "label": "3 \u00b7 External interfaces",
+     "desc": "System, user, hardware, software, comms.",
+     "link": "other-nfrs"
+    },
+    {
+     "id": "fr",
+     "label": "4 \u00b7 Functional requirements",
+     "desc": "By mode, class or object \u2014 the use cases live here.",
+     "link": "use-case-flow"
+    },
+    {
+     "id": "nfr",
+     "label": "5 \u00b7 NFRs + attributes",
+     "desc": "Performance, reliability, security\u2026 each quantified.",
+     "link": "nfr-validity"
+    }
+   ]
+  }
+ ],
+ "ethics-theories": [
+  {
+   "id": "trolley-tree",
+   "type": "diagram",
+   "title": "The trolley problem as a decision tree",
+   "what": "Same lever, opposite verdicts \u2014 which is why engineers must deliberate, not sloganise.",
+   "caption": "Deontology judges the act (do not kill); act-utilitarianism judges the outcome (one death vs five). The unit's lesson: name the framework, show the reasoning.",
+   "alt": "Decision tree of trolley responses by ethical framework.",
+   "links": [
+    "ethics-se-professionalism"
+   ],
+   "cites": [
+    {
+     "source": "Learning material/Lecture5_Ethics_2025V1.pdf",
+     "locator": "Lecture 5 slides, PDF pp. 12-15"
+    }
+   ],
+   "canvas": {
+    "w": 620,
+    "h": 280
+   },
+   "nodes": [
+    {
+     "id": "q",
+     "lines": [
+      "Trolley: pull the lever?",
+      "5 die vs 1 dies"
+     ],
+     "x": 225,
+     "y": 8,
+     "w": 170,
+     "tone": "amber"
+    },
+    {
+     "id": "d",
+     "lines": [
+      "Deontology",
+      "Don't pull \u2014 killing violates duty"
+     ],
+     "x": 30,
+     "y": 130,
+     "w": 200
+    },
+    {
+     "id": "u",
+     "lines": [
+      "Act-utilitarianism",
+      "Pull \u2014 fewer deaths, more utility"
+     ],
+     "x": 390,
+     "y": 130,
+     "w": 200
+    },
+    {
+     "id": "les",
+     "lines": [
+      "Lesson: frameworks disagree \u2192 deliberate explicitly"
+     ],
+     "x": 160,
+     "y": 225,
+     "w": 300,
+     "tone": "dim"
+    }
+   ],
+   "edges": [
+    {
+     "from": "q",
+     "to": "d",
+     "label": "duty"
+    },
+    {
+     "from": "q",
+     "to": "u",
+     "label": "outcome"
+    },
+    {
+     "from": "d",
+     "to": "les"
+    },
+    {
+     "from": "u",
+     "to": "les"
+    }
+   ]
+  }
+ ],
+ "midterm-study-guide": [
+  {
+   "id": "midterm-plan",
+   "type": "steps",
+   "title": "Five-day plan mapped to the four questions",
+   "what": "One territory per day, then a timed full paper \u2014 the highest-yield order.",
+   "caption": "Days mirror the 2022 paper's question order; day 5 integrates under exam conditions.",
+   "alt": "Five-step midterm preparation plan.",
+   "links": [
+    "critical-path",
+    "use-case-flow",
+    "nfr-validity",
+    "burn-up-charts"
+   ],
+   "cites": [
+    {
+     "source": "pastypaper/ISE_2022MidtermB_Bentley.pdf",
+     "locator": "2022 Midterm B cover (p. 1)"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Day 1 \u00b7 Calculation track",
+     "text": "WBS \u2192 AON \u2192 forward/backward passes \u2192 slack \u2192 Gantt. Drill 2022 Q1 and 2019 Q1 timed."
+    },
+    {
+     "title": "Day 2 \u00b7 Requirements track",
+     "text": "Stories \u2192 headers \u2192 flows \u2192 extensions \u2192 diagrams. Rewrite the 2018 add-friend and 2022 plot-data cases from memory."
+    },
+    {
+     "title": "Day 3 \u00b7 NFR validity",
+     "text": "Five-property checklist on Worksheet 4 items (a)\u2013(j); rewrite two invalid NFRs; quantify one of each family."
+    },
+    {
+     "title": "Day 4 \u00b7 Agile + ethics",
+     "text": "Burn-up arithmetic, Kanban reasoning, Scrum events, one harm story with framework + code cited."
+    },
+    {
+     "title": "Day 5 \u00b7 Full paper, timed",
+     "text": "2022 Midterm B in 90 minutes, closed book. Mark against rubrics; missed items join the review queue."
+    }
+   ]
+  }
+ ]
+}
