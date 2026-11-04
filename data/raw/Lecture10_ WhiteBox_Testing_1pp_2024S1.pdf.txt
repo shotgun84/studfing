@@ -1,0 +1,1084 @@
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Introduction to Software Engineering (ISAD1000)
+Lecture 10: White-box Testing  
+Updated: 27th May, 2021
+Revised : 30th April 2022, 04 April 2023, 03rd October 2023. 08May 
+2024
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical Sciences (EECMS)
+Copyright © 2021, Curtin University 
+CRICOS Provide Code: 00301J
+. . . .
+. . . .
+1/33
+
+
+===== PAGE BREAK =====
+
+ELECTRONIC WARNING NOTICE FOR 
+COPYRIGHT STATUTORY LICENCES
+2
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+. . . .
+. . . .
+Outline
+White Box Testing
+if paths
+if-else paths
+Loop paths
+try-catch/except Paths
+3/33
+
+
+===== PAGE BREAK =====
+
+. .   .   .
+Revisiting the previous lectures : What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming. We also need to:
+Understand user requirements
+Understand user requirements
+Design the software                                                
+( we will look at only the design components/modules of the software)
+Design the software                                                
+( we will look at only the design components/modules of the software)
+Implementation ( coding)
+Implementation ( coding)
+Testing / verification
+Testing / verification
+Deployment and Maintenance
+Deployment and Maintenance
+Do our work with social responsibility 
+Do our work with social responsibility 
+Co-ordinate a 
+team, and 
+plan and 
+manage a 
+project.
+Co-ordinate a 
+team, and 
+plan and 
+manage a 
+project.
+►We looked at testing in last two weeks. We will look 
+at white-box testing approach in this lecture.
+SDLCs and project 
+planning –Week1 
+and 2, VC in week 6
+Overview of 
+requirements and 
+FRs in week 3, and 
+NFR in week 4.
+Ethics and 
+professionalism
+, week 5
+Modularity in 
+week 8.
+4/33
+
+
+===== PAGE BREAK =====
+
+SE Overview
+Software Lifecycle
+Activities
+Estimation
+Critical Path
+Gantt Charts
+.
+.
+.
+.
+5/6
+. .9
+. .
+✓Understand the social impact of software and the importance of
+ethical and professional conduct.
+Ethics and Professionalism
+Revisiting Unit Learning outcomes ( From Lecture 1)
+Unit Learning outcomes
+On successful completion of this unit students can:
+✓Apply agile software project management tools and techniques ( 
+including conventional software project management methods) 
+Project planning, Agile Methods, Version control
+✓Articulate functional and non-functional requirements
+Functional/ non-functional requirements
+►Develop test designs and code using black-box and white-box 
+testing methods.
+Testing, Test fixtures
+✓Identify software design quality issues and propose solutions
+Modularity
+5/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing So Far
+►So far, our discussion of testing has focused on module 
+descriptions, not the production code. 
+►We looked at module descriptions, and assumed that 
+methods/functions are like mathematical functions: 
+transforming one or more imports into some exports.
+►For example, when designing test cases for modules taking 
+parameters and returning a single value, we see the range 
+of possible parameter values, and divide (partition) them 
+into categories.
+►For the return values, we obtain them using actual parameter 
+value, and compare to what we expected.
+►But we haven’t looked inside the method/function. We’ve 
+treated a module as a black box. 
+6/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Examples from lecture 8
+.
+.
+.
+.
+.
+.
+.
+.
+Submodule abs
+Imports: n (real)
+Exports: result (real)
+Implements the absolute value function. If n is non- negative,
+returns. Otherwise, returns the inverse of n.
+Submodule palindrome
+Imports: s (string)
+Exports: result (Boolean)
+Checks whether s is a palindrome; i.e. if it reads the same 
+forwards and backwards. Returns true if it is, or false 
+otherwise.
+Submodule findMax
+Imports: value1, value2 (integers)
+Exports: maximum (integer)
+Determines the highest out of value1 and value2, and 
+returns it.
+7/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Generalizing of testing 
+►Unit testing can get more complicated.
+►We can also do “white-box” testing, where we ﬁnd test 
+cases based on the code.
+►We do still have the following basic ingredients:
+►Test cases;
+►For each test case: test data, production code call, expected 
+results, and actual results.
+►In either white- or black-box testing, we sometimes need 
+additional “setting up” for each test case. ( Lecture 9)
+8/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+White-Box Testing
+►We will go back to test design now.
+►i.e., how to decide which test cases we need in the ﬁrst place.
+►We have  looked at designing “Black Box” testing.
+►In “Black Box testing”,
+►We design test cases without looking at the code.
+►We just look at the parameters, return type, and 
+documentation.
+►This is what Equivalence Partitioning and Boundary Value
+Analysis are doing.
+►In “White Box” (or “Clear Box”) testing, test cases are 
+based on the paths through a method/function.
+9/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Paths
+►A “path” is (roughly speaking) one possible way to “get 
+through” a method/function, from start to end.
+►There’s always at least one path, but there are often more.
+►Diﬀerent paths are created by conditional statements, like if.
+►When there are multiple choices, this translates to 
+multiple paths.
+►Multiple paths are also created by switch, while, 
+do-while, for and try-catch/except.
+►(Not all of these exist in Python.)
+►White-box testing ensures that we test each path – each 
+possible way through the production code.
+►Each path becomes a test case!
+10/33
+
+
+===== PAGE BREAK =====
+
+def myAbs(n):
+if n < 0:
+n = -n
+return n
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Example : if Statement Paths
+►if statements have two paths.
+►1st path:
+Java
+double myAbs(double n)
+{
+if(n < 0)
+{
+n = -n;
+Python
+}
+return
+n;
+}
+.
+.
+.
+.
+.
+.
+.
+.
+11/33
+
+
+===== PAGE BREAK =====
+
+def myAbs(n):
+if n < 0:
+n = -n
+return n
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+if Statement Paths
+►if statements have two paths.
+►2nd path:
+double myAbs(double n)
+{
+if(n < 0)
+{
+n = -n;
+Python
+}
+return
+n;
+}
+.
+.
+.
+.
+.
+.
+.
+.
+Java
+12/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+White Box Test Design – if statements
+►In drawing up our test design, we work with paths instead of 
+equivalence categories.
+►We still need to pick test data and expected results:
+Test design for abs:
+.
+.
+.
+.
+.
+.
+.
+.
+Path 
+Test Data
+Expected Result
+1.Enter theif
+n = -5
+5
+2. DO NOT enter the if
+n = 10
+10
+13/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+void printMax(int x, int y)
+{
+if(x > y)
+{
+System.out.println(x);
+}
+else
+{
+System.out.println(y);
+}
+return n;
+if-else Paths
+►if-else statements also have two paths.
+►1st path:
+Python
+}
+.
+.
+.
+.
+.
+.
+.
+.
+Java
+def printMax(x, y):
+if x > y:
+print(x)
+else:
+print(y)
+14/33
+
+
+===== PAGE BREAK =====
+
+void printMax(int x, int y)
+{
+if(x > y)
+{
+System.out.println(x);
+}
+else
+{
+System.out.println(y);
+}
+return n;
+}
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+if-else Paths
+►if-else statements also have two paths.
+►2nd path:
+Java
+Python
+.
+.
+.
+.
+def printMax(x, y):
+if x > y:
+print(x)
+else:
+print(y)
+15/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+if-else Test Design
+.
+.
+.
+.
+.
+.
+.
+.
+Path 
+Test Data
+Expected Result
+1. Enter the if part
+x = 10,y = 5
+output: "10"
+2. Enter the else part
+x = 10,y = 20
+output: "20"
+16/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Loop Paths
+►How does the concept of a “path” apply to loops?
+►while, do-while, for.
+►It may seem like a loop should have many paths.
+►You can go around a whileloop any number of
+times, for instance.
+►In fact, loops have exactly two paths, just like if statements.
+1. The path that never enters the loop.
+►(Or, for Java’s do-while loop, never repeats the
+loop.)
+2. A path that does enter the loop.
+►Whether the loop repeats twice, or a million times, it’s 
+considered the same path.
+17/33
+
+
+===== PAGE BREAK =====
+
+def readPositive():
+val = int(input())
+while val <= 0:
+print(
+"Not positive")
+val = int(input())
+return val
+int readPositive()
+{
+int val = ...; // Input
+while(val <= 0) { 
+System.out.println(
+"Not positive"); 
+val = ...; // Input
+}
+return val;
+}
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+while Paths
+1st path:
+Java
+Python
+.
+.
+.
+.
+.
+.
+.
+.
+18/33
+
+
+===== PAGE BREAK =====
+
+def readPositive():
+val = int(input())
+while val <= 0:
+print(
+"Not positive")
+val = int(input())
+return val
+int readPositive()
+{
+int val = ...; // Input
+while(val <= 0) { 
+System.out.println(
+"Not positive"); 
+val = ...; // Input
+}
+return val;
+}
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+while Paths
+2nd path:
+Java
+Python
+.
+.
+.
+.
+.
+.
+.
+.
+19/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+while Test Design
+Path 
+Test Data
+Expected Result
+1. Enter loop
+input: "-5\n10"
+output: "Not positive" ,
+val = 10
+2. Skip loop
+input: "5"
+val = 5,
+output: ""
+We have to use simulated  input and captured output 
+as test data  here.
+20/33
+
+
+===== PAGE BREAK =====
+
+void userAdd() {
+Java
+int val1, val2;
+System.out.println("Enter two positive numbers"); 
+do {
+val1 = ...; // Input 
+val2 = ...; // Input
+}
+while(val1 <= 0 || val2 <= 0);
+System.out.println(val1 + val2);
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+do-while Paths
+►do-while loops don’t exist in Python, so this is just FYI.
+►1st path (no iteration):
+}
+.
+.
+.
+.
+.
+.
+.
+.
+21/33
+
+
+===== PAGE BREAK =====
+
+void userAdd() {
+Java
+int val1, val2;
+System.out.println("Enter two positive numbers"); 
+do {
+val1 = ...; // Input 
+val2 = ...; // Input
+}
+while(val1 <= 0 || val2 <= 0);
+System.out.println(val1 + val2);
+}
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+do-while Paths
+►do-whileloops don’t exist in Python, so this is just FYI.
+►2nd path (some iteration):
+.
+.
+.
+.
+22/33
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+try-catch/except Paths
+►This construct is intended for exception handling.
+►Java has a try-catch statement.
+►Python has a try-except statement.
+►Same thing (but the names of exceptions are diﬀerent).
+►You’d have one path for “success”, where no exception
+occurs.
+►You’d have one additional path for each catch/except 
+clause.
+►i.e., for each diﬀerent kind of exception that you’re
+handling.
+23/33
+
+
+===== PAGE BREAK =====
+
+def convertF2C(): 
+try:
+f = float(input())
+print((f - 32.0)
+/ 1.8)
+except ValueError as
+e: print(e)
+void convertF2C() { 
+Scanner sc = ...; 
+try {
+double f = sc.nextDouble(); 
+System.out.println(
+(f - 32.0) / 1.8);
+}
+catch(InputMismatchException e)
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+try-catch/except Paths
+1st path (success):
+Java
+Python
+{
+System.out.println(e
+);
+}
+}
+.
+.
+.
+.
+.
+.
+.
+.
+24/33
+
+
+===== PAGE BREAK =====
+
+def convertF2C(): 
+try:
+f = float(input())
+print((f - 32.0)
+/ 1.8)
+except ValueError as
+e: print(e)
+void convertF2C() { 
+Scanner sc = ...; 
+try {
+double f = sc.nextDouble(); 
+System.out.println(
+(f - 32.0) / 1.8);
+}
+catch(InputMismatchException e)
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+try-catch/except Paths
+2nd path (invalid, non-numerical input):
+Java
+Python
+{
+System.out.println(e
+);
+}
+}
+.
+.
+.
+.
+.
+.
+.
+.
+25/33
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Other Control Statements and Combinations
+►for loops are like specialised whileloops.
+►if-else-if-...-else sequences create several paths.
+►Two paths for the ﬁrst if.
+►One additional path for each additional else-if/elif.
+►switch statements (in Java) create several paths.
+►One for each case, plus one for the default (even if the default 
+is not speciﬁed).
+►These do not exist in Python.
+►Everything can occur in combinations.
+►Think about control constructs as splitting one path into two 
+(or more).
+►A single if gives you two paths.
+►Another nested if will split one of paths into two more
+paths, giving you three.
+26/33
+
+
+===== PAGE BREAK =====
+
+def zeroOrLargest(x, y): 
+if y > 0:
+if x > y:
+print(x) 
+else:
+print(y)
+else:
+print(0)
+void zeroOrLargest(int x, int y)
+{ if(y > 0) {
+if(x > y) {
+System.out.println(x);
+}
+else {
+System.out.println(y);
+}
+}
+else {
+System.out.println(0);
+}
+}
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Nested ifs
+1st path:
+Java
+Python
+27/33
+
+
+===== PAGE BREAK =====
+
+def zeroOrLargest(x, y): 
+if y > 0:
+if x > y:
+print(x) 
+else:
+print(y)
+else:
+print(0)
+void zeroOrLargest(int x, int y)
+{ if(y > 0) {
+if(x > y) {
+System.out.println(x);
+}
+else {
+System.out.println(y);
+}
+}
+else {
+System.out.println(0);
+}
+}
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Nested ifs
+2nd path:
+Java
+Python
+28/33
+
+
+===== PAGE BREAK =====
+
+def zeroOrLargest(x, y): 
+if y > 0:
+if x > y:
+print(x) 
+else:
+print(y)
+else:
+print(0)
+void zeroOrLargest(int x, int y) { 
+if(y > 0) {
+if(x > y) {
+System.out.println(x);
+}
+else {
+System.out.println(y);
+}
+}
+else {
+System.out.println(0);
+}
+}
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Nested ifs
+3rd path:
+Java
+Python
+29/33
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+Nested ifs Test Design
+►Notice that we’ve omitted x in the 3rd test case.
+►We must provide some x value when calling zeroOrLargest(), but 
+the value is irrelevant to the test design.
+►In a black box design, we would have four test cases instead:
+1. y > 0, x > y (equivalent to 1 above);
+2. y > 0, x ≤ y (equivalent to 2 above);
+3. y ≤ 0, x > y ;
+4. y ≤ 0, x ≤ y .
+Path 
+Test Data
+Expected Result
+1. Enter both ifparts
+y = 5,x = 10
+output: "10"
+2. Enter inner else part
+y = 5,x = 2
+output: "5"
+3.Enter outer else part
+y = −5
+output: "0"
+30/33
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+Black Box or White Box?
+►Why choose one over the other?
+►Number of paths (in white-box testing) may diﬀer from the 
+number of equivalence categories (in black-box testing).
+►Black Box testing:
+►Test cases can be designed before the production code exists.
+►You can change algorithms without changing the test code.
+►White Box testing:
+►You can better understand the diﬀerent behaviours that the 
+production code should have.
+►What decisions must the production code make?
+►In black-box testing, you take an educated guess.
+►In white-box testing, you can see the decisions.
+►Changes to production code usually mean changes to test 
+code.
+►However, your test code may be more up-to-date as a result.
+31/33
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+Summary
+►In white-box testing, we go through the code , identify 
+different paths through the code and design test 
+cases. 
+►Paths would be mostly based on control structures 
+handling  loops, and repetitive tasks.
+►For loops, If, if-else, while , nested if statements can 
+be effectively tested with white box approach.
+►In white box  testing test cases consist of paths, test 
+data,, and expected results. 
+32/33
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+That’s all for now!
+Your assignment is announced last week. Please check. 
+Next week 
+-
+Lecture :   Revision/ Assignment help 
+Practical : Test Fixtures and White-box testing
+33/33

@@ -880,5 +880,525 @@
     "exam-mistakes-nfr"
    ]
   }
+ ],
+ "testing-overview": [
+  {
+   "id": "a-testing-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "One fault always causes exactly one failure.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "confirm": "One fault can cause several failures, or none at all.",
+   "explanation": "Faults and failures are many-to-many: one fault can trigger several different failures, a fault may never trigger any, and several faults can combine into one failure.",
+   "source": "Lecture 8 (PDF pp. 6-10)",
+   "version": 1,
+   "articles": [
+    "testing-overview"
+   ]
+  },
+  {
+   "id": "a-testing-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "Which testing level checks an individual component in isolation?",
+   "options": [
+    "Unit testing",
+    "System testing",
+    "Acceptance testing",
+    "Regression testing"
+   ],
+   "answerIndex": 0,
+   "distractor": {
+    "1": "System testing checks the whole product, not one unit.",
+    "2": "Acceptance checks user needs, much later.",
+    "3": "Regression re-runs old tests after changes."
+   },
+   "explanation": "Unit testing targets individual components or submodules; the larger scales (integration, system, acceptance) build on top of it.",
+   "source": "Lecture 8 (PDF pp. 11-18)",
+   "version": 1,
+   "articles": [
+    "testing-overview"
+   ]
+  }
+ ],
+ "equivalence-partitioning": [
+  {
+   "id": "a-ep-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Put the EP recipe in order.",
+   "instructions": "Drag the rows into the correct sequence.",
+   "items": [
+    {
+     "id": "s1",
+     "label": "Read the specification"
+    },
+    {
+     "id": "s2",
+     "label": "Name the behaviour categories"
+    },
+    {
+     "id": "s3",
+     "label": "Write one case per category"
+    },
+    {
+     "id": "s4",
+     "label": "Pick data and expected results"
+    }
+   ],
+   "correct": [
+    "s1",
+    "s2",
+    "s3",
+    "s4"
+   ],
+   "explanation": "Understand, categorise, cover each category once, then concretise with data and expected results.",
+   "source": "Lecture 8 (PDF pp. 23-28)",
+   "version": 1,
+   "articles": [
+    "equivalence-partitioning"
+   ]
+  },
+  {
+   "id": "a-ep-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "The categories x < 0 and x < 100 are proposed for one input. What is wrong?",
+   "options": [
+    "They overlap: some inputs fit both",
+    "They contain an OR",
+    "They test a syntax error",
+    "Nothing: they are complete"
+   ],
+   "answerIndex": 0,
+   "distractor": {
+    "1": "There is no OR keyword; the problem is overlap.",
+    "2": "Both are numeric ranges, not syntax tests.",
+    "3": "Completeness is not the issue; mutual exclusion is."
+   },
+   "explanation": "x = -5 fits both categories, so failures cannot be attributed. Rewrite as x < 0 versus 0 <= x < 100.",
+   "source": "Lecture 8 (PDF pp. 34-37)",
+   "version": 1,
+   "articles": [
+    "equivalence-partitioning"
+   ]
+  }
+ ],
+ "boundary-value-analysis": [
+  {
+   "id": "a-bva-fib",
+   "type": "fib",
+   "tag": "recall",
+   "prompt": "Complete the BVA rule.",
+   "instructions": "Drag each word into its blank.",
+   "text": [
+    "Every ___ contributes ___ test values, one from each ___."
+   ],
+   "tiles": [
+    {
+     "id": "b",
+     "text": "boundary"
+    },
+    {
+     "id": "t",
+     "text": "two"
+    },
+    {
+     "id": "s",
+     "text": "side"
+    },
+    {
+     "id": "c",
+     "text": "category"
+    },
+    {
+     "id": "o",
+     "text": "one"
+    }
+   ],
+   "answers": [
+    [
+     "b"
+    ],
+    [
+     "t"
+    ],
+    [
+     "s"
+    ]
+   ],
+   "explanation": "A boundary sits between two categories and the fault could lie on either side, so both sides donate a value.",
+   "hints": [
+    "Think edges, not middles."
+   ],
+   "source": "Lecture 8 (PDF pp. 38-40)",
+   "version": 1,
+   "articles": [
+    "boundary-value-analysis"
+   ]
+  },
+  {
+   "id": "a-bva-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "Why do faults cluster at boundaries?",
+   "options": [
+    "Off-by-one mistakes (>, >=, missing +1/-1)",
+    "Compilers skip boundary code",
+    "Boundaries run more slowly",
+    "Tests avoid the middle"
+   ],
+   "answerIndex": 0,
+   "distractor": {
+    "1": "The compiler treats all code uniformly.",
+    "2": "Speed has nothing to do with it.",
+    "3": "Tests should cover the middle too, but edges catch more."
+   },
+   "explanation": "Classic slips are > versus >=, a forgotten -1/+1, or a counter started at 1 instead of 0; only edge values expose them.",
+   "source": "Lecture 8 (PDF pp. 38-41)",
+   "version": 1,
+   "articles": [
+    "boundary-value-analysis"
+   ]
+  }
+ ],
+ "test-code-assertions": [
+  {
+   "id": "a-assert-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "Java assertions work out of the box with java TestSuite.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "confirm": "You must run java -ea or assertions are silently skipped.",
+   "explanation": "Assertions are disabled by default in Java. Without -ea every test passes even when the code is wrong, which is the classic trap.",
+   "source": "Lecture 8 (PDF pp. 62-66)",
+   "version": 1,
+   "articles": [
+    "test-code-assertions"
+   ]
+  },
+  {
+   "id": "a-assert-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Match each check to its correct assertion form.",
+   "left": [
+    {
+     "id": "r",
+     "label": "Real numbers"
+    },
+    {
+     "id": "j",
+     "label": "Java strings"
+    },
+    {
+     "id": "p",
+     "label": "Python Boolean false"
+    }
+   ],
+   "right": [
+    {
+     "id": "t",
+     "label": "tolerance comparison"
+    },
+    {
+     "id": "e",
+     "label": ".equals"
+    },
+    {
+     "id": "n",
+     "label": "assert not y"
+    }
+   ],
+   "key": {
+    "r": "t",
+    "j": "e",
+    "p": "n"
+   },
+   "pairNotes": {
+    "r": "Never == for floats; use abs(x-y) < 1e-6."
+   },
+   "explanation": "Reals need tolerance, Java strings need .equals, and Python Booleans read most clearly asserted directly.",
+   "source": "Lecture 8 (PDF pp. 44-50)",
+   "version": 1,
+   "articles": [
+    "test-code-assertions"
+   ]
+  }
+ ],
+ "io-exceptions-fixtures": [
+  {
+   "id": "a-io-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "How do you feed scripted keyboard input to a method under test?",
+   "options": [
+    "Install a string buffer as stdin before calling",
+    "Pass the string as a return value",
+    "Edit the production code to skip input",
+    "Type it during the test run"
+   ],
+   "answerIndex": 0,
+   "distractor": {
+    "1": "Returns carry outputs, not inputs.",
+    "2": "Never change production to suit tests.",
+    "3": "Automation forbids manual typing."
+   },
+   "explanation": "Python sets sys.stdin to io.StringIO(s); Java calls System.setIn with a ByteArrayInputStream. Production reads it as if typed.",
+   "source": "Lecture 9 (PDF pp. 17-22)",
+   "version": 1,
+   "articles": [
+    "io-exceptions-fixtures"
+   ]
+  },
+  {
+   "id": "a-fixture-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Put the fixture lifecycle in order.",
+   "instructions": "Drag the rows into the correct sequence.",
+   "items": [
+    {
+     "id": "s1",
+     "label": "setUp: redirect streams, create files"
+    },
+    {
+     "id": "s2",
+     "label": "Call production"
+    },
+    {
+     "id": "s3",
+     "label": "Verify: asserts on results"
+    },
+    {
+     "id": "s4",
+     "label": "tearDown: restore and delete"
+    }
+   ],
+   "correct": [
+    "s1",
+    "s2",
+    "s3",
+    "s4"
+   ],
+   "explanation": "Build the world, run, check everything (returns, exceptions, console, files), then clean up so tests stay isolated.",
+   "source": "Lecture 9 (PDF pp. 43-49)",
+   "version": 1,
+   "articles": [
+    "io-exceptions-fixtures"
+   ]
+  }
+ ],
+ "white-box-paths": [
+  {
+   "id": "a-wb-fib",
+   "type": "fib",
+   "tag": "recall",
+   "prompt": "Complete the path-counting rules.",
+   "instructions": "Drag each word into its blank.",
+   "text": [
+    "An if has ___ paths; a loop has ___ paths; each catch adds ___ path."
+   ],
+   "tiles": [
+    {
+     "id": "t",
+     "text": "two"
+    },
+    {
+     "id": "o",
+     "text": "one"
+    },
+    {
+     "id": "th",
+     "text": "three"
+    },
+    {
+     "id": "z",
+     "text": "zero"
+    }
+   ],
+   "answers": [
+    [
+     "t"
+    ],
+    [
+     "t"
+    ],
+    [
+     "o"
+    ]
+   ],
+   "explanation": "if = enter or skip; loop = enter or skip regardless of iterations; try = success plus one per catch clause.",
+   "hints": [
+    "Loops are simpler than they look."
+   ],
+   "source": "Lecture 10 (PDF pp. 11-25)",
+   "version": 1,
+   "articles": [
+    "white-box-paths"
+   ]
+  },
+  {
+   "id": "a-wb-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "A loop that runs a million times is a different path from one that runs twice.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "confirm": "Entering the loop is one path no matter how many iterations follow.",
+   "explanation": "White-box counts entering versus skipping the body; iteration count does not create new paths.",
+   "source": "Lecture 10 (PDF pp. 17-20)",
+   "version": 1,
+   "articles": [
+    "white-box-paths"
+   ]
+  }
+ ],
+ "version-control-git": [
+  {
+   "id": "a-vcs-order",
+   "type": "order",
+   "tag": "sequence",
+   "prompt": "Put the daily Git loop in order.",
+   "instructions": "Drag the rows into the correct sequence.",
+   "items": [
+    {
+     "id": "s1",
+     "label": "Edit files in the working directory"
+    },
+    {
+     "id": "s2",
+     "label": "Stage with git add"
+    },
+    {
+     "id": "s3",
+     "label": "Snapshot with git commit"
+    },
+    {
+     "id": "s4",
+     "label": "Share with git push"
+    },
+    {
+     "id": "s5",
+     "label": "Collect with git pull"
+    }
+   ],
+   "correct": [
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5"
+   ],
+   "explanation": "Edit, stage exactly what belongs, commit one logical change, push to share, pull to stay current.",
+   "source": "Lecture 6 (PDF pp. 13-25)",
+   "version": 1,
+   "articles": [
+    "version-control-git"
+   ]
+  },
+  {
+   "id": "a-vcs-mcq",
+   "type": "mcq",
+   "tag": "classify",
+   "prompt": "Your team server dies for a day. Which setup keeps everyone committing?",
+   "options": [
+    "Distributed VCS (Git): full history in every clone",
+    "Centralised VCS: the server holds history",
+    "Local VCS: history on one machine",
+    "No VCS: FINAL_FINAL folders"
+   ],
+   "answerIndex": 0,
+   "distractor": {
+    "1": "Centralised stops everyone when the server dies.",
+    "2": "Local history helps one person only.",
+    "3": "Folders are the problem, not the fix."
+   },
+   "explanation": "Every Git clone carries full history, so commits continue offline; centralised and local setups cannot.",
+   "source": "Lecture 6 (PDF pp. 8-10)",
+   "version": 1,
+   "articles": [
+    "version-control-git"
+   ]
+  }
+ ],
+ "modularity-coupling-cohesion": [
+  {
+   "id": "a-mod-match",
+   "type": "match",
+   "tag": "match",
+   "prompt": "Match each smell to its fix.",
+   "left": [
+    {
+     "id": "g",
+     "label": "Global variables"
+    },
+    {
+     "id": "f",
+     "label": "Control flag (isDate)"
+    },
+    {
+     "id": "l",
+     "label": "7+ parameters"
+    }
+   ],
+   "right": [
+    {
+     "id": "p",
+     "label": "Parameters in, returns out"
+    },
+    {
+     "id": "s",
+     "label": "Split into two functions"
+    },
+    {
+     "id": "d",
+     "label": "Decompose the module"
+    }
+   ],
+   "key": {
+    "g": "p",
+    "f": "s",
+    "l": "d"
+   },
+   "pairNotes": {
+    "f": "formatTimeDate becomes formatDate + formatTime."
+   },
+   "explanation": "Make data flow explicit, give each behaviour its own function, and split modules doing several jobs.",
+   "source": "Lecture 7 (PDF pp. 26-45)",
+   "version": 1,
+   "articles": [
+    "modularity-coupling-cohesion"
+   ]
+  },
+  {
+   "id": "a-mod-tf",
+   "type": "tf",
+   "tag": "true/false",
+   "prompt": "Duplicated code improves reliability the way redundant fans do in hardware.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answerIndex": 1,
+   "confirm": "Copies multiply test and fix costs; hardware redundancy is the opposite idea.",
+   "explanation": "Software does not wear out, so every copy is another place to test and another place a fix can be missed. Consolidate shared cores like calcXY.",
+   "source": "Lecture 7 (PDF pp. 60-70)",
+   "version": 1,
+   "articles": [
+    "modularity-coupling-cohesion"
+   ]
+  }
  ]
 }

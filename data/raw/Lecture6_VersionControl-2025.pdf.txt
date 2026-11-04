@@ -1,0 +1,1442 @@
+Introduction to Software Engineering (ISAD1000/5004)
+Lecture 6: Version Control
+Updated: 27th February 2021
+Revised : 25th February 2022, 26th March 2023, 
+                 29th August 2023, 30th Mar 2025
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical 
+Sciences (EECMS)
+Copyright © 2025, Curtin University  
+CRICOS Provide Code: 00301J
+1/46
+8/04/2025
+Introduction to Software Engineering - Version Control
+
+
+===== PAGE BREAK =====
+
+ELECTRONIC WARNING NOTICE FOR 
+COPYRIGHT STATUTORY LICENCES
+2/46
+8/04/2025
+Introduction to Software Engineering - Version Control
+
+
+===== PAGE BREAK =====
+
+Revisiting the previous lecture : What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to do many other things:
+3/46
+8/04/2025
+Introduction to Software Engineering - Version Control
+►We will look at how version controlling 
+systems helps to keep track of changes 
+done in your projects in this lecture.
+Software 
+Engineering
+Co-ordinate a 
+team, and plan 
+and manage a 
+project.
+Understand 
+user requirement
+Maintaining the 
+software
+Verify that the 
+software meets 
+its goals
+Test the 
+software, piece 
+by piece.
+Implement the 
+components/modules 
+of the software.
+Design the software 
+(components/modules) 
+SDLCs and project planning - Week1,2 & 3 
+Functional Requirements - Week 4 
+Non-functional requirements - Week 5
+
+
+===== PAGE BREAK =====
+
+Outline
+VersionControl System
+Git Settingup
+StagingandCommits
+Branching andMerging
+Remote/Multiple Repositories
+4/46
+8/04/2025
+Introduction to Software Engineering - Version Control
+
+
+===== PAGE BREAK =====
+
+5/46
+What is Version Control?
+Source: http://www.phdcomics.com
+►Tracking changes in any work is essential 
+because mistakes happen, and sometimes 
+we need to revert to a previous version. 
+►Whether you are working on assignments, 
+reports, or code, managing different versions 
+can quickly become messy.
+►Have you ever ended up with filenames like:
+•
+project_v1.py
+•
+project_v2_final.py
+•
+project_v2_final_fixed_new.py
+►Or
+•
+Report_2024-01-10.docx
+•
+Report_2024-01-15_v2.docx
+•
+Report_2024-02-05_FINAL.docx
+•
+Report_2024-03-01_FINAL_FINAL.docx
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Version Control System
+Git Setting up
+Branching and Merging
+
+
+===== PAGE BREAK =====
+
+6/46
+Undoing Mistakes : real life situation
+►At some point, you may experience the following:
+•
+It works!
+•
+Now I’ll just add the next feature.
+•
+Damn. Now it’s broken.
+•
+Argh! Now I can’t ﬁgure out how to get back to the original version.
+•
+Start again from scratch.
+►To avoid this, many people resort to saving multiple copies before making drastic changes. 
+But this creates another issue:
+►You end up with directories named: 
+•
+new/
+•
+working/
+•
+working_3/
+•
+old/
+•
+new/old/ 
+•
+old/old/new/
+►After a while, it becomes impossible to remember which version contains what.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+7/46
+But text editors can undo changes. . .
+►Most text editors provide an "Undo" feature, but this is not a reliable 
+solution for managing versions. A few reasons:
+1.
+You often want both the old and new versions.
+►Just because something is broken doesn’t mean you should discard 
+it.
+►You might find a way to fix it later.
+2.
+The editor’s “undo buﬀer” is only temporary (in general).
+►Editors forget all the undo information when you close them.
+►If your system crashes, you may lose everything.
+3.
+There’s still too much for you to remember.
+►Since your last working version, you may have edited multiple files.
+►Undoing changes across different files is difficult without a proper 
+history.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+8/46
+During Software Development
+►Collaboration Issues in Teams
+•
+Conflicts arise when multiple people edit the same file.
+•
+No clear way to track or merge changes.
+►Lost Work & Overwritten
+•
+Developers overwrite each other’s changes.
+•
+No easy way to recover deleted or modified files.
+►Debugging is Time-Consuming
+•
+Hard to trace who introduced a bug.
+•
+Finding errors across versions wastes time.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+9/46
+Version Control
+►To help us, we need a version control system (VCS).
+►Why Use a Version Control System?
+►Maintains a complete history of all changes.
+►Supports simultaneous development, allowing multiple versions of a 
+project to exist.
+►Tracks who made changes and when they were made.
+►Identifies the type of changes made to files.
+►Allows easy rollback to previous versions when necessary.
+►Improves collaboration among team members.
+►VCS can help us to do these activities in very organized way.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+10/46
+Version Control
+►Version Control Systems (VCS)
+►The most widely used VCS is Git.
+►Other popular VCS tools include Mercurial, Subversion (SVN), 
+Perforce, and many more.
+►How Does a VCS Work?
+►A repository (repo) stores the complete project, including all its 
+versions.
+►Not entirely automated – users must learn how to leverage its 
+features effectively.
+►Empowers developers to manage changes, collaborate, and revert 
+if needed.
+►Almost every software project uses version control.
+►The ones that don’t. . . should!
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+11/46
+Version Control systems – approaches
+►Version Control Systems (VCS) can be categorized into three main approaches:
+►Local Version Control System (LVCS)
+►Centralized Version Control System (CVCS).
+►Distributed Version Control System (DVCS)
+8/04/2025
+Introduction to Software Engineering - Version Control
+Local Version Control System (LVCS)
+►Maintains a version database on a single computer.
+►Users can track file changes, but collaboration is difficult.
+►Best suited for individual projects with no team involvement.
+►RCS (Revision Control System):
+►Stores changes as a set of incremental differences.
+►Simple file backups (e.g., Windows File History).
+►Each file has a history of edits, but no central repository for collaboration.
+Local VCR system
+Image source: https://git-
+scm.com/book/en/v2/Getting-Started-About-Version-
+Control
+►Simple to use.
+►Not suitable for collaboration.
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+12/46
+Version Control systems – approaches
+Centralized Version Control System (CVCS)
+►Stores all project versions in a single central server.
+►Users can check out files, modify them, and check them back in.
+►Prevents conflicts through file-locking mechanisms (only one user can edit a file at a time).
+Image source: https://git-scm.com/book/en/v2/Getting-
+Started-About-Version-Control
+Centralized VCS system
+8/04/2025
+Introduction to Software Engineering - Version Control
+►Subversion (SVN):
+►Popular in enterprises and legacy software 
+projects.
+►Uses a single centralized repository where all 
+changes are tracked.
+►Centralized control makes administration easier.
+►Good for structured teams.
+►Simple to understand and use for teams.
+►Single point of failure: if the central server crashes, all 
+history lost.
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+13/46
+Version Control systems – approaches
+Distributed version control system
+8/04/2025
+Introduction to Software Engineering - Version Control
+Image source: https://git-scm.com/book/en/v2/Getting-
+Started-About-Version-Control
+Distributed Version Control System (DVCS)
+►Full Repository Copy: Every user has a full copy of the 
+repository, including its entire history.
+►Offline Work & Local Commits: Allows users to work 
+offline and merge changes later.
+►No Single Point of Failure: If the central repository is lost, 
+any local copy can restore the project.
+►Better Collaboration: Supports branching and merging, 
+allowing teams to work on separate features without 
+conflicts.
+►Examples: Git, Mercurial.
+►Widely used today (e.g., Git) 
+►No single point of failure
+►Enables offline work
+►Supports collaborative development & branching 
+►More storage space required for each user
+►Requires a good team workflow to avoid merging issues
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+14/46
+Understanding VCS - Tracking Changes
+►For every update (commit) made to a software project, the VCS records:
+►What was changed.
+►The date and time.
+►The person responsible (since you’re probably working in a team).
+►A description entered by that person.
+►You can tell the VCS to:
+►Show the list of commits in order.
+►Retrieve the code as it existed at any specific point in the past.
+►Show the exact diﬀerences between the code at two diﬀerent times.
+►developers only need to commit their changes to the VCS and provide a 
+meaningful description.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+15/46
+►In VCS, there are two main areas where files exist:
+►Working Directory: Where you actively modify files.
+►Local Repository (Local Repo): Where committed changes are permanently stored.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Understanding VCS - Local Repository vs. Working Directory
+Working Directory
+►The working directory is where you create, edit, and delete files.
+►It behaves like a normal folder on your computer.
+►Usually contains the latest version of your project (but this can vary based on branches).
+►Any changes made here are not tracked by the VCS until explicitly saved (committed).
+Local Repo
+►The local repository stores all previous versions of your project.
+►It keeps a complete history of changes.
+►In Git, it is stored in a hidden .git/ directory, and in Mercurial, it's .hg/.
+►Uncommitted changes in the working directory are NOT saved in the local repository yet.
+►Once changes are committed, they are permanently stored in the local repository.
+►The repository structure is VCS-specific and cannot be directly read by humans.
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+16/46
+How the VCS Manages These Two Areas
+►Saving Changes ("Commit")
+►Moves the latest updates from the working directory -> local repository.
+►Ensures that the changes are stored in the version history.
+►Loading a Previous Version ("Checkout")
+►Retrieves an older version from the local repository -> working directory.
+►Allows you to restore a previous state of the project if needed.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Understanding VCS - Local Repository vs. Working Directory
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+17/46
+VCS vs the hosting service : Git is not Github
+►VCS (Git, Mercurial, etc.).
+►software that helps track changes in code.
+►You download and install it on your computer.
+►Can be used locally without internet 
+►Hosting Services (e.g., GitHub, GitLab, Bitbucket).
+►Online platforms that provide a central place to store repositories.
+►These are services that happen to use Git, Mercurial, etc.
+►Supports features like issue tracking, discussions, and code reviews.
+►Hosted online
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+18/46
+VCS vs the hosting service : Git is not Github
+►VCS = A tool for tracking changes (installed on your computer). 
+►Hosting Services = Online platforms for storing and sharing repositories.
+►GitHub = A hosting service that stores and manages Git repositories online.
+►You can use Git locally without connecting to a hosting service.
+►However, if you want to collaborate, hosting services like GitHub make it easier to 
+share repositories and track project progress.
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+8/04/2025
+Introduction to Software Engineering - Version Control
+Version Control System
+
+
+===== PAGE BREAK =====
+
+19/46
+Git
+►Created by Linus Torvalds in 2005 to help manage the Linux kernel (which he also 
+initially created).
+►The Linux kernel is one of the largest open-source projects in the world:
+►Over 40 million lines of code (as of October 2023)1.
+►Thousands of contributors from hundreds of companies2.
+►Running since 1991, with continuous improvements and updates.
+►This is what Git was created to handle.
+1https://www.stackscale.com/blog/linux-kernel-surpasses-40-million-lines-code
+2https://en.wikipedia.org/wiki/Linux_kernel
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+20/46
+How Git Works
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Working Directory
+Remote Repo
+Local Repo
+Staging Area
+►This is the folder 
+where you write, 
+edit, and manage 
+your code.
+►A staging area in 
+Git is an 
+intermediate 
+space where 
+changes are 
+prepared before 
+being committed.
+►This is where 
+we store 
+committed 
+changes 
+locally.
+►A server like 
+GitHub for 
+sharing and 
+backing up code.
+►Your code exists in four main locations in Git:
+►Working Directory
+►Staging Area
+►Local Repo
+►Remote Repo
+Version Control System
+
+
+===== PAGE BREAK =====
+
+21/46
+►We’ll use Git via the command-line.
+►There are lots of GUI and web tools available too.
+►But the command-line is better for learning.
+►Git has many small but powerful commands :
+[user@pc]$ git add ...
+[user@pc]$ git commit ...
+[user@pc]$ git reset ...
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+How Git Works
+Version Control System
+
+
+===== PAGE BREAK =====
+
+22/46
+How Git Works
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+git checkout
+git add
+git commit
+git push
+git pull
+Working Directory
+Remote Repo
+Local Repo
+Staging Area
+Git clone
+Version Control System
+
+
+===== PAGE BREAK =====
+
+23/46
+Git – set up in your computer
+►In many Linux systems , Git is pre-installed. However, if it's not installed, 
+you can install it using the package manager.
+►https://git-scm.com/download/linux.
+►For Ubuntu:
+►Windows: https://git-scm.com/download/win.
+►Mac: https://git-scm.com/download/mac.
+►How to check whether Git is installed:
+[user@pc]$sudo apt-get update
+ [user@pc]$sudo apt-get install git
+[user@pc]$git --version
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+24/46
+Git - Setting Up
+►Before you use Git for anything, set up your identity:
+►Git uses this information in every commit to identify the author.
+►“--global” flag applies the setting to all Git projects for the current login account 
+on your computer.
+►Check your username :
+►Check your user email:
+►Check all the git configuration
+[user@pc]$ git config --global user.name "Your Name"
+[user@pc]$ git config --global user.email "me@xyz.com"
+[user@pc]$ git config user.name
+[user@pc]$ git config user.email
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+[user@pc]$ git config --list
+Version Control System
+
+
+===== PAGE BREAK =====
+
+25/46
+►When you start using Git, you have two main ways to create a local Git repository:
+►1. If you have a local directory (a folder with files) that is not yet under 
+version control, you can turn it into a Git repository using 
+►2. Clone an Existing Repository (Copying a Remote Repo Locally).
+►In either case, you end up with a Git repository on your local machine, ready for 
+work.
+[user@pc]$ mkdir my_project 
+     [user@pc]$ cd my_project 
+     [user@pc]$ git init
+[user@pc]$ git clone <repository_url>
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+Git - Setting Up
+
+
+===== PAGE BREAK =====
+
+26/46
+Image source: https://git-scm.com/about/staging-area
+►Staging: Preparing Files for Commit
+►Before committing, you need to stage the files that you want Git to track.
+►Staged files are not yet saved permanently.
+►They are waiting to be committed.
+►Committing: Saving Changes to the Repository
+►A commit saves the staged changes permanently in the local repository.
+►Git saves a snapshot of the current state of your files.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Git - Staging and Committing
+Version Control System
+
+
+===== PAGE BREAK =====
+
+27/46
+►Staging:
+[user@pc]$ git add <file name >
+►Committing:
+[user@pc]$ git commit -m “< meaningful comment>”
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+►Staging: Preparing Files for Commit
+►Before committing, you need to stage the files that you want Git to track.
+►Staged files are not yet saved permanently.
+►They are waiting to be committed.
+►Committing: Saving Changes to the Repository
+►A commit saves the staged changes permanently in the local repository.
+►Git saves a snapshot of the current state of your files.
+Git - Staging and Committing
+Version Control System
+
+
+===== PAGE BREAK =====
+
+28/46
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Untracked
+Tracked
+Unmodified
+Modified
+Staged
+git add
+Edit the file
+git commit
+git add
+git rm
+►In Git, files in your project can be in one of the following states:
+►Untracked – Git is not tracking this file yet.
+►Tracked – Git is tracking the file. 
+►Tracked files can be in three states:
+►Unmodified – No changes since the last commit.
+►Modified – The file has been changed but not staged.
+►Staged – The file is ready to be committed.
+Git - Staging and Committing
+Version Control System
+
+
+===== PAGE BREAK =====
+
+29/46
+[user@pc]$ git status
+►git status let you see which changes have been staged, which haven’t, and which 
+files aren’t being tracked by Git. 
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Git - Staging and Committing
+Staged and ready 
+for commit
+Modified but not 
+staged
+New files not yet 
+tracked by Git
+Version Control System
+
+
+===== PAGE BREAK =====
+
+30/46
+[user@pc]$ git reset MyCode.py # Unstaging a specific file
+[user@pc]$ git reset # Unstaging all staged files
+►Keep Commits Focused (One Change per Commit) 
+►One logical change per commit (e.g., one bug fix, one small feature).
+►Clear, small commits make debugging 10x easier!
+►If you make two distinct changes, make two separate commits.
+►Write meaningful commit messages that describe the change.
+►Files can be un-staged, prior to a commit:
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Git - Staging and Committing
+Version Control System
+
+
+===== PAGE BREAK =====
+
+31/46
+[user@pc]$ git add MyCode.py MyOtherCode.py # Stages two files at once
+  [user@pc]$ git add YetMoreCode.py # Stages another file separately
+An example workflow for staging and committing files in Git
+►Staging Files (git add)
+►Committing the Changes (git commit)
+[user@pc]$ git commit -m "Fixed input validation bug.”
+  # Saves the staged changes to the local repository.
+  # The message describes the changes made.
+  # These changes are now part of the project's history.
+►Checking the Status
+[user@pc]$ git status
+  [user@pc]$ git diff
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Git - Staging and Committing
+Version Control System
+
+
+===== PAGE BREAK =====
+
+32/46
+Git - Logs and Diﬀs
+[user@pc]$ git log --graph
+►To get a viewing for summary of all commits:
+(“--graph” is optional, but useful when we get to branching. )
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+unique identifier 
+for each commit
+Version Control System
+
+
+===== PAGE BREAK =====
+
+33/46
+Git - Logs and Diﬀs
+►To see the entire history of a particular ﬁle:
+[user@pc]$ git log –p MyCode.py
+►“+” marks a line that was added.
+►“-” marks a line that was deleted.
+►“@@” identiﬁes the location of changed lines.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+compares the previous 
+(a/main.py) and the new 
+(b/main.py) version.
+Version Control System
+
+
+===== PAGE BREAK =====
+
+34/46
+Git - Logs and Diﬀs
+►To see the entire history of a particular ﬁle:
+[user@pc]$ git log –p MyCode.py
+►“+” marks a line that was added.
+►“-” marks a line that was deleted.
+►“@@” identiﬁes the location of changed lines.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+the file’s state before 
+and after the commit.
+Version Control System
+
+
+===== PAGE BREAK =====
+
+35/46
+Git - Logs and Diﬀs
+►To see the entire history of a particular ﬁle:
+[user@pc]$ git log –p MyCode.py
+►“+” marks a line that was added.
+►“-” marks a line that was deleted.
+►“@@” identiﬁes the location of changed lines.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+In the old file: The change starts at 
+line 1 and affects 34 lines.
+In the new file: The change now 
+starts at line 1 and affects 27 lines.
+Version Control System
+
+
+===== PAGE BREAK =====
+
+36/46
+Git - Logs and Diﬀs
+►To see the entire history of a particular ﬁle:
+[user@pc]$ git log –p MyCode.py
+►“+” marks a line that was added.
+►“-” marks a line that was deleted.
+►“@@” identiﬁes the location of changed lines.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+deleted text
+Version Control System
+
+
+===== PAGE BREAK =====
+
+37/46
+Git - Logs and Diﬀs
+►To see the entire history of a particular ﬁle:
+[user@pc]$ git log –p MyCode.py
+►“+” marks a line that was added.
+►“-” marks a line that was deleted.
+►“@@” identiﬁes the location of changed lines.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+added text
+Version Control System
+
+
+===== PAGE BREAK =====
+
+38/46
+Git - Logs and Diﬀs
+►To see the diﬀerences between two commits (across all ﬁles):
+[user@pc]$ git diff 46b9bc 5f14b6
+►Each commit is identiﬁed by a “hash” code (shown by git log).
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+39/46
+Git – Branching
+►Imagine you're working on a project, and you need to:
+►Develop a new feature.
+►Fix a critical bug.
+►If you make both changes on the same branch:
+►Changes for both the feature and the bug fix would be mixed together.
+►If the feature isn’t ready but the bug fix is, you can't deploy only the fix.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+►Branching lets you create a separate copy of your project where you can make 
+changes without affecting the main branch.
+►In a simple case, you have:
+►A “master” branch for the main “it-works!” version.
+►One or more “feature” branches for whatever crazy experimental stuﬀ 
+you’re adding/ﬁxing.
+►In a team, developers should NOT work directly on the main branch.
+Version Control System
+
+
+===== PAGE BREAK =====
+
+40/46
+►You can think of a sequence of commits like this:
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+.. .
+C1
+C3
+C2
+C4
+C5
+main (or master) branch
+Git – Branching
+Version Control System
+
+
+===== PAGE BREAK =====
+
+41/46
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+.. .
+C1
+C3
+C2
+C4
+C5
+►Fix a bug
+C6
+C7
+Git – Branching
+Version Control System
+
+
+===== PAGE BREAK =====
+
+42/46
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+.. .
+C1
+C3
+C2
+C4
+C5
+►add a feature
+C6
+C7
+C8
+C9
+►Fix a bug
+Git – Branching
+Version Control System
+
+
+===== PAGE BREAK =====
+
+43/46
+►By default, you have master branch called.
+►To make a new branch, based on the last commit in the current branch:
+►To switch branches:
+►You must commit any uncommitted changes ﬁrst.
+►Use “git commit” before switching branches.
+►“git switch -c my-new-branch” will both create and checkout a new branch.
+►“git checkout -b my-new-branch” will both create and checkout a new branch.
+[user@pc]$ git branch my-new-branch
+[user@pc]$ git switch my-new-branch
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Git – Branching
+►To discard changes in a file:
+[user@pc]$ git restore my-file
+►Discard changes in a file before committing.
+►Mistakenly added a file to the staging area, and you need to unstage it.
+Version Control System
+[user@pc]$ git checkout my-new-branch
+[user@pc]$ git checkout -- <my-file>
+
+
+===== PAGE BREAK =====
+
+44/46
+Git – Branching
+►To list the existing branches, and see which one is current:
+►“git status” will also show the current branch name.
+►If you made a big mistake in an existing commit, you could create a 
+branch based on the previous commit, and “try again”.
+[user@pc]$ git branch
+[user@pc]$ git branch my-new-branch ff823e
+►You can rename branches:
+►You can also delete branches, but that’s associated with merging.
+►e.g., git branch -d feature-xyz
+►You can create a new branch based on any commit:
+[user@pc]$ git branch -m my-new-branch feature-xyz
+(Renames “my-new-branch” to “feature-xyz”)
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+45/46
+►Merging is the process of combining changes from one branch into the main 
+project.
+►Feature branches are where most work is done.
+►But this work must end up in the “master” branch somehow
+►Git merges branches with different commits, requiring it to combine changes 
+into a unified, functional result.
+►A challenging task!
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Git – Merging
+“mergecommit”
+.. .
+C1
+C3
+C2
+C4
+C5
+C6
+C7
+C8
+C9
+Version Control System
+
+
+===== PAGE BREAK =====
+
+46/46
+►Git automatically merges branches when possible, but conflicts arise 
+when overlapping changes occur.
+►First, it ﬁnds the “common ancestor”: Identifies the last shared 
+commit before the branches diverged.
+►Second, Git executes the “diﬀ3” algorithm. This tells it:
+►Determines what changed and what remained the same in 
+each branch.
+►If changes are in different parts of the file, Git merges them 
+seamlessly.
+►If both branches modify the same section, Git can’t decide which 
+version to keep.
+►This results in a merge conflict, requiring manual resolution.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Git – Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+47/46
+►“git merge” merges another branch into the current one:
+[user@pc]$ ]$ git switch master
+►You finish working on my-new-branch and want to merge it into master.
+►Git creates a special “merge commit ”: 
+►It contains the history of both branches.
+►Combining the last commits from both branches.
+►Now, all changes from my-new-branch are in master.
+[user@pc]$ ]$ git merge my-new-branch
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Git – Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+48/46
+Git - Merge conﬂicts and manual merging
+►A “git merge” may report something like this:
+►Leaves both versions in the file with conflict markers.
+►Labels each version with branch names.
+►Requires manual resolution.
+►You must:
+1. Open the Conflicted File (Xyz.py).
+2. Choose the Correct Version (or Merge Both Manually).
+3. Stage and commit your new changes.
+CONFLICT (content): Merge conflict in Xyz.py
+[user@pc]$ ]$ git add Xyz.py
+[user@pc]$ ]$ git commit -m "Merged abc-xyz changes."
+(nb. when a merge conflict occurs, “git status”also helps you identify which files need attention)
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+49/46
+Multiple Repositories in DVCS  
+►Recap: you typically use multiple repos (in a DVCS).
+►Typically:
+►Each developer has a local repo.
+►A central repo is used for collaboration.
+CentralRepo
+LocalRepo2
+LocalRepo3
+Developer 2
+Developer 3
+LocalRepo1
+Developer1
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+50/46
+Multiple Repositories – Why?
+1. Safety
+►In a centralized VCS, if the repo is corrupted or deleted, all data is lost.
+►A distributed VCS (e.g., Git) acts as a natural backup.
+2. Reliability
+►If a centralized server goes down, no one can work, leading to major 
+productivity loss.
+►With a distributed VCS, developers can keep working locally without 
+needing access to the server.
+3. Performance.
+►Centralized VCS struggles with large teams and heavy network traffic.
+►Distributed VCS reduces network dependency and spreads CPU load across 
+developer machines.
+►Team size doesn’t impact performance since each developer works 
+independently.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+51/46
+Remote Repositories in Git
+►Each Git repository tracks remotes (external repositories it syncs with).
+►Typical Setup:
+►“origin” is the central repo everyone syncs with.
+►Developers push & pull changes to/from origin.
+►Git is ﬂexible, though:
+►No central repo: Developers sync directly with each other’s local 
+repos.
+►Multiple central repos:  Used for complex workflows.
+►The central repo (if it exists) is mostly for coordination:
+►Removes any doubt as to who has the latest version.
+►Minimises the amount of syncing needed – you only need to keep 
+your local repo in sync with one other (typically).
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+52/46
+Cloning
+►Cloning creates a new repository based on an existing one.
+►Automatically sets up the original repository as “origin” (a remote).
+[user@pc]$ ]$ git clone https://xyz.com/myproject.git
+►If you need a separate local copy, you can clone it again elsewhere:
+►Creates a new local repository (a full copy of the remote repository).
+►Links the original repository as origin
+►Copies all commit history, branches, and files to your local machine.
+[user@pc]$ ]$ git clone my-project myproject2 
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+53/46
+Bare Repository
+►A bare repository is a special type of Git repository that does not contain 
+working repository. Only have the Git history (.git metadata).
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+[user@pc]$ ]$ git clone --bare https://xyz.com/myproject.git
+►This creates a bare repository that cannot be edited directly.
+►It is typically used as a central repository that multiple developers 
+push/pull from.
+►No one works in a bare repo—it only acts as a hub for collaboration.
+►Why not just use a normal repository instead?
+►A normal repository has a working directory, meaning anyone 
+could accidentally edit files directly in the central repo. 
+►A bare repository prevents this, enforcing that all changes must 
+come through git push and git pull.
+Version Control System
+
+
+===== PAGE BREAK =====
+
+54/46
+Pushing and Pulling
+Git allows you to push and pull changes to keep different repositories 
+synchronized.
+[user@pc]$ ]$ git push -u origin my-new-branch
+►Upload the current branch to current remote:
+[user@pc]$ ]$ git push
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Pushing TO a remote repo:
+►Upload “my-new-branch” to “origin”:
+git push
+►Uploads new commits from your local branch to a remote repository.
+►Keeps the remote repository up to date with your latest work.
+►Example: You finished a feature in a branch and want to share it on GitHub.
+Version Control System
+
+
+===== PAGE BREAK =====
+
+55/46
+Pushing and Pulling
+Pulling FROM a remote repo:
+[user@pc]$ ]$ git pull <remote>
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+git pull
+►Downloads new commits from a remote branch.
+►Merges them into your local branch to stay updated.
+►Example: A teammate added new code to “main”, and you want the latest 
+version.
+Difference Between git pull and git clone:
+►Both are used to fetch updates from a remote repository.
+►git clone is for the first-time setup of a repository.
+►git pull is for keeping an already cloned repo up to date.
+►Use git clone once, but git pull regularly.
+Version Control System
+
+
+===== PAGE BREAK =====
+
+56/46
+Don’t Panic
+►Can push and pull overwrite things?
+►What if multiple developers push changes at the same time?
+►You don’t have to worry!
+►git push and git pull never overwrite commits.
+►Every commit in Git is immutable (unchangeable)
+►New commits are always added, not replaced.
+►If two developers try to push different commits at the same 
+time, Git prevents conflicts by rejecting one of the pushes.
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+57/46
+Working as a Team
+Git can be used in diﬀerent ways, but here’s a reasonable scenario:
+1.
+The central repo contains a “master” branch.
+2.
+Developer 1 wants to work on a new feature:
+1.
+Pull the master branch (so the local repo is up-to-date).
+2.
+Creates a new feature-X branch in their local repo.
+3.
+Gets feature-X working, making some commits.
+4.
+Pushes feature-X (the whole branch) to the central repo. (pull request 
+is raised).
+3.
+Developer 2 performs a code review:
+1.
+Pull feature-X from the central repo.
+2.
+Inspects the code.
+3.
+If anything is wrong, we repeat from step 2.3.
+4.
+On the central repo, the team now merges feature-X into master.
+5.
+All developers pull/fetch master from the central repo (so as to be up-to-
+date).
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+58/46
+Summary
+►Version Control System (VCS): LVCS, CVCS and DVCS
+►Distributed VCS is more powerful than centralized VCS, with Git as the 
+most popular choice:
+►Setting Up Git
+►Staging & Commits
+►Branching & Merging
+►Remote Repositories
+8/04/2025
+Introduction to Software Engineering - Version Control
+Staging and Commits
+Remote/Multiple Repositories
+Git Setting up
+Branching and Merging
+Version Control System
+
+
+===== PAGE BREAK =====
+
+That’s all for now!
+This week:
+-
+Practical Work (Assessment-2): To be completed during your 
+scheduled computer lab day at your regular lab time.
+-
+Make sure to attend your lab session to complete the quiz!
+Next week:
+-
+Mid-Semester Test: Tuesday, 15 April, 4:00 PM–6:00 PM (During 
+the regular lecture slot).
+-
+Week 8's scheduled lecture (Modularity) will be rescheduled within 
+next week OR recorded and available by end of the next week for 
+Bentley students.
+Practical : Version Control (lots of fun!).
+59/46
+8/04/2025
+Introduction to Software Engineering - Version Control

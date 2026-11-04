@@ -214,5 +214,89 @@
     "status": "complete",
     "fingerprint": "276843:1792249845",
     "ingested_at": "2026-10-17T16:26:04.118896+00:00"
+  },
+  {
+    "id": "learnming-materials-v2-lecture08-testing-part1-1pp-2025s1-1-pdf",
+    "rel": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "file": "Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "role": "lecture",
+    "topic": "testing",
+    "pages": 69,
+    "chars": 40998,
+    "status": "complete",
+    "fingerprint": "2070149:1793797083",
+    "ingested_at": "2026-11-04T13:09:06.769153+00:00"
+  },
+  {
+    "id": "learnming-materials-v2-lecture9-inputmethods-testfixtures-1pp-2025s1-pdf",
+    "rel": "learnming materials v2/Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+    "file": "Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+    "role": "lecture",
+    "topic": "testing",
+    "pages": 51,
+    "chars": 29214,
+    "status": "complete",
+    "fingerprint": "1544444:1793797080",
+    "ingested_at": "2026-11-04T13:09:06.769153+00:00"
+  },
+  {
+    "id": "learnming-materials-v2-lecture10-whitebox-testing-1pp-2024s1-pdf",
+    "rel": "learnming materials v2/Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+    "file": "Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+    "role": "lecture",
+    "topic": "testing",
+    "pages": 33,
+    "chars": 15252,
+    "status": "complete",
+    "fingerprint": "1121299:1793797078",
+    "ingested_at": "2026-11-04T13:09:06.769153+00:00"
+  },
+  {
+    "id": "learnming-materials-v2-lecture6-versioncontrol-2025-pdf",
+    "rel": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
+    "file": "Lecture6_VersionControl-2025.pdf",
+    "role": "lecture",
+    "topic": "development-practices",
+    "pages": 59,
+    "chars": 36967,
+    "status": "complete",
+    "fingerprint": "1391880:1793797088",
+    "ingested_at": "2026-11-04T13:09:06.769153+00:00"
+  },
+  {
+    "id": "learnming-materials-v2-lecture7-modularity-1pp-2024-s1-v1-pdf",
+    "rel": "learnming materials v2/Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+    "file": "Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+    "role": "lecture",
+    "topic": "development-practices",
+    "pages": 73,
+    "chars": 34696,
+    "status": "complete",
+    "fingerprint": "1559813:1793797086",
+    "ingested_at": "2026-11-04T13:09:06.769153+00:00"
+  },
+  {
+    "id": "learnming-materials-v2-worksheet10-testfixtureswhiteboxtesting-java-pdf",
+    "rel": "learnming materials v2/Worksheet10_TestFixturesWhiteBoxTesting_Java.pdf",
+    "file": "Worksheet10_TestFixturesWhiteBoxTesting_Java.pdf",
+    "role": "worksheet",
+    "topic": "testing",
+    "pages": 5,
+    "chars": 7106,
+    "status": "complete",
+    "fingerprint": "219624:1793797073",
+    "ingested_at": "2026-11-04T13:09:06.769153+00:00"
+  },
+  {
+    "id": "learnming-materials-v2-worksheet10-testfixtureswhiteboxtesting-python-pdf",
+    "rel": "learnming materials v2/Worksheet10_TestFixturesWhiteBoxTesting_Python.pdf",
+    "file": "Worksheet10_TestFixturesWhiteBoxTesting_Python.pdf",
+    "role": "worksheet",
+    "topic": "testing",
+    "pages": 4,
+    "chars": 5654,
+    "status": "complete",
+    "fingerprint": "223260:1793797075",
+    "ingested_at": "2026-11-04T13:09:06.769153+00:00"
   }
 ]

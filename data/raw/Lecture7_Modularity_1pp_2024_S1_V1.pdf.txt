@@ -1,0 +1,1496 @@
+Updated: 01 April 2025
+Revised : 24th April 2022, minor revisions 27th April 2023, 21 April 2024, 11th  April 2025
+Introduction to Software Engineering (ISAD1000/5004)
+Lecture 7: Modularity
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical Sciences (EECMS)
+Copyright © 2025, Curtin University  
+CRICOS Provide Code: 00301J
+
+
+===== PAGE BREAK =====
+
+ELECTRONIC WARNING NOTICE FOR COPYRIGHT 
+STATUTORY LICENCES
+
+
+===== PAGE BREAK =====
+
+Revisiting the previous lecture : What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to do many other things:
+We will look at how to design our code
+Software 
+Engineering
+Co-ordinate a 
+team, and plan 
+and manage a 
+project.
+Understand 
+user requirement
+Maintaining the 
+software
+Verify that the 
+software meets 
+its goals
+Test the 
+software, piece 
+by piece.
+Implement the 
+components/modules 
+of the software.
+Design the software 
+(components/modules) 
+SDLCs and project planning - Week1,2 & 3 
+Functional Requirements - Week 4 
+Non-functional requirements - Week 5
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Please note though we have 70 slides here, 10 slides are repeating for Java/Python examples. 
+You may follow only either of them.
+Outline
+Software design
+Modularity & Maintenance
+Coupling 
+Cohesion
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Introduction to Software Design
+Software design is the step between understanding the problem (requirements) and 
+writing actual code.
+It involves planning how your program will be built.
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+Understand 
+user requirement
+Writing actual code
+Software design
+
+
+===== PAGE BREAK =====
+
+Introduction to Software Design
+You can express design using:
+Pseudocode
+Structural diagrams
+Behavioural diagrams
+Tables
+And even code itself
+Design is not just drawings; it’s the ideas behind your code.
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+Modularity is a core principle within software design.
+
+
+===== PAGE BREAK =====
+
+In construction, buildings are made from prefabricated parts (walls, windows, beams and so 
+on)
+Each part is self-contained.
+Each part has a specific job.
+The builder doesn't need to know how the window was made. 
+only how to install it.
+Breaking Down the Problem – Modularity
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Software Design is the Same:
+In software, modularity means building programs from self-contained parts, like functions, classes, or 
+modules.
+Each part does one job (e.g., user input, data storage, calculations).
+Each part is independent but fits together with others.
+Developers don’t need to know the inner details of every module 
+Just know how to use it.
+Breaking Down the Problem – Modularity
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Software Design is the Same:
+In software, modularity means building programs from self-contained parts, like functions, classes, or 
+modules.
+Each part does one job (e.g., user input, data storage, calculations).
+Each part is independent but fits together with others.
+Developers don’t need to know the inner details of every module 
+Just know how to use it.
+Non-Modular Code (All-in-One Mess)
+Modular Code (Clear and Organized)
+Breaking Down the Problem – Modularity
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+Python
+
+
+===== PAGE BREAK =====
+
+Clean and Simple Modularity
+doThingA ()
+doThingB ()
+doThingC ()
+main ()
+calls
+calls
+calls
+Each function has a single, clear job.
+Main function stays simple.
+They don’t overlap or interfere with each other.
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+More functions are added.
+Structure is deeper, but still well-organized.
+doThingD ()
+doThingE ()
+doThingF ()
+doThingG ()
+doThingA ()
+doThingB ()
+doThingC ()
+main ()
+calls
+calls
+calls
+calls
+calls
+calls
+calls
+calls
+Growing the Program
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+When things get complex, simplification is essential.
+doThingD ()
+doThingE ()
+doThingF ()
+doThingG ()
+doThingA ()
+doThingB ()
+doThingC ()
+main ()
+calls
+calls
+calls
+calls
+calls
+calls
+calls
+calls
+doThingH ()
+calls
+calls
+calls
+calls
+calls
+When Modularity Breaks Down
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+But software doesn’t stay simple forever. As we add new features, fix 
+bugs, and respond to changing needs.
+Lehman’s Laws
+Meir M. Lehman, a pioneer in software engineering, observed how large software systems 
+behave over time. 
+These are scientific laws — they describe how things behave, not how they should be.
+Two Key Laws:
+Law of Increasing Complexity: 
+Every time we make changes to the program, it becomes a bit more complicated, 
+unless we clean it up.
+Law of Continuing Change: 
+If a program is useful, people will want it to do more over time. 
+So, it needs to keep changing to stay useful.
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Key Modularity Principles
+How do we manage this growing complexity? One of the most effective 
+tools we have is modular design.
+High Cohesion: Each module does one clear task.
+Low Coupling: Modules don’t overly depend on each other.
+Information Hiding: A module hides its internal details and exposes only 
+what others need.
+Code Reuse: Shared functionality should be in one place and reused.
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Easier to Understand: Focus on one small part at a time.
+Easier to Test: Test each part by itself.
+Easier to Change: Modify one module without breaking others.
+Encourages Reuse: use the same module where needed.
+Benefits of Modularity
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+What if your code wasn’t modular to begin with?
+What if it used to be clean, but now it’s messy after several changes?
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Managing Complexity Through Refactoring
+Refactoring means making your code cleaner, more organized, and easier to 
+understand, while keeping its behaviour the same.
+Often means:
+Splitting up modules.
+Combining separate modules into one.
+Moving parts of one module into another.
+Changing the way two modules communicate.
+Eliminating redundant code.
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Software Maintenance
+What Is the Problem?
+
+The final stage of the software lifecycle.
+
+Begins after delivery or release.
+
+Unlike hardware, software doesn’t wear out — issues are usually pre-existing.
+For example,
+You release a web app in 2002. Everything seems fine.
+In 2025, a user enters an unusual name with special characters, and the app crashes. 
+The crash didn’t happen because the software “wore out.”
+The software always had a hidden bug that wasn’t triggered before.
+With modular design:
+Fix small parts without breaking the whole system (corrective)
+Enhance features more easily (perfective)
+Swap or update components for new environments (adaptive)
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Function Decomposition
+In software design (FOP/OOPD), programs are decomposed into many small functions or 
+methods.
+Even small programs may contain dozens of such units.
+Large systems may comprise thousands.
+e.g.
+Python: Function; Class & Method 
+Java: Class & Method
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+Java method
+Python function
+
+
+===== PAGE BREAK =====
+
+Coupling – Interdependence Between Modules
+e.g. In a date-handling module:
+isLeapYear(y) determine whether the year is a leap year.
+calcDaysInMonth(m,y) calculate the number of days in a given month and year
+To correctly compute the days in February, calcDaysInMonth(m,y) must determine 
+whether the year is a leap year.
+calcDaysInMonth(m,y) calls isLeapYear(y) to ﬁnd out.
+Thus, calcDaysInMonth(m,y) depends on isLeapYear(y)
+This kind of dependency is called coupling.
+Note : Coupling can result from both interactions between modules and the way parameters 
+are used. 
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Degree of Coupling
+Coupling varies in strength:
+Loose coupling (preferred)
+Tight coupling (problematic)
+We prefer it to be as loose as possible:
+The loosest coupling is not no coupling.
+Some coupling is essential for functionality.
+Problems with tight coupling:
+Changes in one module strongly affect another.
+Developers must understand both modules simultaneously.
+Aim for loose coupling to improve modularity, maintainability, and scalability.
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Things to consider : Calls
+A function call (also known as an invocation) is the most direct and visible form of coupling.
+What happens during a call:
+1. when calcDaysInMonth(m,y) calls isLeapYear(y):
+2. calcDaysInMonth pauses execution.
+3. The value y(year) is passed to isLeapYear(y).
+4. isLeapYear performs its logic and return a result.
+5. The result is returned back to calcDaysInMonth(m,y).
+6. calcDaysInMonth resumes, receiving and using the result in its own computation.
+The caller depends on the callee’s interface and behaviour.
+Calls commonly use parameter passing and return values.
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Calls introduce coupling between modules (this is often good).
+Things to consider : Calls
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+When Coupling Becomes a Problem: too many parameters can signal poor design:
+def xyzfunction (unit, code, building, room, capacity, count, startT, endT, dept):
+  ...
+  ...
+def xyzfunction (“ISE”, 1000, 200, 201, 350, 300, 200, 10, 12, “computing” ):
+  ...
+  ...
+If you need more than ~6 parameters, consider:
+ Is this function doing too much?
+Can some parameters be grouped (e.g., into an object)?
+Is the function receiving too much context?
+Things to consider : Calls
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Local variables exist only within the scope of a method or function.
+Global variables exist outside any function or method and can be accessed from anywhere 
+in the program.
+Things to consider: Global Variables (or Public Fields)
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Lazy programmers use global variables as a short-cut.
+“How can data get from doThingA() to doThingB()?”
+“Ah ha! A global variable!”
+Yes, it works,  but you will live to regret it.
+def square():
+  global x
+  global xSquared 
+    xSquared = x * x
+def outputResult(): 
+  global xSquared 
+  print(xSquared)
+if name == “__main__”:
+  x = int(input()) 
+  square() 
+  outputResult()
+Python
+Input a number and stores in global variable x.
+The square() function reads x, computes x*x and stores it 
+in another global variable xSquared.
+The outputResult() function prints xSquared.
+Functions are tied together via global variables.
+You can’t tell what the function uses or needs.
+Easy to accidentally break as all functions share variables
+Things to consider: Global Variables (or Public Fields)
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Lazy programmers use global variables as a short-cut.
+“How can data get from doThingA() to doThingB()?”
+“Ah ha! A global variable!”
+Yes, it works,  but you will live to regret it.
+Things to consider: Global Variables (or Public Fields)
+The square(x) takes an input and returns its square.
+The outputResult(result) print any result.
+def square(x):
+  return x * x
+def outputResult(value): 
+  print(value)
+if name == “__main__”:
+  x = int(input()) 
+  result = square(x) 
+  outputResult(result)
+Python
+No global variables and everything is passed explicitly.
+Clear flow: Input  Calculation  Output
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+public class GlobalVariableExample {
+public int x;
+  
+public int xSquared;
+public static void main(String[] args) {
+    x = ...; // Input a value from the user 
+    square();
+    outputResult();
+  }
+  public static void square() { 
+        xSquared = x * x;
+  }
+  public static void outputResult() {      
+        System.out.println(xSquared);
+  }
+}
+Java
+Things to consider: Global Variables (or Public Fields)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+public class GlobalVariableExample {
+public static void main(String[] args) {
+    int x = ...; // Input a value from the user 
+    int xSquared = square(x);
+    outputResult();
+  }
+  public static int square(int x) { 
+        return x * x;
+  }
+  public static void outputResult (int value) {      
+        System.out.println(value);
+  }
+}
+Java
+Things to consider: Global Variables (or Public Fields)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Discussion
+Problems with Global Variables
+Changes affect everything: even unrelated parts.
+Hidden connections: functions silently depend on shared data.
+Hard to trace bugs: one function breaks because another changed the same variable.
+Better Practice:
+Pass values directly between functions. 
+keep data flow explicit and clear.
+Things to consider: Global Variables (or Public Fields)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Removing Global Variables
+Global variables can be eliminated by:
+Using Parameters: when the function needs to read the variable.
+Returning Values: when the function modifies and outputs the variable.
+Both: when the function reads and modifies the variable.
+Things to consider: Global Variables (or Public Fields)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Global Variables Increase Complexity (Python)
+Say we want to square two numbers and add them.
+With global variables:
+x = ... # Input 1st value 
+square()
+result1 = xSquared
+x = ... # Input 2nd value 
+square()
+result2 = xSquared
+result = result1 + result2
+Without global variables:
+x = ... # Input 1st value 
+y = ... # Input 2nd value
+result = square(x) + square(y)
+Python
+Python
+def square():
+  global x
+  global xSquared 
+    xSquared = x * x
+Python
+def square(x):
+  return x * x
+Python
+Things to consider: Global Variables (or Public Fields)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Global Variables Break Reusability (Python)
+If  x  is global, then we can’t do this:
+Without global variables:
+x = ... # Input 1st value 
+y = ... # Input 2nd value
+result = square(x) + square(y)
+Python
+x = ... ... # Input 1st value 
+y = ... ... # Input 2nd value 
+square() 
+square()
+
+Both calls to square() use the global variable x.
+
+ You can't choose which value square() should use.
+Python
+def square():
+  global x
+  global xSquared 
+    xSquared = x * x
+Python
+def square(x):
+  return x * x
+Python
+Things to consider: Global Variables (or Public Fields)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Things to consider : Control Flags
+Function Parameters: Provide data needed to perform a single operation.
+Python Function
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Sometimes Parameter is used as a control flag:
+Chooses between different operations inside the method.
+Often a Boolean but can be any type.
+Python Function with control flag
+
+The clean parameter is a control flag.
+
+The caller must know:“ If I want the data cleaned, I need to pass clean=True.”
+
+This creates tight coupling: the caller must understand the internal logic of the function.
+Things to consider : Control Flags
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+def formatTimeDate(one, two, three, isDate):
+  if isDate:
+    s = str(one) + "/" + str(two) + "/" + str(three)
+  else:
+    s = str(one) + ":" + str(two) + ":" + str(three)
+  return s
+def printDate():
+... # Input values for day, month, year 
+  print(formatTimeDate(day, month, year, True))
+Python
+formatTimeDate(one,two,three,isDate) takes three values and a flag (isDate) to determine how 
+to format them:
+If isDate is True: format as a date  day/month/year
+If isDate is False: format as a time  hour:minute:second
+formatTimeDate(1, 2, 2025, True)  1/2/2025
+formatTimeDate(10, 30, 59, False)  10:30:59
+Control Flags Example (Python)
+Things to consider : Control Flags
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+def formatTimeDate(one, two, three, isDate):
+  if isDate:
+    s = str(one) + "/" + str(two) + "/" + str(three)
+  else:
+    s = str(one) + ":" + str(two) + ":" + str(three)
+  return s
+def printDate():
+... # Input values for day, month, year 
+  print(formatTimeDate(day, month, year, True))
+Python
+Using isDate to switch behaviour creates tight coupling and reduces code clarity.
+You’re mixing two different responsibilities:
+Date formatting
+Time formatting
+Control Flags Example (Python)
+Things to consider : Control Flags
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+def formatTime(hr, minute, sec):
+  return str(hr) + ":" + str(minute) + ":" + str(sec)
+def formatDate(day, month, year):
+  return str(day) + "/" + str(month) + "/" + str(year)
+def printDate():
+  ... # Input values for day, month, year 
+  print(formatTimeDate(day, month, year, True)
+        formatDate(day, month, year))
+Python
+Each function does one thing well.
+Function names and parameter names are descriptive.
+No control flags, so no ambiguity.
+Things to consider : Control Flags
+Refactoring Control Flags Example (Python)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Control Flags Example (Java)
+public static String formatTimeDate (int one, int two, int three, boolean isDate) {
+String s; 
+if(isDate) {
+s = one + "/" + two + "/" + three;
+}
+else {
+s = one + ":" + two + ":" + three;
+}
+return s
+}
+public static void printDate() { 
+     int day, month, year;
+    ... // Input values for day, month, year
+    System.out.println(formatTimeDate(day, month, year, true))
+}
+Java
+Things to consider : Control Flags
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+public static String formatTime(int hr, int min, int sec)
+{
+return hr + ":" + min + ":" + sec;
+}
+public static String formatDate(int day, int month, int year)
+{
+return day + "/" + month + "/" + year;
+}
+public static void printDate()
+{
+int day, month, year;
+... // Input values for day, month, year System.out.println(formatTimeDate(day, 
+month, year, true)
+formatDate(day, month, year));
+}
+Java
+Things to consider : Control Flags
+Refactoring Control Flags Example (Java)
+Coupling
+Code Reusability & Redundancy
+Cohesion
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Cohesion
+Cohesion: How focused a single module is.
+Think within a module/function/class.
+High cohesion: the module does one job well.
+Low cohesion: the module does many unrelated jobs.
+High cohesion leads to more eﬃcient use of your mental resources.
+High cohesion
+Low cohesion
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Good software design has loose coupling and high cohesion.
+Loose coupling: modules don’t depend on each other much.
+High cohesion: each module has a clear, focused responsibility.
+Coupling vs. Cohesion
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Improving one often improves the other:
+Breaking a large, messy module with low cohesion into smaller, focused modules 
+increases cohesion. These focused modules require fewer connections, which leads 
+to lower coupling.
+When you reduce dependencies between modules (i.e., reduce coupling), you 
+naturally give each module more independence, resulting in higher cohesion.
+Coupling vs. Cohesion
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+The diﬀerence?
+Cohesion 
+Focus on a single module.
+calculate_tax()  high cohesion. 
+calculate_tax_and_send_email()  low cohesion.
+Coupling
+Focus on interactions between modules.
+Function A calls B, C, D  high coupling.
+Function A works independently  Low coupling.
+Coupling vs. Cohesion
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+def formatTimeDate(one, two, three, isDate):  
+  if isDate:
+    s = str(one) + "/" + str(two) + "/" + str(three)
+  else:
+    s = str(one) + ":" + str(two) + ":" + str(three)
+  return s
+Python
+formatTimeDate() formats dates, and formats times.
+These tasks are similar, but not really a single responsibility.
+Control ﬂags may also indicate low cohesion – where a method/function performs more 
+than one distinct task.
+Things to consider: Control Flags (Again)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+public static String formatTimeDate(int one, int two, int three, Boolean isDate) 
+{
+    String s;
+    if (isDate) {
+        s = one + "/" + two + "/" + three;
+    } 
+    else {
+        s = one + ":" + two + ":" + three;
+    }
+    return s;
+}
+Control ﬂags may also indicate low cohesion – where a method/function performs more 
+than one distinct task.
+formatTimeDate() formats dates, and formats times.
+These tasks are similar, but not really a single responsibility.
+Java
+Things to consider: Control Flags (Again)
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Things to consider: Sequential Tasks
+def process_data():
+    clean_input()
+    save_to_db()
+    send_notification()
+low cohesion isn't always about if statements or control flags
+A poorly-cohesive method/function could also be doing several things in sequence.
+This function does several independent things: Cleaning, Storing and Notifying
+Harder to understand and reuse components
+Split into focused, single-purpose functions:
+def clean_input(): ...
+def save_to_db(): ...
+def send_notification(): ...
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Things to consider: Relatedness of Tasks
+Even when a function does multiple tasks, the degree of cohesion depends on how related those tasks are.
+Completely unrelated 
+Tasks have no logical connection. Should be split entirely.
+extremely low (essentially zero) cohesion.
+Superficially related (e.g., by name)
+Grouped under a broad label, but not functionally coherent.
+low cohesion
+Related by time 
+Tasks must happen together or in sequence but are distinct.
+Moderate Cohesion
+Related by data
+Tasks use or transform the same data. 
+Often tightly coupled.
+Higher Cohesion
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Things to consider: Different Data
+If different parts of a method or function operate on different sets of data, it likely suffers from low cohesion.
+Why It's Problematic
+Indicates the function is doing unrelated or loosely related tasks.
+Harder to understand, test, and reuse.
+Often a sign the function should be split up.
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Things to consider: Different Data
+def checkAgeAndPostcode(age, postcode): 
+  if 0 <= age <= 130:
+    print("Valid age") 
+  else:
+    print("Invalid age")
+  
+    if 1000 <= postcode < 10000: 
+    print("Valid postcode")
+  else:
+    print("Invalid postcode")
+Python
+checkAgeAndPostcode() works with two different pieces of data:
+Therefore, it is performing two diﬀerent tasks – low cohesion.
+Why is this bad?
+What if you want to check only the age, or only the postcode?
+You can’t do it with this method/function.
+If there were two separate methods/functions, you could.
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Things to consider: Different Data
+public static void checkAgeAndPostcode(int age, int postcode)
+{
+if(0 <= age && age <= 130) { System.out.println("Valid age");
+}
+else {
+System.out.println("Invalid age");
+}
+if(1000 <= postcode && postcode < 10000) { 
+System.out.println("Valid postcode");
+}
+else {
+System.out.println("Invalid postcode");
+}
+}
+Java
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Refactoring to Improve Cohesion (Python)
+Step 1: If a module performs several unrelated tasks, break it up.
+Step 2: Find where you called the original method/function.
+def checkAgeAndPostcode(age, postcode): 
+  if 0 <= age <= 130:
+    print("Valid age") 
+  else:
+    print("Invalid age")
+  
+    if 1000 <= postcode < 10000: 
+    print("Valid postcode")
+  else:
+    print("Invalid postcode")
+Python
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Refactoring to Improve Cohesion (Python)
+def checkAge(age):
+  if 0 <= age <= 130: 
+    print("Valid age")
+  else:
+    print("Invalid age")
+def checkPostcode(postcode):
+  if 1000 <= postcode < 10000: 
+    print("Valid postcode")
+  else:
+    print("Invalid postcode")
+Python
+Step 1: If a module performs several unrelated tasks, break it up.
+Step 2: Find where you called the original method/function.
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Refactoring to Improve Cohesion (Python)
+checkAgeAndPostcode(someAge, somePostcode)
+checkAge(someAge) 
+checkPostcode(somePostcode)
+This won’t aﬀect the functionality.
+It will improve cohesion (and hence ﬂexibility, maintainability, etc.).
+And break up the call(s) as well:
+Step 1: If a module performs several unrelated tasks, break it up.
+Step 2: Find where you called the original method/function.
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+public static void checkAgeAndPostcode(int age, int postcode) {
+if(0 <= age && age <= 130) { 
+System.out.println("Valid age");
+}
+else {
+System.out.println("Invalid age");
+}
+if(1000 <= postcode && postcode < 10000) { 
+System.out.println("Valid postcode");
+}
+else {
+System.out.println("Invalid postcode");
+}
+}
+Java
+Refactoring to Improve Cohesion (Java)
+Step 1: If a module performs several unrelated tasks, break it up.
+Step 2: Find where you called the original method/function.
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+public static void checkAge(int age) { if(0 <= age && age <= 130) {
+System.out.println("Valid age");
+} else {
+System.out.println("Invalid age");
+}
+}
+public static void checkPostcode(int postcode) {
+    if(1000 <= postcode && postcode < 10000){
+        System.out.println("Valid postcode");
+    } else {
+         System.out.println("Invalid postcode");
+ }
+}
+Java
+Refactoring to Improve Cohesion (Java)
+Step 1: If a module performs several unrelated tasks, break it up.
+Step 2: Find where you called the original method/function.
+Cohesion
+Coupling
+Code Reusability & Redundancy
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Redundancy (or Repetition or Duplication)
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Code redundancy:
+Code is redundant if it performs a task that is already handled elsewhere.
+Also known as: Repetition, Duplication.
+Good software design aims to eliminate redundancy:
+Software does not wear out — there's no benefit in duplicating logic.
+Redundancy in code: Makes the program harder to maintain
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Redundancy (or Repetition or Duplication)
+Software and Hardware Redundancy:
+Software: 
+Software doesn’t wear out.
+Redundancy is typically harmful.
+Adds complexity without benefit.
+Hardware: 
+Physical components
+Physical parts wear out
+redundancy improves reliability. 
+Backup fans, disks, etc.
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Code redundancy is bad
+Problems with Redundancy in Software
+Increases system size unnecessarily.
+Harder to test, inspect, and maintain.
+Introduces risk of inconsistent behaviour.
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Minimize repetition — don’t eliminate it completely
+Avoid unnecessary duplication, but don’t sacrifice clarity or simplicity just to remove all repetition.
+Not all repetition is bad — if it makes your code easier to read, understand, and maintain, it’s worth it.
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Refactoring Redundancy: Consolidate Duplicate Modules
+Minimise redundancy by reusing existing modules instead of duplicating logic.
+If Modules A and B Do the Same Thing:
+Keep one (e.g., A), and delete the other (e.g., B).
+Python
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Minimise redundancy by reusing existing modules instead of duplicating logic.
+If Modules A and B Do the Same Thing:
+Keep one (e.g., A), and delete the other (e.g., B).
+Java
+Refactoring Redundancy: Consolidate Duplicate Modules
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Minimise redundancy by reusing existing modules instead of duplicating logic.
+If Module A is a Superset of B:
+Avoid duplicating B’s logic inside A.
+Extract B as a separate, reusable module.
+Let A reuse B, rather than repeat its behaviour.
+A
+B
+process_order () repeats the same discount logic as calculate_discount ().
+Python
+Refactoring Redundancy: Reuse Submodules Within Supersets
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Minimise redundancy by reusing existing modules instead of duplicating logic.
+If Module A is a Superset of B:
+Avoid duplicating B’s logic inside A.
+Extract B as a separate, reusable module.
+Let A reuse B, rather than repeat its behaviour.
+Java
+A
+B
+Refactoring Redundancy: Reuse Submodules Within Supersets
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Minimise redundancy by reusing existing modules instead of duplicating logic.
+If A, B (and C, D…) Share Some Logic:
+Identify the common part of their behaviour.
+Extract it into a new module.
+Update A, B, C, D to use module Z instead of duplicating that logic.
+Python
+Refactoring Redundancy: Extract Shared Logic into a New Module
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Minimise redundancy by reusing existing modules instead of duplicating logic.
+If A, B (and C, D…) Share Some Logic:
+Identify the common part of their behaviour.
+Extract it into a new module.
+Update A, B, C, D to use module Z instead of duplicating that logic.
+Java
+Refactoring Redundancy: Extract Shared Logic into a New Module
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Examples of Redundancy : Refactoring Overlapping Logic
+def printSpecial(x, y): 
+  if 3 * x * x * y * (x - y) > 0.0:
+    print(x, y)
+def getNM():
+  n = 0.0
+  m = 0.0
+  while n <= 0.0 or m <= 0.0: 
+    n = float(input())
+    m = float(input())
+  return (n - m) * m * n * 3 * n
+Python
+Remove the common code, and put it in a new function.
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+def calcXY(x, y): # new function 
+return 3 * x * x * y * (x - y)
+def printSpecial(x, y): 
+  if calcXY(x, y) > 0:
+    print(x, y)
+def getNM():
+  n = 0.0
+  m = 0.0
+  while n <= 0.0 or m <= 0.0:
+  ...
+      return calcXY(n, m)
+Python
+Examples of Redundancy : Refactoring Overlapping Logic (Refactored) 
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+public static void printSpecial(double x, double y) { 
+    if(3 * x * x * y * (x - y) > 0.0) {
+System.out.println("(" + x + "," + y + ")");
+}
+}
+public static double getNM() { 
+    double n = 0.0;
+double m = 0.0;
+while(n <= 0.0 || m <= 0.0) { 
+    n = ...; // Input n value 
+ 
+m = ...; // Input m value
+}
+return (n - m) * m * n * 3 * n;
+}
+Java
+Examples of Redundancy : Refactoring Overlapping Logic
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+public static double calcXY(double x, double y) {
+return 3 * x * x * y * (x - y);
+} 
+// new method
+public static void printSpecial(double x, 
+double y) { 
+ 
+if(calcXY(x, y)) {
+System.out.println("(" + x + "," + y + ")");
+}
+}
+public static double 
+getNM() { 
+ 
+double n = 0.0;
+   double m = 0.0;
+while(n <= 0.0 || m <= 0.0) 
+{...} 
+return calcXY(n, m);
+}
+Java
+Examples of Redundancy : Refactoring Overlapping Logic (Refactored) 
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Reuse and Coupling
+Reuse is desirable…
+But reuse can increase coupling, because multiple parts now depend on the same component.
+Reuse and coupling are not opposites, they must be carefully balanced, not blindly optimized.
+Sensible Design
+Reuse only when tasks are truly the same.
+Don’t “force” reuse for things that aren’t actually shared responsibilities.
+Avoid introducing tight dependencies just for the sake of reuse.
+If You’re Not Careful
+introduce unnecessary coupling.
+mistake similar-looking code for actual duplication.
+reduce cohesion by forcing unrelated code to share logic.
+Code Reusability & Redundancy
+Cohesion
+Coupling
+Software Design
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Summary
+Modularity breaks software into self-contained units (functions, classes, packages) to simplify software development.
+As software evolves, complexity increases (Lehman’s Laws). Modular design helps manage this growth.
+Refactoring improves internal structure without changing behaviour.
+Coupling measures how tightly modules depend on each other. Aim for low coupling (independent modules).
+Cohesion measures how focused a module is. Aim for high cohesion (each module does one well-defined task).
+Reuse is desirable but must be balanced — it can increase coupling if not applied carefully. 
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+
+
+===== PAGE BREAK =====
+
+Cohesion
+Coupling
+Software Design
+Code Reusability & Redundancy
+Modularity & Maintenance
+That’s all for now!
+This week:
+Practical : Modularity.
+Next week:
+- Tuition free week
+- No Lectures/labs 

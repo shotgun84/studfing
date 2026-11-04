@@ -1393,5 +1393,494 @@
   "prompt": "2018 Q3-Q4: equivalence-partition test designs for pressureAdvice and minCountA, then matching Java test code.",
   "source": "2018 Test 1, Q3-Q4 (pp. 5-7) \u2014 supplementary: testing lectures not in current collection",
   "type": "written"
+ },
+ {
+  "id": "gen-testing-1",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Define fault, failure and debugging, and state the three possible relations between a fault and the failures it causes.",
+  "articles": [
+   "testing-overview"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "A fault is a mistake in code or docs; a failure is an event where the software misses its goals; debugging traces a failure back to its fault and fixes it. Relations: one fault can cause several failures; one fault may never cause a failure; several faults combined can cause one failure.",
+   "rubric": [
+    "Fault and failure defined correctly",
+    "Debugging defined as trace-back plus fix",
+    "All three relations stated"
+   ]
+  }
+ },
+ {
+  "id": "gen-testing-2",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Contrast black-box and white-box test design, and give one advantage of each.",
+  "articles": [
+   "testing-overview",
+   "white-box-paths"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Black-box designs cases from the specification without seeing code; white-box designs them from paths through the code. Black-box can be written before code exists and survives rewrites; white-box reveals decisions hidden in the implementation and can catch more defects.",
+   "rubric": [
+    "Black-box source (spec) correct",
+    "White-box source (code paths) correct",
+    "One genuine advantage of each"
+   ]
+  }
+ },
+ {
+  "id": "gen-ep-1",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Design equivalence-partitioning test cases for the abs submodule (negative versus non-negative). Give categories, test data and expected results.",
+  "articles": [
+   "equivalence-partitioning"
+  ],
+  "marks": 3,
+  "answer": {
+   "official": false,
+   "text": "Two categories: n < 0 and n >= 0. Cases: -10 -> 10; 10 -> 10. One case per category with concrete data and the required absolute value.",
+   "rubric": [
+    "Both categories named",
+    "Valid data per category",
+    "Correct expected results"
+   ]
+  }
+ },
+ {
+  "id": "gen-ep-2",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Explain why formatTime needs nine test cases, and list them.",
+  "articles": [
+   "equivalence-partitioning"
+  ],
+  "marks": 5,
+  "answer": {
+   "official": false,
+   "text": "Hours and minutes are each too low, in range, or too high independently (3x3 = 9). One valid (12,30 -> 12:30) plus eight error combos covering each parameter too low/high alone and in combination.",
+   "rubric": [
+    "3x3 reasoning given",
+    "Valid case correct",
+    "All eight error combos listed"
+   ]
+  }
+ },
+ {
+  "id": "gen-ep-3",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Critique these categories for a single real input x: x < 0 or x >= 100, and x < 100. Which of the four validity properties fail?",
+  "articles": [
+   "equivalence-partitioning"
+  ],
+  "marks": 3,
+  "answer": {
+   "official": false,
+   "text": "Fails no-OR (first category hides two behaviours) and no-overlap (e.g. x = -5 fits both). Rewrite as x < 0, 0 <= x < 100, x >= 100: complete, disjoint, no OR.",
+   "rubric": [
+    "OR violation identified",
+    "Overlap violation identified with example",
+    "Correct rewrite given"
+   ]
+  }
+ },
+ {
+  "id": "gen-bva-1",
+  "origin": "generated",
+  "type": "calculation",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Derive BVA test values for the discount submodule (0-2 -> 0, 3-8 -> 0.15, 9+ -> 0.25, invalid -> -1.0).",
+  "articles": [
+   "boundary-value-analysis"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Boundaries at 0, 3 and 9. Values: -1 -> -1.0 and 0 -> 0.0; 2 -> 0.0 and 3 -> 0.15; 8 -> 0.15 and 9 -> 0.25. Two per boundary, one from each side.",
+   "rubric": [
+    "All three boundaries found",
+    "Two values per boundary",
+    "Expected outputs correct"
+   ]
+  }
+ },
+ {
+  "id": "gen-bva-2",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "How do you apply BVA to the real-valued rule aircon on at >= 25.5 degrees? Give the two test values and explain the choice.",
+  "articles": [
+   "boundary-value-analysis"
+  ],
+  "marks": 3,
+  "answer": {
+   "official": false,
+   "text": "Test exactly 25.5 (in-category edge) and the closest neighbour below such as 25.499999. Reals have no integer neighbours, so closeness to the edge is the best achievable pair.",
+   "rubric": [
+    "Exact edge value given",
+    "Nearest-neighbour value given",
+    "Reason (no integer steps) explained"
+   ]
+  }
+ },
+ {
+  "id": "gen-assert-1",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Write Python and Java assertions checking a real result x against expected y, and explain why == is wrong.",
+  "articles": [
+   "test-code-assertions"
+  ],
+  "marks": 3,
+  "answer": {
+   "official": false,
+   "text": "Python: assert abs(x-y) < 0.000001, msg. Java: assert Math.abs(x-y) < 0.000001 : msg;. Floating-point arithmetic is approximate, so == fails on rounding even when the logic is right.",
+   "rubric": [
+    "Python tolerance form correct",
+    "Java tolerance form correct",
+    "Rounding explanation given"
+   ]
+  }
+ },
+ {
+  "id": "gen-assert-2",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "A Java suite passes fully but the production code is clearly faulty. Name the most likely cause and the fix.",
+  "articles": [
+   "test-code-assertions"
+  ],
+  "marks": 2,
+  "answer": {
+   "official": false,
+   "text": "The suite was run without -ea, so all assertions were silently skipped. Re-run with java -ea TestSuite so assertions actually execute.",
+   "rubric": [
+    "Missing -ea identified",
+    "Fix (run with -ea) stated"
+   ]
+  }
+ },
+ {
+  "id": "gen-io-1",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Describe how to test outputMax(10, 15) which prints the maximum instead of returning it. Give the setup, call and assertion in either language.",
+  "articles": [
+   "io-exceptions-fixtures"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Redirect stdout to a buffer (StringIO / ByteArrayOutputStream), call outputMax(10,15), assert the buffer holds 15, restore stdout in tearDown. Expected console text is the assertion target.",
+   "rubric": [
+    "Redirection setup described",
+    "Call with the given data",
+    "Buffer assertion plus restore"
+   ]
+  }
+ },
+ {
+  "id": "gen-io-2",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Contrast testing an expected exception with testing for an unexpected one. Sketch the code pattern for the expected case.",
+  "articles": [
+   "io-exceptions-fixtures"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Unexpected exceptions should fail the test (let them propagate / declare throws). Expected exceptions must arrive: wrap the call in try, end the try with assert False, and put the pass in the except/catch block.",
+   "rubric": [
+    "Unexpected = fail correctly described",
+    "Expected = must-arrive described",
+    "try + assert False + except pattern sketched"
+   ]
+  }
+ },
+ {
+  "id": "gen-wb-1",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "How many white-box paths does a loop contribute, and why does iteration count not matter? Illustrate with readPositive.",
+  "articles": [
+   "white-box-paths"
+  ],
+  "marks": 3,
+  "answer": {
+   "official": false,
+   "text": "Two: enter the body or skip it. Running twice or a million times is the same path. readPositive needs an entering case (-5\\n10 -> Not positive, returns 10) and a skipping case (5 -> returns 5, no output).",
+   "rubric": [
+    "Two paths stated",
+    "Iteration reasoning correct",
+    "Both readPositive cases with I/O given"
+   ]
+  }
+ },
+ {
+  "id": "gen-wb-2",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Explain why zeroOrLargest has three white-box paths but four black-box categories.",
+  "articles": [
+   "white-box-paths",
+   "equivalence-partitioning"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Black-box combines signs of x and y into four categories; the code decides y > 0 first, then x > y inside, giving three reachable paths (outer else -> 0, inner if -> x, inner else -> y). Structure, not the spec, decides reachability.",
+   "rubric": [
+    "Four black-box categories listed",
+    "Three code paths listed",
+    "Reachability explanation correct"
+   ]
+  }
+ },
+ {
+  "id": "ws10-coords",
+  "origin": "worksheet",
+  "type": "written",
+  "source": "Worksheet 10 (Java/Python), Q1 printCoordinates",
+  "prompt": "Worksheet 10 Q1: how many white-box paths does printCoordinates(x, y, z) have, and what does a test verify? (Answer for either language.)",
+  "detail": "printCoordinates formats (x,y,z) to 2dp plus newline; no branches.",
+  "articles": [
+   "white-box-paths",
+   "io-exceptions-fixtures"
+  ],
+  "marks": 2,
+  "answer": {
+   "official": false,
+   "text": "One path (no branches), so one test. Capture stdout, call with e.g. (1, 2, 3), assert the exact string with 2dp formatting and newline; restore streams in tearDown.",
+   "rubric": [
+    "One path (no branches) stated",
+    "Capture-output method described",
+    "Exact-format assertion mentioned"
+   ]
+  }
+ },
+ {
+  "id": "ws10-readchar",
+  "origin": "worksheet",
+  "type": "written",
+  "source": "Worksheet 10 (Java/Python), Q2 readChar",
+  "prompt": "Worksheet 10 Q2: design the white-box cases for readChar(validChars) and state the required fixture.",
+  "detail": "Loop re-reads while input length != 1 or char not in validChars; needs stdin/stdout redirection with restore.",
+  "articles": [
+   "white-box-paths",
+   "io-exceptions-fixtures"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Two paths: enter the loop (invalid then valid input, e.g. ab\\nq with valid q) and skip it (valid first time). Fixture redirects stdin/stdout before each test and restores originals after.",
+   "rubric": [
+    "Two paths named",
+    "Scripted inputs per path",
+    "Redirect-plus-restore fixture stated"
+   ]
+  }
+ },
+ {
+  "id": "ws10-guessing",
+  "origin": "worksheet",
+  "type": "written",
+  "source": "Worksheet 10 (Java/Python), Q3 guessingGame",
+  "prompt": "Worksheet 10 Q3: what must the expected result of a guessingGame(number) test contain, and why?",
+  "detail": "Prompts Enter an integer, prints Too high/Too low per wrong guess, ends with Correct!; full transcript is the oracle.",
+  "articles": [
+   "io-exceptions-fixtures",
+   "white-box-paths"
+  ],
+  "marks": 3,
+  "answer": {
+   "official": false,
+   "text": "The entire console transcript: prompt, one Too high/Too low line per wrong guess, and the final Correct!. Capture stdout with scripted stdin guesses and assert the full text, since output is the only observable result.",
+   "rubric": [
+    "Full transcript required stated",
+    "Prompt plus feedback plus Correct! listed",
+    "Capture stdout with scripted stdin described"
+   ]
+  }
+ },
+ {
+  "id": "ws10-sumfile",
+  "origin": "worksheet",
+  "type": "written",
+  "source": "Worksheet 10 (Java/Python), Q4 sumFile",
+  "prompt": "Worksheet 10 Q4: how do you test sumFile(filename), including the open-failure case?",
+  "detail": "Sums whitespace-separated doubles; returns -1 when the file cannot be opened.",
+  "articles": [
+   "io-exceptions-fixtures"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Setup: write a file with known doubles, call sumFile, assert the sum. Failure case: call with a missing file and assert -1. Also mutate production slightly and confirm the tests catch it; clean up scratch files in tearDown.",
+   "rubric": [
+    "Write-file setup described",
+    "Sum assertion plus -1 failure case",
+    "Mutation check and cleanup mentioned"
+   ]
+  }
+ },
+ {
+  "id": "ws10-savedata",
+  "origin": "worksheet",
+  "type": "written",
+  "source": "Worksheet 10 (Java/Python), Q5 saveData",
+  "prompt": "Worksheet 10 Q5: what does a saveData(filename, name, health, score) test verify, and how?",
+  "detail": "Writes name/health/score lines plus status (dead/won/alive); returns true/True, false on I/O error.",
+  "articles": [
+   "io-exceptions-fixtures"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Verify the file holds name:, health:, score: lines plus the right status (dead if health <= 0, won if score >= 100, else alive) and that the call returns true. Cover each status branch; check the false path for I/O errors.",
+   "rubric": [
+    "File-content lines listed",
+    "All three status branches covered",
+    "Return-value check included"
+   ]
+  }
+ },
+ {
+  "id": "gen-vcs-1",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Explain the four places Git work flows through and the commands that move work between them.",
+  "articles": [
+   "version-control-git"
+  ],
+  "marks": 5,
+  "answer": {
+   "official": false,
+   "text": "Working directory (edit), staging area (git add stages), local repository (git commit snapshots), remote repository (git push shares, git pull/git clone collect). git status/diff/log inspect; git checkout/restore discard.",
+   "rubric": [
+    "All four places named with roles",
+    "add/commit/push/pull placed correctly",
+    "Inspect or discard commands mentioned"
+   ]
+  }
+ },
+ {
+  "id": "gen-vcs-2",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Contrast local, centralised and distributed version control, and state which class Git belongs to with one reason teams prefer it.",
+  "articles": [
+   "version-control-git"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Local keeps history on one machine; centralised on one server (single point of failure); distributed gives every clone full history. Git is distributed: offline commits and no single failure point repay the need for branching discipline.",
+   "rubric": [
+    "All three classes contrasted",
+    "Git classified correctly",
+    "Genuine team reason given"
+   ]
+  }
+ },
+ {
+  "id": "gen-vcs-3",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Describe the safe team branching workflow and what happens when two branches edit the same lines.",
+  "articles": [
+   "version-control-git"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Feature branch off main, small logical commits, push, pull request, review, merge to main, everyone pulls; never commit on main directly. Same-line edits on both sides cause a merge conflict for a human to resolve.",
+   "rubric": [
+    "Branch-PR-review-merge flow complete",
+    "Never-on-main rule stated",
+    "Conflict cause and resolution described"
+   ]
+  }
+ },
+ {
+  "id": "gen-mod-1",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "Define coupling and cohesion, and explain why fixing one often fixes the other.",
+  "articles": [
+   "modularity-coupling-cohesion"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Coupling is dependence between modules; cohesion is focus within a module. Splitting an unfocused module removes the coupling its extra duties required, and decoupling forces each piece toward a single job.",
+   "rubric": [
+    "Both terms defined",
+    "Link explained with an example",
+    "Single-job idea present"
+   ]
+  }
+ },
+ {
+  "id": "gen-mod-2",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "A function takes eight parameters including a Boolean mode flag. Name the two smells, explain the harm, and refactor.",
+  "articles": [
+   "modularity-coupling-cohesion"
+  ],
+  "marks": 5,
+  "answer": {
+   "official": false,
+   "text": "Long parameter list (doing several jobs; callers carry context) plus control flag (two behaviours, caller knows internals). Split by job and by flag: e.g. formatTimeDate becomes formatDate(day,month,year) plus formatTime(hr,min,sec) with grouped data.",
+   "rubric": [
+    "Both smells named",
+    "Harm of each explained",
+    "Split refactor sketched"
+   ]
+  }
+ },
+ {
+  "id": "gen-mod-3",
+  "origin": "generated",
+  "type": "written",
+  "source": "Generated practice (course-grounded, needs verification)",
+  "prompt": "When should duplicated code be consolidated, and when should reuse be refused? Illustrate with the calcXY example.",
+  "articles": [
+   "modularity-coupling-cohesion"
+  ],
+  "marks": 4,
+  "answer": {
+   "official": false,
+   "text": "Consolidate genuinely identical fragments (extract calcXY shared by printSpecial and getNM) since copies multiply testing and missed fixes. Refuse when tasks are merely similar or merging harms cohesion, because reuse adds coupling.",
+   "rubric": [
+    "Consolidation rule with example",
+    "Hardware-vs-software distinction or cost reason",
+    "Refusal condition stated"
+   ]
+  }
  }
 ]

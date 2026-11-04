@@ -142,5 +142,61 @@
     "chars": 8476,
     "status": "complete",
     "sha": "9d2abc08"
+  },
+  {
+    "file": "Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "rel": "learnming materials v2\\Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "pages": 69,
+    "chars": 40998,
+    "status": "complete",
+    "sha": "ef52732f"
+  },
+  {
+    "file": "Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+    "rel": "learnming materials v2\\Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+    "pages": 51,
+    "chars": 29214,
+    "status": "complete",
+    "sha": "d30f7253"
+  },
+  {
+    "file": "Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+    "rel": "learnming materials v2\\Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+    "pages": 33,
+    "chars": 15252,
+    "status": "complete",
+    "sha": "d549b51e"
+  },
+  {
+    "file": "Lecture6_VersionControl-2025.pdf",
+    "rel": "learnming materials v2\\Lecture6_VersionControl-2025.pdf",
+    "pages": 59,
+    "chars": 36967,
+    "status": "complete",
+    "sha": "f3cba02f"
+  },
+  {
+    "file": "Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+    "rel": "learnming materials v2\\Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+    "pages": 73,
+    "chars": 34696,
+    "status": "complete",
+    "sha": "c998534c"
+  },
+  {
+    "file": "Worksheet10_TestFixturesWhiteBoxTesting_Java.pdf",
+    "rel": "learnming materials v2\\Worksheet10_TestFixturesWhiteBoxTesting_Java.pdf",
+    "pages": 5,
+    "chars": 7106,
+    "status": "complete",
+    "sha": "2366f9ff"
+  },
+  {
+    "file": "Worksheet10_TestFixturesWhiteBoxTesting_Python.pdf",
+    "rel": "learnming materials v2\\Worksheet10_TestFixturesWhiteBoxTesting_Python.pdf",
+    "pages": 4,
+    "chars": 5654,
+    "status": "complete",
+    "sha": "8f961d3d"
   }
 ]

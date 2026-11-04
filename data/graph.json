@@ -169,6 +169,46 @@
    "id": "exam-mistakes-ethics",
    "title": "Ethics: common exam mistakes",
    "category": "Exam strategy"
+  },
+  {
+   "id": "testing-overview",
+   "title": "Testing overview: faults, failures and test design",
+   "category": "Testing"
+  },
+  {
+   "id": "equivalence-partitioning",
+   "title": "Equivalence partitioning: testing by categories",
+   "category": "Testing"
+  },
+  {
+   "id": "boundary-value-analysis",
+   "title": "Boundary value analysis: testing the edges",
+   "category": "Testing"
+  },
+  {
+   "id": "test-code-assertions",
+   "title": "Writing test code: assertions, suites and running",
+   "category": "Testing"
+  },
+  {
+   "id": "io-exceptions-fixtures",
+   "title": "Beyond parameters: I/O, files, exceptions and fixtures",
+   "category": "Testing"
+  },
+  {
+   "id": "white-box-paths",
+   "title": "White-box testing: covering every path",
+   "category": "Testing"
+  },
+  {
+   "id": "version-control-git",
+   "title": "Version control with Git: never lose work again",
+   "category": "Implementation"
+  },
+  {
+   "id": "modularity-coupling-cohesion",
+   "title": "Modularity: coupling, cohesion and reuse",
+   "category": "Implementation"
   }
  ],
  "edges": [
@@ -699,160 +739,311 @@
   {
    "from": "exam-mistakes-ethics",
    "to": "midterm-study-guide"
+  },
+  {
+   "from": "se-overview",
+   "to": "testing-overview"
+  },
+  {
+   "from": "testing-overview",
+   "to": "equivalence-partitioning"
+  },
+  {
+   "from": "equivalence-partitioning",
+   "to": "testing-overview"
+  },
+  {
+   "from": "testing-overview",
+   "to": "white-box-paths"
+  },
+  {
+   "from": "white-box-paths",
+   "to": "testing-overview"
+  },
+  {
+   "from": "testing-overview",
+   "to": "test-code-assertions"
+  },
+  {
+   "from": "test-code-assertions",
+   "to": "testing-overview"
+  },
+  {
+   "from": "equivalence-partitioning",
+   "to": "boundary-value-analysis"
+  },
+  {
+   "from": "boundary-value-analysis",
+   "to": "equivalence-partitioning"
+  },
+  {
+   "from": "equivalence-partitioning",
+   "to": "test-code-assertions"
+  },
+  {
+   "from": "test-code-assertions",
+   "to": "equivalence-partitioning"
+  },
+  {
+   "from": "equivalence-partitioning",
+   "to": "white-box-paths"
+  },
+  {
+   "from": "white-box-paths",
+   "to": "equivalence-partitioning"
+  },
+  {
+   "from": "boundary-value-analysis",
+   "to": "test-code-assertions"
+  },
+  {
+   "from": "test-code-assertions",
+   "to": "boundary-value-analysis"
+  },
+  {
+   "from": "boundary-value-analysis",
+   "to": "testing-overview"
+  },
+  {
+   "from": "testing-overview",
+   "to": "boundary-value-analysis"
+  },
+  {
+   "from": "test-code-assertions",
+   "to": "io-exceptions-fixtures"
+  },
+  {
+   "from": "io-exceptions-fixtures",
+   "to": "test-code-assertions"
+  },
+  {
+   "from": "test-code-assertions",
+   "to": "white-box-paths"
+  },
+  {
+   "from": "white-box-paths",
+   "to": "test-code-assertions"
+  },
+  {
+   "from": "io-exceptions-fixtures",
+   "to": "white-box-paths"
+  },
+  {
+   "from": "white-box-paths",
+   "to": "io-exceptions-fixtures"
+  },
+  {
+   "from": "io-exceptions-fixtures",
+   "to": "equivalence-partitioning"
+  },
+  {
+   "from": "equivalence-partitioning",
+   "to": "io-exceptions-fixtures"
+  },
+  {
+   "from": "se-overview",
+   "to": "version-control-git"
+  },
+  {
+   "from": "version-control-git",
+   "to": "modularity-coupling-cohesion"
+  },
+  {
+   "from": "modularity-coupling-cohesion",
+   "to": "version-control-git"
+  },
+  {
+   "from": "version-control-git",
+   "to": "agile-processes"
+  },
+  {
+   "from": "agile-processes",
+   "to": "version-control-git"
+  },
+  {
+   "from": "version-control-git",
+   "to": "lifecycle-models"
+  },
+  {
+   "from": "lifecycle-models",
+   "to": "version-control-git"
+  },
+  {
+   "from": "se-overview",
+   "to": "modularity-coupling-cohesion"
+  },
+  {
+   "from": "modularity-coupling-cohesion",
+   "to": "test-code-assertions"
+  },
+  {
+   "from": "test-code-assertions",
+   "to": "modularity-coupling-cohesion"
+  },
+  {
+   "from": "modularity-coupling-cohesion",
+   "to": "functional-requirements"
+  },
+  {
+   "from": "functional-requirements",
+   "to": "modularity-coupling-cohesion"
   }
  ],
  "backlinks": {
   "se-overview": [
+   "functional-requirements",
    "lifecycle-models",
-   "wbs",
-   "functional-requirements"
+   "wbs"
   ],
   "lifecycle-models": [
+   "agile-processes",
    "se-overview",
-   "wbs",
-   "agile-processes"
+   "version-control-git",
+   "wbs"
   ],
   "wbs": [
-   "se-overview",
-   "estimation-planning-poker",
    "activity-graphs",
-   "critical-path"
+   "critical-path",
+   "estimation-planning-poker",
+   "se-overview"
   ],
   "estimation-planning-poker": [
-   "se-overview",
-   "lifecycle-models",
-   "wbs",
    "activity-graphs",
-   "critical-path",
-   "scrum-framework",
    "burn-up-charts",
-   "user-stories"
+   "critical-path",
+   "lifecycle-models",
+   "scrum-framework",
+   "se-overview",
+   "user-stories",
+   "wbs"
   ],
   "activity-graphs": [
-   "wbs",
-   "estimation-planning-poker",
    "critical-path",
+   "estimation-planning-poker",
+   "exam-mistakes-planning",
    "gantt-charts",
-   "exam-mistakes-planning"
+   "wbs"
   ],
   "critical-path": [
-   "wbs",
    "activity-graphs",
-   "gantt-charts",
    "exam-mistakes-planning",
-   "midterm-study-guide"
+   "gantt-charts",
+   "midterm-study-guide",
+   "wbs"
   ],
   "gantt-charts": [
    "activity-graphs",
-   "critical-path",
-   "burn-up-charts"
+   "burn-up-charts",
+   "critical-path"
   ],
   "exam-mistakes-planning": [
    "midterm-study-guide"
   ],
   "agile-processes": [
+   "kanban-wip",
    "lifecycle-models",
    "scrum-framework",
-   "kanban-wip"
+   "version-control-git"
   ],
   "scrum-framework": [
-   "lifecycle-models",
-   "estimation-planning-poker",
    "agile-processes",
-   "scrum-events-backlogs",
-   "kanban-wip",
    "code-review",
-   "ethics-se-professionalism"
+   "estimation-planning-poker",
+   "ethics-se-professionalism",
+   "kanban-wip",
+   "lifecycle-models",
+   "scrum-events-backlogs"
   ],
   "scrum-events-backlogs": [
-   "scrum-framework",
    "burn-up-charts",
    "exam-mistakes-agile",
+   "scrum-framework",
    "user-stories"
   ],
   "burn-up-charts": [
-   "estimation-planning-poker",
-   "critical-path",
-   "gantt-charts",
    "agile-processes",
-   "scrum-events-backlogs",
-   "kanban-wip",
+   "critical-path",
+   "estimation-planning-poker",
    "exam-mistakes-agile",
-   "midterm-study-guide"
+   "gantt-charts",
+   "kanban-wip",
+   "midterm-study-guide",
+   "scrum-events-backlogs"
   ],
   "kanban-wip": [
    "agile-processes",
-   "scrum-framework",
-   "scrum-events-backlogs",
    "burn-up-charts",
    "code-review",
-   "exam-mistakes-agile"
+   "exam-mistakes-agile",
+   "scrum-events-backlogs",
+   "scrum-framework"
   ],
   "code-review": [
-   "kanban-wip",
-   "ethics-se-professionalism"
+   "ethics-se-professionalism",
+   "kanban-wip"
   ],
   "exam-mistakes-agile": [
    "midterm-study-guide"
   ],
   "functional-requirements": [
-   "stakeholders-actors",
+   "modularity-coupling-cohesion",
    "nfr-overview",
    "nfr-validity",
-   "srs-ieee830"
+   "srs-ieee830",
+   "stakeholders-actors"
   ],
   "stakeholders-actors": [
-   "user-stories",
+   "use-case-diagrams",
    "use-case-headers",
-   "use-case-diagrams"
+   "user-stories"
   ],
   "user-stories": [
-   "scrum-events-backlogs",
+   "exam-mistakes-requirements",
    "functional-requirements",
+   "scrum-events-backlogs",
    "stakeholders-actors",
-   "use-case-headers",
-   "exam-mistakes-requirements"
+   "use-case-headers"
   ],
   "use-case-headers": [
    "functional-requirements",
    "stakeholders-actors",
-   "user-stories",
+   "use-case-diagrams",
    "use-case-flow",
-   "use-case-diagrams"
+   "user-stories"
   ],
   "use-case-flow": [
-   "use-case-headers",
-   "use-case-diagrams",
    "exam-mistakes-requirements",
-   "midterm-study-guide"
+   "midterm-study-guide",
+   "use-case-diagrams",
+   "use-case-headers"
   ],
   "use-case-diagrams": [
+   "exam-mistakes-requirements",
    "stakeholders-actors",
-   "use-case-headers",
    "use-case-flow",
-   "exam-mistakes-requirements"
+   "use-case-headers"
   ],
   "exam-mistakes-requirements": [
    "midterm-study-guide"
   ],
   "nfr-overview": [
+   "ethics-theories",
    "functional-requirements",
-   "use-case-flow",
    "nfr-validity",
    "performance-requirements",
    "reliability-requirements",
    "srs-ieee830",
-   "ethics-theories"
+   "use-case-flow"
   ],
   "nfr-validity": [
+   "exam-mistakes-nfr",
+   "midterm-study-guide",
    "nfr-overview",
+   "other-nfrs",
    "performance-requirements",
    "reliability-requirements",
-   "usability-requirements",
-   "other-nfrs",
    "srs-ieee830",
-   "exam-mistakes-nfr",
-   "midterm-study-guide"
+   "usability-requirements"
   ],
   "performance-requirements": [
    "nfr-overview",
@@ -863,19 +1054,19 @@
   "reliability-requirements": [
    "nfr-overview",
    "nfr-validity",
-   "performance-requirements",
-   "other-nfrs"
+   "other-nfrs",
+   "performance-requirements"
   ],
   "usability-requirements": [
    "nfr-overview",
    "nfr-validity",
-   "performance-requirements",
-   "other-nfrs"
+   "other-nfrs",
+   "performance-requirements"
   ],
   "other-nfrs": [
    "reliability-requirements",
-   "usability-requirements",
-   "srs-ieee830"
+   "srs-ieee830",
+   "usability-requirements"
   ],
   "srs-ieee830": [
    "functional-requirements",
@@ -888,18 +1079,68 @@
    "ethics-se-professionalism"
   ],
   "ethics-se-professionalism": [
-   "se-overview",
    "code-review",
    "ethics-theories",
-   "exam-mistakes-ethics"
+   "exam-mistakes-ethics",
+   "se-overview"
   ],
   "midterm-study-guide": [
-   "exam-mistakes-planning",
    "exam-mistakes-agile",
-   "exam-mistakes-requirements",
+   "exam-mistakes-ethics",
    "exam-mistakes-nfr",
-   "exam-mistakes-ethics"
+   "exam-mistakes-planning",
+   "exam-mistakes-requirements"
   ],
-  "exam-mistakes-ethics": []
+  "exam-mistakes-ethics": [],
+  "testing-overview": [
+   "boundary-value-analysis",
+   "equivalence-partitioning",
+   "se-overview",
+   "test-code-assertions",
+   "white-box-paths"
+  ],
+  "equivalence-partitioning": [
+   "boundary-value-analysis",
+   "io-exceptions-fixtures",
+   "test-code-assertions",
+   "testing-overview",
+   "white-box-paths"
+  ],
+  "boundary-value-analysis": [
+   "equivalence-partitioning",
+   "test-code-assertions",
+   "testing-overview"
+  ],
+  "test-code-assertions": [
+   "boundary-value-analysis",
+   "equivalence-partitioning",
+   "io-exceptions-fixtures",
+   "modularity-coupling-cohesion",
+   "testing-overview",
+   "white-box-paths"
+  ],
+  "io-exceptions-fixtures": [
+   "equivalence-partitioning",
+   "test-code-assertions",
+   "white-box-paths"
+  ],
+  "white-box-paths": [
+   "equivalence-partitioning",
+   "io-exceptions-fixtures",
+   "test-code-assertions",
+   "testing-overview"
+  ],
+  "version-control-git": [
+   "agile-processes",
+   "lifecycle-models",
+   "modularity-coupling-cohesion",
+   "se-overview"
+  ],
+  "modularity-coupling-cohesion": [
+   "functional-requirements",
+   "se-overview",
+   "test-code-assertions",
+   "version-control-git"
+  ]
  }
 }

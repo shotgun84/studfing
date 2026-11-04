@@ -1,0 +1,2439 @@
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Introduction to Software Engineering (ISAD1000/ISAD5004)
+Lecture 8: Testing (part 1)
+Updated: 16th January, 2020
+Revisions : 02/04/2022 , 04/04/2023 , 19/09/2023 , 28/04/2025
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical Sciences (EECMS)
+Copyright © 2020, Curtin University 
+CRICOS Provide Code: 00301J
+. . . .
+1/6
+. .9
+. .
+
+
+===== PAGE BREAK =====
+
+Versions
+Commits
+Branching and Merging
+Remote/Multiple Repositories
+ELECTRONIC WARNING NOTICE FOR
+COPYRIGHT STATUTORY LICENCES
+. . . .
+2/6
+. .9
+. .
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Outline
+Part 1 
+Overview
+Unit testing design concepts
+Equivalence Partitioning
+BVA
+Test Code implementation and execution
+Part 2
+Brief introduction to Test Frameworks ( separate short slide set )
+. . . .
+3/6
+. .9
+. .
+Please note this slide set is lengthy as it contains examples in Java/Python 
+both.  You need to be familiar with testing using only one of these 
+programming languages.
+
+
+===== PAGE BREAK =====
+
+.   .   .   .
+.   .   .   .
+4/49
+Revisiting the previous lecture: What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to do many other things.
+Software 
+Engineering
+Co-ordinate a 
+team, and plan 
+and manage a 
+project.
+Understand 
+user 
+requirements.
+Design the 
+software 
+(component
+s/modules). 
+Implement the 
+components/modules of 
+the software.
+Test the 
+software, 
+piece by 
+piece.
+Verify that 
+the software 
+meets its 
+goals.
+Maintaining
+the software
+SDLCs and project planning –
+Week1,2 & 3 , 6
+Non-functional requirements. Week 5
+Functional Requirements 
+Week 4 
+•
+Software Testing is extremely 
+important in Software Engineering
+Test design : We will look at how to test our code 
+in this lecture and in next few weeks.
+Modularity: Test 7
+
+
+===== PAGE BREAK =====
+
+.   .   .   .
+.
+.
+.
+.
+Unit Learning outcomes 
+On successful completion of this unit students can: 
+✓
+Apply conventional and agile software project management 
+tools and techniques                                                                             
+Project planning, Agile Methods, Version control
+✓
+Determine appropriate functional and non-functional requirements    
+Functional/ non-functional requirements 
+3.
+Develop test designs and code using black-box and white-box 
+methods Testing , Test fixtures
+✓
+Analyse code for faults and quality issues, and propose solution 
+Modularity 
+✓
+Demonstrate the importance of ethical and professional conduct in 
+software engineering profession with the understanding of social 
+impact of software
+Ethics and Professionalism
+Revisiting Unit Learning outcomes ( From the unit outline)
+5/32
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Why testing ? - Nobody is Perfect
+►Regardless of expertise, software engineers make mistakes.
+►Any large software system is virtually guaranteed to have 
+mistakes in it.
+►However, it pays to ﬁnd and ﬁx as many as you can.
+►Testing is the process of finding errors in the program code.
+►Testing is not about ﬁnding compiler/syntax errors.
+►These are easy to ﬁnd – just run the compiler!
+►Testing is about ﬁnding logic errors – code that is
+syntactically correct, but logically wrong.
+►It does something, but not the right thing!
+►The compiler will just assume you know what you’re 
+doing.
+.
+.
+.
+.
+6/6
+. .9
+. .
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+Logic errors Vs Syntax errors
+►Example syntax errors:
+BVA
+Test Code
+Test Frameworks
+celcius temp = (fahrenheit temp - 32.0) / 1.8;
+►You can’t have spaces in variable names.
+►The compiler will stop you.
+►Example logic error:
+celcius = (fahrenheit - 32.0) * 1.8;
+►Notice the “*” (multiplication). This is the wrong calculation.
+►The compiler won’t stop you. It assumes you meant to write 
+that. How would it know any better?
+►Syntax errors are nothing, and logic errors are everything
+►Both can be irritating and confusing.
+►But you can guarantee that all syntax errors have been 
+ﬁxed.
+►You won’t even know about logic errors…..unless you test
+.
+.
+.
+.
+7/6
+. .9
+. .
+or inspect your code!
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Test Failures and faults 
+8/6
+. .9
+. .
+►“Logic error” can be a slightly sloppy term.
+►To be more precise, we distinguish between “faults” and
+“failures”.
+►Fault (or defect, or bug):
+►Mistakes or deﬁciencies in the code (or in relevant documents).
+►e.g., The coder wrote “*” rather than “/”.
+►Failure:
+►An event where the software fails to achieve its goals.
+►e.g., A temperature conversion program prints the wrong “celcius”
+value.
+►Also includes crashes, freezes, or any other incorrect behaviour.
+►A fault has the potential to cause failures, but:
+►One fault can cause several failures.
+►One fault may (due to good luck) never cause any failures.
+►It sometimes takes several faults in combination to cause a 
+failure.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Test Failures and faults 
+►The purpose of testing is to cause failures.
+►From failures, you can backtrack to ﬁnd faults, and
+then ﬁx them.
+►The ﬁnding-and-ﬁxing part is called debugging.
+►Can’t be done unless you know there’s something 
+wrong!
+►Testing should trigger as many failures as possible.
+►Then you can ﬁx as many faults as possible.
+.
+.
+.
+.
+9
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Testing in Software Projects
+►Testing is pervasive in software engineering.
+►Everything is tested, from individual submodules to 
+systems of millions of lines of code.
+►There are many phases of testing:
+►Unit testing (small-scale) – most of this lecture;
+►Integration testing (medium-scale);
+►System testing (large-scale);
+►Function testing,
+►Performance testing,
+►Acceptance testing,
+►Installation testing;
+►Regression testing (after modiﬁcation).
+►…
+►There are many strategies for testing – we’ll look at 
+some basic ones.
+10/6
+. .9
+. .
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Unit Testing
+►We’ll focus on unit testing in this lecture.
+►Unit testing is the process of testing individual 
+components of a software. ( individual components are 
+the units here.)
+►Importantly, unit testing is not just “running your program to
+see what happens”.
+►We must
+1.
+design,
+2.
+implement and
+3. execute test cases.
+►A test case is a separate piece of code designed and 
+implemented to test a component of a software. It is a
+separate submodule apart from the actual sub module we are 
+testing.
+►It veriﬁes that the “real” code works.
+.
+.
+.
+.
+11
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Production Code vs Test Code
+►Production code is the source code that makes up the 
+actual software system.
+►Test code is the source code that makes up test cases.
+►These are always separated into diﬀerent ﬁles.
+►Never mix production code and test code in the same ﬁle.
+►The amount of test code often equals (or even exceeds) the
+amount of production code!
+►Software engineers spend a lot of time designing and 
+writing test cases.
+►However, quality should be considered before quantity.
+.
+.
+.
+.
+12
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+The need for test code
+►Do you need test code?
+►Can’t you run the program normally to see if it works?
+►Yes, you can. But can you do it 100, 1000, etc. times?
+►Each time, you must make the software do everything
+it is designed to do.
+►Imagine doing this on a large system.
+►Why so much repetition?
+►You will be constantly changing your software.
+►You could make a mistake at any time.
+►To ﬁnd faults quickly, you must test frequently.
+►Finding and ﬁxing faults quickly will reduce their
+damage.
+►Without test code, you may even forget what kinds of tests 
+you need to perform.
+.
+.
+.
+.
+13
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+The need for multiple test cases
+►Do you need more than one test case?
+►Can’t you put all test code inside a single test case? (That’s
+simpler, right?)
+►Yes, you can, but it will be practically useless.
+►Each test case has only two possible outcomes:
+►fail if the software doesn’t perform as required, or
+pass if it does.
+►With multiple test cases, you know which one (if any) has 
+failed.
+►This isolates the fault, making it much easier to ﬁnd and ﬁx.
+►Multiple test cases are also much easier to write and modify.
+.
+.
+.
+.
+14
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Repeatability of test cases
+►Most importantly, testing must be repeatable.
+►A test case must have the same outcome every
+time, until you change the software.
+►That means that if:
+1. your testing failed, and
+2. you then changed the production code (only), and
+3. your testing now passes,
+then you know you ﬁxed the fault.
+►If testing is not repeatable, this reasoning doesn’t
+work.
+.
+.
+.
+.
+15
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Repeatability of test cases and test automation
+►Automation is the best (simplest) way to make test cases
+repeatable.
+►Test cases run without any sort of user 
+intervention.
+(But you still need to manually create them!)
+►All the information required by a test case can be “hard-
+coded” – embedded directly in the test code.
+►User input is an unknown variable that we don’t need
+here.
+►Automation obviously also makes testing much less
+Painful.
+.
+.
+.
+.
+16
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Testing in Agile methods : Test-Driven Development (TDD)
+►In TDD, the creation of test cases comes ﬁrst ( before coding!).
+►Your test cases embody the software requirements.
+►They describe exactly what the software must do.
+►This is the job of the SRS (software requirements
+speciﬁcation), but:
+►The SRS is written in natural language.
+►The SRS cannot automatically verify the software.
+►TDD is how to keep a project on track without an SRS; i.e., in 
+agile methods.
+.
+.
+.
+.
+17
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Test Design – General Concept
+Tests must be designed before they can be coded:
+1. List your test cases.
+►Production code usually has diﬀerent logic for diﬀerent
+situations. We want to test all of it.
+►Each test case should cover a diﬀerent situation.
+1. Pick test data (for each test case).
+►That thing you’re testing? It (probably) needs some sort of 
+input or import data.
+►To test it, you have to give it some data.
+►Choose the test data so that you’re testing the “right thing”.
+2. Calculate expected results (for each test case).
+►A particular test data should give you a particular result.
+►What should that result be? (If you don’t know, you can’t 
+verify it!)
+.
+.
+.
+.
+18
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Black Box and White Box Approaches
+Input
+Output
+Input
+Output
+def findMax(a,b):
+result = a
+if b > a:
+result = b
+return result
+def findMax(a,b):
+.
+.
+.
+.
+19
+./
+.6
+.9
+.
+result = a
+if b > a:
+result = b
+return result
+You can’t see inside the
+production code.
+You can see the production
+code
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Black Box and White Box Approaches
+Black Box
+Tests are designed based on
+the submodule speciﬁcation
+alone– what they are
+supposed to do, but not their
+code.
+►Testing can be done without
+knowing the actual structure
+of the code – can be done by
+software testers with less
+knowledge about the code.
+►We will look at Black-box 
+approach in this lecture.
+White Box / Clear Box
+►Tests are designed by
+analysing the “paths” through
+the production code.
+►Advantage: with better
+knowledge of the
+production code, you may
+pick up more defects.
+►Disadvantage: your test code is
+more likely to need updating
+if/when the production code
+changes.
+We’ll come back to this in a later
+lecture.
+.
+.
+.
+.
+20
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+You Can’t Test Everything
+BVA
+Test Code
+Test Frameworks
+►You cannot test your software with every possible input.
+►A 32-bit integer has 4 billion possible values.
+►Two 32-bit integers together have 18 quintillion possible 
+values (18 × 1018).
+►These are the small cases!
+►Instead, it’s a balancing act.
+►On one hand, we need a small-ish set of test cases.
+►On the other hand, we want these to “cover” as much of the 
+production code as possible.
+►Even if we can’t test every input, we’d like to try to
+test every part of the code.
+(Even if we can’t actually see that code.)
+►There are no guarantees, though.
+►Faults will still slip through from time to time.
+.
+.
+.
+.
+21
+./
+.6
+.9
+.
+How do we know what test cases we need?
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Test design approaches
+(black box testing)
+1.
+Equivalence Partitioning
+2.
+Boundary Value Analysis
+.
+.
+.
+.
+22
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Equivalence Partitioning (A Black Box Approach)
+.
+.
+.
+.
+23
+.
+.
+.
+.
+/69
+►Equivalence partitioning is a way of developing test cases.
+►It works on two assumptions:
+1. Production code does diﬀerent things based on its input 
+data;
+i.e., it has diﬀerent “categories” of behaviour
+2. If one category of behaviour works once, it should work all
+the time.
+►There is guesswork involved, so these assumptions are 
+NOT always absolutely right, but it’s a starting point.
+►We ﬁgure out what these categories are, based on 
+descriptions of the production code.
+►We develop one test case per category. For each one:
+►We pick test data that should produce that category
+of behaviour.
+►We calculate the expected result(s).
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Example1 : Sign(or sgn) function
+►Say we want to test this submodule (written by a colleague):
+►We can identify three categories of behaviour; Categories 
+can be identified based on the results values.
+►We’ll label the categories according to how they can
+be reproduced:
+1. n < 0
+2. n = 0
+3. n > 0
+►These represent our test cases.
+►Now we pick test data and expected results for each one.24
+./
+.6
+.9
+.
+Submodule sign
+Imports:n (real) Exports:
+result(integer)
+Behaviour: Implementthe “sign function”.
+Returns-1, 0 or 1, if nis negative,0 or
+positive, respectively.
+n(real)
+result(integer)
+Image credit: 
+Cronholm144
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Example 1 : sign function (2)
+►It’s easiest to show this in a table.
+Test Code
+Test Frameworks
+►Each row is a separate test case.
+►For test data, pick a value that conforms to each category.
+►For the expected result, calculate (manually) what the 
+production code should do, for that test data.
+►Q: How many test cases are in this test design?
+1
+Category
+2
+Test Data
+Expected Result
+n < 0
+n = -5
+-1
+n = 0
+n = 0
+0
+n > 0
+n = 5
+1
+3
+.
+.
+.
+.
+25
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Example 2: Results and Categories
+►The categories are NOT ONLY about the export/result value.
+►Consider a diﬀerent production code submodule:
+Submodule abs 
+Imports: n (real) 
+Exports: result(real)
+Behaviour: Implementsthe absolute value function. If n is
+non-negative , returns n. Otherwise, returns the absolute 
+value (i.e., the positive values) of n.
+►There are two distinct categories: n ≥0 and n < 0.
+►We can’t tell this from the export value, though.
+.
+.
+.
+.
+26
+./
+.6
+.9
+.
+Category
+Test Data
+Expected Result
+n < 0
+n = -10
+10
+n ≥0
+n = 10
+10
+
+
+===== PAGE BREAK =====
+
+BVA
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+Example 3: Other Data Types
+►Our data may also be nonnumeric:
+Test Code
+Test Frameworks
+Submodule palindrome 
+Imports: s (string) 
+Exports: result (Boolean)
+Behaviour: Checks whether s is a palindrome; i.e. if it
+reads the same forwards and backwards. Returns true
+if it is, or false otherwise.
+►We can’t use <, ≤, etc., but there are still distinct behaviour.
+►We can still design test cases:
+.
+.
+.
+.
+27
+./
+.6
+.9
+.
+Category
+Test Data
+Expected Result
+s is a palindrome
+“glenelg”
+True
+s isn’t a palindrome
+“albuquerque”
+False
+Note: There may be other categories such as import of “” or NULL. Look 
+at slide 33 for details. If not, we may assume that strings like “’ are not 
+accepted as imports.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Category
+Test Data
+Expected Result
+value1 < value2
+10, 20
+20
+value1 = value2
+5, 5
+5
+value1 < value2
+10, 5
+10
+Example 4 : Multiple Imports
+►Submodules frequently have multiple imports; e.g.:
+SubmodulefindMax
+Imports:value1, value2 (integers)
+Exports:maximum (integer)
+Behaviour: Determinesthe highest out of value1 and
+value2, and returns it.
+►We consider imports in combination (not separately).
+►We’d infer three categories of behaviour: value1 <
+value2, value1 = value2, and value1 > value2.
+►And so.. .
+.
+.
+.
+.
+28
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Test Frameworks
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test design and Error Categories (1)
+►Production code must often performerror-handling:
+Submodule formatTime
+Imports: inHours,inMins (integers)
+Exports: outTime (string)
+Generatesa stringcontainingthetime in 24-hour
+“HH:MM” format. Returnsthe string“error” if either
+inHours or inMins areinvalid.
+►Even if the code worksperfectly,the outside world does not.
+►Say formatTimeis given invalid inHoursor inMinsvalues.
+►Not formatTime’s fault! It can’t control the data it receives.
+►But it still has to deal with it sensibly.
+►If the production code performserror-handling, wemust test 
+that errorhandling.
+►Give it invalid values to seeif it correctly reportsan error.. .
+.
+.
+29
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test design and Error Categories (2)
+Test Frameworks
+.
+.
+.
+.
+►So, does "formatTime" simply have two categories – valid
+and invalid?
+►Let’s be careful what we mean by a “category of behaviour”.
+►We should test all the things the production code must do.
+►Including all the diﬀerent error checks it must perform.
+►How many diﬀerent ways can “formatTime” return an error?
+►Either inHours or inMins could be invalid, or both.
+►Either one could be either too low, in-range, or too high.
+►The production code is likely to check these things 
+separately.
+►To catch bugs, we want to test all combinations.
+►One in-range, other too low (2)
+►One in-range, other too high (2)
+►Both too low, both too high (2)
+►One low, one high ( 2)
+30
+./
+.6
+.9
+.
+►How about eight! (Plus one for the valid case.)
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test design and Error Categories (3)
+Test Frameworks
+►One test for valid import values.
+►Eight tests for various combinations of invalid values.
+.
+.
+.
+.
+31
+./
+.6
+.9
+.
+Category
+inHours, inMin
+Test Data
+inHours, inMins
+Expected Result
+0–23, 0–59
+12, 30
+“12:30”
+0–23, < 0
+12, -10
+“error”
+0–23, ≥60
+12, 70
+“error”
+< 0, 0–59
+-3, 25
+“error”
+≥ 24, 0–59
+27, 25
+“error”
+< 0, < 0
+-3, -10
+“error”
+< 0, ≥ 60
+-3, 70
+“error”
+≥ 24, < 0
+27, -10
+“error”
+≥ 24, ≥60
+27, 70
+“error”
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Categories as Ranges of Numbers
+.
+.
+.
+.
+32
+./
+.6
+.9
+.
+►In general, categories don’t have a special notation.
+►You can always use plain English, and often you have to.
+►Provided it’s clear and makes sense!
+►But, for ranges of numbers, using <, ≤, etc. may be easier.
+►These are the mathematical “inequality” symbols.
+►But you have to get them right!
+►We often chain them: “0 ≤x < 24”.
+►i.e., x is greater-than-or-equal-to 0 ; x is less-than 24.
+►But only use < and ≤for this (not > or ≥).
+►Helps avoid confusion if we always
+write things smallest-to-largest.
+►On the other hand, “0–23” works too.
+►Provided it’s clear from the context whether 0 and 23 are
+included or excluded in the range!
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Test design and corner cases
+33
+./
+.6
+.9
+.
+►There are some often-overlooked special values, particularly 
+for strings and arrays.
+►Often not obvious what the expected result should be.
+►But, precisely because of this, they are important to test.
+►Strings and arrays can be empty – zero elements long.
+►"" is a legitimate value.
+►What should palindrome return for this?
+►Strings, arrays and other objects can be “null”.
+►A special value indicating non-existence (diﬀerent from 
+being empty).
+►We’ll tend to overlook this in ISE, for simplicity, but in
+theory it should be tested for.
+►There may be other special cases too that depend on the 
+situation.
+►e.g., we’d probably say 0 is a corner case for the sign
+submodule.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Important Properties of Categories (1)
+Test Frameworks
+1. Categories must be complete.
+►Every possible import value must ﬁt into a category.
+►e.g., For categories “x < 5” and “x > 5”, where does 5 go?
+►For submodules with multiple imports, every possible
+combination of import values must ﬁt into a category.
+►e.g., max and formatTime.
+►We want to cover all possibilities!
+►There are some often-overlooked special values, particularly
+for strings and arrays.
+.
+.
+.
+.
+34
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Important Properties of Categories (2)
+2. Categories should not be joined with an “OR”.
+►Don’t have a combined “x < 0 or x ≥100” category.
+►This eﬀectively just removes test cases that may be
+important.
+►The test data x = −10 (for instance) is not going to help 
+test what happens when x ≥100.
+.
+.
+.
+.
+35
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Important Properties of Categories (3)
+Test Frameworks
+3. Categories should not overlap.
+►The whole point of identifying categories is to identify what
+individual test cases we need.
+►They must be “mutually exclusive”.
+►A given set of import values cannot be in more than one
+category.
+►e.g. “x < 0” and “x < 100” can’t be two separate categories.
+►We probably meant “x < 0” and “0 ≤x < 100”.
+►If the production code imports both x and y :
+►You can’t have “x < 0” and “y < 0” as separate 
+categories.
+►Each pair of values must fall into one category.
+►Which single category does x = −10, y = −10 fall into?
+What about x = −5, y = 15?
+.
+.
+.
+.
+36
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Important Properties of Categories (4)
+Test Frameworks
+►What if we pass sign function a string? Should we test that,
+and have a category for it?
+►No! sign function cannot receive a string. The compiler 
+prevents this.
+►It’s not about error-handling. sign function doesn’t have to
+check it. It simply cannot happen.
+►It’s silly trying to test something that doesn’t even compile!
+4. Don’t try to test syntax errors.
+►Remember sign function, which imports a real number:
+Submodule sign
+Imports: n (real) 
+Exports: result(integer)
+...
+37
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Boundary Value Analysis (Another Black Box 
+Technique)
+►BVA is a more elaborate take on equivalence partitioning.
+►Only applies to numerical imports (ranges of numbers).
+►We look at the “boundaries” between categories.
+►A “boundary value” is one step away from being in a 
+diﬀerent category.
+►Why? Largely because of “oﬀ-by-one” faults.
+►A common type of mistake made by coders, which may
+only show up on boundary values.
+►Writing >= or <= instead of > or <, or vice versa.
+►Omitting “- 1” or a “+ 1”, or writing one where not needed.
+►Initialising a variable to 1 when it should be 0, or the
+other way around.
+.
+.
+.
+.
+38
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+What are Boundaries?
+►Consider a submodule dealing with ranges of Integers.
+Submodulediscount 
+Imports: items (integer) 
+Exports: result (real)
+Calculates a customer discount. For 0–2 items, there’s no
+discount (0). For 3–8 items, a 15% discount (0.15). For 9 or
+more, 25%. For invalid amounts, return -1.0.
+►The boundaries are where one category meets another:
+items <0
+0 ≤items <3
+3 ≤items <9
+9≤items
+-2
+-1
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+-1
+.
+.
+.
+.
+39
+./
+.6
+.9
+.
+0%
+15%
+25%
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Designing Test Cases with BVA (with integers)
+Test Frameworks
+►Boundaries always lie between two boundary values.
+►Those boundary values become the test data.
+►Implies there are two test cases for each boundary.
+►An oﬀ-by-one fault could go either way.
+►Here’s how we could lay it all out:
+Boundary
+Test Data
+Expected Result
+Between Invalid
+and 0%
+items= −1
+items= 0
+−1.0
+0.0
+Between 0%
+and 15%
+items= 2
+items= 3
+0.0
+0.15
+Between 15%
+and 25%
+items= 8
+items= 9
+0.15
+0.25
+items <0
+0 ≤items <3
+3 ≤items <9
+9≤items
+-2
+-1
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+.
+.
+.
+.
+40
+./
+.6
+.9
+.
+-1
+0%
+15%
+25%
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+►It should be “as close to the edge” as possible.
+BVA With Real Numbers
+►With real numbers, BVA requires some care.
+SubmoduletooHot
+Imports: temperature (real) 
+Exports: aircon (boolean)
+Behaviour: Determineswhether it’s hot enough to turn on the
+air conditioner. When the temperature is 25.5 degrees or
+higher, this returns true, and false otherwise.
+►Our categories: temperature < 25.5, and temperature ≥ 25.5. 
+Clearly 25.5 is the boundary.
+►But what are the two boundary values?
+►About 25.499999 (close enough), and also 25.5 exactly.
+►We need one number from each category.
+►25.5 is on one side, so we need a value on the other.
+41
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Unit Tests : story so far
+►You must
+1.
+design,
+2.
+implement and
+3.
+execute test cases.
+.
+.
+.
+.
+42
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Implement the Test Code
+►Once designed, we implement our test cases in code.
+►This is different to production code.
+►We write a “test suite” when implementing test code.
+►This is a source ﬁle containing test methods/functions.
+►Each test method checks a speciﬁc production code method.
+►To write a test method, we write code to do the following:
+.
+.
+.
+.
+43
+./
+.6
+.9
+.
+►To do all this, we need to refer back to the test design.
+►We need (a) the test data, and (b) the expected results.
+1. Call the production code method, and pass it the test data.
+2. Receive the actual result from the production code.
+3. Compare the expected and actual results.
+►If they’re equal, the test passes. Otherwise, it fails.
+4. Repeat, for each diﬀerent test case.
+►Each test method will often run through several test cases.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Converting a test design to Test Code – findMax Example
+►Recall the test design for findMax?
+►Take the ﬁrst test case: value1 < value2.
+►Here’s how it would be implemented:
+►MyUtils.findMax(...) is the call to the production code.
+►Assuming findMax is located inside MyUtils.py.
+►“10, 20” is the test data; 20 is the expected result.
+Python 
+actual = MyUtils.findMax(10, 20) # Call prod. code. 
+assert 20 == actual, "val1 < val2" # Compare expected to actual.
+Category
+Test Data
+Expected Result
+value1 < value2
+10, 20
+20
+value1 = value2
+5, 5
+5
+value1 < value2
+10, 5
+10
+.
+.
+.
+.
+44
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Converting a test design to Test Code – findMax Example
+►Here’s how it would be implemented:
+►MyUtils.findMax(...) is the call to the production code.
+►Assuming findMax is located inside MyUtils.java.
+►“10, 20” is the test data; 20 is the expected result.
+int actual;
+Java
+actual = MyUtils.findMax(10, 20); // Call prod. code.
+assert 20 == actual;
+// Compare expected to actual.
+Category
+Test Data
+Expected Result
+value1 < value2
+10, 20
+20
+value1 = value2
+5, 5
+5
+value1 < value2
+10, 5
+10
+.
+.
+.
+.
+45
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Assertion Statements
+►In Python, an assertion statementlooks like either of these:
+►In practice, we’re almost always checking for equality.
+►If the condition is true, nothing happens.
+►If the condition is false, the test aborts, displaying the
+message (if any).
+►Very similar in Java:
+assert condition;
+assert condition : "message";
+►The condition is a Boolean expression– somethingthat is
+either true or false;e.g.
+assert condition
+assert condition, "message"
+assert apples == oranges;
+46
+./
+.6
+.9
+.
+(apples is equal to oranges.)
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Checking Equality (
+Python)
+►To compare everything except real numbers in Python,
+use “==”:
+►For Booleans, we can also just assert the value directly:
+►To compare real numbers, use a tolerance value.
+►If the diﬀerence between x and y is less than a very 
+small number (the tolerance), we consider x and y 
+equal.
+assert x == y
+.
+.
+.
+.
+47
+./
+.6
+.9
+.
+(yshouldcontain the value ‘False’)
+assert abs(x - y) < 0.000001
+assert x
+assert not y
+( x shouldcontain the value ‘True’)
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Checking Equality (
+Java)
+►To compare integers, characters or booleans, use “==”:
+►To compare strings (and other objects), use the “equals”
+method; e.g.
+►For Booleans, we can also just assert the value directly:
+►To compare real numbers, use a tolerance value.
+►If the diﬀerence between x and y is less than a very small 
+number (the tolerance), we consider x and y equal.
+►Don’t use “=” inside assertions. This assigns rather than compares
+values.
+assert x == y;
+assert x.equals(y);
+assert x;
+assert !y;
+(x shouldcontain the value ‘true’)
+(y should contain the value ‘false’ )
+assert Math.abs(x - y) < 0.000001;
+.
+.
+.
+.
+48
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+FYI: Assertions in Production Code
+►Assertions can appear anywhere in your algorithm.
+►Useful as a “sanity check” on your code.
+►Just don’t misuse them!
+►Never use assertions to actually do something in
+your algorithm.
+►Never use assertions for validating user input. (In most 
+cases, your program shouldn’t abort just because the user 
+entered the wrong number.)
+►Assertions should never fail unless your program is faulty.
+►If they do, you’re misusing assertions.
+►Assertions bring faults to your attention, so you can ﬁnd and ﬁx
+them.
+►They won’t catch every fault, though!
+.
+.
+.
+.
+49
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Assertion Messages
+►Add messages to your assertions:
+►Messages should be written carefully, to provide 
+more information on what is being tested.
+►When a test fails, the message should help you understand
+which test failed.
+►You could ﬁnd this out anyway, but the message should 
+help you ﬁnd it quicker.
+►To this end, you could embed the test import(s) in the 
+message string.
+assert condition: "message";
+.
+.
+.
+.
+50
+./
+.6
+.9
+.
+assert condition, "message"
+Python
+Java
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Max Test Code
+►Here’s the implementation of all three findMaxtest cases:
+def testMax():
+# test case 1
+actual = MyUtils.findMax(10,20)
+assert 20 == actual, "value1 < value2"
+# test case 2
+actual = MyUtils.findMax(5,5)
+assert 5 == actual, "value1 = value2"
+# test case 3
+actual = MyUtils.findMax(10,5)
+assert 10 == actual, "value1 > value2"
+►This isn’t the completetest ﬁle – we’ll get to that.
+►The above is based on the test design we did earlier(shown below).
+Python
+.
+.
+.
+.
+51
+./
+.6
+.9
+.
+Category
+Test Data
+Expected Result
+value1 < value2
+10, 20
+20
+value1 = value2
+5, 5
+5
+value1 < value2
+10, 5
+10
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Max Test Code
+►Here’s the implementation of all three findMax test
+cases:
+public static void testMax()
+{
+int actual;
+actual = MyUtils.findMax(10, 20);
+assert 20 == actual : "value1 < value2";
+actual = MyUtils. findMax(5, 5);
+assert 5 == actual : "value1 = value2";
+actual = MyUtils. findMax(10, 5);
+assert 10 == actual : "value1 > value2";
+}
+►This isn’t the complete test ﬁle – we’ll get to that.
+Java
+.
+.
+.
+.
+52
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Example 2 : Palindrome Test Code
+►Recall the palindrome test design?
+def testPalindrome():
+actual = MyUtils.palindrome("glenelg")
+assert actual
+# OR assert actual == True
+actual = MyUtils.palindrome("albuquerque") 
+assert not actual # OR assert actual == False
+}
+Category
+Test Data
+Expected Result
+s is a palindrome
+“glenelg”
+True
+s isn’t a palindrome
+“albuquerque”
+False
+Python
+.
+.
+.
+.
+53
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Example 2: Palindrome Test Code
+►Recall the palindrome test design?
+public static void testPalindrome()
+{
+boolean actual;
+actual = MyUtils.palindrome("glenelg");
+assert actual;
+// OR assert actual == true; 
+actual =
+MyUtils.palindrome("albuquerque"); 
+assert !actual; // OR assert actual == false;
+}
+.
+.
+.
+.
+.
+.
+.
+.
+Java
+Category
+Test Data
+Expected Result
+s is a palindrome
+“glenelg”
+True
+s isn’t a palindrome
+“albuquerque”
+False
+54/69
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Example 3 : FormatTime Test Code
+►And (some of) the formatTime test design and
+implementation:
+def testFormatTime():
+actual = MyUtils.formatTime(12, 30) 
+assert "12:30" == actual, "valid"
+actual = MyUtils.formatTime(12, -10)
+assert "error" == actual, "mins negative"
+...
+Python
+.
+.
+.
+.
+55
+./
+.6
+.9
+.
+Category 
+inHours, inMin
+Test Data 
+inHours, inMins
+Expected
+Result
+0–23, 0–59
+12, 30
+“12:30”
+0–23, < 0
+12, -10
+“error”
+….
+…
+…
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Example 3 : FormatTime Test Code
+►And (some of) the formatTime test design and
+implementation:
+public static void testFormatTime()
+Java
+{
+String actual;
+actual = MyUtils.formatTime(12, 30); assert 
+"12:30".equals(actual) : "valid"; actual = 
+MyUtils.formatTime(12, -10);
+assert "error".equals(actual) : "mins negative";
+...
+Category 
+inHours, inMin
+Test Data 
+inHours, inMins
+Expected
+Result
+0–23, 0–59
+12, 30
+“12:30”
+0–23, < 0
+12, -10
+“error”
+….
+…
+…
+.
+.
+.
+.
+56
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+def testMax():
+assert 20 == MyUtils.max(10, 20), "value1 < value2" 
+assert 5 == MyUtils.max(5, 5), "value1 = value2" 
+assert 10 == MyUtils.max(10, 5), "value1 > value2"
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Too Verbose?
+►We don’t actually need to store “actual”. We can just 
+use the return value directly.
+Python
+def testFormatTime():
+assert "12:30" == MyUtils.formatTime(12, 30), "..." 
+assert "error" == MyUtils.formatTime(12, -10), "..."
+...
+Python
+.
+.
+.
+.
+57
+./
+.6
+.9
+.
+actual = MyUtils.findMax(10, 20) # Call prod. code.               
+assert 20 == actual, "val1 < val2“ # Compare expected to actual.
+Python
+Previous 
+version
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Too Verbose?
+►We don’t actually need to store “actual”. We can just use
+the return value directly:
+public static void testMax()
+Java
+{
+assert 20 == MyUtils.max(10, 20) : "value1 < value2";
+assert
+5
+==
+MyUtils.max(5,
+5)
+:
+"value1
+=
+value2";
+assert 10 == MyUtils.max(10, 5) : "value1 > value2";
+}
+public static void testFormatTime()
+Java
+{
+assert "12:30".equals(MyUtils.formatTime(12, 30)): "...";
+assert "error".equals(MyUtils.formatTime(12, -10)):
+"...";
+...
+.
+.
+.
+.
+58
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Arrays/Lists and For Loops
+►We can also put the test data and expected results
+(and messages) in arrays.
+►We can then put a single assert in a for loop.
+►Makes sense if we have lots of test cases.
+.
+.
+.
+.
+59
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Arrays/Lists and For Loops (
+Python)
+# This isn’t lots of test cases, 
+# but just for illustration.
+def testMax():
+x = [10, 5, 10]
+# val1
+y = [20, 5, 5]
+# val2
+exp = [20, 5, 10] # result
+msg = ["x < y", "x = y", "x > y"] # message
+for i in range(len(x)):
+assert exp[i] == MyUtils.max(x[i], y[i]), msg[i]
+.
+.
+.
+.
+60
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Arrays/Lists and For Loops (
+Java)
+public static void testMax()
+{
+int[] x = {10, 10, 10}; // This isn't "lots" of
+int[] y = {20, 10, 5}; // test cases, but just 
+int[] exp = {20, 10, 10}; // for illustration.
+String[] msg = {"x < y", "x = y", "x > y"}; 
+for(int i = 0; i < x.length; i++)
+{
+assert exp[i] == MyUtils.max(x[i], y[i]) : msg[i];
+}
+}
+.
+.
+.
+.
+61
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+import MyUtils
+# test function never going to take any parameters
+# or going to input something from the user or
+# return something
+def testMax():
+# test case 1
+actual = MyUtils.findMax(10,20) 
+assert 20 == actual, "a < b"
+# test case 2
+actual = MyUtils.findMax(5,5) 
+assert 5 == actual, "a = b" #
+test case 3
+actual = MyUtils.findMax(10,5) 
+assert 10 == actual, "a > b"
+if
+name
+== '
+main
+':
+testMax()
+Category
+Test Data Expected
+Result
+value1 < value2
+10, 20
+20
+value1 = value2
+5, 5
+5
+value1 < value2
+10, 5
+10
+Test code
+TestMyUtils.py
+Implement the Test Code :findMax Example
+Production code
+MyUtils.py
+64/69
+.
+.
+►We need to import the production code, and call
+the test functions:
+def findMax(a,b): 
+result = a
+if b > a:
+result = b 
+return result + 1
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Suites: Putting it Together (
+Python)
+Test Frameworks
+►This is a complete test suite (where "..." is the test code).
+►The last section simply calls each of our test functions in
+turn.
+# Save this code to ‘TestMyUtils2.py’
+import MyUtils
+def testMax():
+...
+def testPalindrome():
+... 
+def testFormatTime():
+...
+if
+name
+== "
+main
+" : 
+testMax() 
+testPalindrome() 
+testFormatTime()
+.
+.
+.
+.
+63
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Test Suites: Putting it Together (
+Java)
+►We need a proper class structure around our test code too:
+// Save this code to ‘TestMyUtils2.java'
+public class MyUtilsTest
+{
+public static void main(String[] args)
+{
+testMax(); 
+testPalindrome(); 
+testFormatTime();
+}
+public static void testMax() { ... }
+public static void testPalindrome() { ... } 
+public static void testFormatTime() { ... }
+}
+►This is a complete test suite (where “...” is the test code).
+►main() simply calls each of our test methods in turn.
+.
+.
+.
+.
+64
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Unit Tests : story so far
+►You must
+1.
+design,
+2.
+implement and
+3.
+execute test cases.
+.
+.
+.
+.
+65
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Running Tests (
+Python)
+►Finally, we’re ready to compile and run the test code:
+►If all tests pass, nothing happens. If one fails, you’ll see 
+this:
+[user@pc]$ python TestMyUtils.py
+Traceback (most recent call last): 
+File "TestMyUtils.py", line 17,
+in <module> testMax()
+File "testMyUtils.py", line 8, in testMax 
+assert 20 == actual, "a < b" 
+AssertionError: a < b
+.
+.
+.
+.
+66
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+RunningTests (
+Java)
+►Finally, we’re readyto compile and run the test code:
+[user@pc]$ javac TestMyUtils.java
+[user@pc]$ java -ea TestMyUtils
+►“-ea” means “enable assertions”.
+►By default,assertdoesn’t actually do anything!
+►Wemust enable assertions,or our tests will passevenwhen
+they shouldfail (which is very bad!)
+►Ifall testspass,nothing happens. If onefails, you’ll seethis:
+Exception in thread "main" java.lang.AssertionError: x <
+y at MyUtilsTest.testMax(MyUtilsTest.java:15)
+at MyUtilsTest.main(MyUtilsTest.java:5)
+.
+.
+.
+.
+67
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Overview
+Unit Testing Concepts
+Equivalence Partitioning
+BVA
+Test Code
+Test Frameworks
+Unit Testing Frameworks
+►What we just saw was pure Java/Python.
+►In practice, unit testing mostly uses a “unit test 
+framework”.
+►You can see a short introduction on unit testing frameworks
+slides in BB.
+(This is a small section)
+.
+.
+.
+.
+68
+./
+.6
+.9
+.
+
+
+===== PAGE BREAK =====
+
+Versions
+Commits
+Branching and Merging
+Remote/Multiple Repositories
+That’s all for now!
+.
+.
+.
+.
+69
+./
+.6
+.9
+.
+This Week Practical: Testing A worksheet ( Test Designs)
+You can start Testing - B worksheet (Test 
+implementation) immediately after, if you wish.
+-
+Next week 
+Lecture: More on testing 
+Practical Work assessment 3 will be held during the lab
+time.

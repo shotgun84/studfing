@@ -3168,5 +3168,881 @@
   ],
   "summary": "Ethics mark-losers: slogans instead of stakeholder-harm-framework-code-action structure.",
   "title": "Ethics: common exam mistakes"
+ },
+ {
+  "id": "testing-overview",
+  "title": "Testing overview: faults, failures and test design",
+  "category": "Testing",
+  "summary": "Why we test, what a fault and a failure are, the levels of testing, black-box versus white-box, and the three ingredients of every test design.",
+  "read_minutes": 7,
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Nobody is perfect, and large systems are guaranteed to contain mistakes. The purpose of testing is to find as many of those mistakes as possible before users do. A compiler catches syntax errors for you, but it cannot catch logic errors: code that compiles fine yet computes the wrong thing.",
+     "Testing means deliberately trying to make the software fail, then tracing each failure back to the fault that caused it so it can be fixed (debugged). If your tests never trigger a failure, you have learned nothing; a good test suite is one that would catch faults if they were there."
+    ]
+   },
+   {
+    "heading": "Faults and failures",
+    "paras": [
+     "A fault (also called a defect or bug) is a mistake in code or documentation, such as writing * instead of / in a temperature conversion. A failure is an event where the software does not meet its goals: a wrong value, a crash, a freeze, or incorrect behaviour.",
+     "One fault can cause several different failures, one fault may never cause a failure at all (if you are lucky), and several faults in combination can cause a failure. This is why a single passing run proves little, and why you need many small, repeatable test cases rather than one big trial."
+    ],
+    "table": {
+     "head": [
+      "Term",
+      "Meaning",
+      "Example"
+     ],
+     "rows": [
+      [
+       "Fault (defect, bug)",
+       "A mistake in code or docs",
+       "Wrote (f - 32.0) * 1.8 instead of (f - 32.0) / 1.8"
+      ],
+      [
+       "Failure",
+       "Software not meeting its goals",
+       "Converter outputs 176 C instead of 80 C; program crashes"
+      ],
+      [
+       "Debugging",
+       "Tracing a failure back to its fault and fixing it",
+       "Failure on input 212 F leads you to the * vs / line"
+      ]
+     ]
+    }
+   },
+   {
+    "heading": "Levels of testing",
+    "paras": [
+     "Testing happens at several scales. This unit focuses on unit testing: testing individual components or submodules in isolation. Larger scales build on it: integration testing checks combined modules, system testing checks the whole product, and acceptance, performance and installation testing check it against user and environment needs. Regression testing re-runs old tests after every change to make sure a fix did not break something else."
+    ]
+   },
+   {
+    "heading": "Black-box versus white-box",
+    "paras": [
+     "In black-box testing you design test cases from the submodule specification alone: what it is supposed to do, not how it is coded. You do not need to see the code, so testers with less programming knowledge can do it. In white-box (clear-box) testing you design cases by analysing paths through the actual production code. White-box can pick up defects black-box misses, but white-box tests usually need updating whenever the production code changes. This unit teaches both: black-box first, white-box later."
+    ]
+   },
+   {
+    "heading": "Designing tests: cases, data, expected results",
+    "paras": [
+     "Every test design has the same three ingredients. First, list the test cases: each distinct situation or category of behaviour the unit must handle. Second, pick test data for each case: concrete inputs the unit will receive. Third, calculate the expected result for each case: the exact output you demand. If you cannot say what the right answer is, you cannot verify anything.",
+     "Two engineering habits make tests trustworthy. Repeatability: the same test must give the same outcome every time until the software itself changes, otherwise a pass or fail tells you nothing. Automation: test code runs with no human in the loop (all inputs hard-coded), so the whole suite can be re-run after every change. Agile teams push this further with test-driven development (TDD): write the test cases first, so the tests embody the requirements and keep the project on track without a heavyweight specification."
+    ],
+    "bullets": [
+     "One test case checks one thing and gives one pass or fail verdict.",
+     "Many small cases isolate faults faster than one giant case.",
+     "Never mix production code and test code: keep them in separate files.",
+     "Test code often equals or exceeds production code in volume; that is normal."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "If asked to contrast fault and failure, give both definitions plus the three relations: one fault can cause several failures, one fault may never cause a failure, and several faults combined can cause one failure."
+    }
+   }
+  ],
+  "recall": [
+   {
+    "q": "What is the difference between a fault and a failure?",
+    "a": "A fault is a mistake in code or docs (e.g. * instead of /); a failure is an event where the software misses its goals (wrong output, crash). Testing causes failures so you can trace back to faults and debug them."
+   },
+   {
+    "q": "What are the three ingredients of every test design?",
+    "a": "List the test cases (one per behaviour category), pick test data per case, and calculate the expected result per case. Without a known expected result you cannot verify anything."
+   },
+   {
+    "q": "Why must tests be repeatable and automated?",
+    "a": "Repeatability means the same outcome until the software changes, so a fail-then-pass proves the fix worked. Automation (no user input, hard-coded data) makes re-running the whole suite cheap after every change."
+   }
+  ],
+  "citations": [
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 6-10 (Why testing; faults vs failures)",
+    "excerpt": "Testing is finding logic errors: code that is syntactically correct but computes the wrong thing. A fault is a mistake in code or docs; a failure is an event where the software fails to meet its goals.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 11-18 (Unit testing concepts; repeatability, automation, TDD)",
+    "excerpt": "Unit testing means testing individual components: design, implement and execute test cases. Test code is kept separate from production code; tests must be repeatable and automated. In TDD, test cases are written first and embody the requirements.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 19-22 (Black vs white box; you cannot test everything)",
+    "excerpt": "Black-box tests are designed from the specification alone; white-box tests are designed by analysing paths through production code. Exhaustive testing is impossible (a 32-bit int already has 4 billion values), so a small set must cover as much behaviour as possible.",
+    "kind": "course"
+   }
+  ],
+  "prerequisites": [
+   "se-overview"
+  ],
+  "related": [
+   "equivalence-partitioning",
+   "white-box-paths",
+   "test-code-assertions"
+  ],
+  "question_ids": [
+   "gen-testing-1",
+   "gen-testing-2"
+  ]
+ },
+ {
+  "id": "equivalence-partitioning",
+  "title": "Equivalence partitioning: testing by categories",
+  "category": "Testing",
+  "summary": "The core black-box technique: split inputs into behaviour categories, write one case per category, and handle error categories and corner cases.",
+  "read_minutes": 8,
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Equivalence partitioning (EP) is the first black-box test design technique. It rests on two assumptions: the production code does different things for different categories of input data, and if one value in a category works, every value in that category should work. Both are guesswork rather than guarantees, but they turn an infinite input space into a small, principled set of test cases.",
+     "The method is simple: read the specification, identify the categories of behaviour, write one test case per category, then choose test data and an expected result for each case."
+    ]
+   },
+   {
+    "heading": "Worked examples",
+    "paras": [
+     "The sign function takes a real number and returns -1, 0 or 1 depending on whether it is negative, zero or positive: three categories, three cases. The absolute-value function has two categories (negative versus non-negative), and the palindrome check has two (reads the same forwards and backwards versus not). With several inputs, consider combinations: findMax(value1, value2) has three categories, value1 < value2, value1 = value2, and value1 > value2, not just each parameter in isolation."
+    ],
+    "table": {
+     "head": [
+      "Submodule",
+      "Categories",
+      "Cases (data -> expected)"
+     ],
+     "rows": [
+      [
+       "sign(n: real)",
+       "n < 0; n = 0; n > 0",
+       "-5 -> -1; 0 -> 0; 5 -> 1"
+      ],
+      [
+       "abs(n: real)",
+       "n < 0; n >= 0",
+       "-10 -> 10; 10 -> 10"
+      ],
+      [
+       "palindrome(s: string)",
+       "reads same both ways; does not",
+       "glenelg -> True; albuquerque -> False"
+      ],
+      [
+       "findMax(a, b: int)",
+       "a < b; a = b; a > b",
+       "(10,20) -> 20; (5,5) -> 5; (10,5) -> 10"
+      ]
+     ]
+    }
+   },
+   {
+    "heading": "Error categories",
+    "paras": [
+     "Real submodules must also handle invalid input gracefully, and you must test that they do, even though bad input is the caller's fault. The formatTime submodule converts hours and minutes to HH:MM but must return error when either value is invalid. There is not one single invalid category: each parameter can be too low or too high independently, and the checks may be coded separately. Testing every combination gives eight error cases plus one valid case, nine in total: each of hours and minutes too low, in range, or too high, in every combination.",
+     "The lesson generalises: ask how many distinct ways the unit can reject input, and cover each one, because a bug in any single check slips through otherwise."
+    ]
+   },
+   {
+    "heading": "Rules that keep categories honest",
+    "paras": [
+     "Write categories as plain ranges over numbers, smallest to largest, using only < and the non-strict variant, for example 0 <= x < 24. For strings and arrays, remember the corner cases people forget: the empty string and null (non-existence is not the same as emptiness). Zero is the classic corner case for numbers.",
+     "Four properties keep a category set valid. It must be complete: every possible input, including every combination for multi-parameter units, fits somewhere. It must contain no OR: a category like x < 0 or x >= 100 hides a test case. It must not overlap: no input belongs to two categories, so never write separate x < 0 and y < 0 categories for a two-parameter unit. And it must never test syntax errors: passing a string where a real is required is pointless because the compiler already prevents it."
+    ],
+    "bullets": [
+     "Complete: every input (every combination) fits in exactly the intent of one category.",
+     "No OR: split x < 0 or x >= 100 into two categories so both get tested.",
+     "Mutually exclusive: x < 0 versus 0 <= x < 100, never x < 0 versus x < 100.",
+     "Corner cases: empty string, null, and zero get their own thought, not an afterthought."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "When asked to critique categories, run the four-property checklist: complete, no OR, no overlap, no syntax-error tests. For formatTime-style questions, enumerate all 9 cases; examiners award marks per missing error combination."
+    }
+   }
+  ],
+  "recall": [
+   {
+    "q": "What are the two assumptions behind equivalence partitioning?",
+    "a": "Production does different things for different input categories, and if one value in a category works, all values in it should work. Both are informed guesses, which is why EP is a starting point, not a proof."
+   },
+   {
+    "q": "Why does formatTime need 9 test cases instead of 2?",
+    "a": "Because each of hours and minutes can be too low, in range, or too high independently (3x3 = 9 combos). One valid plus eight error cases, since each invalid combination may hide its own bug."
+   },
+   {
+    "q": "Name the four properties of a valid category set.",
+    "a": "Complete (every input fits), no OR (each alternative is its own category), mutually exclusive (no overlaps), and no syntax-error tests (do not test what the compiler already forbids)."
+   }
+  ],
+  "citations": [
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 23-28 (EP method; sign, abs, palindrome examples)",
+    "excerpt": "Equivalence partitioning assumes production does different things for different categories of input, and that one working value means the whole category works. Identify categories from the description; one test case per category with test data and expected result.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 29-33 (findMax combinations; formatTime error categories, 9 cases)",
+    "excerpt": "For multiple imports consider combinations, not parameters separately. Error handling must be tested in all its combinations: hours and minutes each too low, in range or too high gives eight error cases plus one valid case.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 34-37 (Ranges, corner cases, four properties)",
+    "excerpt": "Write numeric categories smallest to largest using only < forms. Corner cases such as the empty string, null and zero are easily overlooked. Categories must be complete, contain no OR, not overlap, and never test syntax errors.",
+    "kind": "course"
+   }
+  ],
+  "prerequisites": [
+   "testing-overview"
+  ],
+  "related": [
+   "boundary-value-analysis",
+   "test-code-assertions",
+   "white-box-paths"
+  ],
+  "question_ids": [
+   "gen-ep-1",
+   "gen-ep-2",
+   "gen-ep-3"
+  ]
+ },
+ {
+  "id": "boundary-value-analysis",
+  "title": "Boundary value analysis: testing the edges",
+  "category": "Testing",
+  "summary": "BVA refines equivalence partitioning for numbers: test both sides of every boundary, because off-by-one faults live exactly there.",
+  "read_minutes": 6,
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Boundary value analysis (BVA) is equivalence partitioning with a magnifying glass, and it only applies to numerical inputs. Look at the borders between categories: a boundary is one step away from a different category, and a boundary value is a value sitting exactly on that edge.",
+     "Boundaries matter because programmers constantly make off-by-one faults: writing > when they meant >=, forgetting a -1 or +1, or initialising a counter to 1 instead of 0. A test in the middle of a category sails past these; a test on the edge catches them."
+    ]
+   },
+   {
+    "heading": "Worked example: discount",
+    "paras": [
+     "The discount submodule maps item counts to rates: 0-2 items earn 0, 3-8 earn 0.15, 9+ earn 0.25, and invalid counts earn -1.0. Draw the number line and the boundaries appear between invalid and 0%, between 0% and 15%, and between 15% and 25%. Because a fault could push the error to either side, every boundary contributes two test values, one from each neighbouring category."
+    ],
+    "table": {
+     "head": [
+      "Boundary",
+      "Test data -> expected"
+     ],
+     "rows": [
+      [
+       "Invalid / 0%",
+       "-1 -> -1.0; 0 -> 0.0"
+      ],
+      [
+       "0% / 15%",
+       "2 -> 0.0; 3 -> 0.15"
+      ],
+      [
+       "15% / 25%",
+       "8 -> 0.15; 9 -> 0.25"
+      ]
+     ]
+    }
+   },
+   {
+    "heading": "Boundaries with real numbers",
+    "paras": [
+     "With integers the two values around a boundary are obvious neighbours. With reals you must pick values as close to the edge as possible: for the rule aircon on at 25.5 degrees or above, test exactly 25.5 from one side and something like 25.499999 from the other.",
+     "The pattern is always the same: find every boundary between categories, then take one value from each side. Six categories edges in the discount example mean six test values, not three."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "BVA questions expect two values per boundary with a short justification (fault could lie on either side). State the number line, name each boundary, then list the pairs; half marks are lost by giving only one value per boundary."
+    }
+   }
+  ],
+  "recall": [
+   {
+    "q": "When does BVA apply, and what does each boundary produce?",
+    "a": "BVA applies to numerical ranges. Each boundary between two categories produces two test values, one from each side, because an off-by-one fault could fail in either direction."
+   },
+   {
+    "q": "Why do faults cluster at boundaries?",
+    "a": "Because of off-by-one mistakes: > vs >=, a missing -1 or +1, or a counter started at 1 instead of 0. Middle-of-category values pass despite these; edge values expose them."
+   },
+   {
+    "q": "How do you test a real-valued boundary such as >= 25.5?",
+    "a": "Test the exact edge value 25.5 from one category and the closest representable neighbour (e.g. 25.499999) from the other, one value per side."
+   }
+  ],
+  "citations": [
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 38-40 (BVA; off-by-one faults; discount example, 6 values)",
+    "excerpt": "Boundary value analysis elaborates equivalence partitioning for numerical imports. Each boundary yields two test values, one from each category, because the fault could go either way. Off-by-one faults such as >= versus > are the classic targets.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF p. 41 (BVA with reals: tooHot at 25.5)",
+    "excerpt": "For real numbers choose values as close to the edge as possible: exactly 25.5 from one category and approximately 25.499999 from the other.",
+    "kind": "course"
+   }
+  ],
+  "prerequisites": [
+   "equivalence-partitioning"
+  ],
+  "related": [
+   "test-code-assertions",
+   "testing-overview"
+  ],
+  "question_ids": [
+   "gen-bva-1",
+   "gen-bva-2"
+  ]
+ },
+ {
+  "id": "test-code-assertions",
+  "title": "Writing test code: assertions, suites and running",
+  "category": "Testing",
+  "summary": "From test design to executable checks: assertions in Java and Python, messages, array-driven cases, test suites, and running them correctly.",
+  "read_minutes": 7,
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "A test design on paper proves nothing until it runs. Implementation means writing a test suite: a file of test methods, each checking one production method by calling it with the planned test data, comparing actual versus expected, and reporting pass or fail per case. Production and test code live in separate files and the suite imports the production it checks."
+    ]
+   },
+   {
+    "heading": "Assertions in Java and Python",
+    "paras": [
+     "The workhorse is the assertion: a statement that aborts with a message when its condition is false. Python writes assert condition or assert condition, message; Java writes assert condition; or assert condition : message;. Check non-reals with equality, Booleans directly (assert x, assert not y in Python; assert x;, assert !y; in Java), and strings or objects with .equals in Java. Never use a single = inside an assertion: that assigns instead of comparing.",
+     "Real numbers need special care because floating-point arithmetic is approximate. Never compare reals with ==; instead assert that the absolute difference is tiny, e.g. assert abs(x - y) < 0.000001 in either language."
+    ],
+    "table": {
+     "head": [
+      "What you check",
+      "Python",
+      "Java"
+     ],
+     "rows": [
+      [
+       "Non-real equality",
+       "assert x == y",
+       "assert x == y;"
+      ],
+      [
+       "Boolean true / false",
+       "assert x  /  assert not y",
+       "assert x;  /  assert !y;"
+      ],
+      [
+       "String / object",
+       "assert x == y",
+       "assert x.equals(y);"
+      ],
+      [
+       "Real numbers",
+       "assert abs(x-y) < 0.000001",
+       "assert Math.abs(x-y) < 0.000001;"
+      ]
+     ]
+    }
+   },
+   {
+    "heading": "Messages and compact cases",
+    "paras": [
+     "Give every assertion a message that names the failing case, ideally embedding the inputs (for example value1 < value2). When a suite has dozens of assertions, the message is the only thing that tells you which case broke. You can skip the temporary actual variable and assert on the call directly: assert 20 == MyUtils.max(10, 20), value1 < value2.",
+     "When many cases share one shape, drive them from arrays: put the inputs, expected outputs and messages in parallel lists and loop a single assertion over them. This keeps the suite short and makes adding the tenth case a one-line change."
+    ]
+   },
+   {
+    "heading": "Suites and running them",
+    "paras": [
+     "A complete suite imports the production module, defines one test method per production method, and calls every test method from a main entry point. Running is language-specific: python TestMyUtils.py prints nothing on success and an AssertionError naming the file, line and message on failure. Java needs two steps, javac then java -ea, because assertions are disabled by default. Forgetting -ea is the classic trap: every test passes even when the code is wrong.",
+     "In practice teams use a unit test framework rather than hand-rolled mains, but the concepts are identical: cases, data, expected results, assertions, setup and teardown."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "Two favourite exam traps live here: comparing reals with == instead of a tolerance, and running Java without -ea so faulty code appears to pass. If a question shows either, name it and give the fix."
+    }
+   }
+  ],
+  "recall": [
+   {
+    "q": "How do you correctly compare real numbers in assertions?",
+    "a": "Never with ==. Assert the absolute difference is below a tiny tolerance, e.g. assert abs(x-y) < 0.000001 (Python) or assert Math.abs(x-y) < 0.000001; (Java), because floating-point results are approximate."
+   },
+   {
+    "q": "Why is java -ea essential, and what happens without it?",
+    "a": "Java disables assertions by default, so without -ea every assert is silently skipped and faulty code passes all tests. Always run with java -ea TestSuite."
+   },
+   {
+    "q": "What makes a good assertion message?",
+    "a": "One that identifies the exact failing case without opening the code, usually by embedding the inputs, e.g. value1 < value2. With dozens of assertions, the message is the debugger."
+   }
+  ],
+  "citations": [
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 42-52 (Test suites; assertions Java/Python; equality, reals, messages)",
+    "excerpt": "Implement each case by calling production with the test data, comparing actual versus expected with an assertion, and repeating per case. Use == for non-reals, direct Boolean asserts, .equals for Java strings, and an absolute-difference tolerance for reals; always add a message identifying the case.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+    "locator": "PDF pp. 53-68 (Compact asserts; arrays and loops; suites; running with -ea)",
+    "excerpt": "Assert on the call directly to stay compact; drive many cases from parallel arrays with a single assertion in a loop. A suite imports production and calls each test method from main. Python prints AssertionError on failure; Java must run with -ea or assertions do nothing.",
+    "kind": "course"
+   }
+  ],
+  "prerequisites": [
+   "equivalence-partitioning"
+  ],
+  "related": [
+   "io-exceptions-fixtures",
+   "boundary-value-analysis",
+   "white-box-paths"
+  ],
+  "question_ids": [
+   "gen-assert-1",
+   "gen-assert-2"
+  ]
+ },
+ {
+  "id": "io-exceptions-fixtures",
+  "title": "Beyond parameters: I/O, files, exceptions and fixtures",
+  "category": "Testing",
+  "summary": "Real methods read keyboards and files, print to screens, and throw exceptions. Learn to simulate inputs, capture outputs, test files and exceptions, and share setup with fixtures.",
+  "read_minutes": 9,
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "So far every method looked like a maths function: parameters in, return value out. Real methods are messier. Their data can come from the keyboard, fields, files, databases or the network, and their results can go to the screen, files, or other programs as well as return values. These side effects still need testing, which means test code must control the inputs and observe the outputs without changing the production code. Console input, console output, file reads and file writes all share one convenient fact: everything is a string, with newline characters separating lines."
+    ]
+   },
+   {
+    "heading": "Simulating console input",
+    "paras": [
+     "To test a method that reads the keyboard, hand it a fake keyboard: create an object holding your scripted input string and tell the system to read from it instead of the console. Python sets sys.stdin to an io.StringIO holding e.g. 10\\n20; Java calls System.setIn with a ByteArrayInputStream of the same bytes. The production method cannot tell the difference, so the inputMax test feeds 10\\n20 and expects 20 back, exactly as if a user had typed it."
+    ]
+   },
+   {
+    "heading": "Capturing console output",
+    "paras": [
+     "Output is the mirror image: redirect the screen into a buffer, run the method, then read the buffer back. Python points sys.stdout at an io.StringIO and later calls getvalue(); Java points System.setOut at a PrintStream over a ByteArrayOutputStream and reads toString(). The outputMax test therefore calls outputMax(10, 15) and asserts the captured text is 15. Input and output redirection compose: a method that both prompts and prints gets both treatments at once."
+    ]
+   },
+   {
+    "heading": "Testing file handling",
+    "paras": [
+     "Files work the same way, except setup and verification move outside the call. To test a reader, the test first writes the input file (e.g. inputfile.txt containing 10\\n15), then calls the method and checks the return. To test a writer, the test calls the method first, then opens the produced file and asserts on its contents (stripping trailing newlines before comparing). Python uses open and with blocks; Java uses PrintWriter/Scanner with explicit close. The rule never changes: prepare the world, run, then verify."
+    ]
+   },
+   {
+    "heading": "Expected versus unexpected exceptions",
+    "paras": [
+     "Exceptions need care because they invert pass and fail. An unexpected exception, whether from broken test code or faulty production, should fail the test; in Python you simply let it propagate, in Java you declare throws on the test method. An expected exception is the opposite: the method should throw (for instance formatTime raising on invalid input instead of returning an error string), so the test only passes if the exception arrives. The pattern is a try block ending in assert False (reached only when nothing threw) with the pass sitting in the except/catch clause."
+    ]
+   },
+   {
+    "heading": "Fixtures: setUp and tearDown",
+    "paras": [
+     "Redirected streams and scratch files must not leak between tests, so every suite shares the same setup and cleanup. A test fixture is everything put in place to make a test work in isolation, and the convention is two helpers: setUp() runs immediately before every test method, tearDown() immediately after. Without a framework you call them around each test by hand; with Python unittest you define setUp/tearDown methods and with JUnit you annotate them @Before/@After, and the framework calls them automatically. TearDown restores the original System.in/System.out and deletes scratch files, so the next test starts clean."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "Worksheet 10 is the template for any I/O exam question: identify paths, choose inputs (params, console string or file contents) per path, state expected returns, exceptions, console text or file text, then implement with redirection plus setUp/tearDown."
+    }
+   }
+  ],
+  "recall": [
+   {
+    "q": "How do you test a method that reads from the keyboard?",
+    "a": "Simulate the input: put the scripted string (with \\n between lines) in an io.StringIO / ByteArrayInputStream and install it as sys.stdin / System.in before calling. The method reads it exactly as typed input."
+   },
+   {
+    "q": "How do you test a method that prints to the screen?",
+    "a": "Capture the output: redirect sys.stdout / System.out to a buffer, call the method, then assert on the buffer contents (getvalue() / toString()). Restore the real streams in tearDown."
+   },
+   {
+    "q": "What is a test fixture, and what do setUp/tearDown do?",
+    "a": "A fixture is everything arranged to run a test in isolation. setUp() runs before every test (redirect streams, create files) and tearDown() runs after (restore streams, delete files). Frameworks (unittest setUp/tearDown, JUnit @Before/@After) call them automatically."
+   }
+  ],
+  "citations": [
+   {
+    "source": "learnming materials v2/Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+    "locator": "PDF pp. 6-16 (Beyond params/returns; newlines; simulating input)",
+    "excerpt": "Methods take data from keyboards, fields, files and more, and send results to screens and files as side effects. Console traffic is one big string with newline separators. Tests simulate input with sys.stdin/io.StringIO in Python and System.setIn/ByteArrayInputStream in Java.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+    "locator": "PDF pp. 23-37 (Capturing output; file read/write tests)",
+    "excerpt": "Capture screen output by redirecting sys.stdout/System.setOut to a buffer and reading it back. To test file readers, write the input file first; to test writers, read the output file afterwards and assert on its contents.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+    "locator": "PDF pp. 38-49 (Expected vs unexpected exceptions; fixtures, setUp/tearDown)",
+    "excerpt": "Unexpected exceptions should fail the test; expected exceptions must arrive or the test fails (try with assert False, pass in except/catch). setUp() runs before every test and tearDown() after; unittest uses setUp/tearDown names while JUnit uses @Before/@After.",
+    "kind": "course"
+   }
+  ],
+  "prerequisites": [
+   "test-code-assertions"
+  ],
+  "related": [
+   "white-box-paths",
+   "equivalence-partitioning"
+  ],
+  "question_ids": [
+   "gen-io-1",
+   "gen-io-2",
+   "ws10-sumfile",
+   "ws10-savedata",
+   "ws10-guessing"
+  ]
+ },
+ {
+  "id": "white-box-paths",
+  "title": "White-box testing: covering every path",
+  "category": "Testing",
+  "summary": "Design test cases from the code itself: ifs, loops, exceptions and their combinations, and when white-box beats black-box.",
+  "read_minutes": 7,
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Black-box design guesses behaviour from the specification; white-box design reads the code and tests every path through it. A path is roughly one way of getting from the start of a method to its end, and every path becomes a test case. Conditionals create paths: each if splits one path into two, and further constructs split them again. The number of paths often differs from the number of black-box categories, which is exactly why both techniques exist."
+    ]
+   },
+   {
+    "heading": "Ifs and if-else",
+    "paras": [
+     "An if has two paths: enter the branch or skip it. The myAbs method (negate n when n < 0, then return) needs one case with a negative input taking the branch and one with a non-negative input skipping it. An if-else also has two paths: the if side or the else side. The printMax method needs one case entering the if (x > y, prints x) and one entering the else (prints y)."
+    ]
+   },
+   {
+    "heading": "Loops count as two",
+    "paras": [
+     "Loops look infinite but contribute exactly two paths: the loop body runs, or it does not. It makes no difference whether the body runs twice or a million times; it is the same path. The readPositive method (keep asking while input is not positive) therefore needs an entering case with scripted input like -5\\n10 producing a Not positive message, and a skipping case with input 5 producing no message. Python has no do-while; Java's version adds a no-repeat versus some-repeat pair of the same shape."
+    ]
+   },
+   {
+    "heading": "Exceptions and combinations",
+    "paras": [
+     "Each try-catch (try-except in Python) contributes one path for success plus one per catch/except clause. The convertF2C method needs a success case (numeric input prints the converted temperature) and one case per handled exception type (non-numeric input prints the error). Constructs combine by splitting: a nested if inside an if turns two paths into three, as zeroOrLargest shows (outer else prints 0; inner if prints x; inner else prints y). Notice black-box would list four sign combinations for the same method while white-box finds three paths: the techniques genuinely disagree, and the exam loves asking why."
+    ]
+   },
+   {
+    "heading": "Choosing between black and white",
+    "paras": [
+     "Design black-box tests before the code exists and keep them stable while algorithms change, since they only depend on the specification. Choose white-box when you need to see the decisions the code actually makes, or when black-box guessing misses behaviours hidden in the implementation. The price of white-box precision is maintenance: changing the production code usually means changing its tests, though the result is tests that track what the code really does."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "For any code snippet, enumerate constructs (if, else-if, loop, try-catch), count paths (if=2, loop=2, each catch=+1, nested splits multiply), then give one row per path with inputs and expected output. State explicitly when the white-box count differs from the black-box category count."
+    }
+   }
+  ],
+  "recall": [
+   {
+    "q": "How many paths do if, loop and try-catch contribute?",
+    "a": "An if or if-else contributes two paths; a loop contributes two (enter or skip, regardless of iteration count); a try block contributes one success path plus one per catch/except clause."
+   },
+   {
+    "q": "Why does zeroOrLargest have 3 white-box paths but 4 black-box categories?",
+    "a": "Black-box combines the signs of x and y into four categories; the code only decides y > 0 first, then x > y inside, giving three reachable paths (outer else, inner if, inner else). One sign combination is unreachable as a distinct path."
+   },
+   {
+    "q": "When should you prefer white-box over black-box?",
+    "a": "When you need to cover decisions hidden in the code that the specification does not reveal. Prefer black-box when the code does not exist yet or changes often, since those tests survive reimplementation."
+   }
+  ],
+  "citations": [
+   {
+    "source": "learnming materials v2/Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+    "locator": "PDF pp. 9-16 (Paths; if and if-else paths: myAbs, printMax)",
+    "excerpt": "White-box tests are designed from paths through the code; each if has two paths (enter or skip) and each if-else has two (if side or else side). Each path becomes a test case with its own data and expected result.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+    "locator": "PDF pp. 17-25 (Loop paths: readPositive; do-while; try-catch: convertF2C)",
+    "excerpt": "Loops contribute exactly two paths whether the body runs twice or a million times. try-catch contributes one success path plus one per catch clause. File and console I/O from Lecture 9 applies to path tests unchanged.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+    "locator": "PDF pp. 26-33 (Combinations; nested zeroOrLargest; black vs white)",
+    "excerpt": "Constructs combine by splitting paths: a nested if turns two paths into three. Black-box can be written before production exists and survives algorithm changes; white-box reveals the decisions the code actually makes but must change with the code.",
+    "kind": "course"
+   }
+  ],
+  "prerequisites": [
+   "testing-overview",
+   "io-exceptions-fixtures"
+  ],
+  "related": [
+   "equivalence-partitioning",
+   "test-code-assertions"
+  ],
+  "question_ids": [
+   "gen-wb-1",
+   "gen-wb-2",
+   "ws10-coords",
+   "ws10-readchar"
+  ]
+ },
+ {
+  "id": "version-control-git",
+  "title": "Version control with Git: never lose work again",
+  "category": "Implementation",
+  "summary": "Why version control exists, how local, centralised and distributed systems differ, and the everyday Git workflow: stage, commit, branch, merge and share.",
+  "read_minutes": 8,
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Every project eventually produces project_v1.py, project_v2_final.py and Report_2024_FINAL_FINAL.docx, plus working, working_3 and old/new folders nobody dares delete. Undo buffers only cover the last few edits in one file, collaborators overwrite each other, and nobody can answer who changed what, when, or why. A version control system (VCS) fixes all of this: it records every change to a project with who made it, when, and a message saying why, so any version can be inspected, compared and restored.",
+     "Git is the dominant VCS, created by Linus Torvalds in 2005 for Linux kernel development. Git is not GitHub: Git is the tool on your machine, while GitHub (like GitLab and Bitbucket) is a hosting service that adds remote storage, issue tracking and code review around it."
+    ]
+   },
+   {
+    "heading": "Three architectures",
+    "paras": [
+     "A local VCS keeps the version database on one computer (for example RCS deltas or File History): simple, but useless for teams. A centralised VCS (CVCS) keeps one central server that everyone checks out from and checks in to, with file locking; administration is easy but the server is a single point of failure. A distributed VCS (DVCS) like Git or Mercurial gives every user a full copy of the history, so you can commit offline and there is no single point of failure, at the cost of needing workflow discipline."
+    ],
+    "table": {
+     "head": [
+      "System",
+      "Where history lives",
+      "Strength",
+      "Weakness"
+     ],
+     "rows": [
+      [
+       "Local (RCS)",
+       "One computer",
+       "Simple",
+       "No collaboration"
+      ],
+      [
+       "Centralised (SVN)",
+       "One central server",
+       "Easy to administer",
+       "Server failure stops everyone"
+      ],
+      [
+       "Distributed (Git)",
+       "Every clone has full history",
+       "Offline work, no single failure point",
+       "Needs branching discipline"
+      ]
+     ]
+    }
+   },
+   {
+    "heading": "The four places and file states",
+    "paras": [
+     "Git work flows through four locations: your working directory (the files you edit), the staging area (a preparation zone for the next commit), the local repository (committed snapshots in .git), and the remote repository (the shared copy on a server). The cycle is checkout, edit, add (stage), commit (snapshot locally), push (share) and pull (collect others' work). A bare repository holds only history with no working directory and serves as a collaboration hub nobody edits directly.",
+     "Files move through states you can read in git status: untracked files Git ignores until added; tracked files that are unmodified, modified, or staged. git add moves changes into staging, git commit snapshots staging into history, git reset unstages, and git checkout -- or git restore discards working-directory edits."
+    ]
+   },
+   {
+    "heading": "Everyday commands",
+    "paras": [
+     "Setup is once per machine: install Git, then git config --global user.name and user.email so every commit carries your identity. Per project: git init to start, or git clone to copy an existing remote. Then the loop: edit, git add the files, git commit -m with a message describing one logical change, and inspect with git log --graph, git diff and git status. Compare any two commits with git diff <hash1> <hash2>, where added lines show with + and removed with -.",
+     "Branching keeps unfinished work off the main line: git branch my-new-branch then git switch to it (or the combined git switch -c / git checkout -b), commit normally, and git switch master plus git merge to bring it back. Never commit directly on master or main for team work; push the branch, open a pull request, have a teammate review, merge, and let everyone pull. Merge commits carry both histories; when both sides edited the same lines Git reports a conflict for a human to resolve."
+    ],
+    "bullets": [
+     "One logical change per commit, with a message that explains why.",
+     "Commit before switching branches so work is never stranded.",
+     "Never work directly on master/main in a team; review before merging.",
+     "Clone once, then pull regularly; push and pull never overwrite history."
+    ]
+   },
+   {
+    "heading": "Team workflow and traceability",
+    "paras": [
+     "The standard team loop is: clone once, create a feature branch, commit in small logical steps, push the branch, request review, merge to master after approval, and pull master to stay current. Because commits are immutable, history doubles as documentation: git log shows who changed what and when, and git checkout of an old hash restores any past version for debugging. If every commit message explains its reason, future-you (and your teammates) can trace any bug to the decision that introduced it."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "If asked to sketch a workflow, draw the four places with the six arrows (checkout/add/commit/push/pull/clone) and state the branch rule: feature branch, pull request, review, merge to main, never commit on main directly."
+    }
+   }
+  ],
+  "recall": [
+   {
+    "q": "What do the staging area and a commit each do?",
+    "a": "The staging area (git add) prepares exactly what the next snapshot will contain; a commit (git commit) permanently records that snapshot in the local repository with author, date and message."
+   },
+   {
+    "q": "How do LVCS, CVCS and DVCS differ?",
+    "a": "LVCS keeps history on one machine (no collaboration); CVCS keeps one central server (easy admin, single point of failure); DVCS gives every clone full history (offline commits, no single failure, needs discipline). Git is distributed."
+   },
+   {
+    "q": "What is the safe team branching workflow?",
+    "a": "Branch off main for each feature, commit small logical steps, push the branch, open a pull request, merge only after review, then everyone pulls. Never commit directly on main."
+   }
+  ],
+  "citations": [
+   {
+    "source": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
+    "locator": "PDF pp. 1-10 (Why VCS; definition; LVCS/CVCS/DVCS)",
+    "excerpt": "A version control system records every change with who, when and why so any version can be restored. Local systems keep history on one computer, centralised systems on one server with file locking, distributed systems give every user a full copy.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
+    "locator": "PDF pp. 11-25 (Four places; staging; file states; setup and commits)",
+    "excerpt": "Work flows through working directory, staging area, local repository and remote repository via checkout, add, commit, push and pull. Files are untracked or tracked (unmodified, modified, staged); git add stages, git commit snapshots, git status and git diff inspect.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
+    "locator": "PDF pp. 26-50 (Branching, merging, conflicts, remotes, team workflow)",
+    "excerpt": "Branch with git branch/switch, merge back to master, resolve conflicts where both sides edited the same lines. Clone once, push branches for review, merge after approval, pull regularly. Git is the tool; GitHub is hosting plus review.",
+    "kind": "course"
+   }
+  ],
+  "prerequisites": [
+   "se-overview"
+  ],
+  "related": [
+   "modularity-coupling-cohesion",
+   "agile-processes",
+   "lifecycle-models"
+  ],
+  "question_ids": [
+   "gen-vcs-1",
+   "gen-vcs-2",
+   "gen-vcs-3"
+  ]
+ },
+ {
+  "id": "modularity-coupling-cohesion",
+  "title": "Modularity: coupling, cohesion and reuse",
+  "category": "Implementation",
+  "summary": "Decompose systems into independent, single-job modules: high cohesion, low coupling, no globals or control flags, and reuse without duplication.",
+  "read_minutes": 8,
+  "sections": [
+   {
+    "heading": "Introduction",
+    "paras": [
+     "Software design sits between requirements and code, and its central idea is modularity: building self-contained functions, classes and modules that each do one job well, like prefabricated walls, windows and beams in construction. You should be able to use a module without knowing how it is made, test and change it in isolation, and compose it with others into larger behaviour.",
+     "Four principles guide the design: high cohesion (everything inside a module belongs together), low coupling (modules depend on each other as little as possible), information hiding (expose only what callers need), and code reuse. Two of Lehman's laws explain why this matters: continuing change means a useful program must keep evolving, and increasing complexity means every change makes the system messier unless you actively clean it up through refactoring, which is behaviour-preserving cleanup such as splitting, combining or rewiring modules."
+    ]
+   },
+   {
+    "heading": "Maintenance never ends",
+    "paras": [
+     "Maintenance begins the day software is delivered, and unlike hardware, software does not wear out: every future failure is a bug that was always there, surfacing when a new input or environment finally triggers it. Corrective maintenance fixes small defects, perfective maintenance adds or improves features, and adaptive maintenance ports the system to new environments. Modularity decides how painful each kind is: a well-decomposed system localises most changes to one module."
+    ]
+   },
+   {
+    "heading": "Coupling: how modules depend on each other",
+    "paras": [
+     "Coupling measures dependence between modules. Some coupling is essential: calcDaysInMonth calling isLeapYear(y) is a normal parameterised call where the caller pauses, passes y, and resumes with the answer. Trouble starts with hidden or excessive coupling.",
+     "Global variables are the classic hidden coupling: any module can read or change them at any time, so a fault could originate anywhere and tracing it means reading everything. The fix is boring on purpose: pass data in as parameters and return results, so each call is self-contained. A second smell is the long parameter list (more than about six): a function taking unit, code, building, room, capacity and more is probably doing several jobs and should be split. A third is the control flag: formatTimeDate(day, month, year, isDate) behaves as two different functions depending on a Boolean, forcing callers to know its internals. Split it into formatDate plus formatTime and the flag (and the extra coupling) disappears."
+    ],
+    "table": {
+     "head": [
+      "Smell",
+      "Why it hurts",
+      "Fix"
+     ],
+     "rows": [
+      [
+       "Global variables",
+       "Any module can change them; faults untraceable",
+       "Parameters in, return values out"
+      ],
+      [
+       "7+ parameters",
+       "Module does several jobs; callers carry context",
+       "Split into smaller modules"
+      ],
+      [
+       "Control flag (isDate)",
+       "One function, two behaviours; caller knows internals",
+       "Two functions: formatDate + formatTime"
+      ]
+     ]
+    }
+   },
+   {
+    "heading": "Cohesion: what belongs together",
+    "paras": [
+     "Cohesion measures focus within a module. calculate_tax is cohesive; calculate_tax_and_send_email is not, because tax logic and email logic change for unrelated reasons. Practise spotting the split: process_data doing clean, save and notify is three sequential tasks that should become three functions; checkAgeAndPostcode validating two unrelated ranges should become checkAge plus checkPostcode so each half is reusable alone. Relatedness runs from unrelated (split immediately) through related-by-name or by time, up to related-by-data, which is often tightly coupled and deserves a second look. Fixing coupling usually improves cohesion at the same time, and vice versa."
+    ]
+   },
+   {
+    "heading": "Reuse without duplication",
+    "paras": [
+     "Duplication is the hardware-software inversion students forget: redundant fans make hardware more reliable, but duplicated code makes software worse, because every copy must be tested and every fix applied everywhere. Consolidate instead: if two fragments match, keep one; if one extends the other, extract the shared part; if several share a core, extract it as a helper like calcXY reused by both printSpecial and getNM. But reuse increases coupling, so only reuse genuinely identical tasks: never force it, never mistake similar for same, and never let reuse wreck cohesion."
+    ],
+    "callout": {
+     "kind": "exam",
+     "text": "Given a code smell, name it (global, long params, control flag, low cohesion, duplication), explain the coupling/cohesion harm in one sentence, and show the refactored version. Marks split evenly across the three moves."
+    }
+   }
+  ],
+  "recall": [
+   {
+    "q": "What are the four modularity principles and what do they buy you?",
+    "a": "High cohesion, low coupling, information hiding, code reuse. Together they let you understand, test, change and reuse each module in isolation instead of reasoning about the whole system."
+   },
+   {
+    "q": "Why are globals and control flags harmful? Give the fix for each.",
+    "a": "Globals let any module change shared state invisibly, so faults are untraceable; fix with parameters and return values. Control flags merge two behaviours into one function with extra caller coupling; fix by splitting into two functions."
+   },
+   {
+    "q": "When should duplicated code be consolidated, and when not?",
+    "a": "Consolidate genuinely identical tasks (keep one copy, extract the shared core) because copies multiply testing and fix costs. Do not force reuse of merely similar tasks or let it damage cohesion; the coupling cost must be worth it."
+   }
+  ],
+  "citations": [
+   {
+    "source": "learnming materials v2/Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+    "locator": "PDF pp. 1-15 (Software design; modularity; Lehman laws; four principles; maintenance)",
+    "excerpt": "Design sits between requirements and code. Modularity means self-contained modules with one job; Lehman laws demand continuing change while fighting increasing complexity. Aim for high cohesion, low coupling, information hiding and reuse; maintenance (corrective, perfective, adaptive) starts at delivery.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+    "locator": "PDF pp. 16-45 (Coupling; calls; globals; control flags)",
+    "excerpt": "Coupling is dependence between modules; some is essential. Globals create hidden connections across all modules and should become parameters and return values. Long parameter lists signal multiple jobs; control flags such as isDate should split into separate functions.",
+    "kind": "course"
+   },
+   {
+    "source": "learnming materials v2/Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+    "locator": "PDF pp. 46-70 (Cohesion; relatedness; redundancy; reuse tradeoff)",
+    "excerpt": "Cohesion is focus within a module; split sequential tasks and unrelated validations. Duplicated code multiplies test and fix costs, unlike hardware redundancy, so consolidate shared cores such as calcXY; reuse only truly identical tasks since reuse adds coupling.",
+    "kind": "course"
+   }
+  ],
+  "prerequisites": [
+   "se-overview"
+  ],
+  "related": [
+   "version-control-git",
+   "test-code-assertions",
+   "functional-requirements"
+  ],
+  "question_ids": [
+   "gen-mod-1",
+   "gen-mod-2",
+   "gen-mod-3"
+  ]
  }
 ]

@@ -1,0 +1,1624 @@
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Introduction to Software Engineering (ISAD1000)
+Lecture 9: More on Testing
+Testing different forms of inputs/outputs & Test 
+Fixtures
+Updated: 27th May, 2021
+Revised : 30th April 2022, 04 April 2023, 26th September 2023, 01 May 
+2024, 05 May 2025
+Discipline of Computing
+School of Electrical Engineering, Computing and Mathematical Sciences (EECMS)
+Copyright © 2021, Curtin University 
+CRICOS Provide Code: 00301J
+. . . .
+. . . .
+1/51
+
+
+===== PAGE BREAK =====
+
+ELECTRONIC WARNING NOTICE FOR 
+COPYRIGHT STATUTORY LICENCES
+2/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+. . . .
+. . . .
+Outline
+Managing different forms of inputs/outputs in testing 
+Inputs and Outputs 
+Files
+Exceptions 
+Setting-up/tearing down test data 
+Test Fixtures
+3/51
+
+
+===== PAGE BREAK =====
+
+.   .   .   .
+.   .   .   .
+4/49
+Revisiting the previous lecture: What happens in SE?
+►Code is written! Programming is crucial to SE.
+►But SE is more than programming.
+►We also need to do many other things.
+Software 
+Engineering
+Co-ordinate a 
+team, and plan 
+and manage a 
+project.
+Understand user 
+requirements.
+Design the 
+software 
+(component
+s/modules). 
+Implement the 
+components/modules of 
+the software.
+Test the 
+software, 
+piece by 
+piece.
+Verify that 
+the software 
+meets its 
+goals.
+Maintaining
+the software
+SDLCs and project planning –
+Week1,2 & 3 , 6, 7
+Non-functional requirements. Week 5
+Functional Requirements 
+Week 4 
+•
+Software Testing is extremely 
+important in Software Engineering
+Test design(week 10,11,12): We looked at how to test our code in 
+the last lecture. We will continue testing this week as well.
+Modularity: Week 8
+
+
+===== PAGE BREAK =====
+
+.   .   .   .
+.
+.
+.
+.
+Unit Learning outcomes 
+On successful completion of this unit students can: 
+✓
+Apply conventional and agile software project management 
+tools and techniques                                                                             
+Project planning, Agile Methods, Version control
+✓
+Determine appropriate functional and non-functional requirements    
+Functional/ non-functional requirements 
+3.
+Develop test designs and code using black-box and white-box 
+methods Testing , Test fixtures
+✓
+Analyse code for faults and quality issues, and propose solution 
+Modularity 
+✓
+Demonstrate the importance of ethical and professional conduct in 
+software engineering profession with the understanding of social 
+impact of software
+Ethics and Professionalism
+Revisiting Unit Learning outcomes ( From the unit outline)
+5/32
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing So Far
+►So far, our discussion of testing has focused on parameters 
+and return values.
+►We see the range of possible parameter values, and divide 
+(partition) them into categories.
+►Equivalence partitioning and boundary value analysis.
+►But we haven’t looked inside the method/function. We’ve 
+treated it as a black box.
+►For the return values, we obtain them using actual parameter 
+value, and compare to what we expected.
+►We’ve assumed that methods/functions are like mathematical 
+functions: transforming one or more parameters into a single 
+return value.
+6/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Examples from lecture 8
+.
+.
+.
+.
+.
+.
+.
+.
+Submodule abs
+Imports: n (real)
+Exports: result (real)
+Implements the absolute value function. If n is non- negative,
+returns. Otherwise, returns the inverse of n.
+Submodule palindrome
+Imports: s (string)
+Exports: result (Boolean)
+Checks whether s is a palindrome; i.e. if it reads the same 
+forwards and backwards. Returns true if it is, or false 
+otherwise.
+Submodule findMax
+Imports: value1, value2 (integers)
+Exports: maximum (integer)
+Determines the highest out of value1 and value2, and
+returns it.
+7/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Generalizing of testing 
+►Unit testing can get more complicated.
+►However, we do still have the following basic ingredients:
+►Test cases;
+►For each test case: test data, production code call, expected 
+results, and actual results.
+But:
+►We can also do “white-box” testing, where we ﬁnd test cases 
+based on the code. ( Next lecture )
+►In either white-box or black-box testing, we sometimes need 
+additional “setting up” for each test case. (This lecture)
+►Some test data are not provided via parameters.
+►Some test results are not obtained via return values.
+►There can be multiple results per test case, and hence
+multiple assertions.
+8/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Input (Sources of Data) for methods
+►Methods/functions can get data from various sources:
+►Parameter values;
+►User input;
+►Fields (variables outside the method/function);
+►Files on disk;
+►Databases;
+►The operating system;
+►Other running programs on the same computer;
+►Online services.
+►…
+►Testing must account for all the data a method/function uses.
+►Test code must control and mimick these sources of data.
+►e.g., We need to fool the production code into accepting fake 
+“user input” that really comes from the test code.
+9/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Output (Actions) resulted  from methods
+►Methods/functions can also send data to many diﬀerent 
+places:
+►Return value;
+►Exceptions;
+►The screen/console;
+►Files;
+►Databases;
+►Other running programs;
+►Online services.
+►…
+►Testing must check that all of these are as expected.
+►e.g., if you’re writing to a ﬁle, your test code must ensure 
+that it actually happens properly.
+►We need to capture these outputs and run them all 
+through assertion statements.
+Called “side eﬀects”, though
+they’re often the main purpose 
+of a method/function.
+.
+.
+.
+.
+.
+.
+.
+.
+10/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing methods with different forms of input/output
+►We’ll consider how to test methods/functions that:
+►Take user input (console input);
+►Display output (console output);
+►Read text ﬁles (ﬁle input);
+►Write text ﬁles (ﬁle output);
+►Generate exceptions.
+►The ﬁrst four of these have something in common:
+►Everything is a string!
+11/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+GUIs
+►For programs that display windows, buttons, scroll-bars, 
+etc., and respond to mouse clicks or touch-based input, 
+these things are not strings.
+►Testing this is outside the scope of this unit.
+►It can be quite tricky:
+►How many diﬀerent ways are there to move the mouse?
+►How many diﬀerent positions on the screen can windows 
+and buttons occupy?
+►Nonetheless, there are mechanisms to automate GUI 
+input;
+e.g. java.awt.Robot.
+12/51
+X
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Input/Output is String-Based
+►We’ll consider how to test methods/functions that:
+►Take user input (console input);
+►Display output (console output);
+►Read text ﬁles (ﬁle input);
+►Write text ﬁles (ﬁle output);
+►Generate exceptions.
+►The ﬁrst four of these have something in common:
+►Everything is a string!
+►Reading console input? The user enters a string.
+►If you ask for an integer, the user enters a string containing 
+digit characters. Then you calculate what integer they form.
+►Writing real numbers to a ﬁle? You’re writing a string.
+►You take each number and generate a string that contains 
+various digit characters and a “.”.
+13/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+New Lines (“\n”) in Input/Output
+►The string-iness of input/output goes a bit further.
+►You can think of all console input as just one big string 
+put together.
+►And, similarly, all console output is another big string.
+►And an entire text ﬁle is really just a single string.
+►To make sense of this, you need to understand the 
+“newline” character “\n”.
+►It’s written backslash-n, though it doesn’t really look 
+like anything.
+►But it can be part of any string, just like a letter or digit.
+►It represents a line break; a point at which one line of 
+text ends and another begins.
+►It’s the ENTER key, when pressed by the user.
+14/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+New Lines (“\n”) in Input/Output
+►The newline character “\n” lets us think of multiple inputs 
+or outputs as all being one string.
+►Say you write a program that asks the user some 
+questions, and they answer like this:
+Enter an integer: 50
+Enter another integer: -71 
+Enter a word: smile
+►You can represent the input as the string
+"50\n-71\nsmile\n".
+►That’s the string the user has actually typed in.
+►An aside: to represent an actual backslash, you must 
+write “\\”. (For two backslashes, write “\\\\”, etc.)
+15/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Simulating User Input
+►To test a method/function that takes console input:
+►Our test data will be a string representing that 
+input.
+►We have to set things up so that the production 
+code thinks this string is actual input.
+►And remember: the production code still has to work 
+as normal.
+►We can’t change it to make this work.
+►Everything we do to test it must be in the test code.
+►Fortunately, languages like Java and Python provide a 
+couple of tricks to help. . .
+16/51
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Simulating Console Input : Example
+import sys, io # Test code:
+...
+simInput = "123"
+sys.stdin = io.StringIO(simInput)
+... # call production code
+.
+.
+.
+.
+Python
+►We decide what the simulated input should be (e.g., “abc”)
+►We create an “object” that behaves like a source of input, but 
+actually just gives you back what you put into it.
+Java “ByteArrayInputStream”
+Python “io.StringIO”
+►We tell the system to read from this, instead of the console.
+17/51
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Simulating Console Input: Example
+import java.io.*; // Test code:
+...
+String simInput = "abc"; System.setIn(new
+ByteArrayInputStream(
+simInput.getBytes()));
+... // call production code
+►We decide what the simulated input should be (e.g. “abc”)
+►We create an “object” that behaves like a source of input, but 
+actually just gives you back what you put into it.
+Java “ByteArrayInputStream”
+Python “io.StringIO”
+►We tell the system to read from this, instead of the console.
+.
+.
+.
+.
+Java
+18/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Using Simulated Input
+►Your test code then calls the production code.
+►The production code tries to read some console input. 
+Java: String val = scanner.nextLine();
+Python: val = input()
+►The production code receives the simulated input; i.e., val
+becomes equal to “abc”.
+►The production code assumes the user has entered this 
+value.
+►It can’t tell the diﬀerence between real and simulated input, 
+which is the point.
+►The test code uses this to check what happens for 
+diﬀerent kinds of input.
+.
+.
+.
+.
+.
+.
+.
+.
+►Say your test code sets up 
+some simulated input; 
+speciﬁcally, a value of “abc”.
+import sys, io
+# Test code:
+...
+simInput = "abc"
+sys.stdin = io.StringIO(simInput)
+... # call production code
+Python
+19/51
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Simulating Console Input : Example
+.
+.
+.
+.
+►Remember “max()”? Say we also have “inputMax()”.
+►Instead of importing two numbers, it inputs them.
+►Test categories are the same.
+►It is better to indicate that we use simulated input here.
+Submodule inputMax
+Imports: none
+Exports: maximum (integer)
+This module reads value1(integer) and value2 (integer) from 
+keyboard as user input. Then, it determines the highest out of 
+value1 and value2, and returns the highest value.
+Category
+Test Data
+Expected Result
+value1 < value2
+input: “10\n20"
+20
+value1 = value2
+input: “5\n5”
+5
+value1 > value2
+input: “10\n5”
+10
+20/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Using Simulated Input: Example Test Code
+Here’s how we might test it.
+►Take the ﬁrst test case: value1 < value2.
+►We set the simulated keyboard inputs of value1 and value 2, 
+using the decided test data.
+►Write the assertion statement, calling the production code, 
+MyUtils.inputdMax().
+►Do the same for other two test cases.
+.
+.
+.
+.
+.
+.
+.
+.
+def testInputMax():
+sys.stdin = io.StringIO("10\n20")
+assert 10 == MyUtils.inputMax()
+sys.stdin = io.StringIO(“5\n-5")
+assert 5 == MyUtils.inputMax()
+... # One other test case
+Python
+21/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Using Simulated Input: Example Test Code
+►Remember “max()”? Say we also have “inputMax()”.
+►Here’s how we might test it.
+public static void testInputMax()
+{
+System.setIn(
+new ByteArrayInputStream("10\n20".getBytes())); 
+assert 15 == MyUtils.inputMax();
+System.setIn(
+new ByteArrayInputStream("5\n-5".getBytes())); 
+assert 10 == MyUtils.inputMax();
+... // One other test case
+}
+.
+.
+.
+.
+.
+.
+.
+.
+Java
+22/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Capturing Output
+►Testing output displaying on the screen is a “mirror image” of 
+the problem of simulating input.
+►If production code displays something, test code must be 
+able to check it.
+►But normally, your code cannot see its own output. Only the 
+user can.
+►We must do something to capture it, before it is actually 
+displayed.
+23/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Capturing Console Output
+►Create an “object” that can receive output, but stores it 
+instead of displaying it.
+Java “ByteArrayOutputStream”
+Python “io.StringIO” (same as for input)
+►Tell the system to use this, instead of the console.
+►Afterwards, retrieve the text that was “displayed”.
+.
+.
+.
+.
+.
+.
+.
+.
+import sys
+import io
+...
+capOut = io.StringIO()
+sys.stdout = capOut
+... // call production code
+actualOutput = capOut.getvalue()
+Python
+24/51
+
+
+===== PAGE BREAK =====
+
+Java
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Capturing Console Output
+►Create an “object” that can receive output, but stores it 
+instead of displaying it.
+Java “ByteArrayOutputStream”
+Python “io.StringIO” (same as for input)
+►Tell the system to use this, instead of the console.
+►Afterwards, retrieve the text that was “displayed”.
+.
+.
+.
+.
+.
+.
+.
+.
+import java.io.*;
+...
+ByteArrayOutputStream capOut = new ByteArrayOutputStream(); 
+System.setOut(new PrintStream(capOut));
+... // call production code
+String actualOutput = capOut.toString();
+25/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Capturing Output: Example
+►Say we have another variation of findMax() called outputMax().
+►Instead of returning the result, it outputs it.
+►Test categories are the same.
+►It is better to indicate that we use simulated output here.
+.
+.
+.
+.
+.
+.
+.
+.
+Submodule outputMax
+Imports: value1(integer), value2 (integer) 
+Exports: none
+Determines the highest out of value1 and value2, and
+displays the highest value on the screen.
+Category
+Test Data
+Expected Result
+value1 < value2
+10, 15
+Output : “15"
+value1 = value2
+5, 5
+Output : "5"
+value1 > value2
+10, 5
+Output: "10"
+26/51
+
+
+===== PAGE BREAK =====
+
+Python
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Capturing Output: Example Test Code
+►Say we have another variation of max() called outputMax().
+►Instead of returning the result, it outputs the result.
+►Here’s how we might test it:
+.
+.
+.
+.
+.
+.
+.
+.
+def testOutputMax():
+capOut = io.StringIO()
+sys.stdout = capOut
+MyUtils.outputMax(10, 15) # Production code call
+assert "15" == capOut.getvalue()
+... # Other test cases
+27/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Capturing Output: Example Test Code
+►Say we have another variation of max() called outputMax().
+►Instead of returning the result, it outputs it. ( output to the 
+screen) 
+►Here’s how we might test it:
+public static void testOutputMax()
+{
+ByteArrayOutputStream capOut
+= new
+ByteArrayOutputStream();
+System.setOut(new PrintStream(capOut));
+MyUtils.outputMax(10, 15); // Production code
+call assert "15".equals(capOut.toString());
+... // Other test cases
+}
+.
+.
+.
+.
+.
+.
+.
+.
+Java
+28/51
+
+
+===== PAGE BREAK =====
+
+Python
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Simulating Input and Capturing Output
+►What about inputOutputMax()?
+►We can simulate input and capture output at the same time:
+.
+.
+.
+.
+.
+.
+.
+.
+def testInputOutputMax():
+capOut = io.StringIO()
+sys.stdout = capOut
+sys.stdin = io.StringIO("10\n15")
+MyUtils.inputOutputMax() # Production code call 
+assert "15" == capOut.getvalue()
+...# Other test cases
+29/51
+
+
+===== PAGE BREAK =====
+
+Java
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Simulating Input and Capturing Output
+►What about inputOutputMax()?
+►We can simulate input and capture output at the same time:
+public static void testInputOutputMax()
+{
+ByteArrayOutputStream capOut = new
+ByteArrayOutputStream();
+System.setOut(new PrintStream(capOut));
+System.setIn(
+new ByteArrayInputStream("10\n15".getBytes()));
+MyUtils.inputOutputMax(); // Production code call
+assert "15".equals(capOut.toString());
+... // Other test cases
+}
+.
+.
+.
+.
+.
+.
+.
+.
+30/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing with Files
+►If the production code deals reads/writes data ﬁles, the test 
+code must also deal with them.
+►Conceptually this is quite similar to console IO, but the ﬁne 
+details a bit diﬀerent.
+►To test a method/function that reads an input ﬁle:
+►The test code must setup (i.e. write) the input ﬁle beforehand.
+►To test a method/function that writes an output ﬁle:
+►The test code must verify (i.e. read) the output ﬁle afterwards.
+31/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+File Reading and Writing Syntax
+►The following set of slides show code for reading/writing ﬁles.
+►In Java, we’ll use PrintWriter and Scanner.
+►In Python, we’ll use the “with” statement, and open(), 
+write() and read().
+►There are other valid ways to do this.
+►There’s nothing special about these particular 
+reading/writing approaches.
+►Except that they’re reasonably short and easy to put into slide 
+form.
+►The most important thing is that you understand the concept
+of what is happening.
+32/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing with Input Files : Example 
+►Say we have another variation of findMax() called inputFileMax().
+►Instead of importing values, assume that it imports a text file and reads 
+values in it.
+►Test categories are the same.
+►It is better to indicate that we use simulated output here.
+Submodule inputFileMax
+Imports: inputfile.txt
+Exports: maximum (integer)
+This module reads value1(integer) and value2 (integer) from a text 
+file, which contains value 1 and value 2 in separate lines, one after 
+the other. After reading the values, the module determines the 
+highest out of value1 and value2, and returns the highest value.
+Category
+Test Data
+Expected Result
+value1 < value2
+file input : “10\n15"
+15
+value1 = value2
+file input: “5\n5”
+5
+value1 > value2
+file input : “10\n5”
+10
+33/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing with Input Files : Example test code
+►First, we create a ﬁle containing test data.
+►Then, we call the production code, which (in theory) 
+reads that ﬁle and thus gets the test data.
+►Let’s assume the production code takes a ﬁlename 
+parameter.
+►If so, this must be the same as the ﬁle we created.
+def testInputFileMax():
+with open("inputfile.txt", mode = "w") as inputFile:
+inputFile.write("10\n15") # <-- The test data
+assert 15 == MyUtils.inputFileMax("inputfile.txt")
+... # Other test cases
+Python
+34/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing with Input Files : Example test code
+►First, we create a ﬁle containing test data.
+►Then, we call the production code, which (in theory) 
+reads that ﬁle and thus gets the test data.
+►Let’s assume the production code takes a ﬁlename 
+parameter.
+►If so, this must be the same as the ﬁle we 
+created.
+Java
+public static void testInputFileMax()
+{
+PrintWriter inputFile = new
+PrintWriter("inputfile.txt"); 
+inputFile.println("10\n15"); // <-- The test data 
+inputFile.close();
+assert 15 == MyUtils.inputFileMax("inputfile.txt");
+... // Other test cases
+}
+35/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing with Output Files : : Example test code
+►First, we call the production code, which (in theory) 
+creates a ﬁle and writes a result to it.
+►Then, the test code reads that ﬁle, gets the result, and 
+runs it through an assertion.
+Python
+def testOutputFileMax():
+MyUtils.outputFileMax(10, 15, "output.txt")
+with open("output.txt") as outputFile:
+actual = outputFile.read().strip() # <-- Actual 
+assert "15" == actual
+# 
+result
+... # Other test cases
+36/51
+Submodule outputFileMax
+Imports: value1 (integer), value 2 (integer) 
+Exports: outputfile.txt
+This module accepts value1(integer) and value2 (integer) as parameters, determines 
+the highest out of value1 and value2, and writes the highest value to a text file.
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Testing with Output Files : : Example test code
+►First, we call the production code, which (in theory) 
+creates a ﬁle and writes a result to it.
+►Then, the test code reads that ﬁle, gets the result, and 
+runs it through an assertion.
+Java
+public static void testOutputFileMax()
+{
+MyUtils.outputFileMax(10, 15, "output.txt");
+Scanner outputFile = new Scanner(new File("output.txt")); 
+String actual = outputFile.nextLine(); // <-- Actual 
+assert "15".equals(actual);
+//
+result
+... // Other test cases
+}
+37/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Exceptions During Testing
+Exceptions during testing occur due to various reasons:
+►The test code itself is broken.
+►Maybe the “expected result” is incorrect.
+►Maybe you didn’t set up a test input ﬁle properly.
+►The production code gave the wrong result.
+►The test fails, as expected.
+►The production code unexpectedly threw an exception.
+►The test fails, but before we even get to the assert 
+statement.
+►The production code expectedly threw an exception.
+►Often the production code must throw an exception, 
+under certain circumstances.
+►So, the test code must check that it does.
+►Such a test should fail in the absence of an exception.
+38/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Handling Unexpected Exceptions
+►You could use a try-catch/except statement.
+►But in test code, it’s simpler to just pass-on the exception.
+►This will be interpreted as a test failure, as it should be.
+Python: nothing additional needs to be done! 
+Java: add a throws clause:
+.
+.
+.
+.
+.
+.
+.
+.
+public static void testThing()
+{
+...
+}
+ExceptionType is the particular kind of exception that the 
+production code might generate.
+throws ExceptionType
+39/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Handling Expected Exceptions
+►Remember formatTime()?
+►It returned "error"when passed invalid hours/minutes.
+►i.e., if we write 
+“actual = MyUtils.formatTime(12, -10)”,
+we should expect actualto be "error".
+►But, in the real world, it’s more likely to be designed to throw 
+an exception.
+►In this case, there is no string value at all, and by default the 
+exception means a test failure.
+►But this exception means the code actually works!
+►i.e. it successfully identiﬁes invalid values, and takes 
+appropriate action.
+►The test should only fail if there isn’t an exception.
+►How do we test for this?
+40/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Handling Expected Exceptions
+►We need to use a try statement to sort this out.
+►The test passes only if an exception makes the code 
+jump to the catch/except block.
+.
+.
+.
+.
+.
+.
+.
+.
+def testFormatTime():
+try:
+actual = MyUtils.formatTime(12, -10)
+assert False # Test fails if it reaches this point
+except ValueError:
+pass # Do nothing.
+... # Other test cases
+Python
+41/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Handling Expected Exceptions
+►We need to use a trystatement to sort this out.
+►The test passes only if an exception makes the code jump to 
+the catch/except block.
+public static void testFormatTime()
+{
+try
+{
+String actual = MyUtils.formatTime(12, -10);
+assert false; // Test fails if it reaches this point
+}
+catch(IllegalArgumentException e) {} // Do nothing.
+... // Other test cases
+}
+.
+.
+.
+.
+.
+.
+.
+.
+Java
+42/51
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+Test Fixtures
+►We’re now seen various situations where test cases are 
+written like this:
+1. Perform setting up.
+2. Call production code.
+3. Compare results.
+►And there’s one more step we sometimes have:
+4. Tear down: restore everything to its original state.
+For instance:
+►If the test code (or production code) created a ﬁle, we should 
+delete it afterwards.
+►If the test code redirected console input or output, it should 
+set it back afterwards.
+►The “setting up” and “tearing down” deﬁnes a test 
+ﬁxture:
+►Test fixture is a set of things in-place to make the test case 
+work, and to isolate the test case from external factors.
+43/51
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+Common Setting-Up and Tearing-Down
+►Multiple test cases often require at least some of the 
+same setting-up and tearing-down.
+►Some of the setting-up may be separate from providing 
+the test data.
+►Perhaps all test cases require the same console input, just 
+to make the production code work.
+►Or perhaps they all require the same ﬁle to exist.
+►Reuse applies to test code too! We don’t want to 
+repeat ourselves.
+►So, the convention is to have setUp() and tearDown() 
+helper method/functions.
+►These do all the common work to establish a test ﬁxture.
+►setUp() will be called immediately before every 
+test method/function.
+►tearDown() will be called immediately after.
+44/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Text Fixture Example – Without a Test Framework
+.
+.
+.
+.
+.
+.
+.
+.
+def setUp(): ...
+def testFunction1(): ...
+def testFunction2(): ...
+def tearDown(): ...
+if name == "__main__":
+setUp()
+testMethod1()
+tearDown()
+setUp()
+testMethod2()
+tearDown()
+Python
+45/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Text Fixture Example – Without a Test Framework
+public class TestSuite
+{
+public static void main(String[] args)
+{
+.
+.
+.
+.
+}
+.
+.
+.
+.
+setUp();
+testMethod1();
+tearDown(); 
+setUp();
+testMethod2();
+tearDown();
+}
+public static void setUp() { ... }
+public static void testMethod1() { ... } 
+public static void testMethod2() { ... }
+public static void tearDown() { ... }
+Java
+46/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+.
+.
+.
+.
+Test Fixtures in JUnit/unittest
+►JUnit understands methods that have @Before and @After
+annotations.
+►It doesn’t actually care what the names are.
+►Python’s unittest module looks for methods speciﬁcally 
+called setUp() and tearDown().
+►In either case, the framework will automatically:
+►Call the @Before/setUp() method before each test 
+method.
+►Call the @After/tearDown() method after each test 
+method.
+47/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Test Fixture Example – With a Test Framework
+.
+.
+.
+.
+.
+.
+.
+.
+import unittest
+class TestSuite(unittest.TestCase):
+def setUp(self): ...
+def testMethod1(self): ...
+def testMethod2(self): ...
+def tearDown(self): ...
+Python
+48/51
+
+
+===== PAGE BREAK =====
+
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+Test Fixture Example – With a Test Framework
+@RunWith(JUnit4.class) public class TestSuite
+{
+@Before
+public void setUp() { ... }
+@Test
+public void testMethod1() { ... }
+@Test
+public void testMethod2() { ... }
+@After
+public void tearDown() { ... }
+}
+.
+.
+.
+.
+.
+.
+.
+.
+Java
+49/51
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+Summary
+►Methods/functions can get data from different streams other than 
+parameter values, such as user input via keyboard, file input etc.
+►Similarly, output also can be directed to screen or saved to text files 
+instead of returning a value as the result of the function/method.
+►Test code need to  simulate such inputs and capture such outputs to 
+assert the outcomes of the production code with different 
+input/output streams
+►Exceptions in production code may mean that some expected error 
+has  occurred and it means the code is working correctly. Therefore, if 
+no exception is raised , then the test code needs to consider that as a 
+failed test.
+►Simulated test inputs and output capturing methods needs to be set -
+up before calling the production code. After the test code is run, set-up 
+code  needs to be tear-down. Test fixture is the term used for this 
+process.
+50/51
+
+
+===== PAGE BREAK =====
+
+.
+.
+.
+.
+Inputs and Outputs
+Files
+Exceptions
+Test Fixtures
+White Box Testing
+.
+.
+.
+.
+That’s all for now!
+Your assignment is announced now.
+Practical work assessment 3 will be held this week.
+Lab: Testing 8B and Testing 9 
+Next week 
+-
+Lecture :   White Box Testing ( last lecture before any 
+revision sessions) 
+Lab  : More on Testing
+51/51

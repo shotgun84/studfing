@@ -851,5 +851,810 @@
     }
    ]
   }
+ ],
+ "testing-overview": [
+  {
+   "id": "fault-failure-loop",
+   "type": "diagram",
+   "title": "From fault to fix: the testing loop",
+   "what": "Testing deliberately triggers failures, traces them to faults, and verifies the fix by re-running.",
+   "caption": "Each failure is a clue. The loop only closes when the same test passes after the fix.",
+   "alt": "Diagram with nodes for fault, failure, debug and re-test in a loop.",
+   "links": [
+    "equivalence-partitioning",
+    "test-code-assertions"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+     "locator": "PDF pp. 6-10"
+    }
+   ],
+   "canvas": {
+    "w": 620,
+    "h": 240
+   },
+   "nodes": [
+    {
+     "id": "f",
+     "lines": [
+      "Fault",
+      "mistake in code"
+     ],
+     "x": 20,
+     "y": 80,
+     "w": 130
+    },
+    {
+     "id": "t",
+     "lines": [
+      "Test runs",
+      "triggers failure"
+     ],
+     "x": 180,
+     "y": 80,
+     "w": 130
+    },
+    {
+     "id": "d",
+     "lines": [
+      "Debug",
+      "fault -> fix"
+     ],
+     "x": 340,
+     "y": 80,
+     "w": 130
+    },
+    {
+     "id": "r",
+     "lines": [
+      "Re-run",
+      "repeatable pass"
+     ],
+     "x": 490,
+     "y": 80,
+     "w": 110
+    }
+   ],
+   "edges": [
+    {
+     "from": "f",
+     "to": "t",
+     "label": "causes"
+    },
+    {
+     "from": "t",
+     "to": "d",
+     "label": "trace"
+    },
+    {
+     "from": "d",
+     "to": "r",
+     "label": "fix"
+    },
+    {
+     "from": "r",
+     "to": "f",
+     "label": "verify"
+    }
+   ]
+  },
+  {
+   "id": "black-white-compare",
+   "type": "compare",
+   "title": "Black-box versus white-box",
+   "what": "Same goal, different source of test cases: the specification versus the code.",
+   "caption": "Black-box is stable across rewrites; white-box sees what black-box can only guess.",
+   "alt": "Side-by-side comparison of black-box and white-box testing.",
+   "links": [
+    "white-box-paths",
+    "equivalence-partitioning"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+     "locator": "PDF pp. 19-22"
+    }
+   ],
+   "left": {
+    "title": "Black-box",
+    "tag": "from the spec",
+    "points": [
+     "No code access needed",
+     "Writable before code exists",
+     "Survives algorithm changes",
+     "May miss hidden behaviours"
+    ]
+   },
+   "right": {
+    "title": "White-box",
+    "tag": "from the code",
+    "points": [
+     "Reads paths in the code",
+     "Finds defects spec tests miss",
+     "Must change with the code",
+     "Shows real decisions"
+    ]
+   },
+   "why": "Pick black-box for early, stable tests; add white-box when the code hides decisions the spec never mentions."
+  }
+ ],
+ "equivalence-partitioning": [
+  {
+   "id": "ep-recipe",
+   "type": "steps",
+   "title": "The EP recipe in four steps",
+   "what": "From specification sentence to executable cases without drowning in values.",
+   "caption": "One category, one case: that discipline is the whole technique.",
+   "alt": "Four ordered steps for equivalence partitioning.",
+   "links": [
+    "boundary-value-analysis",
+    "test-code-assertions"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+     "locator": "PDF pp. 23-28"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Read the spec",
+     "text": "Find what the unit must do differently for different inputs."
+    },
+    {
+     "title": "Name categories",
+     "text": "Write them as ranges (0 <= x < 24); include error categories."
+    },
+    {
+     "title": "One case each",
+     "text": "Check completeness, no OR, no overlap, no syntax tests."
+    },
+    {
+     "title": "Data + expected",
+     "text": "Choose concrete inputs and calculate each expected result."
+    }
+   ]
+  },
+  {
+   "id": "sign-categories",
+   "type": "diagram",
+   "title": "Categories on a number line: sign",
+   "what": "Three behaviours, three categories, three test cases.",
+   "caption": "The number line makes completeness obvious: every value lands somewhere.",
+   "alt": "Number line split into negative, zero and positive regions.",
+   "links": [
+    "boundary-value-analysis"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+     "locator": "PDF pp. 25-26"
+    }
+   ],
+   "canvas": {
+    "w": 620,
+    "h": 200
+   },
+   "nodes": [
+    {
+     "id": "n",
+     "lines": [
+      "n < 0",
+      "-5 -> -1"
+     ],
+     "x": 20,
+     "y": 70,
+     "w": 150,
+     "tone": "amber"
+    },
+    {
+     "id": "z",
+     "lines": [
+      "n = 0",
+      "0 -> 0"
+     ],
+     "x": 235,
+     "y": 70,
+     "w": 150,
+     "tone": "amber"
+    },
+    {
+     "id": "p",
+     "lines": [
+      "n > 0",
+      "5 -> 1"
+     ],
+     "x": 450,
+     "y": 70,
+     "w": 150,
+     "tone": "amber"
+    }
+   ],
+   "edges": [
+    {
+     "from": "n",
+     "to": "z"
+    },
+    {
+     "from": "z",
+     "to": "p"
+    }
+   ]
+  }
+ ],
+ "boundary-value-analysis": [
+  {
+   "id": "discount-line",
+   "type": "diagram",
+   "title": "Discount boundaries on the number line",
+   "what": "Three boundaries, six test values: both sides of every edge.",
+   "caption": "A fault can hide on either side, so each boundary donates two values.",
+   "alt": "Number line with invalid, 0, 15 and 25 percent zones and six marked test values.",
+   "links": [
+    "equivalence-partitioning",
+    "test-code-assertions"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+     "locator": "PDF pp. 39-40"
+    }
+   ],
+   "canvas": {
+    "w": 620,
+    "h": 220
+   },
+   "nodes": [
+    {
+     "id": "a",
+     "lines": [
+      "invalid",
+      "-1 -> -1.0"
+     ],
+     "x": 10,
+     "y": 80,
+     "w": 130
+    },
+    {
+     "id": "b",
+     "lines": [
+      "0%",
+      "0, 2 -> 0.0"
+     ],
+     "x": 165,
+     "y": 80,
+     "w": 130
+    },
+    {
+     "id": "c",
+     "lines": [
+      "15%",
+      "3, 8 -> 0.15"
+     ],
+     "x": 320,
+     "y": 80,
+     "w": 130
+    },
+    {
+     "id": "d",
+     "lines": [
+      "25%",
+      "9 -> 0.25"
+     ],
+     "x": 475,
+     "y": 80,
+     "w": 130
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "0 boundary"
+    },
+    {
+     "from": "b",
+     "to": "c",
+     "label": "3 boundary"
+    },
+    {
+     "from": "c",
+     "to": "d",
+     "label": "9 boundary"
+    }
+   ]
+  }
+ ],
+ "test-code-assertions": [
+  {
+   "id": "assert-workflow",
+   "type": "steps",
+   "title": "From case to green suite",
+   "what": "The five moves every test method performs.",
+   "caption": "Call, compare, message: repeat per case, then run the whole suite.",
+   "alt": "Five ordered steps from calling production to running the suite.",
+   "links": [
+    "io-exceptions-fixtures"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+     "locator": "PDF pp. 42-52"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Call",
+     "text": "Invoke production with the planned test data."
+    },
+    {
+     "title": "Compare",
+     "text": "Assert actual versus expected (tolerance for reals)."
+    },
+    {
+     "title": "Message",
+     "text": "Name the case in the message so failures locate themselves."
+    },
+    {
+     "title": "Repeat",
+     "text": "Cover every case; drive bulk cases from arrays."
+    },
+    {
+     "title": "Run",
+     "text": "Python runs directly; Java needs -ea or asserts sleep."
+    }
+   ]
+  },
+  {
+   "id": "assert-compare",
+   "type": "compare",
+   "title": "Assertions: Python versus Java",
+   "what": "Same ideas, different spelling and one famous trap.",
+   "caption": "Learn the -ea trap once and never lose marks to it again.",
+   "alt": "Comparison of assertion forms in Python and Java.",
+   "links": [
+    "io-exceptions-fixtures"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
+     "locator": "PDF pp. 44-50"
+    }
+   ],
+   "left": {
+    "title": "Python",
+    "tag": "assert cond, msg",
+    "points": [
+     "assert 20 == actual, 'a<b'",
+     "Booleans: assert x / assert not y",
+     "Reals: assert abs(x-y) < 1e-6",
+     "Run: python TestSuite.py"
+    ]
+   },
+   "right": {
+    "title": "Java",
+    "tag": "assert cond : msg",
+    "points": [
+     "assert 20 == actual : 'a<b';",
+     "Strings: assert x.equals(y);",
+     "Reals: Math.abs(x-y) < 1e-6",
+     "Run: java -ea TestSuite"
+    ]
+   },
+   "why": "The trap is Java without -ea: assertions silently do nothing and broken code passes."
+  }
+ ],
+ "io-exceptions-fixtures": [
+  {
+   "id": "redirect-picture",
+   "type": "diagram",
+   "title": "Redirecting the console for tests",
+   "what": "Fake keyboards and capture buffers sit between the test and production.",
+   "caption": "Production cannot tell it is talking to test doubles.",
+   "alt": "Diagram of input simulation and output capture around production code.",
+   "links": [
+    "test-code-assertions",
+    "white-box-paths"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+     "locator": "PDF pp. 14-30"
+    }
+   ],
+   "canvas": {
+    "w": 620,
+    "h": 240
+   },
+   "nodes": [
+    {
+     "id": "i",
+     "lines": [
+      "Scripted input",
+      "'10\\n20'"
+     ],
+     "x": 20,
+     "y": 80,
+     "w": 130
+    },
+    {
+     "id": "p",
+     "lines": [
+      "Production",
+      "reads / prints"
+     ],
+     "x": 245,
+     "y": 80,
+     "w": 130
+    },
+    {
+     "id": "o",
+     "lines": [
+      "Capture buffer",
+      "assert text"
+     ],
+     "x": 470,
+     "y": 80,
+     "w": 130
+    }
+   ],
+   "edges": [
+    {
+     "from": "i",
+     "to": "p",
+     "label": "setIn"
+    },
+    {
+     "from": "p",
+     "to": "o",
+     "label": "setOut"
+    }
+   ]
+  },
+  {
+   "id": "fixture-lifecycle",
+   "type": "steps",
+   "title": "The fixture lifecycle",
+   "what": "Isolation by construction: every test builds its world and cleans it up.",
+   "caption": "Setup, call, verify, tear down: skip the last step and tests start polluting each other.",
+   "alt": "Four ordered steps of fixture setup and teardown.",
+   "links": [
+    "white-box-paths"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture9_ InputMethods_TestFixtures_1pp_2025S1.pdf",
+     "locator": "PDF pp. 43-49"
+    }
+   ],
+   "steps": [
+    {
+     "title": "setUp",
+     "text": "Redirect streams, create input files before every test."
+    },
+    {
+     "title": "Call",
+     "text": "Run production with the planned data."
+    },
+    {
+     "title": "Verify",
+     "text": "Assert returns, exceptions, console text or file text."
+    },
+    {
+     "title": "tearDown",
+     "text": "Restore streams, delete scratch files after every test."
+    }
+   ]
+  }
+ ],
+ "white-box-paths": [
+  {
+   "id": "myabs-paths",
+   "type": "diagram",
+   "title": "Two paths through myAbs",
+   "what": "Enter the if or skip it: the only two ways through.",
+   "caption": "Every path becomes a row in the test table.",
+   "alt": "Diagram of enter-if versus skip-if paths.",
+   "links": [
+    "equivalence-partitioning"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+     "locator": "PDF pp. 11-13"
+    }
+   ],
+   "canvas": {
+    "w": 620,
+    "h": 220
+   },
+   "nodes": [
+    {
+     "id": "s",
+     "lines": [
+      "start",
+      "n arrives"
+     ],
+     "x": 245,
+     "y": 10,
+     "w": 130
+    },
+    {
+     "id": "e",
+     "lines": [
+      "enter if",
+      "n=-5 -> 5"
+     ],
+     "x": 60,
+     "y": 110,
+     "w": 150,
+     "tone": "amber"
+    },
+    {
+     "id": "k",
+     "lines": [
+      "skip if",
+      "n=10 -> 10"
+     ],
+     "x": 410,
+     "y": 110,
+     "w": 150,
+     "tone": "amber"
+    }
+   ],
+   "edges": [
+    {
+     "from": "s",
+     "to": "e",
+     "label": "n<0"
+    },
+    {
+     "from": "s",
+     "to": "k",
+     "label": "else"
+    }
+   ]
+  },
+  {
+   "id": "wb-bb-compare",
+   "type": "compare",
+   "title": "Choosing: black-box or white-box?",
+   "what": "Stability and timing versus visibility into real decisions.",
+   "caption": "Use both: black-box for the contract, white-box for the code.",
+   "alt": "Comparison of when to choose black-box versus white-box.",
+   "links": [
+    "testing-overview",
+    "io-exceptions-fixtures"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture10_ WhiteBox_Testing_1pp_2024S1.pdf",
+     "locator": "PDF pp. 31-33"
+    }
+   ],
+   "left": {
+    "title": "Black-box wins when",
+    "tag": "contract first",
+    "points": [
+     "Code does not exist yet",
+     "Algorithms change often",
+     "Testers know less code",
+     "You test the promise"
+    ]
+   },
+   "right": {
+    "title": "White-box wins when",
+    "tag": "code first",
+    "points": [
+     "Spec hides real decisions",
+     "Paths outnumber categories",
+     "You chase hidden defects",
+     "You accept test maintenance"
+    ]
+   },
+   "why": "zeroOrLargest proves the point: 4 spec categories but only 3 code paths."
+  }
+ ],
+ "version-control-git": [
+  {
+   "id": "four-places",
+   "type": "diagram",
+   "title": "The four places Git work flows through",
+   "what": "Checkout, stage, commit, push, pull: one loop for all daily work.",
+   "caption": "Learn these six arrows and every Git command has a home.",
+   "alt": "Diagram of working directory, staging area, local and remote repositories with arrows.",
+   "links": [
+    "modularity-coupling-cohesion"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
+     "locator": "PDF pp. 13-16"
+    }
+   ],
+   "canvas": {
+    "w": 620,
+    "h": 260
+   },
+   "nodes": [
+    {
+     "id": "w",
+     "lines": [
+      "Working dir",
+      "you edit here"
+     ],
+     "x": 10,
+     "y": 90,
+     "w": 130
+    },
+    {
+     "id": "s",
+     "lines": [
+      "Staging area",
+      "git add"
+     ],
+     "x": 170,
+     "y": 90,
+     "w": 130
+    },
+    {
+     "id": "l",
+     "lines": [
+      "Local repo",
+      "git commit"
+     ],
+     "x": 330,
+     "y": 90,
+     "w": 130
+    },
+    {
+     "id": "r",
+     "lines": [
+      "Remote repo",
+      "git push/pull"
+     ],
+     "x": 485,
+     "y": 90,
+     "w": 125
+    }
+   ],
+   "edges": [
+    {
+     "from": "w",
+     "to": "s",
+     "label": "add"
+    },
+    {
+     "from": "s",
+     "to": "l",
+     "label": "commit"
+    },
+    {
+     "from": "l",
+     "to": "r",
+     "label": "push"
+    },
+    {
+     "from": "r",
+     "to": "w",
+     "label": "pull/clone"
+    }
+   ]
+  },
+  {
+   "id": "vcs-compare",
+   "type": "compare",
+   "title": "Local, centralised, distributed: pick your trade",
+   "what": "Where history lives decides what breaks and who can work offline.",
+   "caption": "Interviews love this table; so do exam questions about single points of failure.",
+   "alt": "Comparison of local, centralised and distributed version control.",
+   "links": [
+    "agile-processes"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
+     "locator": "PDF pp. 8-10"
+    }
+   ],
+   "left": {
+    "title": "Centralised (SVN)",
+    "tag": "one server",
+    "points": [
+     "Easy to administer",
+     "File locking built in",
+     "Server down = everyone stops",
+     "Needs connection to commit"
+    ]
+   },
+   "right": {
+    "title": "Distributed (Git)",
+    "tag": "every clone",
+    "points": [
+     "Full history everywhere",
+     "Commit offline freely",
+     "No single point of failure",
+     "Needs branching discipline"
+    ]
+   },
+   "why": "Git trades a little discipline for a lot of resilience; that trade is the whole reason teams chose it."
+  }
+ ],
+ "modularity-coupling-cohesion": [
+  {
+   "id": "smell-fix",
+   "type": "compare",
+   "title": "Smelly versus clean: globals and flags",
+   "what": "The two fastest wins in any codebase review.",
+   "caption": "If a question shows globals or a Boolean mode flag, you already know the answer.",
+   "alt": "Comparison of smelly and clean module designs.",
+   "links": [
+    "version-control-git",
+    "test-code-assertions"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+     "locator": "PDF pp. 26-45"
+    }
+   ],
+   "left": {
+    "title": "Smelly",
+    "tag": "tightly coupled",
+    "points": [
+     "Global x shared invisibly",
+     "formatTimeDate(..., isDate)",
+     "Caller knows internals",
+     "Untestable in isolation"
+    ]
+   },
+   "right": {
+    "title": "Clean",
+    "tag": "loosely coupled",
+    "points": [
+     "square(x) returns x*x",
+     "formatDate + formatTime",
+     "Caller passes data only",
+     "Each piece testable alone"
+    ]
+   },
+   "why": "Parameters in, results out: the boring fix that removes whole classes of faults."
+  },
+  {
+   "id": "cohesion-ladder",
+   "type": "steps",
+   "title": "The cohesion ladder: from split to merge",
+   "what": "Judge what belongs together before you touch the code.",
+   "caption": "Move down the ladder by splitting; only merge what is truly one task.",
+   "alt": "Four ordered steps of cohesion judgement.",
+   "links": [
+    "functional-requirements"
+   ],
+   "cites": [
+    {
+     "source": "learnming materials v2/Lecture7_Modularity_1pp_2024_S1_V1.pdf",
+     "locator": "PDF pp. 46-60"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Unrelated?",
+     "text": "Split immediately into separate modules."
+    },
+    {
+     "title": "Name or time only?",
+     "text": "Suspicious: sequential tasks often split well."
+    },
+    {
+     "title": "Shared data?",
+     "text": "Look closer: data coupling hides joint changes."
+    },
+    {
+     "title": "One job?",
+     "text": "Keep together and reuse as a unit."
+    }
+   ]
+  }
  ]
 }
