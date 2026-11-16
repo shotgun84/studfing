@@ -1012,8 +1012,8 @@
      "text": "side"
     },
     {
-     "id": "c",
-     "text": "category"
+     "id": "q",
+     "text": "quickly"
     },
     {
      "id": "o",
@@ -1048,14 +1048,14 @@
    "prompt": "Why do faults cluster at boundaries?",
    "options": [
     "Off-by-one mistakes (>, >=, missing +1/-1)",
-    "Compilers skip boundary code",
-    "Boundaries run more slowly",
+    "Edge inputs are exercised less often in practice",
+    "Testing middle-of-range values is sufficient",
     "Tests avoid the middle"
    ],
    "answerIndex": 0,
    "distractor": {
-    "1": "The compiler treats all code uniformly.",
-    "2": "Speed has nothing to do with it.",
+    "1": "Frequency of use does not cause the faults \u2014 off-by-one logic does.",
+    "2": "Middles pass even with off-by-one faults; only edge values expose them.",
     "3": "Tests should cover the middle too, but edges catch more."
    },
    "explanation": "Classic slips are > versus >=, a forgotten -1/+1, or a counter started at 1 instead of 0; only edge values expose them.",
@@ -1210,7 +1210,8 @@
    "tiles": [
     {
      "id": "t",
-     "text": "two"
+     "text": "two",
+     "reusable": true
     },
     {
      "id": "o",
@@ -1271,7 +1272,7 @@
    "type": "order",
    "tag": "sequence",
    "prompt": "Put the daily Git loop in order.",
-   "instructions": "Drag the rows into the correct sequence.",
+   "instructions": "Follow the four-places loop in order, starting from editing:",
    "items": [
     {
      "id": "s1",
@@ -1360,7 +1361,7 @@
     },
     {
      "id": "s",
-     "label": "Split into two functions"
+     "label": "Split flag into formatDate + formatTime"
     },
     {
      "id": "d",

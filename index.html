@@ -1,80 +1,93 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meridian — ISAD1000 Personal Wikipedia</title>
-<meta name="description" content="Your ISAD1000 course as an interconnected encyclopedia for midterm preparation.">
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/static/styles.css">
-<link rel="stylesheet" href="/static/visuals.css">
-<link rel="stylesheet" href="/static/activities.css">
-<link rel="stylesheet" href="/static/library.css">
+<title>Meridian — ISAD1000 study workspace</title>
+<meta name="description" content="Study ISAD1000 Introduction to Software Engineering: articles, practice questions, past papers and the original course materials in one place.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23FFE14A'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%2314213D' stroke-width='2.4'/%3E%3Cellipse cx='16' cy='16' rx='3.6' ry='9' fill='none' stroke='%2314213D' stroke-width='2.4'/%3E%3C/svg%3E">
+<script>
+/* set the theme before first paint so there is no flash */
+(function () {
+  var t = null;
+  try { t = localStorage.getItem("meridian-theme"); } catch (e) {}
+  if (t !== "light" && t !== "dark")
+    t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  document.documentElement.dataset.theme = t;
+})();
+</script>
+<link rel="preload" href="static/fonts/bricolage-grotesque-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="static/styles.css">
+<link rel="stylesheet" href="static/visuals.css">
+<link rel="stylesheet" href="static/activities.css">
+<link rel="stylesheet" href="static/library.css">
 </head>
-<body>
-<a class="skip" href="#main">Skip to article</a>
+<body class="norail">
+<a class="skip" href="#main">Skip to content</a>
 <div class="progress" id="readProgress" aria-hidden="true"><span></span></div>
 
 <header class="topbar" role="banner">
-  <button class="iconbtn only-mobile" id="navToggle" aria-label="Open navigation">☰</button>
+  <button class="iconbtn only-mobile" id="navToggle" aria-label="Open navigation"><i data-icon="menu"></i></button>
   <a class="brand" href="#/" aria-label="Meridian home">
-    <span class="brand-mark" aria-hidden="true">◈</span>
-    <span class="brand-name">Meridian <em>ISAD1000</em></span>
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><circle cx="16" cy="16" r="9"/><ellipse cx="16" cy="16" rx="3.6" ry="9"/></svg>
+    <span class="brand-name">Meridian</span>
+    <span class="brand-sub">ISAD1000</span>
   </a>
-  <div class="searchwrap" role="search">
-    <span class="searchkey" aria-hidden="true">⌕</span>
-    <input id="searchInput" type="search" placeholder="Search articles, questions, slides…  (Ctrl+K)" aria-label="Search the encyclopedia" autocomplete="off">
-    <kbd>Ctrl K</kbd>
-  </div>
-  <nav class="topactions" aria-label="Quick actions">
-    <button class="btn ghost" id="surpriseBtn" title="Open a random concept">⚄ Surprise me</button>
-    <button class="iconbtn" id="readingBtn" title="Toggle distraction-free reading mode" aria-label="Reading mode">◐</button>
-    <button class="iconbtn" id="themeBtn" title="Toggle light / dark" aria-label="Theme">◑</button>
+  <button class="searchbtn" id="searchBtn" type="button" aria-label="Search topics, questions and slides">
+    <i data-icon="search"></i><span>Search topics, questions, slides</span><kbd>Ctrl K</kbd>
+  </button>
+  <nav class="topactions" aria-label="Display">
+    <button class="iconbtn" id="readingBtn" title="Hide the sidebars" aria-label="Hide the sidebars" aria-pressed="false"><i data-icon="panel"></i></button>
+    <button class="iconbtn" id="themeBtn" title="Switch between light and dark" aria-label="Switch between light and dark"><i data-icon="theme"></i></button>
   </nav>
 </header>
 
 <div class="palette" id="palette" hidden>
-  <div class="palette-box" role="dialog" aria-label="Search results">
+  <div class="palette-box" role="dialog" aria-label="Search">
     <div class="palette-top">
-      <input id="paletteInput" type="search" placeholder="Type to search…" aria-label="Search" autocomplete="off">
-      <button class="iconbtn" id="paletteClose" aria-label="Close search">✕</button>
+      <i data-icon="search"></i>
+      <input id="paletteInput" type="search" placeholder="Search topics, questions, slides" aria-label="Search" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="paletteList" aria-autocomplete="list">
+      <button class="iconbtn" id="paletteClose" aria-label="Close search"><i data-icon="close"></i></button>
     </div>
-    <ol id="paletteList" class="palette-list"></ol>
-    <p class="palette-hint">↑↓ navigate · Enter open · Esc close</p>
+    <ol id="paletteList" class="palette-list" role="listbox" aria-label="Search results"></ol>
+    <p class="palette-hint"><kbd>↑</kbd><kbd>↓</kbd> move <kbd>Enter</kbd> open <kbd>Esc</kbd> close</p>
   </div>
 </div>
 
+<div class="scrim" id="scrim"></div>
 <div class="shell">
-    <aside class="rail left" id="leftRail" aria-label="Course navigation">
-    <a class="libtop" href="#/library" title="Open the Learning materials library">📚 Learning materials</a>
-    <div class="rail-head"><span>Contents</span><button class="iconbtn only-mobile" id="navClose" aria-label="Close navigation">✕</button></div>
-    <nav id="sideNav"></nav>
-    <div class="rail-foot">
-      <a href="#/questions">❖ Question bank</a>
-      <a href="#/graph">◈ Concept graph</a>
-      <a href="#/review">↻ Review queue <b id="reviewCount"></b></a>
-      <a href="#/study">▶ Study mode</a>
-    </div>
+  <aside class="rail left" id="leftRail" aria-label="Navigation">
+    <nav class="mainnav" id="mainNav" aria-label="Main">
+      <a href="#/" data-route="home"><i data-icon="home"></i><span>Home</span></a>
+      <a href="#/study" data-route="study"><i data-icon="cards"></i><span>Study session</span></a>
+      <a href="#/questions" data-route="questions"><i data-icon="list"></i><span>Question bank</span></a>
+      <a href="#/review" data-route="review"><i data-icon="refresh"></i><span>Review</span><b id="reviewCount"></b></a>
+      <a href="#/library" data-route="library"><i data-icon="book"></i><span>Library</span></a>
+      <a href="#/graph" data-route="graph"><i data-icon="graph"></i><span>Concept map</span></a>
+    </nav>
+    <div class="rail-head"><span>Topics</span><span id="navProgress"></span></div>
+    <nav id="sideNav" aria-label="Topics"></nav>
   </aside>
 
   <main id="main" tabindex="-1">
-    <div id="view"></div>
+    <div id="view"><p class="loading">Loading your course…</p></div>
     <footer class="colophon">
-      <p>Meridian · a personal encyclopedia for <b>ISAD1000/ISAD5004 Introduction to Software Engineering</b> midterms.
-      Built from your lectures, worksheets and past papers — every claim cites its source.
-      <span id="buildStats"></span></p>
+      <p><b>Meridian</b> is a study workspace for ISAD1000/ISAD5004 Introduction to Software Engineering,
+      built from the course lectures, worksheets and past papers. Every article cites its source.
+      Your progress is saved in this browser only. <span id="buildStats"></span></p>
     </footer>
   </main>
 
-  <aside class="rail right" id="rightRail" aria-label="Article context"></aside>
+  <aside class="rail right" id="rightRail" aria-label="On this page"></aside>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="/static/static.js" defer></script>
-<script src="/static/app.js" defer></script>
-<script src="/static/visuals.js" defer></script>
-<script src="/static/activity_core.js" defer></script>
-<script src="/static/activities.js" defer></script>
-<script src="/static/library.js" defer></script>
+<script src="static/static.js" defer></script>
+<script src="static/app.js" defer></script>
+<script src="static/visuals.js" defer></script>
+<script src="static/activity_core.js" defer></script>
+<script src="static/activities.js" defer></script>
+<script src="static/library.js" defer></script>
 </body>
 </html>

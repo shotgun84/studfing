@@ -1,10 +1,11 @@
 /* Meridian activities — embedded interactive learning. Matches encyclopedia theme. */
-.activity{border:1px solid var(--line2);border-radius:.7rem;background:var(--panel);
-  margin:1.1rem 0;font-family:var(--sans);break-inside:avoid}
+.activity{border:1px solid var(--line);border-radius:.8rem;background:var(--panel);
+  margin:1.4rem 0;font-family:var(--sans);font-size:1rem;line-height:1.5;break-inside:avoid}
 .ahead{display:flex;gap:.6rem;align-items:flex-start;padding:.6rem .9rem;border-bottom:1px solid var(--line)}
-.ahead h3{margin:0;font-size:.95rem;font-weight:650;flex:1}
-.atag{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);
-  border:1px solid var(--amber);border-radius:.35rem;padding:.1rem .45rem;white-space:nowrap;margin-top:.15rem}
+#view .ahead h3,.ahead h3{margin:0;font-size:1rem;font-weight:650;flex:1;line-height:1.35}
+.atag{font-size:.74rem;font-weight:650;color:var(--accent);background:var(--accent-soft);
+  border-radius:2rem;padding:.12rem .6rem;white-space:nowrap;margin-top:.1rem}
+.atag::first-letter{text-transform:uppercase}
 .atools{display:flex;gap:.3rem;margin-left:auto}
 .atools .iconbtn{min-width:1.8rem;height:1.8rem;font-size:.9rem}
 .awhat{padding:.4rem .9rem 0;color:var(--muted);font-size:.85rem;margin:0}
@@ -22,7 +23,7 @@
 .afoot a{color:var(--link-dim);text-decoration:none;font-size:.78rem}
 .astatus.done{color:var(--green)}
 .aopts{display:flex;flex-direction:column;gap:.4rem}
-.aopts .opt,.mcq .opt{text-align:left;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);
+.aopts .opt,.mcq .opt{text-align:left;background:var(--bg);border:1px solid var(--line2);color:var(--ink);
   border-radius:.5rem;padding:.5rem .7rem;font:inherit;font-size:.9rem;cursor:pointer;width:100%}
 .aopts .opt:hover:not(:disabled){border-color:var(--amber)}
 .aopts .opt:disabled{cursor:default}
@@ -60,7 +61,7 @@
 .orow.wrong .omark{color:var(--red)}
 .dropgap{list-style:none;border:2px dashed var(--amber);border-radius:.5rem;background:color-mix(in srgb,var(--amber) 10%,transparent)}
 .draghost{position:fixed;z-index:200;pointer-events:none;background:var(--panel);border:1px solid var(--amber);
-  border-radius:.45rem;padding:.35rem .7rem;font-size:.85rem;box-shadow:0 8px 24px rgba(0,0,0,.5);opacity:.95;max-width:60vw}
+  border-radius:.45rem;padding:.35rem .7rem;font-size:.85rem;box-shadow:var(--shadow);opacity:.95;max-width:60vw}
 body.dragging{user-select:none;-webkit-user-select:none}
 body.dragging .orow,body.dragging .tile{cursor:grabbing}
 /* match */
@@ -103,13 +104,12 @@ body.dragging .orow,body.dragging .tile{cursor:grabbing}
 .cline code{font-family:var(--mono);font-size:.84rem;white-space:pre-wrap}
 .cline.right{border-color:var(--green)}
 .cline.wrong{border-color:var(--red)}
-.codeblock{background:#0b0c0e;border:1px solid var(--line);border-radius:.5rem;padding:.7rem .9rem;overflow:auto}
-[data-theme="light"] .codeblock{background:#1a1d23;color:#e8e6e1}
+.codeblock{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:.5rem;padding:.7rem .9rem;overflow:auto}
 .shortrow{display:flex;gap:.5rem}
 .shortin{flex:1;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);border-radius:.45rem;
   padding:.5rem .7rem;font:inherit;font-size:.9rem;min-width:0}
 /* trees */
-.tprog{font-size:.76rem;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem}
+.tprog{font-size:.8rem;color:var(--faint);margin-bottom:.3rem}
 .tnode p{font-size:.92rem}
 .tnode.tin{animation:tin .22s ease}
 @keyframes tin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -118,7 +118,7 @@ body.dragging .orow,body.dragging .tile{cursor:grabbing}
   padding:.15rem .6rem;font:inherit;font-size:.78rem;cursor:pointer}
 .tback:hover{border-color:var(--amber);color:var(--ink)}
 .adebrief{margin:.5rem 0;padding:.55rem .8rem;border:1px solid var(--line2);border-radius:.5rem;background:var(--bg2);font-size:.88rem}
-.adebrief h4{margin:.1rem 0 .3rem;color:var(--amber)}
+.adebrief h4{margin:.1rem 0 .3rem;color:var(--ink)}
 .adebrief ul{margin:.3rem 0;padding-left:1.1rem}
 .sr-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (prefers-reduced-motion:reduce){.tnode.tin{animation:none}.orow{transition:none !important}}

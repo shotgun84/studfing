@@ -1,8 +1,8 @@
 
 /* ===== Meridian visuals: diagrams, charts, graph, modal, scrollbars ===== */
 /* themed scrollbars */
-:root{--scroll:#3a3e46;--scroll-h:#565b65}
-[data-theme="light"]{--scroll:#c9c2b2;--scroll-h:#a89f8a}
+:root{--scroll:#c3cad8;--scroll-h:#9ea8bd}
+[data-theme="dark"]{--scroll:#35436a;--scroll-h:#4a5a88}
 *{scrollbar-width:thin;scrollbar-color:var(--scroll) transparent}
 *::-webkit-scrollbar{width:10px;height:10px}
 *::-webkit-scrollbar-track{background:transparent}
@@ -11,24 +11,26 @@
 *::-webkit-scrollbar-corner{background:transparent}
 
 /* visual frame */
-.visual{border:1px solid var(--line2);border-radius:.7rem;background:var(--panel);
-  margin:1.1rem 0;overflow:hidden;font-family:var(--sans)}
+.visual{border:1px solid var(--line);border-radius:.8rem;background:var(--panel);
+  margin:1.4rem 0;overflow:hidden;font-family:var(--sans);font-size:1rem;line-height:1.5}
 .v-head{display:flex;justify-content:space-between;align-items:center;gap:.5rem;
   padding:.6rem .9rem;border-bottom:1px solid var(--line)}
-.v-head h3{margin:0;font-size:.98rem;font-weight:650}
+#view .v-head h3,.v-head h3{margin:0;font-size:1rem;font-weight:650}
 .v-tools{display:flex;gap:.3rem}
 .v-tools .iconbtn{min-width:1.8rem;height:1.8rem;font-size:.95rem}
 .v-what{padding:.5rem .9rem 0;color:var(--muted);font-size:.87rem;margin:0}
 .v-body{padding:.6rem .9rem}
-.v-cap{padding:.1rem .9rem;color:var(--muted);font-size:.82rem;font-style:italic;margin:.2rem 0}
+.v-cap{padding:.1rem .9rem;color:var(--muted);font-size:.84rem;margin:.2rem 0 .6rem}
 .v-note{font-size:.8rem;color:var(--faint);margin:.4rem 0}
 .v-why{margin:.5rem 0 0;padding:.5rem .7rem;border-left:3px solid var(--green);
   background:var(--bg2);font-size:.86rem}
 .v-foot{display:flex;flex-wrap:wrap;gap:.4rem .9rem;padding:.5rem .9rem;border-top:1px solid var(--line);
-  font-size:.76rem;color:var(--faint)}
+  font-size:.78rem;color:var(--faint)}
+.v-foot:empty{display:none}
+.vsrc + .vsrc::before{content:"· "}
 .v-foot a{color:var(--link-dim);text-decoration:none}
 .v-error{padding:.8rem 1rem;color:var(--red)}
-.zoombox{overflow:auto;border:1px solid var(--line);border-radius:.5rem;background:var(--bg2);max-height:26rem}
+.zoombox{overflow:auto;border:1px solid var(--line);border-radius:.6rem;background:var(--bg);max-height:26rem}
 .zoom-inner{transform-origin:0 0;transition:transform .15s}
 .zoom-inner svg{width:100%;height:auto;display:block;min-width:420px}
 .dnode{cursor:default}
@@ -44,11 +46,11 @@
 .figwrap>svg{width:100%;height:auto;display:block}
 .hotspots{position:absolute;inset:0;pointer-events:none}
 .hotspot{pointer-events:auto;position:absolute;width:1.7rem;height:1.7rem;border-radius:50%;
-  background:var(--amber);color:#16130a;border:2px solid #16130a;font-weight:800;font-size:.85rem;
-  cursor:pointer;transform:translate(-50%,-50%);box-shadow:0 0 0 3px color-mix(in srgb,var(--amber) 30%,transparent)}
+  background:var(--hl);color:var(--on-hl);border:2px solid var(--on-hl);font-weight:800;font-size:.85rem;
+  cursor:pointer;transform:translate(-50%,-50%);box-shadow:0 0 0 3px color-mix(in srgb,var(--hl) 40%,transparent)}
 .hotspot:hover{transform:translate(-50%,-50%) scale(1.12)}
-.hpop{position:absolute;z-index:5;max-width:17rem;background:var(--panel);border:1px solid var(--amber);
-  border-radius:.55rem;padding:.6rem .8rem;font-size:.84rem;box-shadow:0 8px 28px rgba(0,0,0,.5)}
+.hpop{position:absolute;z-index:5;max-width:17rem;background:var(--panel);border:1px solid var(--line2);
+  border-radius:.6rem;padding:.6rem .8rem;font-size:.86rem;box-shadow:var(--shadow)}
 .hpop b{display:block;margin-bottom:.2rem}
 .hpop p{margin:.2rem 0;color:var(--muted)}
 .hpop a{color:var(--link)}
@@ -75,7 +77,7 @@
 .stepper .stp-progress i{flex:1;height:.3rem;border-radius:2px;background:var(--line2)}
 .stepper .stp-progress i.on{background:var(--amber)}
 .stp-card{border:1px solid var(--line2);border-radius:.55rem;padding:.6rem .9rem;background:var(--bg2);min-height:5.5rem}
-.stp-card h4{margin:.1rem 0 .3rem;font-size:.92rem;color:var(--amber)}
+.stp-card h4{margin:.1rem 0 .3rem;font-size:.95rem;color:var(--ink)}
 .stp-card p{margin:0;font-size:.88rem;color:var(--ink)}
 .stp-nav{display:flex;gap:.5rem;align-items:center;margin-top:.5rem}
 .stp-nav .rel{flex:1;text-align:center}
@@ -93,17 +95,17 @@
 .tl-m i{display:inline-flex;width:1.4rem;height:1.4rem;border-radius:50%;background:var(--line2);
   color:var(--ink);font-style:normal;font-size:.8rem;align-items:center;justify-content:center;margin-right:.3rem}
 .tl-m.on{border-color:var(--amber)}
-.tl-m.on i{background:var(--amber);color:#16130a}
+.tl-m.on i{background:var(--hl);color:var(--on-hl)}
 .tl-m b{display:block;font-size:.85rem;margin-top:.2rem}
 .tl-m span{font-size:.76rem;color:var(--muted)}
 .tl-detail{border:1px solid var(--line2);border-radius:.55rem;padding:.6rem .9rem;background:var(--bg2);font-size:.88rem}
-.tl-detail h4{margin:.1rem 0 .3rem;color:var(--amber);font-size:.92rem}
+.tl-detail h4{margin:.1rem 0 .3rem;color:var(--ink);font-size:.95rem}
 .tl-detail p{margin:0}
 
 /* MCQ */
-.mcq{display:flex;flex-direction:column;gap:.4rem;padding:.2rem .9rem .8rem}
-.mcq .opt{text-align:left;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);
-  border-radius:.5rem;padding:.5rem .7rem;font:inherit;font-size:.88rem;cursor:pointer}
+.mcq{display:flex;flex-direction:column;gap:.4rem;padding:.5rem 0 .8rem}
+.mcq .opt{text-align:left;background:var(--bg);border:1px solid var(--line2);color:var(--ink);
+  border-radius:.55rem;padding:.6rem .8rem;font:inherit;font-size:.94rem;cursor:pointer}
 .mcq .opt:hover:not(:disabled){border-color:var(--amber)}
 .mcq .opt:disabled{cursor:default;opacity:.85}
 .mcq .opt.right{border-color:var(--green);background:color-mix(in srgb,var(--green) 14%,var(--bg2))}
@@ -112,28 +114,29 @@
 .mcq-fb{font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.5rem}
 
 /* modal + preview */
-.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.66);display:flex;
+.modal{position:fixed;inset:0;z-index:100;background:rgba(10,16,28,.6);display:flex;
   justify-content:center;align-items:flex-start;overflow:auto;padding:5vh 1rem}
-.modal-box{position:relative;background:var(--panel);border:1px solid var(--line2);border-radius:.8rem;
+.modal-box{position:relative;background:var(--panel);border:1px solid var(--line2);border-radius:.9rem;box-shadow:var(--shadow);
   width:min(56rem,94vw);max-height:90vh;overflow:auto;padding:1.2rem 1.4rem}
 .m-close{position:absolute;top:.6rem;right:.6rem}
-.m-kicker{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin:0 0 .3rem}
+.m-kicker{font-size:.84rem;color:var(--muted);margin:0 2.5rem .6rem 0}
 .m-img{width:100%;height:auto;border:1px solid var(--line2);border-radius:.5rem;background:#fff}
-.m-quote{border-left:3px solid var(--amber);padding:.4rem .8rem;color:var(--muted);font-size:.9rem}
+.m-quote{border-left:3px solid var(--hl);padding:.4rem .8rem;color:var(--muted);font-size:.9rem;margin:.8rem 0}
 .pager{display:flex;gap:.7rem;align-items:center;margin:.3rem 0 .6rem}
 .pager .rel{flex:1;text-align:center}
 
 /* graph view */
 .gtoolbar{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin:.6rem 0}
-.gtoolbar input{background:var(--bg2);border:1px solid var(--line2);color:var(--ink);
-  border-radius:.45rem;padding:.45rem .7rem;font-size:.88rem;min-width:12rem}
+.gtoolbar input{min-width:12rem}
 .gzoom{display:flex;gap:.3rem;margin-left:auto}
 #gsvg{cursor:grab}
 #gsvg:active{cursor:grabbing}
 #gsvg.zoomout .gnode text{display:none}
 #gsvg.zoomout .gnode.focus text{display:inline}
+#gsvg .gnode:focus{outline:none}
+#gsvg .gnode:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .gfilters{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.5rem;margin:.6rem 0}
-.gfilters details{border:1px solid var(--line);border-radius:.5rem;padding:.4rem .7rem;background:var(--panel)}
+.gfilters details{border:1px solid var(--line);border-radius:.7rem;padding:.55rem .8rem;background:var(--panel)}
 .gfilters summary{cursor:pointer;font-size:.85rem;color:var(--muted)}
 .gchecks{display:flex;flex-direction:column;gap:.2rem;margin-top:.4rem;font-size:.82rem}
 .gchecks label{display:flex;gap:.4rem;align-items:center;cursor:pointer}

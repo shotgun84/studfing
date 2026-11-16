@@ -34,8 +34,8 @@ window.VIS = {
 };
 
 /* ---------- shared svg helpers ---------- */
-const VC = { ink: "#E8E6E1", mut: "#9AA0A8", blue: "#7DB8E8", amber: "#D9A441", green: "#7FB685", red: "#D97A6C", purp: "#B39DDB", box: "#1B1E24", line: "#31343C" };
-const TONE = { amber: "#D9A441", dim: "#31343C", green: "#7FB685", red: "#D97A6C" };
+const VC = { ink: "var(--v-ink)", mut: "var(--v-mut)", blue: "var(--v-blue)", amber: "var(--v-amber)", green: "var(--v-green)", red: "var(--v-red)", purp: "var(--v-purp)", box: "var(--v-box)", line: "var(--v-line)" };
+const TONE = { amber: "var(--v-amber)", dim: "var(--v-line)", green: "var(--v-green)", red: "var(--v-red)" };
 function wrapLabel(text, maxChars) {
   const words = String(text).split(/\s+/).filter(Boolean), lines = [];
   let cur = "";
@@ -96,7 +96,7 @@ function vReveal(v) {
 function vFigure(v) {
   const hs = (v.hotspots || []).map((h, i) =>
     `<button class="hotspot" style="left:${h.x}%;top:${h.y}%" data-h="${i}" aria-label="Annotation: ${esc(h.title)}">${i + 1}</button>`).join("");
-  return `<div class="zoombox"><div class="zoom-inner"><div class="figwrap">${v.svg}<div class="hotspots">${hs}</div>
+  return `<div class="zoombox"><div class="zoom-inner"><div class="figwrap">${window.themeSvg ? window.themeSvg(v.svg) : v.svg}<div class="hotspots">${hs}</div>
     <div class="hpop" hidden></div></div></div></div>`;
 }
 
@@ -215,9 +215,9 @@ function vSteps(v) {
   return `<div class="stepper" data-step="0">
     <div class="stp-progress">${v.steps.map((_, i) => `<i data-d="${i}" class="${i === 0 ? "on" : ""}"></i>`).join("")}</div>
     <div class="stp-card"><h4 data-t></h4><p data-x></p></div>
-    <div class="stp-nav"><button class="btn small ghost" data-vact="prev">← Prev</button>
+    <div class="stp-nav"><button class="btn small ghost" data-vact="prev">Back</button>
     <span class="rel" data-n></span>
-    <button class="btn small ghost" data-vact="next">Next →</button>
+    <button class="btn small" data-vact="next">Next step</button>
     <button class="btn small ghost" data-vact="replay">Replay</button></div></div>`;
 }
 function paintStep(box, v) {
@@ -269,9 +269,9 @@ function showSlidePage(source, pages, idx, excerpt) {
   const page = pages[idx];
   getJSON(`/api/preview?src=${encodeURIComponent(source)}&page=${page}`).then(d => {
     const cited = (d.cited_by || []).map(c => `<a href="#/article/${c.id}">${esc(c.title)}</a>`).join(" · ");
-      modal(`<p class="m-kicker">Original source · unmodified render</p>
+      modal(`<p class="m-kicker">From the original course file</p>
         <h3>${esc(source.split("/").pop())} — page ${d.page}</h3>
-        ${d.doc ? `<p><a class="btn small" href="#/read/${d.doc}?page=${d.page}">Open in reader (p. ${d.page}) →</a></p>` : ""}
+        ${d.doc ? `<p><a class="btn small" href="#/read/${d.doc}?page=${d.page}">Open page ${d.page} in the reader</a></p>` : ""}
         ${pages.length > 1 ? `<div class="pager"><button class="btn small ghost" data-pg="-1" ${idx <= 0 ? "disabled" : ""}>‹ Prev</button><span class="rel">Page ${idx + 1} of ${pages.length} (slides ${pages.join(", ")})</span><button class="btn small ghost" data-pg="1" ${idx >= pages.length - 1 ? "disabled" : ""}>Next ›</button></div>` : ""}
       <img src="${d.url}" alt="Render of ${esc(source)} page ${d.page}" class="m-img" loading="lazy">
       ${excerpt ? `<blockquote class="m-quote">“${esc(excerpt)}”</blockquote>` : ""}
@@ -281,16 +281,32 @@ function showSlidePage(source, pages, idx, excerpt) {
   }).catch(() => toast("No rendered preview for this citation yet."));
 }
 window.openSlidePage = (src, page) => showSlideViewer(src, [page], 0, "");
+let modalReturnTo = null;
 function modal(html) {
-  closeModal();
+  closeModal(true);
+  modalReturnTo = document.activeElement;
   const d = document.createElement("div");
   d.className = "modal"; d.id = "mmodal";
-  d.innerHTML = `<div class="modal-box" role="dialog" aria-modal="true"><button class="iconbtn m-close" aria-label="Close">✕</button>${html}</div>`;
+  d.innerHTML = `<div class="modal-box" role="dialog" aria-modal="true" aria-label="Source preview"><button class="iconbtn m-close" aria-label="Close">✕</button>${html}</div>`;
   document.body.appendChild(d);
   d.addEventListener("click", e => { if (e.target === d || e.target.closest(".m-close")) closeModal(); });
+  const box = d.querySelector(".modal-box");
+  const focusables = () => [...box.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])')].filter(el => !el.disabled && el.offsetParent !== null);
+  d.addEventListener("keydown", e => {
+    if (e.key === "Tab") {
+      const f = focusables();
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    } else if (e.key === "Escape") { e.stopPropagation(); closeModal(); }
+  });
+  const f = box.querySelector(".m-close");
+  if (f) setTimeout(() => f.focus(), 0);
   return d;
 }
-function closeModal() { document.getElementById("mmodal")?.remove(); }
+function closeModal(silent) { document.getElementById("mmodal")?.remove();
+  if (!silent && modalReturnTo && modalReturnTo.focus) { try { modalReturnTo.focus(); } catch {} modalReturnTo = null; } }
 document.addEventListener("keydown", e => { if (e.key === "Escape") { closeModal(); closePop(); } });
 window.addEventListener("hashchange", () => closeModal());
 
@@ -438,19 +454,20 @@ window.GraphView = {
     const cats = [...new Set(nodes.filter(n => !n.kind || n.kind === "article").map(n => n.category))];
     if (!st.cats) st.cats = new Set(nodes.map(n => n.category));
     if (!st.kinds) st.kinds = new Set(["article", "lecture", "paper", "worksheet", "ref"]);
-    if (!st.ekinds) st.ekinds = new Set(["rel", "pre"]); // evidence edges opt-in: kills the hairball
+    if (!st.ekinds) st.ekinds = new Set(["rel"]); // evidence edges (cite/test) opt-in: kills the hairball
+    else st.ekinds.delete("pre");
     if (!st.init) {
       st.init = true;
       const deg = {};
-      edges.forEach(e => { if (e.kind === "rel" || e.kind === "pre") { deg[e.from] = (deg[e.from] || 0) + 1; deg[e.to] = (deg[e.to] || 0) + 1; } });
+      edges.forEach(e => { if ((e.kind || "rel") === "rel") { deg[e.from] = (deg[e.from] || 0) + 1; deg[e.to] = (deg[e.to] || 0) + 1; } });
       const top = [...S.articles].sort((a, b) => (deg[b.id] || 0) - (deg[a.id] || 0))[0];
       if (top && !st.sel) { st.sel = top.id; st.focus = true; }
     }
-    const col = cat => ["#7db8e8", "#D9A441", "#7FB685", "#D97A6C", "#B39DDB", "#66C6C0", "#E08FA5"][cats.indexOf(cat) % 7] || "#7DB8E8";
+    const col = cat => (window.catColor ? window.catColor(cat, cats.indexOf(cat)) : ["#7db8e8", "#D9A441", "#7FB685", "#D97A6C", "#B39DDB", "#66C6C0", "#E08FA5"][cats.indexOf(cat) % 7] || "#7DB8E8");
     // deterministic layout: high-degree articles inner ring, rest outer ring, sources on rails
     const pos = {};
     const degAll = {};
-    edges.forEach(e => { if (e.kind === "rel" || e.kind === "pre") { degAll[e.from] = (degAll[e.from] || 0) + 1; degAll[e.to] = (degAll[e.to] || 0) + 1; } });
+    edges.forEach(e => { if ((e.kind || "rel") === "rel") { degAll[e.from] = (degAll[e.from] || 0) + 1; degAll[e.to] = (degAll[e.to] || 0) + 1; } });
     const arts = nodes.filter(n => (!n.kind || n.kind === "article") && st.cats.has(n.category) && st.kinds.has("article"));
     arts.sort((a, b) => (degAll[b.id] || 0) - (degAll[a.id] || 0) || a.id.localeCompare(b.id));
     const inner = arts.slice(0, 8), outer = arts.slice(8);
@@ -472,49 +489,50 @@ window.GraphView = {
     }
     const show = id => vis.has(id) && (!nb || nb.has(id)) &&
       (!st.q || (S.graph.nodes.find(n => n.id === id)?.title || "").toLowerCase().includes(st.q));
-    const EK = { rel: "#31343C", pre: "#7DB8E8", cite: "#D9A441", test: "#7FB685" };
+    const EK = { rel: "var(--v-line)", pre: "var(--v-blue)", cite: "var(--v-amber)", test: "var(--v-green)" };
     const edgeSVG = edges.filter(e => show(e.from) && show(e.to) && st.ekinds.has(e.kind || "rel")).map(e => {
       const a = pos[e.from], b = pos[e.to], hot = st.sel && (e.from === st.sel || e.to === st.sel);
-      return `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${EK[e.kind] || "#31343C"}"
+      return `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${EK[e.kind] || "var(--v-line)"}"
         stroke-width="${hot ? 2.4 : 1.1}" ${e.kind === "cite" || e.kind === "test" ? 'stroke-dasharray="5 4"' : ""} opacity="${st.sel && !hot ? 0.25 : 0.9}"/>`;
     }).join("");
     const nodeSVG = nodes.filter(n => show(n.id)).map(n => {
       const [x, y] = pos[n.id], sel = st.sel === n.id;
       const dim = st.sel && !(nb ? nb.has(n.id) : edges.some(e => (e.from === st.sel && e.to === n.id) || (e.to === st.sel && e.from === n.id)) || n.id === st.sel);
       const op = dim ? 0.3 : 1;
-      const label = (n.title || n.id).length > 18 ? (n.title || n.id).slice(0, 17) + "…" : (n.title || n.id);
+      const full = n.title || n.id;
+      const label = full.length > 18 ? full.slice(0, 17) + "…" : full;
       let shape = "";
-      if (!n.kind || n.kind === "article") shape = `<circle r="${sel ? 13 : 8}" fill="#1B1E24" stroke="${col(n.category)}" stroke-width="${sel ? 3 : 1.6}"/>`;
-      else if (n.kind === "lecture") shape = `<rect x="-9" y="-9" width="18" height="18" rx="4" fill="#1B1E24" stroke="${VC.amber}" stroke-width="${sel ? 3 : 1.6}"/>`;
-      else if (n.kind === "paper") shape = `<rect x="-9" y="-9" width="18" height="18" fill="#1B1E24" stroke="${VC.red}" stroke-width="${sel ? 3 : 1.6}"/>`;
-      else shape = `<polygon points="0,-10 9,7 -9,7" fill="#1B1E24" stroke="${VC.mut}" stroke-width="${sel ? 3 : 1.6}"/>`;
-      return `<g class="gnode${sel ? " focus" : ""}" data-id="${n.id}" transform="translate(${x.toFixed(0)},${y.toFixed(0)})" opacity="${op}">${shape}<text y="24" text-anchor="middle">${esc(label)}</text></g>`;
+      if (!n.kind || n.kind === "article") shape = `<circle r="${sel ? 13 : 8}" fill="var(--v-box)" stroke="${col(n.category)}" stroke-width="${sel ? 3 : 1.6}"/>`;
+      else if (n.kind === "lecture") shape = `<rect x="-9" y="-9" width="18" height="18" rx="4" fill="var(--v-box)" stroke="${VC.amber}" stroke-width="${sel ? 3 : 1.6}"/>`;
+      else if (n.kind === "paper") shape = `<rect x="-9" y="-9" width="18" height="18" fill="var(--v-box)" stroke="${VC.red}" stroke-width="${sel ? 3 : 1.6}"/>`;
+      else shape = `<polygon points="0,-10 9,7 -9,7" fill="var(--v-box)" stroke="${VC.mut}" stroke-width="${sel ? 3 : 1.6}"/>`;
+      return `<g class="gnode${sel ? " focus" : ""}" data-id="${n.id}" transform="translate(${x.toFixed(0)},${y.toFixed(0)})" opacity="${op}" tabindex="0" role="button" aria-label="${esc(full)}"><title>${esc(full)}</title>${shape}<text y="24" text-anchor="middle">${esc(label)}</text></g>`;
     }).join("");
     const q = st.q;
-    $("#view").innerHTML = `<p class="crumbs"><a href="#/">Meridian</a> › <b>Concept graph</b></p>
-      <h1 class="atitle">Concept graph</h1>
-      <p class="summary">${arts.length} concepts · lectures, papers and references as context. Drag to pan, scroll to zoom, select a node. Concept links shown; tick “cited in / tested by” for evidence edges.</p>
+    $("#view").innerHTML = `<p class="crumbs"><a href="#/">Home</a></p>
+      <h1 class="atitle">Concept map</h1>
+      <p class="summary">${arts.length} topics and how they connect, with the lectures and papers behind them. Drag to move, scroll to zoom, select a node to see its links.</p>
       <div class="gtoolbar">
         <input id="gq" type="search" placeholder="Find a node…" value="${esc(q)}" aria-label="Find a node">
-        <button class="btn small ghost" id="gReset">Reset view</button>
-        <button class="btn small ghost" id="gFocus">${st.focus ? "Show full graph" : "Focus: selected only"}</button>
+        <button class="btn small ghost" id="gReset">Reset</button>
+        <button class="btn small ghost" id="gFocus">${st.focus ? "Show everything" : "Show only the selected topic"}</button>
         <span class="gzoom"><button class="iconbtn" id="gzOut" aria-label="Zoom out">−</button>
         <button class="iconbtn" id="gzIn" aria-label="Zoom in">+</button></span>
       </div>
       <div class="graphwrap"><svg id="gsvg" viewBox="0 0 800 600" role="img" aria-label="Interactive concept graph">
         <g id="gvp" transform="translate(${st.x},${st.y}) scale(${st.k})">${edgeSVG}${nodeSVG}</g></svg></div>
       <div class="gfilters">
-        <details open><summary>Topics & sources</summary><div class="gchecks">
-          ${[...new Set(nodes.map(n => n.category))].map(c => `<label><input type="checkbox" data-cat="${esc(c)}" ${st.cats.has(c) ? "checked" : ""}> ${esc(c)}</label>`).join("")}
+        <details open><summary>Units</summary><div class="gchecks">
+          ${[...new Set(nodes.map(n => n.category))].map(c => `<label><input type="checkbox" data-cat="${esc(c)}" ${st.cats.has(c) ? "checked" : ""}> <i class="cdot" style="background:${col(c)}"></i>${esc(c)}</label>`).join("")}
         </div></details>
-        <details open><summary>Node types</summary><div class="gchecks">
-          ${["article", "lecture", "paper", "worksheet", "ref"].map(k => `<label><input type="checkbox" data-kind="${k}" ${st.kinds.has(k) ? "checked" : ""}> ${k}</label>`).join("")}
+        <details open><summary>Show</summary><div class="gchecks">
+          ${[["article", "Topics"], ["lecture", "Lectures"], ["paper", "Past papers"], ["worksheet", "Worksheets"], ["ref", "References"]].map(([k, l]) => `<label><input type="checkbox" data-kind="${k}" ${st.kinds.has(k) ? "checked" : ""}> ${l}</label>`).join("")}
         </div></details>
-        <details open><summary>Connections</summary><div class="gchecks">
-          ${[["rel", "concept links"], ["pre", "prerequisites"], ["cite", "cited in"], ["test", "tested by"]].map(([k, l]) => `<label><input type="checkbox" data-ek="${k}" ${st.ekinds.has(k) ? "checked" : ""}> ${l}</label>`).join("")}
+        <details open><summary>Links</summary><div class="gchecks">
+          ${[["rel", "Related topics"], ["cite", "Topic is covered in a lecture"], ["test", "Topic is tested by a paper"]].map(([k, l]) => `<label><input type="checkbox" data-ek="${k}" ${st.ekinds.has(k) ? "checked" : ""}> ${l}</label>`).join("")}
         </div></details>
       </div>
-      <p class="rel"><span style="color:${VC.blue}">●</span> concept &nbsp;<span style="color:${VC.amber}">■</span> lecture &nbsp;<span style="color:${VC.red}">■</span> past paper &nbsp;<span style="color:${VC.mut}">▲</span> worksheet/ref &nbsp;— dashed: cited-in (gold) · tested-by (green)</p>`;
+      <p class="rel legend legend-row">${cats.map(c => `<span><i class="cdot" style="background:${col(c)}"></i>${esc(c)}</span>`).join("")}<br><span style="color:${VC.blue}">●</span> topic &nbsp;<span style="color:${VC.amber}">■</span> lecture &nbsp;<span style="color:${VC.red}">■</span> past paper &nbsp;<span style="color:${VC.mut}">▲</span> worksheet or reference</p>`;
     this.detail();
     // interactions
     const svg = $("#gsvg"), vp = $("#gvp");
@@ -531,33 +549,49 @@ window.GraphView = {
     $("#gzOut").onclick = () => { st.k = Math.max(0.4, st.k * 0.8); apply(); };
     $("#gReset").onclick = () => { Object.assign(st, { x: 0, y: 0, k: 1, sel: null, focus: false }); this.render(); };
     $("#gFocus").onclick = () => { st.focus = !st.focus; this.render(); };
-    $("#gq").addEventListener("input", e => { st.q = e.target.value.trim().toLowerCase();
-      const m = nodes.find(n => (n.title || "").toLowerCase().includes(st.q) && st.q);
-      if (m) { st.sel = m.id; } this.render(); });
+    let gqT = 0;
+    $("#gq").addEventListener("input", e => {
+      clearTimeout(gqT);
+      const el = e.target, val = el.value, caret = el.selectionStart;
+      gqT = setTimeout(() => {
+        st.q = val.trim().toLowerCase();
+        const m = nodes.find(n => (n.title || "").toLowerCase().includes(st.q) && st.q);
+        if (m) st.sel = m.id;
+        this.render();
+        const nq = $("#gq");
+        if (nq) { nq.focus(); try { nq.setSelectionRange(caret, caret); } catch {} }
+      }, 160);
+    });
     $$("#view [data-cat]").forEach(c => c.onchange = () => { c.checked ? st.cats.add(c.dataset.cat) : st.cats.delete(c.dataset.cat); this.render(); });
     $$("#view [data-kind]").forEach(c => c.onchange = () => { c.checked ? st.kinds.add(c.dataset.kind) : st.kinds.delete(c.dataset.kind); this.render(); });
     $$("#view [data-ek]").forEach(c => c.onchange = () => { c.checked ? st.ekinds.add(c.dataset.ek) : st.ekinds.delete(c.dataset.ek); this.render(); });
-    $$("#gsvg .gnode").forEach(g => g.addEventListener("click", e => { e.stopPropagation(); st.sel = g.dataset.id; this.render(); }));
+    const activate = g => { st.sel = g.dataset.id; this.render(); const ng = document.querySelector(`#gsvg .gnode[data-id="${CSS.escape(g.dataset.id)}"]`); if (ng) ng.focus(); };
+    $$("#gsvg .gnode").forEach(g => {
+      g.addEventListener("click", e => { e.stopPropagation(); st.sel = g.dataset.id; this.render(); });
+      g.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(g); }
+      });
+    });
     svg.addEventListener("click", e => { if (e.target === svg) { st.sel = null; this.render(); } });
     markNav("");
   },
   detail() {
     const st = this.state, n = (S.graph.nodes || []).find(x => x.id === st.sel);
     let html = `<div class="ctx"><h3>Selection</h3>`;
-    if (!n) html += `<p class="rel">Select any node to inspect it. Gold dashed edges mean “cited in this source”; green dashed mean “tested by this paper”.</p>`;
+    if (!n) html += `<p class="rel">Select a node to see what it links to.</p>`;
     else {
       const edges = (S.graph.edges || []).filter(e => e.from === n.id || e.to === n.id);
       const a = S.byId[n.id];
-      html += `<h4 style="margin:.2rem 0">${esc(n.title)}</h4>
-        <p class="rel">${esc(n.kind || "article")} · ${esc(n.category || "")}</p>`;
+      html += `<h4 style="margin:.2rem 0;font-size:1.05rem">${esc(n.title)}</h4>
+        <p class="rel">${esc(({ article: "Topic", lecture: "Lecture", paper: "Past paper", worksheet: "Worksheet", ref: "Reference" })[n.kind || "article"] || "")}, ${esc(n.category || "")}</p>`;
       if (a) html += `<p class="rel">${esc((a.summary || "").slice(0, 160))}…</p>
-        <p class="rel">Mastery: ${esc(MLABEL[masteryOf(n.id)] || "")}</p>
-        <p><a class="btn small" style="text-decoration:none" href="#/article/${n.id}">Open article →</a></p>`;
-      else html += `<p class="rel">${edges.length} connected concept${edges.length === 1 ? "" : "s"}.</p>`;
-      html += `<h3>Connections (${edges.length})</h3><ul class="links">${edges.slice(0, 12).map(e => {
-        const o = e.from === n.id ? e.to : e.from;
+        <p class="rel">You: ${esc((MLABEL[masteryOf(n.id)] || "").toLowerCase())}</p>
+        <p><a class="btn small" href="#/article/${n.id}">Open this topic</a></p>`;
+      const seen = new Set();
+      const others = edges.map(e => e.from === n.id ? e.to : e.from).filter(o => !seen.has(o) && seen.add(o));
+      html += `<h3>Linked to (${others.length})</h3><ul class="links">${others.slice(0, 14).map(o => {
         const on = (S.graph.nodes || []).find(x => x.id === o);
-        return `<li><a href="#" data-go="${o}">${esc(on?.title || o)}</a> <span class="rel">· ${e.kind}</span></li>`; }).join("")}</ul>`;
+        return `<li><a href="#" data-go="${o}">${esc(on?.title || o)}</a></li>`; }).join("")}</ul>`;
     }
     html += `</div>`;
     $("#rightRail").innerHTML = html;

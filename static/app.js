@@ -8,7 +8,7 @@ const S = { articles: [], questions: [], graph: null, coverage: [], sources: [],
   byId: {}, qById: {}, progress: { mastery: {}, attempts: {}, visits: {} } };
 
 const MASTERY = ["unfamiliar", "learning", "understood", "needs-revision"];
-const MLABEL = { unfamiliar: "Unfamiliar", learning: "Learning", understood: "Understood", "needs-revision": "Needs revision" };
+const MLABEL = { unfamiliar: "Not started", learning: "Learning", understood: "Understood", "needs-revision": "Needs revision" };
 
 /* ---------- data ---------- */
 async function getJSON(url) {
@@ -33,12 +33,19 @@ async function boot() {
     S.articles = arts; S.questions = qs; S.graph = graph; S.coverage = cov; S.sources = srcs;
     S.byId = Object.fromEntries(arts.map(a => [a.id, a]));
     S.qById = Object.fromEntries(qs.map(q => [q.id, q]));
-    const local = JSON.parse(localStorage.getItem("meridian-progress") || "null");
-    S.progress = Object.assign({ mastery: {}, attempts: {}, visits: {}, activities: {}, reader: {}, notes: {} }, prog || {}, local || {});
-    $("#buildStats").textContent = `${arts.length} articles · ${qs.length} questions · ${graph.edges?.length ?? 0} links`;
+    let local = null;
+    try { local = JSON.parse(localStorage.getItem("meridian-progress") || "null"); }
+    catch { try { localStorage.removeItem("meridian-progress"); } catch {} local = null; }
+    const isObj = o => o && typeof o === "object" && !Array.isArray(o);
+    const base = { mastery: {}, attempts: {}, visits: {}, activities: {}, reader: {}, notes: {}, scroll: {} };
+    S.progress = Object.assign(base, isObj(prog) ? prog : {}, isObj(local) ? local : {});
+    for (const k of ["mastery", "attempts", "visits", "activities", "reader", "notes", "scroll"])
+      if (!isObj(S.progress[k])) S.progress[k] = {};
+    $("#buildStats").textContent = `${arts.length} topics and ${qs.length} questions.`;
   } catch (e) {
-    $("#view").innerHTML = `<div class="card"><h3>Could not load the knowledge base</h3>
-      <p>Is the Flask app running? Start it with <code>python app.py</code> and reload.</p></div>`;
+    $("#view").innerHTML = `<div class="card"><h3>The course data didn't load</h3>
+      <p>This site has to be opened through a web server, not as a local file. If it is, check your connection and reload.</p>
+      <p><button class="btn small" onclick="location.reload()">Reload</button></p></div>`;
     throw e;
   }
   buildNav(); route();
@@ -80,7 +87,18 @@ const ALIAS = { "nfr": "nfr-overview", "nfrs": "nfr-overview", "non-functional r
   "reliability": "reliability-requirements", "security": "other-nfrs", "interoperability": "other-nfrs",
   "localisation": "other-nfrs", "localization": "other-nfrs", "accessibility": "other-nfrs",
   "agile": "agile-processes", "lifecycle": "lifecycle-models", "estimation": "estimation-planning-poker",
-  "cocomo": "estimation-planning-poker", "midterm": "midterm-study-guide" };
+  "cocomo": "estimation-planning-poker", "midterm": "midterm-study-guide",
+  "equivalence partitioning": "equivalence-partitioning", "equivalence partitions": "equivalence-partitioning",
+  "boundary value": "boundary-value-analysis", "boundary value analysis": "boundary-value-analysis",
+  "boundary-value": "boundary-value-analysis",
+  "white box": "white-box-paths", "white-box": "white-box-paths", "white box testing": "white-box-paths",
+  "statement coverage": "white-box-paths", "branch coverage": "white-box-paths",
+  "black box": "testing-overview", "black-box": "testing-overview",
+  "test fixture": "io-exceptions-fixtures", "test fixtures": "io-exceptions-fixtures", "fixture": "io-exceptions-fixtures",
+  "assertion": "test-code-assertions", "assertions": "test-code-assertions",
+  "git": "version-control-git",
+  "cohesion": "modularity-coupling-cohesion", "coupling": "modularity-coupling-cohesion", "modularity": "modularity-coupling-cohesion",
+  "tdd": "testing-overview", "test-driven development": "testing-overview" };
 function linkify(text, currentId, budget) {
   let out = esc(text);
   if (budget.n <= 0) return out;
@@ -98,9 +116,34 @@ function linkify(text, currentId, budget) {
   return out;
 }
 
+/* ---------- shared category colors (single source of truth for both graph renderers) ---------- */
+const CAT_COLORS = {
+  "Project planning": "#4c7df0",
+  "Requirements engineering": "#d08a1a",
+  "Functional requirements": "#2fa36b",
+  "Non-functional requirements": "#e0604f",
+  "Agile": "#8e6be8",
+  "Testing": "#1fa7a0",
+  "Implementation": "#d65c91",
+  "Ethics & professionalism": "#b8962a",
+  "Exam strategy": "#6fa82e"
+};
+const CAT_FALLBACK = ["#4c7df0", "#d08a1a", "#2fa36b", "#e0604f", "#8e6be8", "#1fa7a0", "#d65c91", "#b8962a", "#6fa82e"];
+function catColor(cat, idx) {
+  if (cat && CAT_COLORS[cat]) return CAT_COLORS[cat];
+  if (typeof idx === "number") return CAT_FALLBACK[((idx % CAT_FALLBACK.length) + CAT_FALLBACK.length) % CAT_FALLBACK.length];
+  let h = 0; const s = String(cat || "");
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return CAT_FALLBACK[h % CAT_FALLBACK.length];
+}
+window.CAT_COLORS = CAT_COLORS; window.catColor = catColor;
+
 /* ---------- search ---------- */
 const SYN = { nfr: ["non-functional"], fr: ["functional"], aon: ["activity", "node"], aoa: ["activity", "arc"],
-  srs: ["specification", "ieee"], wbs: ["breakdown"], wip: ["kanban", "limit"], qa: ["testing"] };
+  srs: ["specification", "ieee"], wbs: ["breakdown"], wip: ["kanban", "limit"], qa: ["testing", "quality", "assurance"],
+  ep: ["equivalence", "partitioning"], bva: ["boundary", "value", "analysis"],
+  tdd: ["testing", "test", "driven"], git: ["version", "control"],
+  bvb: ["boundary", "value"], wb: ["white", "box"], bb: ["black", "box"] };
 function lev(a, b) {
   if (Math.abs(a.length - b.length) > 2) return 9;
   const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
@@ -127,24 +170,24 @@ function searchAll(q) {
     if (s > 0) out.push({ kind: "Article", id: a.id, title: a.title, sub: a.category, score: s });
   }
   for (const qu of S.questions) {
-    const p = qu.prompt.toLowerCase(); let s = 0;
+    const p = (qu.prompt || "").toLowerCase(); let s = 0;
     for (const t of toks) if (p.includes(t)) s += 10;
-    if (qu.source.toLowerCase().includes(q)) s += 12;
+    if ((qu.source || "").toLowerCase().includes(q)) s += 12;
     if (s > 0) out.push({ kind: qu.origin === "past-paper" ? "Past paper" : qu.origin === "worksheet" ? "Worksheet" : "Practice",
-      id: "q:" + qu.id, title: qu.prompt.slice(0, 90), sub: qu.source, score: s });
+      id: "q:" + qu.id, title: (qu.prompt || "").slice(0, 90), sub: qu.source, score: s });
   }
   return out.sort((x, y) => y.score - x.score).slice(0, 14);
 }
 
 /* ---------- palette (server search: articles, questions incl. IDs, sources, slides) ---------- */
 let palIdx = 0, palItems = [], palSeq = 0, palTimer = 0;
-function openPalette() { $("#palette").hidden = false; $("#paletteInput").value = $("#searchInput").value || "";
+function openPalette() { $("#palette").hidden = false; $("#paletteInput").value = "";
   renderPalette(); setTimeout(() => $("#paletteInput").focus(), 0); }
 function closePalette() { $("#palette").hidden = true; $("#paletteInput").blur(); clearTimeout(palTimer); }
 function renderPalette() {
   const q = $("#paletteInput").value;
   clearTimeout(palTimer);
-  if (!q.trim()) { palItems = []; palIdx = 0; paintPalette("Type to search articles, questions, sources and slides…"); return; }
+  if (!q.trim()) { palItems = []; palIdx = 0; paintPalette("Search every topic, question, slide and source document."); return; }
   paintPalette("Searching…");
   palTimer = setTimeout(() => {
     const seq = ++palSeq;
@@ -155,18 +198,24 @@ function renderPalette() {
       if (seq !== palSeq) return;
       palItems = searchAll(q); palIdx = 0; paintPalette();
     });
-  }, q.length < 3 ? 0 : 140);
+  }, 160);
 }
 function paintPalette(msg) {
-  $("#paletteList").innerHTML = palItems.map((r, i) =>
-    `<li data-i="${i}" aria-selected="${i === 0}"><span class="k">${esc(r.kind)}</span>
+  const list = $("#paletteList");
+  list.setAttribute("role", "listbox");
+  list.setAttribute("aria-label", "Search results");
+  list.innerHTML = palItems.map((r, i) =>
+    `<li id="pal-opt-${i}" role="option" data-i="${i}" aria-selected="${i === palIdx}"><span class="k">${esc(r.kind)}</span>
      <span class="t"><b>${esc(r.title)}</b><br><small>${esc(r.sub || "")}</small></span></li>`).join("")
-    || `<li><span class="t">${esc(msg || "No matches — try “critical path”, “pp2022-q1-2b”, “planning poker”…")}</span></li>`;
+    || `<li><span class="t">${esc(msg || "Nothing matches. Try “critical path”, “planning poker” or a question ID like pp2022-q1-2b.")}</span></li>`;
   $$("#paletteList li[data-i]").forEach(li => li.onclick = () => goResult(palItems[+li.dataset.i]));
+  const input = $("#paletteInput");
+  if (palItems.length) input.setAttribute("aria-activedescendant", "pal-opt-" + palIdx);
+  else input.removeAttribute("aria-activedescendant");
 }
 function goResult(r) {
   if (!r) return;
-  closePalette(); $("#searchInput").value = "";
+  closePalette();
   if (r.kind === "Slide") {
     const m = /^slide:(.+):(\d+)$/.exec(r.id || "");
     if (m && window.openSlidePage) { window.openSlidePage(m[1], +m[2]); return; }
@@ -178,65 +227,197 @@ function goResult(r) {
   location.hash = r.id.startsWith("q:") ? "#/questions?q=" + encodeURIComponent(r.id.slice(2)) : "#/article/" + r.id;
 }
 
+/* ---------- icons ---------- */
+const ICON = {
+  home: '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-6h4v6"/>',
+  cards: '<rect x="3" y="7" width="14" height="12" rx="2"/><path d="M7 3.5h12a2 2 0 0 1 2 2V15"/>',
+  list: '<path d="M10 6h10M10 12h10M10 18h10"/><path d="m3.5 6 1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"/>',
+  refresh: '<path d="M20 11a8 8 0 0 0-14.3-4.3L4 8.5"/><path d="M4 4v4.5h4.5"/><path d="M4 13a8 8 0 0 0 14.3 4.3l1.7-1.8"/><path d="M20 20v-4.5h-4.5"/>',
+  book: '<path d="M5 4h13v16H7a2 2 0 0 1-2-2z"/><path d="M5 18a2 2 0 0 1 2-2h11"/>',
+  graph: '<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="10" cy="18" r="2.5"/><path d="m8.4 6.6 7.2 1M7 8.3l2.2 7.4M16.4 10l-4.8 6.2"/>',
+  search: '<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>',
+  theme: '<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/>',
+  panel: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/>',
+  menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
+  close: '<path d="m6 6 12 12M18 6 6 18"/>',
+  arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  grid: '<rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/>',
+  panelr: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/>',
+  back: '<path d="m14 6-6 6 6 6"/>',
+  fwd: '<path d="m10 6 6 6-6 6"/>',
+  clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'
+};
+function icon(n) { return `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${ICON[n] || ""}</svg>`; }
+window.icon = icon;
+$$("[data-icon]").forEach(el => { el.outerHTML = icon(el.dataset.icon); });
+
+/* Diagrams stored in the course data use a fixed dark palette; map it onto theme variables. */
+const SVG_THEME = { "#9aa0a8": "--v-mut", "#e8e6e1": "--v-ink", "#1b1e24": "--v-box", "#d9a441": "--v-amber",
+  "#7db8e8": "--v-blue", "#31343c": "--v-line", "#26282e": "--v-line", "#7fb685": "--v-green",
+  "#d97a6c": "--v-red", "#b39ddb": "--v-purp" };
+function themeSvg(svg) {
+  return String(svg || "").replace(/#[0-9a-fA-F]{6}\b/g, m => SVG_THEME[m.toLowerCase()] ? `var(${SVG_THEME[m.toLowerCase()]})` : m);
+}
+window.themeSvg = themeSvg;
+
 /* ---------- nav ---------- */
+const CAT_ORDER = ["Project planning", "Agile", "Requirements engineering", "Functional requirements",
+  "Non-functional requirements", "Ethics & professionalism", "Implementation", "Testing", "Exam strategy"];
 function categories() {
   const m = new Map();
   for (const a of S.articles) {
     if (!m.has(a.category)) m.set(a.category, []);
     m.get(a.category).push(a);
   }
-  return [...m.entries()];
+  const rank = c => { const i = CAT_ORDER.indexOf(c); return i === -1 ? CAT_ORDER.length - 1.5 : i; };
+  return [...m.entries()].sort((a, b) => rank(a[0]) - rank(b[0]));
+}
+function courseOrder() { return categories().flatMap(([, arts]) => arts); }
+function tally(arts) {
+  const t = { unfamiliar: 0, learning: 0, understood: 0, "needs-revision": 0 };
+  arts.forEach(a => { t[masteryOf(a.id)]++; });
+  return t;
+}
+function mbar(arts) {
+  const t = tally(arts);
+  return `<span class="mbar" role="img" aria-label="${t.understood} of ${arts.length} understood">` +
+    ["understood", "learning", "needs-revision"].map(k => t[k] ? `<i class="s-${k}" style="flex:${t[k]}"></i>` : "").join("") +
+    (t.unfamiliar ? `<i style="flex:${t.unfamiliar}"></i>` : "") + `</span>`;
+}
+let navCur = "";
+function navOpenSet() {
+  try { return new Set(JSON.parse(localStorage.getItem("meridian-navopen") || "[]")); } catch { return new Set(); }
+}
+function saveNavOpen() {
+  try { localStorage.setItem("meridian-navopen", JSON.stringify($$("#sideNav details[open]").map(d => d.dataset.cat))); } catch {}
 }
 function buildNav() {
-  $("#sideNav").innerHTML = categories().map(([c, arts]) =>
-    `<details open><summary>${esc(c)}<span class="n">${arts.length}</span></summary><ul>` +
-    arts.map(a => `<li><a data-nav="${a.id}" href="#/article/${a.id}"><i class="mdot m-${masteryOf(a.id)}" title="Mastery: ${MLABEL[masteryOf(a.id)]}" aria-hidden="true"></i><span>${esc(a.title)}</span></a></li>`).join("") + `</ul></details>`).join("");
+  const open = navOpenSet();
+  const cur = S.byId[navCur];
+  if (cur) open.add(cur.category);
+  $("#sideNav").innerHTML = categories().map(([c, arts]) => {
+    const t = tally(arts);
+    return `<details data-cat="${esc(c)}"${open.has(c) ? " open" : ""}><summary><span class="cname">${esc(c)}</span><span class="n" title="${t.understood} of ${arts.length} understood">${t.understood}/${arts.length}</span></summary><ul>` +
+      arts.map(a => `<li><a data-nav="${a.id}" href="#/article/${a.id}"${a.id === navCur ? ' class="active" aria-current="page"' : ""}><i class="mdot m-${masteryOf(a.id)}" title="${MLABEL[masteryOf(a.id)]}"></i><span>${esc(a.title)}</span></a></li>`).join("") +
+      `</ul></details>`; }).join("");
+  $$("#sideNav details").forEach(d => d.addEventListener("toggle", saveNavOpen));
+  const all = tally(S.articles);
+  $("#navProgress").textContent = `${all.understood} of ${S.articles.length} understood`;
   const rev = reviewList();
-  $("#reviewCount").textContent = rev.length ? `(${rev.length})` : "";
-  document.body.classList.remove("navopen");
+  $("#reviewCount").textContent = rev.length ? String(rev.length) : "";
 }
-function markNav(id) { $$("#sideNav a").forEach(a => a.classList.toggle("active", a.dataset.nav === id)); }
+function markNav(id) {
+  navCur = id || "";
+  $$("#sideNav a").forEach(a => {
+    const on = a.dataset.nav === navCur;
+    a.classList.toggle("active", on);
+    if (on) { a.setAttribute("aria-current", "page"); const d = a.closest("details"); if (d) d.open = true;
+      a.scrollIntoView({ block: "nearest" }); }
+    else a.removeAttribute("aria-current");
+  });
+}
 
 /* ---------- progress ---------- */
 function masteryOf(aid) { return S.progress.mastery[aid] || "unfamiliar"; }
-function setMastery(aid, m) { S.progress.mastery[aid] = m; saveProgress(); buildNav(); toast(`Marked “${S.byId[aid]?.title}” — ${MLABEL[m]}`); }
-function recordVisit(aid) { S.progress.visits[aid] = (S.progress.visits[aid] || 0) + 1; saveProgress(); }
+function setMastery(aid, m) {
+  S.progress.mastery[aid] = m; saveProgress(); buildNav();
+  toast(`“${S.byId[aid]?.title}” marked ${MLABEL[m].toLowerCase()}`);
+}
+/* ---------- reading position (remembered per article) ----------
+   Stored as "nearest heading + pixel offset" rather than a raw scroll value, so it still
+   lands in the right place if the window width (and so the page height) has changed. */
+let readingId = null;
+const instant = y => window.scrollTo({ top: y, left: 0, behavior: "instant" });
+function saveReadPos() {
+  const id = readingId;
+  if (!id) return;
+  const y = window.scrollY || document.documentElement.scrollTop || 0;
+  S.progress.scroll = S.progress.scroll || {};
+  if (y < 160) { if (S.progress.scroll[id]) { delete S.progress.scroll[id]; saveProgress(); } return; }
+  let sec = null, off = y;
+  for (const h of $$(".article h2[id]")) {
+    const top = h.getBoundingClientRect().top + y;
+    if (top <= y + 1) { sec = h.id; off = y - top; } else break;
+  }
+  S.progress.scroll[id] = { sec, off: Math.round(off), y: Math.round(y), ts: Date.now() };
+  saveProgress();
+}
+let readSaveT = 0;
+function saveReadPosSoon() { clearTimeout(readSaveT); readSaveT = setTimeout(saveReadPos, 250); }
+function restoreReadPos(id) {
+  const r = (S.progress.scroll || {})[id];
+  if (!r) return false;
+  const place = () => {
+    const h = r.sec && document.getElementById(r.sec);
+    const y = h ? h.getBoundingClientRect().top + window.scrollY + r.off : r.y;
+    instant(Math.max(0, Math.min(y, document.documentElement.scrollHeight - window.innerHeight)));
+  };
+  place();
+  // images and diagrams can still be settling; re-apply once if the reader hasn't moved yet
+  const at = window.scrollY;
+  setTimeout(() => { if (readingId === id && Math.abs(window.scrollY - at) < 4) place(); }, 350);
+  return true;
+}
+window.addEventListener("pagehide", saveReadPos);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") saveReadPos(); });
+function recordVisit(aid) {
+  S.progress.visits[aid] = (S.progress.visits[aid] || 0) + 1;
+  S.progress.last = { id: aid, ts: Date.now() };
+  saveProgress();
+}
+function missedOf(a) { return (a.qids || []).filter(qid => S.progress.attempts[qid]?.status === "missed"); }
+/* Review = things you flagged or got wrong. Topics you have not opened yet are not "due". */
 function reviewList() {
-  return S.articles.filter(a => {
-    const m = masteryOf(a.id);
-    if (m === "needs-revision" || m === "unfamiliar") return true;
-    return (a.qids || []).some(qid => S.progress.attempts[qid]?.status === "missed");
-  }).map(a => a.id);
+  const rank = a => masteryOf(a.id) === "needs-revision" ? 0 : 1;
+  return S.articles.filter(a => masteryOf(a.id) === "needs-revision" || missedOf(a).length > 0)
+    .sort((a, b) => rank(a) - rank(b) || missedOf(b).length - missedOf(a).length).map(a => a.id);
+}
+function nextUp() {
+  const order = courseOrder();
+  const todo = a => masteryOf(a.id) !== "understood";
+  const last = S.progress.last && S.byId[S.progress.last.id];
+  if (last && todo(last)) return { a: last, mode: "continue" };
+  let pool = order;
+  if (last) { const i = order.findIndex(a => a.id === last.id); pool = [...order.slice(i + 1), ...order.slice(0, i)]; }
+  const a = pool.find(todo);
+  if (!a) return { a: null, mode: "done" };
+  const started = Object.keys(S.progress.visits).length > 0 || Object.keys(S.progress.mastery).length > 0;
+  return { a, mode: started ? "next" : "start" };
 }
 
 /* ---------- shared renderers ---------- */
 function masteryBtns(aid) {
   const cur = masteryOf(aid);
-  return `<div class="mastery" role="group" aria-label="Mark your understanding"><span>Mastery:</span>` +
+  return `<div class="mastery" role="group" aria-label="How well you know this topic">` +
     MASTERY.map(m => `<button class="mbtn" data-m="${m}" data-a="${aid}" aria-pressed="${cur === m}">${MLABEL[m]}</button>`).join("") + `</div>`;
 }
+const ORIGIN = { "past-paper": "Past paper", worksheet: "Worksheet", generated: "Practice" };
+const ATT = { got: "Got it", partial: "Partly", missed: "Missed" };
+function attChip(att) { return att && ATT[att.status] ? `<span class="chip st-${att.status}" title="Your last attempt">${ATT[att.status]}</span>` : ""; }
 function questionCard(q, opts = {}) {
   const att = S.progress.attempts[q.id];
-  const arts = (q.articles || []).map(id => `<a href="#/article/${id}">${esc(S.byId[id]?.title || id)}</a>`).join(" · ");
+  const mcq = !!q.choices;
+  const arts = (q.articles || []).map(id => `<a href="#/article/${id}">${esc(S.byId[id]?.title || id)}</a>`).join(", ");
+  const mark = k => `<button class="btn small ghost" data-act="${k}" aria-pressed="${att?.status === k}">${ATT[k]}</button>`;
   return `<article class="qcard" id="qc-${q.id}" data-q="${q.id}">
-    <header><span class="chip">${esc(q.origin)}</span><span class="chip">${esc(q.type || "")}</span>
-    ${q.marks ? `<span class="chip">${q.marks} marks</span>` : ""}<span class="qid" title="Question ID — searchable">${esc(q.id)}</span><span class="src">${esc(q.source || "")}</span>
-    ${att ? `<span class="chip" title="Your last self-mark">last: ${esc(att.status)}</span>` : ""}</header>
+    <header><span class="chip o-${esc(q.origin)}">${esc(ORIGIN[q.origin] || q.origin)}</span>
+      ${q.marks ? `<span class="qmarks">${esc(q.marks)} mark${+q.marks === 1 ? "" : "s"}</span>` : ""}
+      <span class="src">${esc(q.source || "")}</span>
+      <span class="qstatus">${attChip(att)}</span></header>
     <p class="prompt">${esc(q.prompt)}</p>
     ${q.detail ? `<p class="detail">${esc(q.detail)}</p>` : ""}
-    ${q.choices ? (window.mcqHTML ? window.mcqHTML(q) : "") : `<textarea placeholder="Draft your answer here before revealing the model…" aria-label="Your answer"></textarea>`}
+    ${mcq ? (window.mcqHTML ? window.mcqHTML(q) : "") : `<textarea placeholder="Write your answer first, then check it" aria-label="Your answer"></textarea>`}
     <footer>
-      <button class="btn small ghost" data-act="reveal">Show model answer</button>
-      <button class="btn small ghost" data-act="got">✓ Got it</button>
-      <button class="btn small ghost" data-act="partial">~ Partial</button>
-      <button class="btn small ghost" data-act="missed">✗ Missed</button>
-      ${opts.similar ? `<button class="btn small ghost" data-act="similar">Similar question</button>` : ""}
+      ${mcq ? "" : `<button class="btn small" data-act="reveal" aria-expanded="false">Show answer</button>`}
+      ${opts.similar ? `<button class="btn small ghost" data-act="similar">Try a similar question</button>` : ""}
+      <span class="qid" title="Question ID. You can search for it.">${esc(q.id)}</span>
     </footer>
     <div class="model" hidden>
       <p>${esc(q.answer?.text || "")}</p>
       ${(q.answer?.rubric || []).length ? `<ul class="rubric">${q.answer.rubric.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
-      ${q.answer?.official ? "" : `<p class="src">Independently worked — verify against lectures/worksheets.</p>`}
-      ${arts ? `<p class="src">Revise: ${arts}</p>` : ""}
+      ${q.answer?.official ? "" : `<p class="rel">This model answer was worked independently. Check it against your lecture notes.</p>`}
+      ${arts ? `<p class="rel">Revise: ${arts}</p>` : ""}
+      <div class="selfmark" role="group" aria-label="Mark your own answer"><span>How did you do?</span>${mark("got")}${mark("partial")}${mark("missed")}</div>
     </div></article>`;
 }
 function wireQuestions(root) {
@@ -244,27 +425,37 @@ function wireQuestions(root) {
   root._wired = true;
   root.addEventListener("click", e => {
     const btn = e.target.closest("button[data-act]"); const mbtn = e.target.closest("button.mbtn");
-    if (mbtn) { setMastery(mbtn.dataset.a, mbtn.dataset.m); $$(`button.mbtn[data-a="${mbtn.dataset.a}"]`, root).forEach(b => b.setAttribute("aria-pressed", b.dataset.m === mbtn.dataset.m)); return; }
+    if (mbtn) {
+      setMastery(mbtn.dataset.a, mbtn.dataset.m);
+      $$(`button.mbtn[data-a="${mbtn.dataset.a}"]`, root).forEach(b => b.setAttribute("aria-pressed", b.dataset.m === mbtn.dataset.m));
+      if (location.hash === "#/review") renderReview();
+      return;
+    }
     if (!btn) return;
     const card = btn.closest(".qcard"); const qid = card?.dataset.q; if (!qid) return;
     const q = S.qById[qid];
-    if (btn.dataset.act === "reveal") { const m = $(".model", card); m.hidden = !m.hidden;
-      btn.textContent = m.hidden ? "Show model answer" : "Hide model answer"; }
-    else if (btn.dataset.act === "similar") {
+    if (btn.dataset.act === "reveal") {
+      const m = $(".model", card); m.hidden = !m.hidden;
+      btn.textContent = m.hidden ? "Show answer" : "Hide answer";
+      btn.setAttribute("aria-expanded", String(!m.hidden));
+    } else if (btn.dataset.act === "similar") {
       const pool = S.questions.filter(x => x.id !== qid && (x.articles || []).some(a => (q.articles || []).includes(a)));
       if (pool.length) { const pick = pool[Math.floor(Math.random() * pool.length)];
-        location.hash = "#/questions?q=" + encodeURIComponent(pick.id); toast("A similar question: " + pick.prompt.slice(0, 60) + "…"); }
-      else toast("No similar question indexed yet.");
+        location.hash = "#/questions?q=" + encodeURIComponent(pick.id); }
+      else toast("No similar question yet.");
     } else {
-      S.progress.attempts[qid] = { status: btn.dataset.act, ts: Date.now() }; saveProgress(); buildNav();
-      toast(`Recorded “${btn.dataset.act}” — it will feed your review queue.`);
+      const st = btn.dataset.act;
+      S.progress.attempts[qid] = { status: st, ts: Date.now() }; saveProgress(); buildNav();
+      $$(".selfmark button", card).forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+      const qs = $(".qstatus", card); if (qs) qs.innerHTML = attChip({ status: st });
+      toast(st === "missed" ? "Marked missed. It's in your review list." : `Marked “${ATT[st].toLowerCase()}”`);
     }
   });
 }
 
 /* ---------- views ---------- */
 function crumbs(a) {
-  return `<p class="crumbs"><a href="#/">Meridian</a> › ${esc(a.category)} › <b>${esc(a.title)}</b></p>`;
+  return `<p class="crumbs"><a href="#/">Home</a> / ${esc(a.category)}</p>`;
 }
 function secBody(s, id, budget) {
   const paras = (s.paras || []).map(p => `<p>${linkify(p, id, budget)}</p>`).join("");
@@ -272,207 +463,226 @@ function secBody(s, id, budget) {
   const table = s.table ? `<table><thead><tr>${s.table.head.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead>
     <tbody>${s.table.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table>` : "";
   const code = s.code ? `<pre><code>${esc(s.code.text)}</code></pre>` : "";
-  const svg = s.svg ? `<figure class="diagram">${s.svg}<figcaption>${esc(s.heading_2 || "Diagram")}</figcaption></figure>` : "";
-  const call = s.callout ? `<aside class="callout ${s.callout.kind || "exam"}"><span class="k">${esc((s.callout.kind || "exam").replace("-", " "))}</span>${esc(s.callout.text)}</aside>` : "";
+  const svg = s.svg ? `<figure class="diagram">${themeSvg(s.svg)}<figcaption>${esc(s.heading_2 || "Diagram")}</figcaption></figure>` : "";
+  const kind = s.callout ? (s.callout.kind || "exam") : "";
+  const klabel = { exam: "Exam tip", warning: "Watch out" }[kind] || kind.replace("-", " ");
+  const call = s.callout ? `<aside class="callout ${kind}"><span class="k">${esc(klabel)}</span>${esc(s.callout.text)}</aside>` : "";
   return paras + bullets + table + code + svg + call;
 }
 async function renderArticle(id) {
   let full;
   try { full = await getJSON("/api/article/" + id); }
-  catch { $("#view").innerHTML = `<div class="card"><h3>Missing article</h3><p>No article “${esc(id)}”. It may be a planned placeholder — try search.</p></div>`; return; }
+  catch {
+    $("#view").innerHTML = `<p class="crumbs"><a href="#/">Home</a></p><h1 class="atitle">That topic isn't here</h1>
+      <p class="summary">There is no article called “${esc(id)}”. Search for it, or go back to the course map.</p>
+      <p><a class="btn" href="#/">Back to home</a></p>`;
+    $("#rightRail").innerHTML = ""; markNav(""); return;
+  }
   recordVisit(id);
   const budget = { n: 6, used: new Set() };
-  let secn = 0;
-  const secHTML = (full.sections || []).map((s, i) => {
-    secn++;
-    let h = `<h2 id="sec-${i}"><span class="secn">${secn}</span>${esc(s.heading)}</h2>`;
-    if (s.heading_2 && s.svg) h = `<h2 id="sec-${i}"><span class="secn">${secn}</span>${esc(s.heading_2)}</h2>`;
-    return h + secBody(s, id, budget);
-  });
-  // interleave visuals close to the prose they explain
+  const secHTML = (full.sections || []).map((s, i) =>
+    `<h2 id="sec-${i}">${esc(s.heading_2 && s.svg ? s.heading_2 : s.heading)}</h2>` + secBody(s, id, budget));
+  // interleave visuals and activities close to the prose they explain
   const visuals = full.visuals || [];
-  if (window.VIS && visuals.length && secHTML.length) visuals.forEach((v, k) => {
+  if (window.VIS && visuals.length && secHTML.length > 0) visuals.forEach((v, k) => {
     secHTML[k % secHTML.length] += window.VIS.render(v, id);
   });
-  if (window.ACTUI && full.activities && secHTML.length) full.activities.forEach((a, k) => {
+  if (window.ACTUI && full.activities && secHTML.length > 0) full.activities.forEach((a, k) => {
     secHTML[(k + 1) % secHTML.length] += window.ACTUI.render(a);
   });
-  const body = secHTML.join("");
-  const recall = (full.recall || []).map((r, i) =>
-    `<details class="recall"><summary>Recall ${i + 1}: ${esc(r.q)}</summary><p class="answer">${esc(r.a)}</p></details>`).join("");
+  const recall = (full.recall || []).map(r =>
+    `<details class="recall"><summary>${esc(r.q)}</summary><p class="answer">${esc(r.a)}</p></details>`).join("");
   const qlist = (full.question_ids || []).map(qid => S.qById[qid]).filter(Boolean);
+  const ncite = (full.citations || []).length;
   const cites = (full.citations || []).map((c, i) =>
-    `<li id="cite-${i + 1}"><b>[${i + 1}]</b> ${esc(c.source)} <span class="loc">${esc(c.locator || "")}</span>
-     <span class="kind">${esc(c.kind || "course")}</span>
+    `<li id="cite-${i + 1}">${esc(c.source)} <span class="loc">${esc(c.locator || "")}</span><span class="kind">${esc(c.kind || "course")}</span>
      <button class="btn small ghost" data-preview data-src="${esc(c.source)}" data-loc="${esc(c.locator || "")}" data-ex="${esc(c.excerpt || "")}">View slide</button>
      ${c.excerpt ? `<blockquote>“${esc(c.excerpt)}”</blockquote>` : ""}</li>`).join("");
-  const rel = a => `<li><a href="#/article/${a}">${esc(S.byId[a]?.title || a)}</a><br><span class="rel">${esc(S.byId[a]?.category || "")}</span></li>`;
+  const tocItems = (full.sections || []).map((s, i) => `<li><a href="#sec-${i}">${esc(s.heading_2 && s.svg ? s.heading_2 : s.heading)}</a></li>`).join("") +
+    (recall ? `<li><a href="#sec-recall">Check yourself</a></li>` : "") +
+    (qlist.length ? `<li><a href="#sec-practice">Practice questions</a></li>` : "") +
+    (cites ? `<li><a href="#sec-sources">Sources</a></li>` : "");
+  const order = courseOrder(), at = order.findIndex(a => a.id === id);
+  const prev = at > 0 ? order[at - 1] : null, next = at >= 0 && at < order.length - 1 ? order[at + 1] : null;
+  const pnLabel = (o, word) => o.category === full.category ? `${word} in ${esc(full.category)}` : `${word}: ${esc(o.category)}`;
   $("#view").innerHTML = `${crumbs(full)}
     <h1 class="atitle">${esc(full.title)}</h1>
     <p class="summary">${esc(full.summary || "")}</p>
-    <div class="meta"><span class="chip cat">${esc(full.category)}</span>
-      <span class="chip">⧗ ${full.read_minutes || 5} min</span>
-      <span class="chip">${(full.citations || []).length} sources</span>
-      <span class="chip">${qlist.length} questions</span>${masteryBtns(id)}</div>
-    <div class="article">${body}
-      ${recall ? `<h2><span class="secn">◌</span>Active recall</h2>${recall}` : ""}
-      ${qlist.length ? `<h2><span class="secn">❖</span>Practice questions</h2>${qlist.map(q => questionCard(q, { similar: true })).join("")}` : ""}
-      ${cites ? `<h2><span class="secn">§</span>Sources</h2><ol class="sources">${cites}</ol>` : ""}
-    </div>`;
-  const related = [...(full.related || []), ...(full.prerequisites || [])].filter((v, i, a) => a.indexOf(v) === i);
+    <div class="meta"><span class="mi">${icon("clock")}${full.read_minutes || 5} min read</span>
+      ${qlist.length ? `<a class="mi" href="#sec-practice">${qlist.length} practice question${qlist.length === 1 ? "" : "s"}</a>` : ""}
+      ${ncite ? `<a class="mi" href="#sec-sources">${ncite} source${ncite === 1 ? "" : "s"}</a>` : ""}</div>
+    <div class="masterybox"><span>How well do you know this?</span>${masteryBtns(id)}</div>
+    ${tocItems ? `<details class="toc-mobile"><summary>On this page</summary><ol class="toc">${tocItems}</ol></details>` : ""}
+    <div class="article">${secHTML.join("")}
+      ${recall ? `<h2 id="sec-recall">Check yourself</h2>${recall}` : ""}
+      ${qlist.length ? `<h2 id="sec-practice">Practice questions</h2>${qlist.map(q => questionCard(q, { similar: true })).join("")}` : ""}
+      ${cites ? `<h2 id="sec-sources">Sources</h2><ol class="sources">${cites}</ol>` : ""}
+    </div>
+    <section class="finish"><h2>Finished reading? Mark how well you know it.</h2>${masteryBtns(id)}
+      <div class="pn">${prev ? `<a class="prev" href="#/article/${prev.id}"><span>${pnLabel(prev, "Previous")}</span><b>${esc(prev.title)}</b></a>` : ""}
+      ${next ? `<a class="next" href="#/article/${next.id}"><span>${pnLabel(next, "Next")}</span><b>${esc(next.title)}</b></a>` : ""}</div></section>`;
+  const prereq = full.prerequisites || [];
+  const related = (full.related || []).filter((v, i, a) => a.indexOf(v) === i && !prereq.includes(v));
+  const backl = (full.backlinks || []).filter(v => !prereq.includes(v) && !related.includes(v));
+  const rel = a => `<li><a href="#/article/${a}">${esc(S.byId[a]?.title || a)}</a></li>`;
   const srcCount = {};
   (full.citations || []).forEach(c => { if (c.source) srcCount[c.source] = (srcCount[c.source] || 0) + 1; });
   const srcByRel = Object.fromEntries((S.sources || []).map(s => [s.rel, s]));
   const topSrc = Object.entries(srcCount).sort((a, b) => b[1] - a[1]).slice(0, 2)
-    .map(([rel]) => srcByRel[rel]).filter(s => s && s.pages);
+    .map(([r]) => srcByRel[r]).filter(s => s && s.pages);
+  const srcName = s => (s.file || "").replace(/\.pdf$/i, "").replace(/[_]+/g, " ").replace(/\(\d+\)/g, "").trim();
   $("#rightRail").innerHTML = `<div class="ctx">
-    <h3>On this page</h3><ol class="toc">${(full.sections || []).map((s, i) => `<li><a href="#sec-${i}" data-sec="${i}">${esc(s.heading_2 || s.heading)}</a></li>`).join("")}${(full.visuals || []).map(v => `<li><a href="#vis-${v.id}">◈ ${esc(v.title)}</a></li>`).join("")}</ol>
-    ${topSrc.length ? `<h3>Study in the reader</h3><p class="rel">Open the source document with practice, notes and search:</p><ul class="links">${topSrc.map(s => `<li><a href="#/read/${s.id}">📖 Read ${esc((s.file || "").replace(/_/g, " ").slice(0, 34))}</a></li>`).join("")}</ul>` : ""}
-    ${(full.prerequisites || []).length ? `<h3>Start here first</h3><ul class="links">${full.prerequisites.map(rel).join("")}</ul>` : ""}
-    ${related.length ? `<h3>Related concepts</h3><ul class="links">${related.map(rel).join("")}</ul>` : ""}
-    ${(full.backlinks || []).length ? `<h3>Linked from</h3><ul class="links">${full.backlinks.map(rel).join("")}</ul>` : ""}
-    <h3>Evidence</h3><p class="rel">${(full.citations || []).length} citations · ${qlist.length} linked questions</p></div>`;
+    <h3>On this page</h3><ol class="toc" id="railToc">${tocItems}</ol>
+    ${prereq.length ? `<h3>Read these first</h3><ul class="links">${prereq.map(rel).join("")}</ul>` : ""}
+    ${related.length ? `<h3>Related topics</h3><ul class="links">${related.map(rel).join("")}</ul>` : ""}
+    ${backl.length ? `<h3>Mentioned in</h3><ul class="links">${backl.slice(0, 6).map(rel).join("")}</ul>` : ""}
+    ${topSrc.length ? `<h3>Original slides</h3><ul class="links">${topSrc.map(s => `<li><a href="#/read/${s.id}">${esc(srcName(s))}</a></li>`).join("")}</ul>` : ""}</div>`;
   wireQuestions($("#view"));
   if (window.VIS?.after) window.VIS.after($("#view"));
   markNav(id);
-  // reading progress + TOC highlight
+  // reading progress + table-of-contents highlight
+  const heads = $$(".article h2[id]");
   const onScroll = () => {
     const el = document.documentElement;
     const p = el.scrollTop / Math.max(1, el.scrollHeight - el.clientHeight);
     $("#readProgress span").style.width = (p * 100).toFixed(1) + "%";
+    let cur = heads[0];
+    for (const h of heads) { if (h.getBoundingClientRect().top < 140) cur = h; else break; }
+    $$("#railToc a").forEach(a => a.classList.toggle("on", !!cur && a.getAttribute("href") === "#" + cur.id));
   };
-  document.onscroll = onScroll; onScroll();
+  readingId = id;
+  const resumed = restoreReadPos(id);
+  document.onscroll = () => { onScroll(); if (readingId === id) saveReadPosSoon(); };
+  onScroll();
+  if (resumed) toast("Back where you left off");
 }
 
 function renderHome() {
-  document.onscroll = () => { $("#readProgress span").style.width = "0"; };
-  const deg = {};
-  (S.graph.edges || []).forEach(e => { deg[e.from] = (deg[e.from] || 0) + 1; deg[e.to] = (deg[e.to] || 0) + 1; });
-  const top = [...S.articles].sort((a, b) => (deg[b.id] || 0) - (deg[a.id] || 0)).slice(0, 5);
-  const cov = S.coverage;
-  const dots = ev => ["lecture", "worksheet", "past-paper", "practice"].map(k =>
-    `<span class="dot ${ev[k] ? "y" : "n"}">${ev[k] ? "●" : "○"} ${k}</span>`).join("");
-  const covItem = c => {
-    const a = S.byId[c.id];
-    if (!a) return "";
-    return `<div class="covitem"><a href="#/article/${c.id}">${esc(a.title)}</a><div class="dots">${dots(c.evidence)}</div></div>`;
-  };
+  document.onscroll = null;
+  const order = courseOrder(), cats = categories(), all = tally(order), nu = nextUp();
+  const kicker = { continue: "Continue where you left off", next: "Next up", start: "Start here", done: "" }[nu.mode];
+  const hero = nu.a
+    ? `<p class="desk-kicker">${kicker} in ${esc(nu.a.category)}</p>
+       <h1><a href="#/article/${nu.a.id}"><span class="hl">${esc(nu.a.title)}</span></a></h1>
+       <p class="desk-sum">${esc(nu.a.summary || "")}</p>
+       <div class="cta"><a class="btn" href="#/article/${nu.a.id}">${nu.mode === "continue" ? "Continue reading" : "Start reading"}</a>
+         <a class="btn ghost" href="#/study">Start a study session</a>
+         <span class="meta-inline">${nu.a.read_minutes || 5} min read</span></div>`
+    : `<p class="desk-kicker">Every topic is marked understood</p>
+       <h1><span class="hl">Now prove it under exam conditions.</span></h1>
+       <p class="desk-sum">Work through the past-paper questions without notes, then mark anything shaky as “needs revision”.</p>
+       <div class="cta"><a class="btn" href="#/questions?origin=past-paper">Open past-paper questions</a>
+         <a class="btn ghost" href="#/study">Start a study session</a></div>`;
+  const short = c => ({ "Non-functional requirements": "Non-functional reqs", "Functional requirements": "Functional reqs",
+    "Requirements engineering": "Requirements", "Ethics & professionalism": "Ethics" }[c] || c);
+  const strip = cats.map(([c, arts]) => `<div class="cm-g"><span class="cm-l">${esc(short(c))}</span><div class="cm-cells">${
+    arts.map(a => { const m = masteryOf(a.id);
+      return `<a class="cm-c m-${m}${nu.a && nu.a.id === a.id ? " cur" : ""}" href="#/article/${a.id}" title="${esc(a.title)} (${MLABEL[m].toLowerCase()})" aria-label="${esc(a.title)}, ${MLABEL[m].toLowerCase()}"></a>`; }).join("")
+  }</div></div>`).join("");
+  const leg = (k, n, label) => `<span><i class="mdot m-${k}"></i>${n} ${label}</span>`;
+  const rows = cats.map(([c, arts]) => {
+    const t = tally(arts), nx = arts.find(a => masteryOf(a.id) !== "understood");
+    return `<a class="trow" href="#/article/${(nx || arts[0]).id}">
+      <span class="trow-t">${esc(c)}</span>${mbar(arts)}<span class="trow-n">${t.understood}/${arts.length}</span>
+      <span class="trow-next">${nx ? `Next: ${esc(nx.title)}` : "All understood"}</span></a>`; }).join("");
+  const rev = reviewList().slice(0, 4).map(id => { const a = S.byId[id], ms = missedOf(a).length;
+    return `<li><a href="#/article/${id}"><b>${esc(a.title)}</b><span>${masteryOf(id) === "needs-revision" ? "Marked needs revision" : ""}${
+      masteryOf(id) === "needs-revision" && ms ? " · " : ""}${ms ? `${ms} missed question${ms === 1 ? "" : "s"}` : ""}</span></a></li>`; }).join("");
+  const nPast = S.questions.filter(q => q.origin === "past-paper").length;
+  const has = id => !!S.byId[id];
+  const paths = [["wbs", "Calculations", "Work breakdown, activity graphs, critical path, burn-up charts"],
+    ["user-stories", "Requirements writing", "User stories, use cases, flows of events, valid NFRs"],
+    ["scrum-framework", "Judgement questions", "Scrum, Kanban and professional ethics"]].filter(p => has(p[0]));
   $("#view").innerHTML = `
-    <div class="hero"><p class="crumbs">A personal encyclopedia · ISAD1000/ISAD5004</p>
-      <h1>Your course, mapped as a universe worth exploring.</h1>
-      <p>Every concept from project planning to professional ethics — explained like an article,
-      linked like Wikipedia, and cited to the exact lecture, worksheet or past paper it came from.
-      Follow curiosity; the exam coverage follows you.</p>
-      <div class="cta"><button class="btn" id="startTrack">Start the calculation track</button>
-      <a class="btn ghost" href="#/questions" style="text-decoration:none">Open the question bank</a>
-      <button class="btn ghost" id="randBtn">⚄ Surprise me</button></div></div>
-    <div class="stats">
-      <div class="stat"><b>${S.articles.length}</b><span>articles</span></div>
-      <div class="stat"><b>${S.questions.filter(q => q.origin === "past-paper").length}</b><span>past-paper questions</span></div>
-      <div class="stat"><b>${S.graph.edges?.length ?? 0}</b><span>concept links</span></div>
-      <div class="stat"><b>${S.questions.length}</b><span>practice items</span></div>
-    </div>
-    <h2>Study tracks</h2>
-    <div class="tracks">
-      <div class="track"><h3>① The calculation track</h3><p>WBS → graphs → critical path → burn-ups. Highest mark density.</p>
-        <a href="#/article/wbs">Begin with work breakdown →</a></div>
-      <div class="track"><h3>② The requirements track</h3><p>Stories → use cases → flows → NFR validity. Most writing marks.</p>
-        <a href="#/article/user-stories">Begin with user stories →</a></div>
-      <div class="track"><h3>③ The judgement track</h3><p>Scrum → Kanban → ethics. Reasoning the markers reward.</p>
-        <a href="#/article/scrum-framework">Begin with Scrum →</a></div>
-    </div>
-    <div id="homeLib"></div>
-    <h2>Most connected concepts</h2>
-    <div class="grid2">${top.map(a => `<div class="card"><h3><a href="#/article/${a.id}">${esc(a.title)}</a></h3>
-      <p>${deg[a.id]} links · ${esc(a.summary.slice(0, 110))}…</p></div>`).join("")}</div>
-    <h2>Coverage map <small style="color:var(--faint)">(evidence per concept)</small></h2>
-    <div class="cov" id="covGrid">${cov.slice(0, 6).map(covItem).join("")}</div>
-    <div class="cov" id="covRest" hidden>${cov.slice(6).map(covItem).join("")}</div>
-    ${cov.length > 6 ? `<p><button class="btn small ghost" id="covToggle" aria-expanded="false">Show all ${cov.length} concepts ▾</button></p>` : ""}
-    <h2>Explore sideways</h2>
-    <div class="grid2">
-      <div class="card"><h3>⚄ Surprise me</h3><p>A random concept from your course — curiosity first.</p>
-        <button class="btn small ghost" id="randBtn2">Open random article</button></div>
-      <div class="card"><h3>✦ Surprising connection</h3><p id="connText">Two linked ideas you might not expect.</p>
-        <button class="btn small ghost" id="connBtn">Reveal a connection</button></div>
-      <div class="card"><h3>⚠ Misconception roulette</h3><p id="misText">The mark-losers, on demand.</p>
-        <button class="btn small ghost" id="misBtn">Show a misconception</button></div>
-      <div class="card"><h3>▼ Take me deeper</h3><p>Drill into the foundations of a random article.</p>
-        <button class="btn small ghost" id="deepBtn">Go one level deeper</button></div>
+    <section class="desk">${hero}
+      <div class="cmap"><div class="cmap-head"><b>${all.understood} of ${order.length} topics understood</b>
+        <div class="cmap-legend">${leg("understood", all.understood, "understood")}${leg("learning", all.learning, "learning")}${leg("needs-revision", all["needs-revision"], "to revise")}${leg("unfamiliar", all.unfamiliar, "not started")}</div></div>
+        <div class="cm">${strip}</div></div>
+    </section>
+    <div class="homegrid">
+      <div>
+        <h2>Topics</h2>
+        <div class="trows">${rows}</div>
+        <div id="homeLib"></div>
+      </div>
+      <div>
+        <div class="side-block"><div class="h2row"><h2>Due for review</h2>${rev ? `<a href="#/review">See all</a>` : ""}</div>
+          ${rev ? `<ul class="slist">${rev}</ul>` : `<p class="empty">Nothing is due. Topics you mark “needs revision” and questions you miss will show up here.</p>`}</div>
+        <div class="side-block"><h2>Past papers</h2>
+          <ul class="slist"><li><a href="#/questions?origin=past-paper"><b>${nPast} past-paper questions</b><span>Original wording and marks, with model answers</span></a></li>
+          ${has("midterm-study-guide") ? `<li><a href="#/article/midterm-study-guide"><b>Midterm study guide</b><span>2022 paper: 90 minutes, 100 marks, closed book</span></a></li>` : ""}</ul></div>
+        ${paths.length ? `<div class="side-block"><h2>Where the marks are</h2>
+          <ul class="slist">${paths.map(p => `<li><a href="#/article/${p[0]}"><b>${p[1]}</b><span>${p[2]}</span></a></li>`).join("")}</ul></div>` : ""}
+        <div class="side-block"><h2>A mistake that costs marks</h2>
+          <div class="note"><p id="misText">Loading…</p><button class="linklike" id="misBtn">Show another</button></div></div>
+      </div>
     </div>`;
-  $("#rightRail").innerHTML = `<div class="ctx"><h3>Midterm at a glance</h3>
-    <p class="rel">2022 paper: 90 min · 100 marks · closed book.<br>Q1 planning · Q2 use cases · Q3 NFRs · Q4 agile.</p>
-    <h3>Continue</h3><ul class="links"><li><a href="#/review">↻ Review queue</a></li>
-    <li><a href="#/study">▶ Study mode</a></li><li><a href="#/graph">◈ Concept graph</a></li>
-    <li><a href="#/article/midterm-study-guide">▤ Study guide</a></li></ul></div>`;
+  $("#rightRail").innerHTML = "";
   markNav("");
-  const covT = $("#covToggle");
-  if (covT) covT.onclick = () => {
-    const rest = $("#covRest"), open = rest.hidden;
-    rest.hidden = !open;
-    covT.textContent = open ? `Show fewer ▴` : `Show all ${cov.length} concepts ▾`;
-    covT.setAttribute("aria-expanded", open);
-  };
   if (window.Library && window.Library.homeSection) {
     window.Library.homeSection().then(html => { const el = $("#homeLib"); if (el) el.innerHTML = html; }).catch(() => {});
   }
-  $("#startTrack").onclick = () => location.hash = "#/article/wbs";
   const rnd = a => a[Math.floor(Math.random() * a.length)];
-  const goRand = () => location.hash = "#/article/" + rnd(S.articles).id;
-  $("#randBtn").onclick = goRand; $("#randBtn2").onclick = goRand; $("#surpriseBtn").onclick = goRand;
-  $("#connBtn").onclick = () => { const e = rnd(S.graph.edges || []);
-    $("#connText").innerHTML = e ? `<a href="#/article/${e.from}">${esc(S.byId[e.from]?.title)}</a> ↔
-      <a href="#/article/${e.to}">${esc(S.byId[e.to]?.title)}</a>` : "No edges."; };
-  const MIS = [["exam-mistakes-planning", 0], ["exam-mistakes-agile", 0], ["exam-mistakes-requirements", 0], ["exam-mistakes-nfr", 0], ["exam-mistakes-ethics", 0]];
-  $("#misBtn").onclick = async () => { const [id] = rnd(MIS);
-    try { const full = await getJSON("/api/article/" + id);
-      const secs = full.sections.flatMap(s => s.bullets || []);
-      $("#misText").textContent = "⚠ " + (rnd(secs) || "—"); } catch { $("#misText").textContent = "Try again."; } };
-  $("#deepBtn").onclick = async () => { const a = rnd(S.articles);
-    try { const full = await getJSON("/api/article/" + a.id);
-      const pre = (full.prerequisites || [])[0] || a.id;
-      location.hash = "#/article/" + pre; } catch { goRand(); } };
+  const MIS = S.articles.filter(a => a.id.startsWith("exam-mistakes-")).map(a => a.id);
+  const showMis = async () => {
+    const el = $("#misText"); if (!el) return;
+    if (!MIS.length) { el.closest(".side-block").hidden = true; return; }
+    const id = rnd(MIS);
+    try {
+      const full = await getJSON("/api/article/" + id);
+      const tip = rnd(full.sections.flatMap(s => s.bullets || []));
+      const t = $("#misText"); if (!t) return;
+      t.innerHTML = `${esc(tip || "")} <a href="#/article/${id}">${esc(S.byId[id].title)}</a>`;
+    } catch { const t = $("#misText"); if (t) t.textContent = "Couldn't load a tip. Try again."; }
+  };
+  $("#misBtn").onclick = showMis; showMis();
 }
 
-function renderQuestions(focusQ) {
+function renderQuestions(focusQ, origin0) {
   document.onscroll = null;
-  const cats = [...new Set(S.articles.map(a => a.category))];
-  $("#view").innerHTML = `<p class="crumbs"><a href="#/">Meridian</a> › <b>Question bank</b></p>
+  const cats = categories().map(c => c[0]);
+  const st = { origin: origin0 || "" };
+  const count = o => S.questions.filter(q => !o || q.origin === o).length;
+  $("#view").innerHTML = `<p class="crumbs"><a href="#/">Home</a></p>
     <h1 class="atitle">Question bank</h1>
-    <p class="summary">${S.questions.length} indexed questions — authentic past-paper and worksheet items plus labelled generated practice. Attempt before revealing.</p>
+    <p class="summary">Write your answer before you look. Then check the model answer and mark yourself honestly: anything you miss goes to your review list.</p>
+    <div class="segs" role="group" aria-label="Question source">
+      ${[["", "All"], ["past-paper", "Past papers"], ["worksheet", "Worksheets"], ["generated", "Practice"]].map(([o, l]) =>
+        `<button data-o="${o}" aria-pressed="${st.origin === o}">${l}<span>${count(o)}</span></button>`).join("")}</div>
     <div class="filters">
-      <input id="fq" type="search" placeholder="Filter…" value="${esc(focusQ || "")}" aria-label="Filter questions">
-      <select id="forigin" aria-label="Origin"><option value="">All origins</option>
-        <option>past-paper</option><option>worksheet</option><option>generated</option></select>
-      <select id="fcat" aria-label="Category"><option value="">All topics</option>
+      <input id="fq" type="search" placeholder="Filter by word or question ID" value="${esc(focusQ || "")}" aria-label="Filter questions">
+      <select id="fcat" aria-label="Topic"><option value="">All topics</option>
         ${cats.map(c => `<option>${esc(c)}</option>`).join("")}</select>
-    </div><div id="qlist"></div>`;
-  $("#rightRail").innerHTML = `<div class="ctx"><h3>How to use this</h3>
-    <p class="rel">Write your answer first, then reveal the model and self-mark honestly.
-    Missed items join your review queue automatically.</p>
-    <h3>Legend</h3><p class="rel">past-paper = authentic wording, marks and source preserved.<br>
-    worksheet = coursework tasks.<br>generated = extra practice, needs verification.</p></div>`;
+      <select id="fstat" aria-label="Your progress"><option value="">Any progress</option>
+        <option value="todo">Not attempted</option><option value="missed">Missed</option>
+        <option value="partial">Partly</option><option value="got">Got it</option></select>
+    </div><p class="qcount" id="qcount"></p><div id="qlist"></div>`;
+  $("#rightRail").innerHTML = "";
   const draw = () => {
-    const q = ($("#fq").value || "").toLowerCase(), o = $("#forigin").value, c = $("#fcat").value;
+    const q = ($("#fq").value || "").toLowerCase(), o = st.origin, c = $("#fcat").value, s = $("#fstat").value;
     const list = S.questions.filter(x => (!o || x.origin === o) &&
-      (!q || (x.id + " " + x.prompt + " " + (x.source || "") + " " + (x.detail || "")).toLowerCase().includes(q)) &&
-      (!c || (x.articles || []).some(a => S.byId[a]?.category === c)));
+      (!q || ((x.id || "") + " " + (x.prompt || "") + " " + (x.source || "") + " " + (x.detail || "")).toLowerCase().includes(q)) &&
+      (!c || (x.articles || []).some(a => S.byId[a]?.category === c)) &&
+      (!s || (s === "todo" ? !S.progress.attempts[x.id] : S.progress.attempts[x.id]?.status === s)));
+    $("#qcount").textContent = list.length === S.questions.length ? `${list.length} questions` : `Showing ${list.length} of ${S.questions.length} questions`;
     $("#qlist").innerHTML = list.length ? list.map(x => questionCard(x, { similar: true })).join("") :
-      `<div class="card"><h3>No questions match “${esc($("#fq").value)}”</h3>
-       <p>Try a question ID (e.g. pp2022-q1-2b), a topic word, or clear the filters.</p>
-       <p><button class="btn small ghost" id="qclear">Clear all filters</button></p></div>`;
+      `<div class="card"><h3>No questions match these filters</h3>
+       <p>Try a topic word or a question ID such as pp2022-q1-2b.</p>
+       <p><button class="btn small ghost" id="qclear">Clear filters</button></p></div>`;
     const qc = $("#qclear");
-    if (qc) qc.onclick = () => { $("#fq").value = ""; $("#forigin").value = ""; $("#fcat").value = ""; draw(); };
-    if (focusQ) { const el = document.getElementById("qc-" + CSS.escape(focusQ)); el?.scrollIntoView({ block: "center" }); }
+    if (qc) qc.onclick = () => { $("#fq").value = ""; $("#fcat").value = ""; $("#fstat").value = ""; st.origin = ""; paintSegs(); draw(); };
+    if (focusQ) { const el = document.getElementById("qc-" + focusQ); focusQ = ""; el?.scrollIntoView({ block: "center" }); }
   };
-  ["fq", "forigin", "fcat"].forEach(id => $("#" + id).addEventListener("input", draw));
+  const paintSegs = () => $$(".segs button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.o === st.origin)));
+  $$(".segs button").forEach(b => b.onclick = () => { st.origin = b.dataset.o; paintSegs(); draw(); });
+  ["fq", "fcat", "fstat"].forEach(id => $("#" + id).addEventListener("input", draw));
   draw(); wireQuestions($("#view")); markNav("");
 }
 
 function renderGraph(focus) {
   document.onscroll = null;
   const cats = [...new Set(S.articles.map(a => a.category))];
-  const col = i => ["#7db8e8", "#d9a441", "#7fb685", "#d97a6c", "#b39ddb", "#66c6c0", "#e08fa5"][i % 7];
+  const col = (cat, i) => catColor(cat, i);
   const N = S.articles.length, cx = 400, cy = 300, R = 230;
   const pos = {};
   S.articles.forEach((a, i) => {
@@ -482,19 +692,20 @@ function renderGraph(focus) {
   });
   const edges = (S.graph.edges || []).map(e => {
     const [x1, y1] = pos[e.from] || [cx, cy], [x2, y2] = pos[e.to] || [cx, cy];
-    return `<line x1="${x1.toFixed(0)}" y1="${y1.toFixed(0)}" x2="${x2.toFixed(0)}" y2="${y2.toFixed(0)}" stroke="#31343c"/>`; }).join("");
+    return `<line x1="${x1.toFixed(0)}" y1="${y1.toFixed(0)}" x2="${x2.toFixed(0)}" y2="${y2.toFixed(0)}" stroke="var(--v-line)"/>`; }).join("");
+  const shortTitle = t => { t = String(t || ""); return t.length > 22 ? t.slice(0, 21) + "…" : t; };
   const nodes = S.articles.map(a => {
     const [x, y] = pos[a.id]; const ci = cats.indexOf(a.category);
-    return `<g class="gnode ${focus === a.id ? "focus" : ""}" data-id="${a.id}" transform="translate(${x.toFixed(0)},${y.toFixed(0)})">
-      <circle r="${focus === a.id ? 12 : 8}" style="stroke:${col(ci)}"/><text y="24" text-anchor="middle">${esc(a.title.length > 22 ? a.title.slice(0, 21) + "…" : a.title)}</text></g>`; }).join("");
-  $("#view").innerHTML = `<p class="crumbs"><a href="#/">Meridian</a> › <b>Concept graph</b></p>
-    <h1 class="atitle">Concept graph</h1>
-    <p class="summary">${S.articles.length} concepts · ${(S.graph.edges || []).length} relationships. Select a node to read it.</p>
+    return `<g class="gnode ${focus === a.id ? "focus" : ""}" data-id="${a.id}" transform="translate(${x.toFixed(0)},${y.toFixed(0)})"><title>${esc(a.title || a.id)}</title>
+      <circle r="${focus === a.id ? 12 : 8}" style="stroke:${col(a.category, ci)}"/><text y="24" text-anchor="middle">${esc(shortTitle(a.title))}</text></g>`; }).join("");
+  const legend = cats.map((c, i) => `<span><i class="cdot" style="background:${col(c, i)}"></i>${esc(c)}</span>`).join("");
+  $("#view").innerHTML = `<p class="crumbs"><a href="#/">Home</a></p>
+    <h1 class="atitle">Concept map</h1>
+    <p class="summary">${S.articles.length} topics and how they connect. Select one to read it.</p>
     <div class="graphwrap"><svg viewBox="0 0 800 600" role="img" aria-label="Concept relationship graph">${edges}${nodes}</svg></div>
-    <p class="rel">${cats.map((c, i) => `<span style="color:${col(i)}">●</span> ${esc(c)}`).join(" &nbsp; ")}</p>`;
-  $("#rightRail").innerHTML = `<div class="ctx"><h3>Reading the graph</h3>
-    <p class="rel">Colour = topic family. Lines = related or prerequisite relationships.
-    Dense clusters (critical path, use cases, NFRs) are the most examined regions.</p></div>`;
+    <p class="rel legend legend-row">${legend}</p>`;
+  $("#rightRail").innerHTML = `<div class="ctx"><h3>Reading the map</h3>
+    <p class="rel">Colour shows the unit. Lines join related topics and prerequisites.</p></div>`;
   $$(".gnode").forEach(g => g.onclick = () => location.hash = "#/article/" + g.dataset.id);
   markNav("");
 }
@@ -502,90 +713,135 @@ function renderGraph(focus) {
 function renderReview() {
   document.onscroll = null;
   const ids = reviewList();
-  $("#view").innerHTML = `<p class="crumbs"><a href="#/">Meridian</a> › <b>Review queue</b></p>
-    <h1 class="atitle">Review queue</h1>
-    <p class="summary">${ids.length ? `${ids.length} concepts want attention — missed questions and unfamiliar material first.` : "All clear. Everything is marked understood — try Surprise me to stretch further."}</p>
+  $("#view").innerHTML = `<p class="crumbs"><a href="#/">Home</a></p>
+    <h1 class="atitle">Review</h1>
+    <p class="summary">${ids.length
+      ? `${ids.length} topic${ids.length === 1 ? "" : "s"} to go back over: the ones you flagged, and the ones where you missed a question.`
+      : "Nothing is due. Topics you mark “needs revision” and questions you miss will show up here."}</p>
+    ${ids.length ? "" : `<p><a class="btn" href="#/study">Start a study session</a> <a class="btn ghost" href="#/questions">Open the question bank</a></p>`}
     ${ids.map(id => { const a = S.byId[id];
-      const missed = (a.qids || []).filter(q => S.progress.attempts[q]?.status === "missed");
-      return `<div class="card"><h3><a href="#/article/${id}">${esc(a.title)}</a></h3>
-        <p>${esc(a.summary.slice(0, 140))}…</p>
-        <p class="rel">Mastery: ${MLABEL[masteryOf(id)]}${missed.length ? ` · missed: ${missed.length}` : ""} ${masteryBtns(id)}</p></div>`; }).join("")}`;
-  $("#rightRail").innerHTML = `<div class="ctx"><h3>Spaced logic</h3>
-    <p class="rel">The queue is ordered by need: “needs revision” and missed questions surface first.
-    Mark items understood only after a successful unaided recall.</p></div>`;
+      if (!a) return "";
+      const ms = missedOf(a).length, flagged = masteryOf(id) === "needs-revision";
+      return `<div class="rrow"><div><h3><a href="#/article/${id}">${esc(a.title)}</a></h3>
+        <p><span class="why">${flagged ? "Needs revision" : ""}${flagged && ms ? " · " : ""}${ms ? `${ms} missed question${ms === 1 ? "" : "s"}` : ""}</span> · ${esc(a.category)}</p></div>
+        <div>${masteryBtns(id)}</div></div>`; }).join("")}`;
+  $("#rightRail").innerHTML = "";
   wireQuestions($("#view")); markNav("");
 }
 
-let deck = [], di = 0;
+/* ---------- study session ---------- */
+let deck = [], di = 0, sess = null;
 function buildDeck() {
   deck = [];
   for (const a of S.articles) {
     if (masteryOf(a.id) === "understood") continue;
     deck.push({ t: "recall", aid: a.id });
     for (const qid of (a.qids || []))
-      if (S.progress.attempts[qid]?.status !== "got") deck.push({ t: "q", qid });
+      if (S.qById[qid] && S.progress.attempts[qid]?.status !== "got") deck.push({ t: "q", qid });
   }
-  for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[deck[i], deck[j]] = [deck[j], deck[i]]; }
-  deck = deck.slice(0, 30); di = 0;
+  for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [deck[i], deck[j]] = [deck[j], deck[i]]; }
+  deck = deck.slice(0, 12); di = 0; sess = { start: Date.now(), got: 0, missed: 0 };
 }
 async function renderStudy() {
   document.onscroll = null;
-  if (!deck.length) buildDeck();
-  $("#rightRail").innerHTML = `<div class="ctx"><h3>Study mode</h3>
-    <p class="rel">One prompt at a time, no navigation. Reveal, self-mark, move on. ${deck.length} cards in this deck.</p>
-    <p><button class="btn small ghost" id="reshuffle">Reshuffle deck</button></p></div>`;
-  $("#reshuffle").onclick = () => { buildDeck(); renderStudy(); };
-  if (!deck.length) { $("#view").innerHTML = `<div class="card"><h3>Deck complete</h3><p>Nothing due. Reshuffle or explore.</p></div>`; return; }
-  const card = deck[di % deck.length];
-  let inner = "";
+  $("#rightRail").innerHTML = ""; markNav("");
+  if (!sess) buildDeck();
+  const view = $("#view");
+  const restart = () => { buildDeck(); renderStudy(); };
+  if (!deck.length) {
+    sess = null;
+    view.innerHTML = `<div class="scard sdone"><h1>Nothing left to drill</h1>
+      <p class="rel">Every topic is marked understood and every question is answered. Test yourself on past papers instead.</p>
+      <p><a class="btn" href="#/questions?origin=past-paper">Open past-paper questions</a></p></div>`;
+    return;
+  }
+  if (di >= deck.length) {
+    const s = sess; sess = null;
+    view.innerHTML = `<div class="scard sdone"><h1>Session done</h1>
+      <p class="rel">${deck.length} cards. Anything you missed is in your review list.</p>
+      <div class="tallyrow"><span><b>${s.got}</b>got it</span><span><b>${s.missed}</b>missed</span><span><b>${deck.length - s.got - s.missed}</b>skipped</span></div>
+      <p><button class="btn" id="again">Start another session</button> <a class="btn ghost" href="#/review">Go to review</a></p></div>`;
+    $("#again").onclick = restart;
+    return;
+  }
+  const card = deck[di];
+  const head = `<div class="sbar"><span>Card ${di + 1} of ${deck.length}</span>
+    <span class="pbar"><i style="width:${Math.round(100 * di / deck.length)}%"></i></span><a href="#/">End session</a></div>`;
+  const next = () => { di++; renderStudy(); instant(0); };
   if (card.t === "recall") {
-    const full = await getJSON("/api/article/" + card.aid);
-    const r = (full.recall || [])[0];
-    inner = r ? `<p class="crumbs"><a href="#/article/${card.aid}">${esc(full.title)}</a> › recall</p>
-      <h1 class="atitle">${esc(r.q)}</h1>
-      <textarea id="studyAns" placeholder="Explain from memory, then reveal…"></textarea>
-      <p><button class="btn small ghost" id="reveal">Reveal suggested answer</button></p>
-      <div class="card" id="studyModel" hidden><p>${esc(r.a)}</p></div>
-      <p class="rel">Card ${di % deck.length + 1} of ${deck.length}</p>
-      <p><button class="btn small ghost" data-m="got">✓ Got it</button>
-      <button class="btn small ghost" data-m="missed">✗ Missed</button>
-      <button class="btn small ghost" data-m="skip">Next →</button></p>`
-      : `<div class="card"><p>No recall prompt here — <a href="#/article/${card.aid}">read the article</a>.</p>
-      <p><button class="btn small ghost" data-m="skip">Next →</button></p></div>`;
+    let full = null;
+    try { full = await getJSON("/api/article/" + card.aid); } catch {}
+    if (location.hash !== "#/study") return;
+    const recalls = (full && full.recall) || [];
+    if (!recalls.length) { deck.splice(di, 1); renderStudy(); return; }
+    if (card.ri === undefined) card.ri = Math.floor(Math.random() * recalls.length);
+    const r = recalls[card.ri];
+    view.innerHTML = `${head}<div class="scard">
+      <p class="from">From <a href="#/article/${card.aid}">${esc(full.title)}</a></p>
+      <h1>${esc(r.q)}</h1>
+      <textarea id="studyAns" placeholder="Explain it from memory, then check" aria-label="Your answer"></textarea>
+      <div class="sanswer" id="studyModel" hidden>${esc(r.a)}</div>
+      <div class="sactions" id="sact"><button class="btn" id="reveal">Show answer</button><span class="spacer"></span>
+        <button class="btn ghost" data-s="skip">Skip</button></div></div>`;
+    $("#reveal").onclick = () => {
+      $("#studyModel").hidden = false;
+      $("#sact").innerHTML = `<span class="rel">How did you do?</span><button class="btn" data-s="got">Got it</button>
+        <button class="btn ghost" data-s="missed">Missed</button>`;
+      wire();
+    };
+    const wire = () => $$("#sact [data-s]").forEach(b => b.onclick = () => {
+      const s = b.dataset.s;
+      if (s === "got" || s === "missed") {
+        sess[s]++;
+        S.progress.attempts[`recall:${card.aid}:${card.ri}`] = { status: s, ts: Date.now() };
+        if (s === "missed" && masteryOf(card.aid) !== "needs-revision") { S.progress.mastery[card.aid] = "needs-revision"; buildNav(); }
+        saveProgress();
+      }
+      next();
+    });
+    wire();
+    $("#studyAns").focus({ preventScroll: true });
   } else {
     const q = S.qById[card.qid];
-    inner = `<p class="crumbs">Question · ${esc(q.source || "")}</p><h1 class="atitle">${esc(q.prompt)}</h1>
-      ${q.detail ? `<p>${esc(q.detail)}</p>` : ""}
-      <textarea id="studyAns" placeholder="Attempt before revealing…"></textarea>
-      <div id="sq">${questionCard(q)}</div>
-      <p><button class="btn small ghost" data-m="skip">Next →</button></p>`;
+    if (!q) { deck.splice(di, 1); renderStudy(); return; }
+    view.innerHTML = `${head}<div class="scard">${questionCard(q)}
+      <div class="sactions"><span class="spacer"></span><button class="btn ghost" id="snext">Next card</button></div></div>`;
+    wireQuestions(view);
+    $("#snext").onclick = () => {
+      const att = S.progress.attempts[q.id];
+      if (att && att.ts >= sess.start) { if (att.status === "got") sess.got++; else if (att.status === "missed") sess.missed++; }
+      next();
+    };
   }
-  $("#view").innerHTML = `<p class="crumbs"><a href="#/">Meridian</a> › <b>Study mode</b></p>` + inner;
-  wireQuestions($("#view"));
-  $("#reveal") && ($("#reveal").onclick = () => { $("#studyModel").hidden = false; });
-  $$("#view [data-m]").forEach(b => b.onclick = () => {
-    if (card.t === "recall" && (b.dataset.m === "got" || b.dataset.m === "missed"))
-      toast(b.dataset.m === "got" ? "Nice — keep it." : "Queued for review.");
-    di++; renderStudy();
-  });
-  markNav("");
 }
 
 /* ---------- router ---------- */
 function route() {
   const h = location.hash || "#/";
   $("#readProgress span").style.width = "0";
-  document.body.classList.toggle("reader-open", h.startsWith("#/read/"));
+  const name = h.startsWith("#/read/") ? "read" : h.startsWith("#/library") ? "library" : h.startsWith("#/article/") ? "article"
+    : h.startsWith("#/questions") ? "questions" : h.startsWith("#/graph") ? "graph" : h === "#/review" ? "review"
+    : h === "#/study" ? "study" : "home";
+  document.body.dataset.view = name;
+  document.body.classList.toggle("reader-open", name === "read");
+  document.body.classList.toggle("norail", name !== "article" && name !== "graph");
+  document.body.classList.remove("navopen");
+  const navName = name === "read" ? "library" : name;
+  $$("#mainNav a").forEach(a => { if (a.dataset.route === navName) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  if (name !== "study") sess = null;
   if (window.Library && window.Library.onLeave) window.Library.onLeave(h);
-  if (h.startsWith("#/read/")) { window.Library ? window.Library.reader(h.slice(7)) : null; }
-  else if (h.startsWith("#/library")) { window.Library ? window.Library.render() : renderHome(); }
-  else if (h.startsWith("#/article/")) renderArticle(decodeURIComponent(h.slice(10)));
-  else if (h.startsWith("#/questions")) {
-    const m = h.match(/[?&]q=([^&]+)/); renderQuestions(m ? decodeURIComponent(m[1]) : "");
+  saveReadPos(); readingId = null; clearTimeout(readSaveT);
+  instant(0);
+  if (name === "read") { window.Library ? window.Library.reader(h.slice(7)) : null; }
+  else if (name === "library") { window.Library ? window.Library.render() : renderHome(); }
+  else if (name === "article") renderArticle(decodeURIComponent(h.slice(10)));
+  else if (name === "questions") {
+    const p = new URLSearchParams(h.split("?")[1] || "");
+    renderQuestions(p.get("q") || "", p.get("origin") || "");
   }
-  else if (h.startsWith("#/graph")) (window.GraphView ? window.GraphView.render(new URLSearchParams(h.split("?")[1] || "").get("focus")) : renderGraph());
-  else if (h === "#/review") renderReview();
-  else if (h === "#/study") renderStudy();
+  else if (name === "graph") (window.GraphView ? window.GraphView.render(new URLSearchParams(h.split("?")[1] || "").get("focus")) : renderGraph());
+  else if (name === "review") renderReview();
+  else if (name === "study") renderStudy();
   else renderHome();
   $("#palette").hidden = true;
 }
@@ -601,26 +857,28 @@ document.addEventListener("click", e => {
 });
 document.addEventListener("keydown", e => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); openPalette(); }
-  else if (e.key === "Escape") closePalette();
+  else if (e.key === "Escape") { closePalette(); document.body.classList.remove("navopen"); }
   else if (!$("#palette").hidden && ["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
     e.preventDefault();
     if (e.key === "Enter") goResult(palItems[palIdx]);
     else { palIdx = (palIdx + (e.key === "ArrowDown" ? 1 : -1) + Math.max(1, palItems.length)) % Math.max(1, palItems.length);
-      $$("#paletteList li").forEach((li, i) => li.setAttribute("aria-selected", i === palIdx)); }
+      $$("#paletteList li").forEach((li, i) => li.setAttribute("aria-selected", String(i === palIdx)));
+      const inp = $("#paletteInput");
+      if (inp && palItems.length) inp.setAttribute("aria-activedescendant", "pal-opt-" + palIdx);
+      $("#pal-opt-" + palIdx)?.scrollIntoView({ block: "nearest" });
+    }
   }
 });
-$("#searchInput").addEventListener("focus", openPalette);
-$("#searchInput").addEventListener("input", e => { openPalette(); $("#paletteInput").value = e.target.value; renderPalette(); });
+$("#searchBtn").onclick = openPalette;
 $("#paletteInput").addEventListener("input", renderPalette);
 $("#palette").addEventListener("click", e => { if (e.target.id === "palette") closePalette(); });
 $("#paletteClose").onclick = closePalette;
-$("#surpriseBtn").onclick = () => location.hash = "#/article/" + S.articles[Math.floor(Math.random() * S.articles.length)].id;
 $("#themeBtn").onclick = () => { const h = document.documentElement;
   h.dataset.theme = h.dataset.theme === "dark" ? "light" : "dark";
-  $("#themeBtn").setAttribute("aria-pressed", h.dataset.theme === "light"); };
+  try { localStorage.setItem("meridian-theme", h.dataset.theme); } catch {} };
 $("#readingBtn").onclick = () => { const on = document.body.classList.toggle("reading");
   $("#readingBtn").setAttribute("aria-pressed", on); };
 $("#navToggle").onclick = () => document.body.classList.toggle("navopen");
-$("#navClose").onclick = () => document.body.classList.remove("navopen");
+$("#scrim").onclick = () => document.body.classList.remove("navopen");
 
 boot();

@@ -9,6 +9,7 @@ with any static file server, e.g. `python -m http.server` or `npx serve`.
 ## What's inside
 
 - `index.html` + `static/` — the app (vanilla JS, no build step, no CDN).
+- `static/fonts/` — self-hosted Bricolage Grotesque and Literata (open-licence variable fonts), so it works offline.
 - `api/` — precomputed JSON: articles, questions, graph, sources, library,
   per-article pages, per-document related links, activities, text extracts,
   slide-preview metadata.
@@ -31,7 +32,15 @@ This is a frozen, shareable snapshot. Removed on purpose:
 
 Everything else — articles, questions, visuals, activities, search (global
 palette + in-document), page navigation, zoom/fit, thumbnails, selectable
-text view, related links, notes, mobile layout — works offline of any backend.
+text view, related links, notes, light/dark themes, mobile layout — works
+offline of any backend.
+
+## Design
+
+Light "exam paper" theme by default (dark follows the system setting; the
+toggle is in the top bar). Colours and diagram palette are CSS variables at
+the top of `static/styles.css`. Home opens on the next topic to read and a
+course map of every topic coloured by mastery.
 
 ## Deploy
 

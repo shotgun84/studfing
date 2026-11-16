@@ -228,7 +228,8 @@
   ],
   "question_ids": [
    "ws1-wbs",
-   "gen-wbs-1"
+   "gen-wbs-1",
+   "vq-wbs-error"
   ],
   "read_minutes": 6,
   "recall": [
@@ -524,7 +525,8 @@
    "pp2018-q1b",
    "pp2019-q1b",
    "ws1-critical-path",
-   "ws1-wbs"
+   "ws1-wbs",
+   "vq-aon-slip"
   ],
   "read_minutes": 10,
   "recall": [
@@ -693,7 +695,8 @@
    "critical-path"
   ],
   "question_ids": [
-   "gen-gantt-1"
+   "gen-gantt-1",
+   "vq-gantt-crit"
   ],
   "read_minutes": 4,
   "recall": [
@@ -1022,7 +1025,8 @@
   "question_ids": [
    "pp2022-q4-scrum",
    "ws2-scrum",
-   "gen-backlog-1"
+   "gen-backlog-1",
+   "vq-scrum-event"
   ],
   "read_minutes": 8,
   "recall": [
@@ -1144,7 +1148,8 @@
   "question_ids": [
    "pp2022-q4-burnup",
    "ws2-burnup",
-   "gen-burnup-1"
+   "gen-burnup-1",
+   "vq-burnup-read"
   ],
   "read_minutes": 8,
   "recall": [
@@ -1238,7 +1243,8 @@
   "question_ids": [
    "pp2022-q4-kanban",
    "ws2-kanban",
-   "gen-kanban-1"
+   "gen-kanban-1",
+   "vq-kanban-next"
   ],
   "read_minutes": 7,
   "recall": [
@@ -1614,7 +1620,8 @@
    "ws3-userstory",
    "gen-userstory-1",
    "pp2022-q2-railway",
-   "ws3-actors"
+   "ws3-actors",
+   "vq-story-parts"
   ],
   "read_minutes": 6,
   "recall": [
@@ -1846,7 +1853,8 @@
    "gen-flow-1",
    "pp2018-q2a",
    "pp2019-q2a",
-   "ws3-actors"
+   "ws3-actors",
+   "vq-uc-ext"
   ],
   "read_minutes": 10,
   "recall": [
@@ -1939,7 +1947,6 @@
    "use-case-flow"
   ],
   "question_ids": [
-   "ws3-diagram",
    "gen-ucdiagram-1",
    "ws3-actors"
   ],
@@ -2195,7 +2202,8 @@
    "pp2019-q3c",
    "gen-nfr-valid-1",
    "ws4-validity",
-   "pp2019-q3b"
+   "pp2019-q3b",
+   "vq-nfr-sort"
   ],
   "read_minutes": 9,
   "recall": [
@@ -2332,7 +2340,8 @@
   "question_ids": [
    "pp2022-q3-perf",
    "ws4-perf",
-   "gen-perf-1"
+   "gen-perf-1",
+   "vq-perf-pick"
   ],
   "read_minutes": 7,
   "recall": [
@@ -2442,7 +2451,6 @@
    "nfr-validity"
   ],
   "question_ids": [
-   "pp2022-q3-rel",
    "pp2019-q3b",
    "ws4-rel",
    "gen-rel-1",
@@ -2567,7 +2575,6 @@
   ],
   "question_ids": [
    "pp2022-q3-rewrite",
-   "pp2019-q3a",
    "ws4-usab",
    "gen-usab-1",
    "pp2019-q3b",
@@ -3204,7 +3211,7 @@
       [
        "Failure",
        "Software not meeting its goals",
-       "Converter outputs 176 C instead of 80 C; program crashes"
+       "212 F yields 324 C instead of 100 C"
       ],
       [
        "Debugging",
@@ -3354,7 +3361,7 @@
      "Four properties keep a category set valid. It must be complete: every possible input, including every combination for multi-parameter units, fits somewhere. It must contain no OR: a category like x < 0 or x >= 100 hides a test case. It must not overlap: no input belongs to two categories, so never write separate x < 0 and y < 0 categories for a two-parameter unit. And it must never test syntax errors: passing a string where a real is required is pointless because the compiler already prevents it."
     ],
     "bullets": [
-     "Complete: every input (every combination) fits in exactly the intent of one category.",
+     "Complete: every input (every combination) fits to exactly the extent of one category.",
      "No OR: split x < 0 or x >= 100 into two categories so both get tested.",
      "Mutually exclusive: x < 0 versus 0 <= x < 100, never x < 0 versus x < 100.",
      "Corner cases: empty string, null, and zero get their own thought, not an afterthought."
@@ -3394,7 +3401,7 @@
    },
    {
     "source": "learnming materials v2/Lecture08_testing_Part1_1pp_2025S1(1).pdf",
-    "locator": "PDF pp. 34-37 (Ranges, corner cases, four properties)",
+    "locator": "PDF pp. 32-37 (Ranges, corner cases, four properties)",
     "excerpt": "Write numeric categories smallest to largest using only < forms. Corner cases such as the empty string, null and zero are easily overlooked. Categories must be complete, contain no OR, not overlap, and never test syntax errors.",
     "kind": "course"
    }
@@ -3457,7 +3464,7 @@
     "heading": "Boundaries with real numbers",
     "paras": [
      "With integers the two values around a boundary are obvious neighbours. With reals you must pick values as close to the edge as possible: for the rule aircon on at 25.5 degrees or above, test exactly 25.5 from one side and something like 25.499999 from the other.",
-     "The pattern is always the same: find every boundary between categories, then take one value from each side. Six categories edges in the discount example mean six test values, not three."
+     "The pattern is always the same: find every boundary between categories, then take one value from each side. Three boundaries in the discount example mean six test values, not three."
     ],
     "callout": {
      "kind": "exam",
@@ -3648,7 +3655,7 @@
    {
     "heading": "Expected versus unexpected exceptions",
     "paras": [
-     "Exceptions need care because they invert pass and fail. An unexpected exception, whether from broken test code or faulty production, should fail the test; in Python you simply let it propagate, in Java you declare throws on the test method. An expected exception is the opposite: the method should throw (for instance formatTime raising on invalid input instead of returning an error string), so the test only passes if the exception arrives. The pattern is a try block ending in assert False (reached only when nothing threw) with the pass sitting in the except/catch clause."
+     "Exceptions need care because they invert pass and fail. An unexpected exception, whether from broken test code or faulty production, should fail the test; in Python you simply let it propagate, in Java you declare throws on the test method. An expected exception is the opposite: the method should throw (for instance a hypothetical Lecture 9 version of formatTime raising on invalid input, whereas Lecture 8's formatTime RETURNS \"error\" instead of throwing), so the test only passes if the exception arrives. The pattern is a try block ending in assert False in Python / assert false in Java (reached only when nothing threw) with the pass sitting in the except/catch clause."
     ]
    },
    {
@@ -3749,7 +3756,7 @@
     ],
     "callout": {
      "kind": "exam",
-     "text": "For any code snippet, enumerate constructs (if, else-if, loop, try-catch), count paths (if=2, loop=2, each catch=+1, nested splits multiply), then give one row per path with inputs and expected output. State explicitly when the white-box count differs from the black-box category count."
+     "text": "For any code snippet, enumerate constructs (if, else-if, loop, try-catch), count paths (if=2, loop=2, each catch=+1, a nested if splits one existing path into two (+1: two paths become three)), then give one row per path with inputs and expected output. State explicitly when the white-box count differs from the black-box category count."
     }
    }
   ],
@@ -3898,19 +3905,19 @@
   "citations": [
    {
     "source": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
-    "locator": "PDF pp. 1-10 (Why VCS; definition; LVCS/CVCS/DVCS)",
+    "locator": "PDF pp. 5-13 (Why VCS; definition; LVCS/CVCS/DVCS)",
     "excerpt": "A version control system records every change with who, when and why so any version can be restored. Local systems keep history on one computer, centralised systems on one server with file locking, distributed systems give every user a full copy.",
     "kind": "course"
    },
    {
     "source": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
-    "locator": "PDF pp. 11-25 (Four places; staging; file states; setup and commits)",
+    "locator": "PDF pp. 20-31 (Four places; staging; file states; setup and commits)",
     "excerpt": "Work flows through working directory, staging area, local repository and remote repository via checkout, add, commit, push and pull. Files are untracked or tracked (unmodified, modified, staged); git add stages, git commit snapshots, git status and git diff inspect.",
     "kind": "course"
    },
    {
     "source": "learnming materials v2/Lecture6_VersionControl-2025.pdf",
-    "locator": "PDF pp. 26-50 (Branching, merging, conflicts, remotes, team workflow)",
+    "locator": "PDF pp. 39-57 (Branching, merging, conflicts, remotes, team workflow)",
     "excerpt": "Branch with git branch/switch, merge back to master, resolve conflicts where both sides edited the same lines. Clone once, push branches for review, merge after approval, pull regularly. Git is the tool; GitHub is hosting plus review.",
     "kind": "course"
    }
@@ -3953,7 +3960,7 @@
     "heading": "Coupling: how modules depend on each other",
     "paras": [
      "Coupling measures dependence between modules. Some coupling is essential: calcDaysInMonth calling isLeapYear(y) is a normal parameterised call where the caller pauses, passes y, and resumes with the answer. Trouble starts with hidden or excessive coupling.",
-     "Global variables are the classic hidden coupling: any module can read or change them at any time, so a fault could originate anywhere and tracing it means reading everything. The fix is boring on purpose: pass data in as parameters and return results, so each call is self-contained. A second smell is the long parameter list (more than about six): a function taking unit, code, building, room, capacity and more is probably doing several jobs and should be split. A third is the control flag: formatTimeDate(day, month, year, isDate) behaves as two different functions depending on a Boolean, forcing callers to know its internals. Split it into formatDate plus formatTime and the flag (and the extra coupling) disappears."
+     "Global variables are the classic hidden coupling: any module can read or change them at any time, so a fault could originate anywhere and tracing it means reading everything. The fix is boring on purpose: pass data in as parameters and return results, so each call is self-contained. A second smell is the long parameter list (more than about six (\u22487+)): a function taking unit, code, building, room, capacity and more is probably doing several jobs and should be split. A third is the control flag: formatTimeDate(day, month, year, isDate) behaves as two different functions depending on a Boolean, forcing callers to know its internals. Split it into formatDate plus formatTime and the flag (and the extra coupling) disappears."
     ],
     "table": {
      "head": [
@@ -3968,7 +3975,7 @@
        "Parameters in, return values out"
       ],
       [
-       "7+ parameters",
+       "more than about six (\u22487+) parameters",
        "Module does several jobs; callers carry context",
        "Split into smaller modules"
       ],
@@ -4014,7 +4021,7 @@
   "citations": [
    {
     "source": "learnming materials v2/Lecture7_Modularity_1pp_2024_S1_V1.pdf",
-    "locator": "PDF pp. 1-15 (Software design; modularity; Lehman laws; four principles; maintenance)",
+    "locator": "PDF pp. 1-18 (Software design; modularity; Lehman laws; four principles; maintenance)",
     "excerpt": "Design sits between requirements and code. Modularity means self-contained modules with one job; Lehman laws demand continuing change while fighting increasing complexity. Aim for high cohesion, low coupling, information hiding and reuse; maintenance (corrective, perfective, adaptive) starts at delivery.",
     "kind": "course"
    },

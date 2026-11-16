@@ -127,10 +127,15 @@
     if (!pvidxP) pvidxP = fetch("data/preview_index.json").then(r => r.json()).catch(() => ({}));
     return pvidxP;
   }
+  let allTextsP = null;
   async function allTexts() {
-    try { await ensureDocMap(); } catch (e) {}
-    const map = window.__DOCMAP__ || {};
-    await Promise.all(Object.keys(map).map(docText).map(p => p.catch(() => [])));
+    if (allTextsP) return allTextsP;
+    allTextsP = (async () => {
+      try { await ensureDocMap(); } catch (e) {}
+      const map = window.__DOCMAP__ || {};
+      await Promise.all(Object.keys(map).map(docText).map(p => p.catch(() => [])));
+    })().finally(() => { allTextsP = null; });
+    return allTextsP;
   }
   window.staticSearch = async function (query) {
     const q = String(query || "").trim().toLowerCase();
@@ -164,23 +169,26 @@
         out.push({ kind: "Source", id: "src:" + rel, title: s_.file, sub: s_.role || "", score: 30 });
       }
     }
-    try {
-      const idx = await pvidx();
-      await allTexts();
-      let slides = 0;
-      outer: for (const rel of Object.keys(window.__DOCMAP__ || {})) {
-        const pages = textCache[rel] || [];
-        for (const p of pages) {
-          if (!idx[`${rel}::p${p.page}`]) continue;
-          const low = (p.text || "").toLowerCase();
-          if (toks.every(t => low.includes(t))) {
-            const fname = rel.split("/").pop();
-            out.push({ kind: "Slide", id: `slide:${rel}:${p.page}`, title: `${fname} — p.${p.page}`, sub: snippet(p.text || "", low.indexOf(toks[0])).slice(0, 140), score: 22 });
-            if (++slides >= 8) break outer;
+    // Tiered: articles/questions/sources are synchronous above; slide full-text only for >=3 chars.
+    if (q.length >= 3) {
+      try {
+        const idx = await pvidx();
+        await allTexts();
+        let slides = 0;
+        outer: for (const rel of Object.keys(window.__DOCMAP__ || {})) {
+          const pages = textCache[rel] || [];
+          for (const p of pages) {
+            if (!idx[`${rel}::p${p.page}`]) continue;
+            const low = (p.text || "").toLowerCase();
+            if (toks.every(t => low.includes(t))) {
+              const fname = rel.split("/").pop();
+              out.push({ kind: "Slide", id: `slide:${rel}:${p.page}`, title: `${fname} — p.${p.page}`, sub: snippet(p.text || "", low.indexOf(toks[0])).slice(0, 140), score: 22 });
+              if (++slides >= 8) break outer;
+            }
           }
         }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
     out.sort((a, b) => b.score - a.score);
     return { results: out.slice(0, 16).map(({ score, ...r }) => r) };
   };

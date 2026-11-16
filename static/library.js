@@ -13,37 +13,45 @@ window.Library = (function () {
   function byId(id) { return (libCache || []).find(d => d.id === id); }
   function thumb(d, w) { return window.pageImg ? window.pageImg(d.rel, 1, w || 320) : ""; }
   function docTitle(d) { return d.title || d.file; }
+  const ROLE = { lecture: "Lecture", worksheet: "Worksheet", "past-paper": "Past paper", reference: "Reference", supplementary: "Other" };
+  function roleLabel(d) { return ROLE[d.role] || d.role || "Document"; }
 
   /* ================= homepage section ================= */
+  function rprog(d) {
+    const r = (S.progress.reader || {})[d.id];
+    if (r && r.page > 0) return r;
+    if (d.progress && d.progress.page > 0) return d.progress;
+    return null;
+  }
+  function rpct(d, r) { return Math.min(100, Math.round(100 * (r.page || 0) / Math.max(1, d.pages || 1))); }
   async function homeSection() {
     try {
       const docs = await data();
-      const reads = Object.entries((S.progress.reader || {}));
-      const withProg = docs.filter(d => d.progress && d.progress.page > 0)
-        .sort((a, b) => (b.progress.updated || 0) - (a.progress.updated || 0)).slice(0, 3);
+      const withProg = docs.filter(d => rprog(d))
+        .sort((a, b) => ((rprog(b) || {}).updated || 0) - ((rprog(a) || {}).updated || 0)).slice(0, 3);
       const added = docs.slice().sort((a, b) => (b.added || "").localeCompare(a.added || "")).slice(0, 3);
-      const card = d => `<a class="libmini" href="#/read/${d.id}">
+      const card = d => { const r = rprog(d);
+        return `<a class="libmini" href="#/read/${d.id}">
         <img loading="lazy" src="${thumb(d, 240)}" alt="Cover of ${esc(docTitle(d))}">
         <span class="libmini-t"><b>${esc(docTitle(d))}</b>
-        <small>${esc(d.subject || "")} · ${d.pages} p${d.progress ? ` · p.${d.progress.page}/${d.pages}` : ""}</small>
-        ${d.progress ? `<span class="pbar"><i style="width:${d.pct}%"></i></span>` : ""}</span></a>`;
+        <small>${esc(roleLabel(d))}, ${r ? `page ${r.page} of ${d.pages}` : `${d.pages} pages`}</small>
+        ${r ? `<span class="pbar"><i style="width:${rpct(d, r)}%"></i></span>` : ""}</span></a>`; };
       return `<div class="home-lib">
-        <div class="home-lib-head"><h2>Learning materials</h2><span><a class="btn small ghost" href="#/library">Browse library →</a></span></div>
-        ${withProg.length ? `<h3>Continue reading</h3><div class="libminis">${withProg.map(card).join("")}</div>` : ""}
-        <h3>Recently added</h3><div class="libminis">${added.map(card).join("") || `<p class="rel">No materials yet.</p>`}</div>
+        <div class="h2row"><h2>${withProg.length ? "Keep reading the slides" : "Lecture slides and papers"}</h2><a href="#/library">Open the library</a></div>
+        <div class="libminis">${(withProg.length ? withProg : added).map(card).join("") || `<p class="empty">No course files yet.</p>`}</div>
       </div>`;
-    } catch { return `<div class="home-lib"><h2>Learning materials</h2><p class="rel">Library unavailable. <a href="#/library">Try the library →</a></p></div>`; }
+    } catch { return ""; }
   }
 
   /* ================= library view ================= */
   const LSTATE = { q: "", subj: "", role: "", sort: "opened", view: (typeof localStorage !== "undefined" && localStorage.getItem("meridian-libview")) || "grid" };
   async function render() {
     document.onscroll = null;
-    $("#view").innerHTML = `<p class="crumbs"><a href="#/">Meridian</a> › <b>Library</b></p>
-    <h1 class="atitle">Learning materials</h1>
-    <p class="summary">Every lecture deck, worksheet and past paper — open, read, search and study, right here.</p>
+    $("#view").innerHTML = `<p class="crumbs"><a href="#/">Home</a></p>
+    <h1 class="atitle">Library</h1>
+    <p class="summary">The original lecture slides, worksheets and past papers. Open one to read it with linked practice and your own notes alongside.</p>
       <div class="libbar">
-        <input id="libq" type="search" placeholder="Search titles, files, subjects…" value="${esc(LSTATE.q)}" aria-label="Search library">
+        <input id="libq" type="search" placeholder="Search by title or subject" value="${esc(LSTATE.q)}" aria-label="Search library">
         <select id="libsubj" aria-label="Filter by subject"><option value="">All subjects</option></select>
         <select id="librole" aria-label="Filter by collection">
           <option value="">All collections</option><option value="lecture">Lectures</option>
@@ -52,11 +60,10 @@ window.Library = (function () {
         <select id="libsort" aria-label="Sort">
           <option value="opened">Recently opened</option><option value="added">Recently added</option>
           <option value="title">Title A–Z</option><option value="pages">Most pages</option></select>
-        <button class="iconbtn" id="libview" title="Toggle grid/list" aria-label="Toggle grid or list">▦</button>
+        <button class="btn small ghost" id="libview"></button>
       </div>
-      <div id="liblist"><div class="card"><p>Loading library…</p></div></div>`;
-    $("#rightRail").innerHTML = `<div class="ctx"><h3>About this library</h3>
-      <p class="rel">Original course files — nothing here is generated. Reading progress, bookmarks and notes are saved in this browser.</p></div>`;
+      <div id="liblist"><p class="loading">Loading the library…</p></div>`;
+    $("#rightRail").innerHTML = "";
     markNav("");
     try {
       const docs = await data(true);
@@ -75,7 +82,7 @@ window.Library = (function () {
       };
       draw();
     } catch {
-      $("#liblist").innerHTML = `<div class="card"><h3>Library unavailable</h3><p>The server could not list materials.</p><p><button class="btn small" onclick="location.reload()">Retry</button></p></div>`;
+      $("#liblist").innerHTML = `<div class="card"><h3>The library didn't load</h3><p>Check your connection, then reload.</p><p><button class="btn small" onclick="location.reload()">Reload</button></p></div>`;
     }
   }
   function paintLib(docs) {
@@ -84,45 +91,49 @@ window.Library = (function () {
       (!q || (d.title + " " + d.file + " " + (d.subject || "")).toLowerCase().includes(q)) &&
       (!LSTATE.subj || d.subject === LSTATE.subj) &&
       (!LSTATE.role || d.role === LSTATE.role));
+    const rprog2 = d => {
+      const r = (S.progress.reader || {})[d.id];
+      if (r && r.page > 0) return r;
+      if (d.progress && d.progress.page > 0) return d.progress;
+      return null;
+    };
+    const rpct2 = (d, r) => Math.min(100, Math.round(100 * (r.page || 0) / Math.max(1, d.pages || 1)));
     const opened = id => ((S.progress.reader || {})[id] || {}).updated || 0;
     const by = {
-      opened: (a, b) => (opened(b.id) || (b.progress ? 1 : 0)) - (opened(a.id) || (a.progress ? 1 : 0)) || (b.added || "").localeCompare(a.added || ""),
+      opened: (a, b) => (opened(b.id) || (rprog2(b) ? 1 : 0)) - (opened(a.id) || (rprog2(a) ? 1 : 0)) || (b.added || "").localeCompare(a.added || ""),
       added: (a, b) => (b.added || "").localeCompare(a.added || ""),
       title: (a, b) => a.title.localeCompare(b.title),
       pages: (a, b) => b.pages - a.pages
     }[LSTATE.sort] || ((a, b) => 0);
     list = list.slice().sort(by);
-    const continued = docs.filter(d => d.progress && d.progress.page > 0)
-      .sort((a, b) => (b.progress.updated || 0) - (a.progress.updated || 0)).slice(0, 4);
+    const continued = docs.filter(d => rprog2(d))
+      .sort((a, b) => ((rprog2(b) || {}).updated || 0) - ((rprog2(a) || {}).updated || 0)).slice(0, 4);
     const showGroups = !q && !LSTATE.subj && !LSTATE.role;
     const card = d => {
+      const r = rprog2(d);
       const badges = [
-        d.status === "failed" ? `<span class="chip warn">extraction failed</span>` : "",
-        d.status === "partial" ? `<span class="chip">partial text</span>` : "",
-        d.locked ? `<span class="chip warn">locked</span>` : "",
-        !d.hasText ? `<span class="chip">image-only</span>` : ""
+        d.status === "failed" ? `<span class="chip warn">Text not searchable</span>` : "",
+        d.status === "partial" ? `<span class="chip">Partly searchable</span>` : "",
+        d.locked ? `<span class="chip warn">Locked</span>` : "",
+        !d.hasText ? `<span class="chip">Images only</span>` : ""
       ].join("");
       return `<article class="libcard" data-doc="${d.id}">
         <a class="libcover" href="#/read/${d.id}" aria-label="Read ${esc(docTitle(d))}">
           ${d.pages ? `<img loading="lazy" src="${thumb(d, 320)}" alt="">` : `<div class="nocover">PDF</div>`}
-          ${d.progress ? `<span class="pbar"><i style="width:${d.pct}%"></i></span>` : ""}</a>
+          ${r ? `<span class="pbar"><i style="width:${rpct2(d, r)}%"></i></span>` : ""}</a>
         <div class="libmeta"><h3><a href="#/read/${d.id}">${esc(docTitle(d))}</a></h3>
-          <p class="rel">${esc(d.subject || "")} · ${esc(d.role || "")} · ${d.pages} pages${d.progress ? ` · p.${d.progress.page}/${d.pages}` : ""}</p>
-          <p>${badges}</p>
-          <div class="libops">
-            <a class="btn small" href="#/read/${d.id}">${d.progress ? "Continue" : "Open"}</a>
-          </div></div></article>`;
+          <p class="rel">${esc(roleLabel(d))}, ${r ? `page ${r.page} of ${d.pages}` : `${d.pages} pages`}</p>
+          ${badges ? `<p class="libbadges">${badges}</p>` : ""}</div></article>`;
     };
     $("#liblist").innerHTML =
       (showGroups && continued.length ? `<h2>Continue reading</h2><div class="lib${LSTATE.view}">${continued.map(card).join("")}</div>` : "") +
       `<h2>${showGroups ? "All materials" : `${list.length} result${list.length === 1 ? "" : "s"}`}</h2>` +
       (list.length ? `<div class="lib${LSTATE.view}">${list.map(card).join("")}</div>`
-        : `<div class="card"><h3>No materials match</h3><p>Try a different search or <button class="btn small ghost" id="libclear">clear all filters</button>.</p></div>`);
+        : `<div class="card"><h3>Nothing matches these filters</h3><p><button class="btn small ghost" id="libclear">Clear filters</button></p></div>`);
     const cq = $("#libclear");
     if (cq) cq.onclick = () => { LSTATE.q = ""; LSTATE.subj = ""; LSTATE.role = ""; $("#libq").value = ""; paintLib(docs); syncLibFilters(docs) };
-    $("#rightRail").innerHTML = `<div class="ctx"><h3>Library</h3>
-      <p class="rel">${docs.length} documents · ${LSTATE.view === "grid" ? "grid" : "list"} view · sorted by ${esc(LSTATE.sort)}</p>
-      <h3>Legend</h3>      <p class="rel">Progress bars resume where you left off. “image-only” means no selectable text — search falls back to page images.</p></div>`;
+    const vb = $("#libview");
+    if (vb) vb.textContent = LSTATE.view === "grid" ? "Show as list" : "Show as grid";
   }
   function syncLibFilters(docs) {
     const subjs = [...new Set(docs.map(d => d.subject).filter(Boolean))].sort();
@@ -137,9 +148,15 @@ Object.assign(window.Library, (function () {
   let R = null, keyH = null, saveT = null;
   let openSeq = 0, robs = null;
   const LADDER = [640, 1100, 1600, 2200];
+  const ROLE2 = { lecture: "Lecture", worksheet: "Worksheet", "past-paper": "Past paper", reference: "Reference", supplementary: "Other" };
 
   function saveSoon() { clearTimeout(saveT); saveT = setTimeout(() => { try { saveProgress(); } catch {} }, 800); }
   function flushSave() { clearTimeout(saveT); try { saveProgress(); } catch {} }
+  if (typeof window !== "undefined" && !window.__meridianFlushWired) {
+    window.__meridianFlushWired = true;
+    window.addEventListener("pagehide", () => { try { saveProgress(); } catch {} });
+    document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") { try { saveProgress(); } catch {} } });
+  }
   function touchProgress(page) {
     if (!R) return;
     S.progress.reader = S.progress.reader || {};
@@ -160,7 +177,7 @@ Object.assign(window.Library, (function () {
     if (keyH) { document.removeEventListener("keydown", keyH); keyH = null; }
     document.removeEventListener("click", closeMenuOutside);
     document.removeEventListener("keydown", escMenu);
-    document.title = "Meridian — ISAD1000 Personal Wikipedia";
+    document.title = "Meridian — ISAD1000 study workspace";
   }
   function imgUrl(page, w) { return window.pageImg ? window.pageImg(R.doc.rel, page, w) : ""; }
   function fitWidth() {
@@ -186,8 +203,7 @@ Object.assign(window.Library, (function () {
   }
   function zoomLabel() {
     if (!R) return "";
-    if (R.fit === "width") return "Fit W";
-    if (R.fit === "page") return "Fit P";
+    if (R.fit === "width" || R.fit === "page") return "Fit";
     return Math.round(LADDER[R.zoomIdx] / 1100 * 100) + "%";
   }
 
@@ -206,8 +222,8 @@ Object.assign(window.Library, (function () {
       if (my !== openSeq) return;
     }
     if (!d || !d.pages) {
-      $("#view").innerHTML = `<p class="crumbs"><a href="#/">Meridian</a> › <a href="#/library">Library</a> › <b>?</b></p>
-        <div class="card"><h3>Document unavailable</h3><p>${!d ? "Unknown document." : "This file has no readable pages."} <a href="#/library">Back to library →</a></p></div>`;
+      $("#view").innerHTML = `<p class="crumbs"><a href="#/">Home</a> / <a href="#/library">Library</a></p>
+        <div class="card"><h3>This document can't be opened</h3><p>${!d ? "It isn't in the library." : "The file has no readable pages."}</p><p><a class="btn small" href="#/library">Back to the library</a></p></div>`;
       $("#rightRail").innerHTML = ""; return;
     }
     const saved = ((S.progress.reader || {})[id] || {}).page || 1;
@@ -258,43 +274,43 @@ Object.assign(window.Library, (function () {
     $("#view").innerHTML = `<div class="ws" id="reader"${hideL ? ' data-hidel="1"' : ""}${hideR ? ' data-hider="1"' : ""}>
       <div class="ws-top">
         <div class="ws-title">
-          <button class="iconbtn" id="rback" aria-label="Back">‹</button>
-          <button class="iconbtn ws-tgl" id="rdocbtn" title="Documents panel" aria-label="Toggle documents panel" aria-pressed="true">▤</button>
-          <div class="wstitle"><b>${esc(d.title)}</b><span>${esc(d.subject || "")} · ${esc(d.role || "")} · ${d.pages} pages · ${d.type === "pdf" ? "PDF" : esc(d.type || "")}</span></div>
+          <button class="iconbtn" id="rback" title="Back" aria-label="Back">${icon("back")}</button>
+          <button class="iconbtn ws-tgl" id="rdocbtn" title="Show or hide the documents panel" aria-label="Show or hide the documents panel" aria-pressed="true">${icon("panel")}</button>
+          <div class="wstitle"><b>${esc(d.title)}</b><span>${esc(ROLE2[d.role] || d.role || "Document")}, ${d.pages} pages</span></div>
         </div>
         <div class="ws-groups" role="toolbar" aria-label="Reader controls">
           <div class="wsgroup" role="group" aria-label="Navigate">
-            <button class="iconbtn" id="rprev" aria-label="Previous page">‹</button>
+            <button class="iconbtn" id="rprev" title="Previous page" aria-label="Previous page">${icon("back")}</button>
             <span class="rpage"><input id="rpage" type="number" min="1" max="${d.pages}" value="${R.page}" aria-label="Page number"><span class="rtotal">/ ${d.pages}</span></span>
-            <button class="iconbtn" id="rnext" aria-label="Next page">›</button>
+            <button class="iconbtn" id="rnext" title="Next page" aria-label="Next page">${icon("fwd")}</button>
           </div>
           <div class="wsgroup" role="group" aria-label="Zoom">
             <button class="iconbtn" id="rzout" aria-label="Zoom out">−</button>
             <button class="rzoom" id="rzoom" title="Click to fit width">${zoomLabel()}</button>
             <button class="iconbtn" id="rzin" aria-label="Zoom in">+</button>
             <div class="seg" role="group" aria-label="Fit mode">
-              <button id="rfitw" aria-pressed="${R.fit === "width"}">W</button><button id="rfitp" aria-pressed="${R.fit === "page"}">P</button>
+              <button id="rfitw" title="Fit the page width" aria-pressed="${R.fit === "width"}">Width</button><button id="rfitp" title="Fit the whole page" aria-pressed="${R.fit === "page"}">Page</button>
             </div>
           </div>
           <div class="wsgroup" role="group" aria-label="View">
-            <button class="iconbtn" id="rsearchbtn" title="Search in document (/)" aria-label="Search">⌕</button>
-            <button class="iconbtn" id="rpagebtn" title="Page thumbnails" aria-label="Toggle page thumbnails" aria-pressed="${R.leftPane === "pages"}">▦</button>
-            <button class="iconbtn" id="rpanelbtn" title="Study panel" aria-label="Toggle study panel" aria-pressed="${R.panel}">◧</button>
+            <button class="iconbtn" id="rsearchbtn" title="Search in this document (/)" aria-label="Search in this document">${icon("search")}</button>
+            <button class="iconbtn" id="rpagebtn" title="Page thumbnails" aria-label="Show page thumbnails" aria-pressed="${R.leftPane === "pages"}">${icon("grid")}</button>
+            <button class="iconbtn" id="rpanelbtn" title="Show or hide the study panel" aria-label="Show or hide the study panel" aria-pressed="${R.panel}">${icon("panelr")}</button>
             <button class="iconbtn" id="rmore" aria-label="More actions" aria-haspopup="menu" aria-expanded="false">⋯</button>
           </div>
         </div>
         <div class="wsover" id="rmenu" role="menu" hidden>
-          <button role="menuitem" id="rtextbtn">Abc&ensp;Selectable text view</button>
-          <button role="menuitem" id="rmarkbtn">☆&ensp;Bookmark this page</button>
-          <button role="menuitem" id="rfs">⛶&ensp;Fullscreen</button>
-          <a role="menuitem" id="rdl" href="${d.rel.split("/").map(encodeURIComponent).join("/")}" download>⤓&ensp;Download original</a>
+          <button role="menuitem" id="rtextbtn">Switch between page and text view</button>
+          <button role="menuitem" id="rmarkbtn">Bookmark this page</button>
+          <button role="menuitem" id="rfs">Full screen</button>
+          <a role="menuitem" id="rdl" href="${d.rel.split("/").map(encodeURIComponent).join("/")}" download>Download the PDF</a>
           <button role="menuitem" id="rwreset">Reset panel widths</button>
         </div>
       </div>
       <div class="rsearch" id="rsearch" hidden>
         <input id="rsq" type="search" placeholder="Search in this document…" aria-label="Search in document">
-        <button class="btn small ghost" id="rsprev" aria-label="Previous result">‹</button>
-        <button class="btn small ghost" id="rsnext" aria-label="Next result">›</button>
+        <button class="iconbtn" id="rsprev" aria-label="Previous result">${icon("back")}</button>
+        <button class="iconbtn" id="rsnext" aria-label="Next result">${icon("fwd")}</button>
         <span class="rel" id="rscount"></span>
         <ol class="rresults" id="rslist"></ol>
       </div>
@@ -307,7 +323,7 @@ Object.assign(window.Library, (function () {
           <div class="ws-docs" id="wsdocs"${R.leftPane === "docs" ? "" : " hidden"}>
             <input id="wsq" type="search" placeholder="Filter documents…" aria-label="Filter documents">
             <div class="ws-doclist" id="wsdoclist" role="listbox" aria-label="Documents"></div>
-            <p class="rel ws-foot"><a href="#/library">＋ Full library &amp; upload</a></p>
+            <p class="rel ws-foot"><a href="#/library">Open the full library</a></p>
           </div>
           <div class="ws-pages" id="wspages"${R.leftPane === "pages" ? "" : " hidden"} aria-label="Page thumbnails"></div>
         </aside>
@@ -318,7 +334,7 @@ Object.assign(window.Library, (function () {
         <div class="ws-grip" data-grip="r" role="separator" aria-orientation="vertical" aria-label="Resize study panel" tabindex="0"></div>
         <aside class="ws-right" id="rstudy" aria-label="Study tools">
           <div class="rtabs" role="tablist">
-            ${["related", "practice", "notes"].map(t => `<button role="tab" data-tab="${t}" aria-selected="${R.tab === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}
+            ${[["related", "Topics"], ["practice", "Practice"], ["notes", "Notes"]].map(([t, l]) => `<button role="tab" data-tab="${t}" aria-selected="${R.tab === t}">${l}</button>`).join("")}
           </div>
           <div class="rpanel" id="rpanel"></div>
         </aside>
@@ -339,7 +355,7 @@ Object.assign(window.Library, (function () {
     $("#rpagebtn").onclick = () => setLeftPane();
     $("#rpanelbtn").onclick = e => { setRight(!R.panel); };
     $("#rsearchbtn").onclick = () => toggleSearch();
-    $("#rtextbtn").onclick = e => { R.textMode = !R.textMode; closeMenu(); drawPage(); toast(R.textMode ? "Text view — selectable text." : "Image view."); };
+    $("#rtextbtn").onclick = e => { R.textMode = !R.textMode; closeMenu(); drawPage(); toast(R.textMode ? "Text view: you can select and copy." : "Page view"); };
     $("#rmarkbtn").onclick = () => { toggleBookmark(); closeMenu(); };
     $("#rfs").onclick = () => { closeMenu(); toggleFS(); };
     $("#rdl").onclick = () => closeMenu();
@@ -549,7 +565,7 @@ Object.assign(window.Library, (function () {
   }
   function syncMark() {
     const b = $("#rmarkbtn");
-    if (b) { const on = (R.notes.bookmarks || []).includes(R.page); b.textContent = on ? "★" : "☆"; b.setAttribute("aria-pressed", on); }
+    if (b) { const on = (R.notes.bookmarks || []).includes(R.page); b.textContent = on ? "Remove bookmark from this page" : "Bookmark this page"; }
   }
 
   /* ---------- left browser: docs + pages ---------- */
@@ -700,16 +716,16 @@ Object.assign(window.Library, (function () {
   }
   async function buildPane(tab, el) {
     if (tab === "related") {
-      el.innerHTML = "<p class='rel'>Loading linked articles…</p>";
+      el.innerHTML = "<p class='rel'>Loading linked topics…</p>";
       try {
         const rel = await getJSON("/api/related?src=" + encodeURIComponent(R.doc.rel));
         el.innerHTML = rel.length ? rel.map(a =>
-          '<div class="relcard"><b><a href="#/article/' + a.id + '">' + esc(a.title) + "</a></b>" +
+          '<div class="relitem"><b><a href="#/article/' + a.id + '">' + esc(a.title) + "</a></b>" +
           "<p class='rel'>" + esc((a.summary || "").slice(0, 140)) + "…</p>" +
-          "<p class='rel'>Cited on: " + a.locators.map(esc).join(" · ") + "</p>" +
-          '<p><button class="btn small ghost" data-open="' + a.id + '">Open article</button> ' +
-          "<span class='rel'>" + a.questions + " questions</span></p></div>").join("")
-          : "<p class='rel'>No articles cite this file yet — it may be background reading.</p>";
+          "<p class='rel'>Uses " + a.locators.map(esc).join(", ") + "</p>" +
+          '<p><button class="btn small ghost" data-open="' + a.id + '">Open topic</button> ' +
+          "<span class='rel'>" + a.questions + " question" + (a.questions === 1 ? "" : "s") + "</span></p></div>").join("")
+          : "<p class='rel'>No topics use this file yet. It may be background reading.</p>";
         el.querySelectorAll("[data-open]").forEach(b => b.onclick = () => { flushSave(); location.hash = "#/article/" + b.dataset.open; });
       } catch (e) { el.innerHTML = "<p class='rel'>Related articles unavailable.</p>"; }
     } else if (tab === "practice") {
@@ -768,9 +784,9 @@ Object.assign(window.Library, (function () {
     const cur = pane.querySelector("#notein");
     if (cur) cur.value = (R._drafts[R.page] !== undefined) ? R._drafts[R.page] : (n.notes[R.page] || "");
     const bm = pane.querySelector("#bmbtn");
-    if (bm) bm.textContent = (n.bookmarks || []).indexOf(R.page) >= 0 ? "★ Bookmarked — remove" : "☆ Bookmark this page";
+    if (bm) bm.textContent = (n.bookmarks || []).indexOf(R.page) >= 0 ? "Remove bookmark" : "Bookmark this page";
     const bl = pane.querySelector("#nbmarks");
-    if (bl) bl.innerHTML = (n.bookmarks || []).length ? "Bookmarks: " + n.bookmarks.map(p => '<button class="linklike" data-jump="' + p + '">p.' + p + "</button>").join(" · ") : "No bookmarks yet.";
+    if (bl) bl.innerHTML = (n.bookmarks || []).length ? "Bookmarks: " + n.bookmarks.map(p => '<button class="linklike" data-jump="' + p + '">page ' + p + "</button>").join(", ") : "No bookmarks yet.";
     const hd = pane.querySelector("#nhdr");
     if (hd) hd.textContent = R.page;
     const items = Object.keys(n.notes || {}).map(Number).sort((a, b) => a - b);
@@ -780,7 +796,7 @@ Object.assign(window.Library, (function () {
     if (nl) nl.innerHTML = items.length ? items.map(p => '<div class="notecard"><b>p. ' + p + "</b><p>" + esc(n.notes[p]) + "</p>" +
       '<p><button class="btn small ghost" data-jump="' + p + '">Jump</button> ' +
       '<button class="btn small ghost" data-delnote="' + p + '">Delete</button></p></div>').join("")
-      : "<p class='rel'>No notes yet. Notes live on pages and survive refreshes.</p>";
+      : "<p class='rel'>No notes yet. Notes are saved per page in this browser.</p>";
     pane.querySelectorAll("[data-jump]").forEach(x => x.onclick = () => goto(+x.getAttribute("data-jump")));
   }
 
