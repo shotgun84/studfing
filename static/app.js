@@ -877,16 +877,18 @@ $("#searchBtn").onclick = openPalette;
 $("#paletteInput").addEventListener("input", renderPalette);
 $("#palette").addEventListener("click", e => { if (e.target.id === "palette") closePalette(); });
 $("#paletteClose").onclick = closePalette;
-const syncThemeBtn = () => $("#themeBtn").setAttribute("aria-checked", document.documentElement.dataset.theme === "dark");
-syncThemeBtn();
-let fadeTimer;
-$("#themeBtn").onclick = () => { const h = document.documentElement;
-  h.classList.add("theme-fade"); clearTimeout(fadeTimer);
-  fadeTimer = setTimeout(() => h.classList.remove("theme-fade"), 600);
-  h.dataset.theme = h.dataset.theme === "dark" ? "light" : "dark";
-  const m = document.querySelector('meta[name="color-scheme"]'); if (m) m.content = h.dataset.theme;
-  syncThemeBtn();
-  try { localStorage.setItem("meridian-theme", h.dataset.theme); } catch {} };
+const themeBtn = $("#themeBtn");
+const applyTheme = t => { const h = document.documentElement; h.dataset.theme = t;
+  const m = document.querySelector('meta[name="color-scheme"]'); if (m) m.content = t;
+  try { localStorage.setItem("meridian-theme", t); } catch {} };
+themeBtn.setAttribute("aria-checked", document.documentElement.dataset.theme === "dark");
+setTimeout(() => document.documentElement.classList.add("tt-ready"), 100);
+themeBtn.onclick = () => {
+  const dark = themeBtn.getAttribute("aria-checked") !== "true";
+  themeBtn.setAttribute("aria-checked", dark);              /* the switch starts moving at once (GPU layers) */
+  /* restyle the page a moment later, after the switch has been handed to the compositor */
+  setTimeout(() => applyTheme(dark ? "dark" : "light"), 70);
+};
 $("#readingBtn").onclick = () => { const on = document.body.classList.toggle("reading");
   $("#readingBtn").setAttribute("aria-pressed", on); };
 $("#navToggle").onclick = () => document.body.classList.toggle("navopen");
