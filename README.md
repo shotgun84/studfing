@@ -37,8 +37,8 @@ offline of any backend.
 
 ## Design
 
-Light "exam paper" theme by default (dark follows the system setting; the
-toggle is in the top bar). Colours and diagram palette are CSS variables at
+Light "exam paper" theme by default (it always opens in light; the
+toggle in the top bar switches to dark and remembers the choice). Colours and diagram palette are CSS variables at
 the top of `static/styles.css`. Home opens on the next topic to read and a
 course map of every topic coloured by mastery.
 

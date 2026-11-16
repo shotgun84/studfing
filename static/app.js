@@ -107,8 +107,12 @@ function linkify(text, currentId, budget) {
     const id = ALIAS[ph];
     if (id === currentId || budget.used.has(id)) continue;
     const re = new RegExp(`(?<!\\w)${ph.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?!\\w)`, "i");
-    if (re.test(out)) {
-      out = out.replace(re, m => `<a href="#/article/${id}">${m}</a>`);
+    // only match plain text: never inside a link we already made (or inside its href)
+    const parts = out.split(/(<a\b[^>]*>.*?<\/a>)/i);
+    const at = parts.findIndex((seg, i) => i % 2 === 0 && re.test(seg));
+    if (at !== -1) {
+      parts[at] = parts[at].replace(re, m => `<a href="#/article/${id}">${m}</a>`);
+      out = parts.join("");
       budget.used.add(id); budget.n--;
       if (budget.n <= 0) break;
     }
@@ -873,8 +877,15 @@ $("#searchBtn").onclick = openPalette;
 $("#paletteInput").addEventListener("input", renderPalette);
 $("#palette").addEventListener("click", e => { if (e.target.id === "palette") closePalette(); });
 $("#paletteClose").onclick = closePalette;
+const syncThemeBtn = () => $("#themeBtn").setAttribute("aria-checked", document.documentElement.dataset.theme === "dark");
+syncThemeBtn();
+let fadeTimer;
 $("#themeBtn").onclick = () => { const h = document.documentElement;
+  h.classList.add("theme-fade"); clearTimeout(fadeTimer);
+  fadeTimer = setTimeout(() => h.classList.remove("theme-fade"), 600);
   h.dataset.theme = h.dataset.theme === "dark" ? "light" : "dark";
+  const m = document.querySelector('meta[name="color-scheme"]'); if (m) m.content = h.dataset.theme;
+  syncThemeBtn();
   try { localStorage.setItem("meridian-theme", h.dataset.theme); } catch {} };
 $("#readingBtn").onclick = () => { const on = document.body.classList.toggle("reading");
   $("#readingBtn").setAttribute("aria-pressed", on); };
